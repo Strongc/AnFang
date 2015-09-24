@@ -38,6 +38,7 @@
     
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHexString:@"ededed"];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self ConfigControl];
     
     UINavigationBar *bar = [self.navigationController navigationBar];
@@ -57,6 +58,7 @@
 {
 
     monitorTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT) style:UITableViewStylePlain];
+    UIImageView *locationImage = [[UIImageView alloc]initWithFrame:CGRectMake(20*WIDTH/375, 20*HEIGHT/667, 110*WIDTH/375, 110*HEIGHT/667)];
     monitorTable.delegate = self;
     monitorTable.dataSource = self;
     monitorTable.separatorStyle = UITableViewCellSeparatorStyleNone;
