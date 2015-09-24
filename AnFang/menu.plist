@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>基本套餐</string>
+		<key>intruction</key>
+		<string>    保护基本的安防管理功能</string>
+		<key>icon</key>
+		<string>basic</string>
+		<key>detail</key>
+		<string>     享受100G视频存储空间，随时随地存储及调用设备录像。可自定义视频分析策略及报警策略，更多功能待您来发掘！</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>专业套餐</string>
+		<key>intruction</key>
+		<string>    保护专业的视频处理功能</string>
+		<key>icon</key>
+		<string>major</string>
+		<key>detail</key>
+		<string>     可以使用视频剪辑功能，享受500G视频存储空间，随时随地存储及调用设备录像。可自定义视频分析策略及报警策略，更多功能待您来发掘！</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>公共资源套餐</string>
+		<key>intruction</key>
+		<string>    可以访问供应商开放的视频</string>
+		<key>icon</key>
+		<string>public</string>
+		<key>detail</key>
+		<string>     可以使用视频剪辑功能，享受800G视频存储空间，随时随地存储及调用设备录像。可自定义视频分析策略及报警策略，更多功能待您来发掘！</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>跨地区套餐</string>
+		<key>intruction</key>
+		<string>    支持绑定多个安防单位</string>
+		<key>icon</key>
+		<string>global</string>
+		<key>detail</key>
+		<string>     可以使用视频剪辑功能，享受1200G视频存储空间，随时随地存储及调用设备录像。可自定义视频分析策略及报警策略，更多功能待您来发掘！</string>
+	</dict>
+</array>
+</plist>

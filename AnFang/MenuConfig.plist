@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>time</key>
+		<string>十五天</string>
+		<key>price</key>
+		<string>¥ 30</string>
+	</dict>
+	<dict>
+		<key>time</key>
+		<string>月套餐(享9折优惠)</string>
+		<key>price</key>
+		<string>¥ 54</string>
+	</dict>
+	<dict>
+		<key>time</key>
+		<string>季度套餐(赠一周)</string>
+		<key>price</key>
+		<string>¥ 180</string>
+	</dict>
+	<dict>
+		<key>time</key>
+		<string>年套餐(8折赠两周)</string>
+		<key>price</key>
+		<string>¥ 576</string>
+	</dict>
+</array>
+</plist>
