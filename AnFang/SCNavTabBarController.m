@@ -8,7 +8,7 @@
 
 #import "SCNavTabBarController.h"
 #import "CommonMacro.h"
-#import "SCNavTabBar.h"
+
 #include "UIColor+Extensions.h"
 //#import "PYAllCommon.h"
 
@@ -17,7 +17,7 @@
     NSInteger       _currentIndex;              // current page index
     NSMutableArray  *_titles;                   // array of children view controller's title
     
-    SCNavTabBar     *_navTabBar;                // NavTabBar: press item on it to exchange view
+                 // NavTabBar: press item on it to exchange view
     UIScrollView    *_mainView;                 // content view
 }
 
@@ -109,7 +109,7 @@
    // _navTabBar = [[SCNavTabBar alloc] initWithFrame:CGRectMake(80, 30, SCREEN_WIDTH-40, 40) showArrowButton:_showArrowButton];
     //_navTabBar = [[SCNavTabBar alloc] initWithFrame:CGRectMake(DOT_COORDINATE, 20, SCREEN_WIDTH, 20)];
 //     _navTabBar = [[SCNavTabBar alloc] initWithFrame:CGRectMake(80, 20, SCREEN_WIDTH-40, 40) showArrowButton:_showArrowButton];
-     _navTabBar = [[SCNavTabBar alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30) showArrowButton:_showArrowButton];
+     _navTabBar = [[SCNavTabBar alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 35) showArrowButton:_showArrowButton];
 
     _navTabBar.delegate = self;
     

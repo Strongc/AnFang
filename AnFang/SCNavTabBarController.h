@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SCNavTabBar.h"
 
-@class SCNavTabBar;
+//@class SCNavTabBar;
 
-@interface SCNavTabBarController : UIViewController
+@interface SCNavTabBarController : UIViewController<UITabBarDelegate>
 
 @property (nonatomic, assign)   BOOL        showArrowButton;            // Default value: YES
 @property (nonatomic, assign)   BOOL        scrollAnimation;            // Default value: NO
@@ -23,6 +24,8 @@
 @property (nonatomic, strong)   UIImage     *navTabBarArrowImage;
 
 @property (nonatomic,strong) UIButton *backBtn;
+
+@property (nonatomic,strong)  SCNavTabBar *navTabBar;
 
 /**
  *  Initialize Methods

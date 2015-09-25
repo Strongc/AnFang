@@ -37,6 +37,7 @@
     
     alarmMessageView.title = @"安防消息";
     systemMessageView.title = @"温馨提醒";
+    
     userMessageView.title = @"资讯内容";
     businessView.title = @"商业活动";
     
@@ -45,19 +46,21 @@
     navTabBarController.subViewControllers = @[alarmMessageView, systemMessageView,userMessageView,businessView];
     [navTabBarController addParentController:self];
     
-    // [self ConfigControl];
-    //[self initData];
-    
-    arMenu = @[@[@"建讨论组",@"menu_icon_createDiscuss.png"],
-               @[@"多人通话",@"menu_icon_groupaudio.png"],
-               @[@"共享照片",@"menu_icon_camera.png"],
-               @[@"扫一扫",@"menu_icon_QR.png"]];
-    
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] init];
-    item.title = @"返回";
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];//设置导航栏返回按钮及文字背景颜色
-    //self.navigationController.navigationBar.translucent = NO;
-    self.navigationItem.backBarButtonItem = item;
+    UIButton *item = [navTabBarController.navTabBar.items objectAtIndex:1];
+    [item.badgeView setPosition:MGBadgePositionTopRight];
+    [item.badgeView setBadgeColor:[UIColor redColor]];
+    [item.badgeView setBadgeValue:2];
+
+//    arMenu = @[@[@"建讨论组",@"menu_icon_createDiscuss.png"],
+//               @[@"多人通话",@"menu_icon_groupaudio.png"],
+//               @[@"共享照片",@"menu_icon_camera.png"],
+//               @[@"扫一扫",@"menu_icon_QR.png"]];
+//    
+//    UIBarButtonItem *item1 = [[UIBarButtonItem alloc] init];
+//    item1.title = @"返回";
+//    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];//设置导航栏返回按钮及文字背景颜色
+//    //self.navigationController.navigationBar.translucent = NO;
+//    self.navigationItem.backBarButtonItem = item1;
    
     
     // Do any additional setup after loading the view.

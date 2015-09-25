@@ -21,7 +21,7 @@
     UIView          *_line;                 // underscore show which item selected
     SCPopView       *_popView;              // when item menu, will show this view
     
-    NSMutableArray  *_items;                // SCNavTabBar pressed item
+                 // SCNavTabBar pressed item
     NSArray         *_itemsWidth;           // an array of items' width
     BOOL            _showArrowButton;       // is showed arrow button
     BOOL            _popItemMenu;    // is needed pop item menu
@@ -105,7 +105,7 @@
     for (NSInteger index = 0; index < [_itemTitles count]; index++)
     {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(buttonX, -4.0, ([widths[index] floatValue]-25)*WIDTH/375, 44*WIDTH/375);
+        button.frame = CGRectMake(buttonX, 5.0, ([widths[index] floatValue]-25)*WIDTH/375, 30*WIDTH/375);
         [button setTitle:_itemTitles[index] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
         button.titleLabel.font = [UIFont boldSystemFontOfSize:15*WIDTH/375];

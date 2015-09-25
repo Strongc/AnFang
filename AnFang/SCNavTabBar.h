@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIView+MGBadgeView.h"
 
 @protocol SCNavTabBarDelegate <NSObject>
 
@@ -33,11 +34,13 @@
 @property (nonatomic, weak)     id          <SCNavTabBarDelegate>delegate;
 
 @property (nonatomic, assign)   NSInteger   currentItemIndex;           // current selected item's index
-@property (nonatomic, strong)   NSArray     *itemTitles;                // all items' title
+@property (nonatomic, strong)   NSArray     *itemTitles;// all items' title
+@property (nonatomic, strong)   NSMutableArray  *items;
 
 @property (nonatomic, strong)   UIColor     *lineColor;                 // set the underscore color
 @property (nonatomic, strong)   UIImage     *arrowImage;
 // set arrow button's image
+
 
 @property (nonatomic,strong) UIButton *backBtn;
 

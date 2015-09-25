@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0448B1FB1BB4ED6E00DBE65C /* RDVTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0448B1FA1BB4ED6E00DBE65C /* RDVTabBarItem.m */; };
+		0448B1FF1BB5093D00DBE65C /* UIView+MGBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0448B1FE1BB5093D00DBE65C /* UIView+MGBadgeView.m */; };
 		04801E2B1BB3C15C00714CC9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04801E2A1BB3C15C00714CC9 /* main.m */; };
 		04801E2E1BB3C15C00714CC9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04801E2D1BB3C15C00714CC9 /* AppDelegate.m */; };
 		04801E311BB3C15C00714CC9 /* AnFang.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04801E2F1BB3C15C00714CC9 /* AnFang.xcdatamodeld */; };
@@ -182,6 +184,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0448B1F91BB4ED6E00DBE65C /* RDVTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVTabBarItem.h; sourceTree = "<group>"; };
+		0448B1FA1BB4ED6E00DBE65C /* RDVTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBarItem.m; sourceTree = "<group>"; };
+		0448B1FD1BB5093D00DBE65C /* UIView+MGBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MGBadgeView.h"; sourceTree = "<group>"; };
+		0448B1FE1BB5093D00DBE65C /* UIView+MGBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MGBadgeView.m"; sourceTree = "<group>"; };
 		04801E251BB3C15C00714CC9 /* AnFang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnFang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04801E291BB3C15C00714CC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04801E2A1BB3C15C00714CC9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -437,6 +443,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0448B1F81BB4ED3F00DBE65C /* TabBarItem */ = {
+			isa = PBXGroup;
+			children = (
+				0448B1F91BB4ED6E00DBE65C /* RDVTabBarItem.h */,
+				0448B1FA1BB4ED6E00DBE65C /* RDVTabBarItem.m */,
+			);
+			name = TabBarItem;
+			sourceTree = "<group>";
+		};
+		0448B1FC1BB5092300DBE65C /* BadgeView */ = {
+			isa = PBXGroup;
+			children = (
+				0448B1FD1BB5093D00DBE65C /* UIView+MGBadgeView.h */,
+				0448B1FE1BB5093D00DBE65C /* UIView+MGBadgeView.m */,
+			);
+			name = BadgeView;
+			sourceTree = "<group>";
+		};
 		04801E1C1BB3C15C00714CC9 = {
 			isa = PBXGroup;
 			children = (
@@ -595,6 +619,8 @@
 		04801E691BB3CA7F00714CC9 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				0448B1FC1BB5092300DBE65C /* BadgeView */,
+				0448B1F81BB4ED3F00DBE65C /* TabBarItem */,
 				04D9A5DD1BB3D463006D7B8A /* ZipArchive */,
 				04801F511BB3CEEC00714CC9 /* Common.h */,
 				04801EA11BB3CD0500714CC9 /* GradientButton.h */,
@@ -898,18 +924,18 @@
 		04D9A6441BB3DC9F006D7B8A /* Message */ = {
 			isa = PBXGroup;
 			children = (
-				04D9A61B1BB3D8DA006D7B8A /* SystemMessageViewController.m */,
-				04D9A61C1BB3D8DA006D7B8A /* UserMessageViewController.h */,
-				04D9A5F31BB3D82E006D7B8A /* AlarmMessageDetailViewController.m */,
 				04D9A5F41BB3D82E006D7B8A /* AlarmMessageViewController.h */,
 				04D9A5F51BB3D82E006D7B8A /* AlarmMessageViewController.m */,
 				04D9A6081BB3D8DA006D7B8A /* MessageViewController.h */,
+				04D9A6091BB3D8DA006D7B8A /* MessageViewController.m */,
 				04D9A5F21BB3D82E006D7B8A /* AlarmMessageDetailViewController.h */,
+				04D9A5F31BB3D82E006D7B8A /* AlarmMessageDetailViewController.m */,
 				04D9A5F81BB3D8DA006D7B8A /* BusinessMessageViewController.h */,
 				04D9A5F91BB3D8DA006D7B8A /* BusinessMessageViewController.m */,
+				04D9A61C1BB3D8DA006D7B8A /* UserMessageViewController.h */,
 				04D9A61D1BB3D8DA006D7B8A /* UserMessageViewController.m */,
-				04D9A6091BB3D8DA006D7B8A /* MessageViewController.m */,
 				04D9A61A1BB3D8DA006D7B8A /* SystemMessageViewController.h */,
+				04D9A61B1BB3D8DA006D7B8A /* SystemMessageViewController.m */,
 			);
 			name = Message;
 			sourceTree = "<group>";
@@ -1238,10 +1264,12 @@
 				04801E5C1BB3C98E00714CC9 /* MenuConfig.m in Sources */,
 				04801EA01BB3CCDB00714CC9 /* AVPlayerDemoPlaybackView.m in Sources */,
 				04801F601BB3CFCD00714CC9 /* PersonCenterTableViewCell.m in Sources */,
+				0448B1FF1BB5093D00DBE65C /* UIView+MGBadgeView.m in Sources */,
 				04801E2E1BB3C15C00714CC9 /* AppDelegate.m in Sources */,
 				04801F6C1BB3D08300714CC9 /* AlarmMessageTableViewCell.m in Sources */,
 				04D9A5EA1BB3D510006D7B8A /* unzip.c in Sources */,
 				04801E311BB3C15C00714CC9 /* AnFang.xcdatamodeld in Sources */,
+				0448B1FB1BB4ED6E00DBE65C /* RDVTabBarItem.m in Sources */,
 				04D9A6261BB3D8DA006D7B8A /* MenuConfigViewController.m in Sources */,
 				04D9A5F71BB3D82E006D7B8A /* AlarmMessageViewController.m in Sources */,
 				04801E861BB3CB9700714CC9 /* SCPopView.m in Sources */,
