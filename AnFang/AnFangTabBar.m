@@ -97,7 +97,7 @@
 
 - (CGFloat)contentWidthAndAddNavTabBarItemsWithButtonsWidth:(NSArray *)widths
 {
-    CGFloat buttonX = 45*WIDTH/375;
+    CGFloat buttonX = 90*WIDTH/375;
     for (NSInteger index = 0; index < [_itemTitles count]; index++)
     {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -112,7 +112,7 @@
         [_navgationTabBar addSubview:button];
         
         [_items addObject:button];
-        buttonX += [widths[index] floatValue]*WIDTH/375 + 35*WIDTH/375;
+        buttonX += [widths[index] floatValue]*WIDTH/375 + 75*WIDTH/375;
         // buttonX += [widths[index] floatValue]*WIDTH/375;
         //buttonX += 140*WIDTH/375;
         if (index == 0) {

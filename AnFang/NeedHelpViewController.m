@@ -130,6 +130,7 @@
     alarmBtn.backgroundColor = [UIColor redColor];
     [alarmBtn setTitle:@"一 键 报 警" forState:UIControlStateNormal];
     [alarmBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [alarmBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     alarmBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20*WIDTH/375];
     [alarmBtn setTitleColor:[UIColor grayColor] forState:UIControlStateSelected];
     [alarmView addSubview:alarmBtn];

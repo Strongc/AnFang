@@ -54,14 +54,14 @@
     MonitorViewController *monitorView = [[MonitorViewController alloc]init];
     
     cheBufangView.title = @"撤部防";
-    needHelpView.title = @"求助";
-    monitorView.title = @"监控";
+    needHelpView.title = @"人";
+    monitorView.title = @"屋";
     
     AnFangTabBarViewController *navTabBarController = [[AnFangTabBarViewController alloc] init];
     //navTabBarController.navTabBarColor = [UIColor blackColor];
   
     
-    navTabBarController.subViewControllers = @[cheBufangView, needHelpView,monitorView];
+    navTabBarController.subViewControllers = @[needHelpView,monitorView];
     [navTabBarController addParentController:self];
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] init];
