@@ -50,10 +50,10 @@
     
     
     NeedHelpViewController *needHelpView = [[NeedHelpViewController alloc]init];
-    CheBuFangViewController *cheBufangView = [[CheBuFangViewController alloc]init];
+    //CheBuFangViewController *cheBufangView = [[CheBuFangViewController alloc]init];
     MonitorViewController *monitorView = [[MonitorViewController alloc]init];
     
-    cheBufangView.title = @"撤部防";
+   // cheBufangView.title = @"撤部防";
     needHelpView.title = @"人";
     monitorView.title = @"屋";
     

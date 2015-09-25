@@ -917,7 +917,6 @@
 		04D9A6451BB3DD2D006D7B8A /* AnFangSystem */ = {
 			isa = PBXGroup;
 			children = (
-				04D9A60B1BB3D8DA006D7B8A /* MonitorViewController.m */,
 				04D9A5FF1BB3D8DA006D7B8A /* DefenceAreaViewController.m */,
 				04D9A60D1BB3D8DA006D7B8A /* NeedHelpViewController.m */,
 				04D9A60C1BB3D8DA006D7B8A /* NeedHelpViewController.h */,
@@ -930,6 +929,7 @@
 				04D9A61E1BB3D8DA006D7B8A /* VideoListViewController.h */,
 				04D9A6181BB3D8DA006D7B8A /* SingleVideoViewController.h */,
 				04D9A6191BB3D8DA006D7B8A /* SingleVideoViewController.m */,
+				04D9A60B1BB3D8DA006D7B8A /* MonitorViewController.m */,
 				04D9A60A1BB3D8DA006D7B8A /* MonitorViewController.h */,
 				04D9A6351BB3D90D006D7B8A /* CheBuFangViewController.m */,
 				04D9A6161BB3D8DA006D7B8A /* SecuritySystemViewController.h */,

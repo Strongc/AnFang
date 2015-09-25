@@ -37,9 +37,9 @@
 
     if(self){
         
-        UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(5*WIDTH/375, 5*WIDTH/375,WIDTH-10*WIDTH/375, 75*WIDTH/375)];
-        [self.contentView addSubview:lab];
-        lab.backgroundColor = [UIColor whiteColor];
+        //UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(5*WIDTH/375, 5*WIDTH/375,WIDTH-10*WIDTH/375, 75*WIDTH/375)];
+        //[self.contentView addSubview:lab];
+        //lab.backgroundColor = [UIColor whiteColor];
         
         UIImageView *areaImage = [[UIImageView alloc]initWithFrame:CGRectMake(16*WIDTH/375, 9*WIDTH/375, 60*WIDTH/375, 67*WIDTH/375)];
         areaImage.image = [UIImage imageNamed:@"bg.png"];
@@ -60,6 +60,10 @@
         areaDetailInfo.font = [UIFont systemFontOfSize:13*WIDTH/375];
         [self.contentView addSubview:areaDetailInfo];
         self.areaDetailInfo = areaDetailInfo;
+        
+        UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(0, 79*HEIGHT/667, WIDTH, 1)];
+        line.backgroundColor = [UIColor colorWithHexString:@"bababa"];
+        [self.contentView addSubview:line];
     
     }
 
