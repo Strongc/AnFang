@@ -123,11 +123,12 @@
     PublicVideoCollectionViewCell *cell = (PublicVideoCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifyId forIndexPath:indexPath];
    
     PublicVideoSource *model = [self.sourceData objectAtIndex:indexPath.item];
-    NSString *name = model.videoImage;
+    //NSString *name = model.videoImage;
     
-    cell.publicVideoImage.image = [UIImage imageNamed:name];
-    cell.videoTimeLab.text = model.videoTime;
-    cell.videoTitle.text = model.videoName;
+//    cell.publicVideoImage.image = [UIImage imageNamed:name];
+//    cell.videoTimeLab.text = model.videoTime;
+//    cell.videoTitle.text = model.videoName;
+    cell.publicSource = model;
    
     CGRect originFrame = cell.frame;
     

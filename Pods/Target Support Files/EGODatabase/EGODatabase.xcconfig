@@ -1,0 +1,1 @@
+EGODATABASE_OTHER_LDFLAGS = -l"sqlite3"

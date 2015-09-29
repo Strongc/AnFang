@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MenuConfig.h"
 
 @interface MenuTimeTableViewCell : UITableViewCell
 
@@ -15,6 +16,8 @@
 
 /** 套餐介绍*/
 @property (nonatomic,weak) UILabel *menuPrice;
+
+@property (nonatomic,strong) MenuConfig *menuConfig;
 
 - (void)setHightlightBackground:(BOOL)isSelected withAimate:(BOOL)animate;
 - (void)setNormalBackground:(BOOL)animate;

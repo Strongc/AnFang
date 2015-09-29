@@ -12,6 +12,16 @@
 
 @implementation PublicVideoCollectionViewCell
 
+-(void)setPublicSource:(PublicVideoSource *)publicSource
+{
+    _publicSource = publicSource;
+    
+    self.publicVideoImage.image = [UIImage imageNamed:publicSource.videoImage];
+    self.videoTimeLab.text = publicSource.videoTime;
+    self.videoTitle.text = publicSource.videoName;
+
+}
+
 -(id)initWithFrame:(CGRect)frame
 {
 

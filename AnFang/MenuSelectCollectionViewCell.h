@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MenuSelect.h"
 
 @interface MenuSelectCollectionViewCell : UICollectionViewCell
 
@@ -18,5 +19,7 @@
 
 /** 套餐介绍*/
 @property (nonatomic,weak) UILabel *menuIndruction;
+
+@property (nonatomic,strong) MenuSelect *menuSelect;
 
 @end

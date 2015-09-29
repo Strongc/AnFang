@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>icon</key>
+		<string>dev</string>
+		<key>name</key>
+		<string>大楼西侧朝南监控</string>
+		<key>state</key>
+		<string>已关机</string>
+	</dict>
+	<dict>
+		<key>icon</key>
+		<string>dev</string>
+		<key>name</key>
+		<string>广场朝北监控</string>
+		<key>state</key>
+		<string>工作正常</string>
+	</dict>
+	<dict>
+		<key>icon</key>
+		<string>dev</string>
+		<key>name</key>
+		<string>停车场监控</string>
+		<key>state</key>
+		<string>工作正常</string>
+	</dict>
+	<dict>
+		<key>icon</key>
+		<string>dev</string>
+		<key>name</key>
+		<string>广场入口监控</string>
+		<key>state</key>
+		<string>无法连接</string>
+	</dict>
+</array>
+</plist>

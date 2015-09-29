@@ -11,6 +11,7 @@
 #import "Common.h"
 #import "MonitorInfoTableViewCell.h"
 #import "DefenceAreaViewController.h"
+#import "JRPlayerViewController.h"
 
 @interface MonitorViewController ()
 {
@@ -22,14 +23,45 @@
     NSMutableArray *defenceAreaImage;
 
 }
+@property (nonatomic,strong) NSArray *sourceData;
 
 @end
 
 @implementation MonitorViewController
 
--(void)viewWillAppear:(BOOL)animated
+-(NSArray *)sourceData
 {
     
+    if(_sourceData == nil){
+        
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"MonitorArea.plist" ofType:nil];
+        //2.根据路径加载数据
+        NSArray *arrayDict = [NSArray arrayWithContentsOfFile:path];
+        
+        //3.创建一个可变数组来保存一个一个对象
+        NSMutableArray *arrayModels = [NSMutableArray array];
+        
+        //4.循环字典数组，把每个字典对象转化成一个模型对象
+        for(NSDictionary *dict in arrayDict){
+            
+            DefenceAreaModel *model = [DefenceAreaModel monitorWithDict:dict];
+            
+            [arrayModels addObject:model];
+        }
+        
+        _sourceData = arrayModels;
+        
+        
+    }
+    
+    return _sourceData;
+    
+}
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+
     self.navigationController.navigationBarHidden = YES;
 
 }
@@ -174,7 +206,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    return defenceAreaInfo.count;
+    return self.sourceData.count;
 
 }
 
@@ -193,8 +225,9 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     }
-    cell.areaName.text = [defenceAreaName objectAtIndex:indexPath.row];
-    cell.areaDetailInfo.text = [defenceAreaInfo objectAtIndex:indexPath.row];
+    
+    DefenceAreaModel *model = [self.sourceData objectAtIndex:indexPath.item];
+    cell.defenceArea = model;
     
     return cell;
     
@@ -210,18 +243,32 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-     DefenceAreaViewController *defenceArea = [mainView instantiateViewControllerWithIdentifier:@"defenceArea"];
-     //self.navigationController.navigationBarHidden = NO;
     
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] init];
-    item.title = @"返回";
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];//设置导航栏返回按钮及文字背景颜色
-    //self.navigationController.navigationBar.translucent = NO;
-    self.navigationItem.backBarButtonItem = item;
-    defenceArea.defenceAreaName = [defenceAreaName objectAtIndex:indexPath.row];
-    [self.navigationController pushViewController:defenceArea animated:YES];
-
+    UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    JRPlayerViewController *videoPlayer;
+   // NSString *webPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Private Documents/Temp"];//临时存储目录
+    
+    NSString *cachePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Private Documents/Cache"];//下载完成存储目录
+    NSLog(@"%@",cachePath);
+    
+    NSFileManager *fileManager=[NSFileManager defaultManager];
+    if(![fileManager fileExistsAtPath:cachePath])
+    {
+        [fileManager createDirectoryAtPath:cachePath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    else if ([fileManager fileExistsAtPath:[cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"vedio.mp4"]]]) {
+       
+       videoPlayer = [[mainView instantiateViewControllerWithIdentifier:@"videoPlayer"] initWithLocalMediaURL:[NSURL URLWithString:[cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"vedio.mp4"]]]];
+        
+    }else{
+    
+        videoPlayer = [[mainView instantiateViewControllerWithIdentifier:@"videoPlayer"] initWithHTTPLiveStreamingMediaURL:[NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"]];
+    }
+    
+    videoPlayer.hidesBottomBarWhenPushed = YES;
+    videoPlayer.navigationController.navigationBarHidden = NO;
+    [self.navigationController pushViewController:videoPlayer animated:YES];
+    
 }
 /*
 #pragma mark - Navigation

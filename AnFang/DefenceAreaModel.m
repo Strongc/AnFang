@@ -10,4 +10,28 @@
 
 @implementation DefenceAreaModel
 
+-(DefenceAreaModel *)initWithDict:(NSDictionary *)dict
+{
+    if(self = [super init]){
+        
+        //self.areaId = dict[@"id"];
+        //self.photoPath = dict[@"url"];
+        self.photoPath = dict[@"icon"];
+        self.devState = dict[@"state"];
+        self.devName = dict[@"name"];
+        
+    }
+    
+    return self;
+}
+
++(DefenceAreaModel *)monitorWithDict:(NSDictionary *)dict
+{
+    
+    return [[self alloc] initWithDict:dict];
+    
+}
+
+
+
 @end

@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PublicVideoSource.h"
+
 
 @interface PublicVideoCollectionViewCell : UICollectionViewCell
 
@@ -19,4 +21,5 @@
 /** 视频时间*/
 @property (nonatomic,weak) UILabel * videoTimeLab;
 
+@property (nonatomic,strong) PublicVideoSource *publicSource;
 @end

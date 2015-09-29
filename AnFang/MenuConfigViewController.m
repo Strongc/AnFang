@@ -143,7 +143,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 4;
+    return self.menuData.count;
     
 }
 
@@ -163,8 +163,9 @@
         
     }
     MenuConfig *model = [self.menuData objectAtIndex:indexPath.item];
-    cell.menuTime.text = model.time;
-    cell.menuPrice.text = model.price;
+   // cell.menuTime.text = model.time;
+    //cell.menuPrice.text = model.price;
+    cell.menuConfig = model;
     
     BOOL isSelected = [indexPath isEqual:currentSelectedIndex];
     BOOL isDeselectedShouldAnimate = currentSelectedIndex != nil && [indexPath isEqual:currentSelectedIndex];

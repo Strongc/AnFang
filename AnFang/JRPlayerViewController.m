@@ -121,7 +121,7 @@ static void * playerPlayingContext = &playerPlayingContext;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor colorWithHexString:@"fffffa"];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"ededed"];
     
     UIImageView *headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 64*HEIGHT/667)];
     [headView setImage:[UIImage imageNamed:@"header_bg.png"]];
@@ -280,29 +280,41 @@ static void * playerPlayingContext = &playerPlayingContext;
 //视频下载
 -(void)downLoadVideo
 {
-
-    NSString *webPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Private Documents/Temp"];
-    NSString *cachePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Private Documents/Cache"];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"]];
+    NSString *webPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Private Documents/Temp"];//临时存储目录
     
-    [request setDownloadDestinationPath:[cachePath stringByAppendingPathComponent:@"video.mp4"]];//存放文件的路径
+    NSString *cachePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Private Documents/Cache"];//下载完成存储目录
+    NSLog(@"%@",cachePath);
+    
+    ASIHTTPRequest *request=[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"]];
+       // AudioButton *musicBt = (AudioButton *)[self.view viewWithTag:1];
+        //[musicBt startSpin];
+        //下载完存储目录
+    [request setDownloadDestinationPath:[cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"vedio.mp4"]]];
+        //临时存储目录
+    [request setTemporaryFileDownloadPath:[webPath stringByAppendingPathComponent:[NSString stringWithFormat:@"vedio.mp4"]]];
     [request setBytesReceivedBlock:^(unsigned long long size, unsigned long long total) {
-        //[musicBt stopSpin];
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setDouble:total forKey:@"file_length"];
-        Recordull += size;//Recordull全局变量，记录已下载的文件的大小
-        if (!isPlay&&Recordull > 400000) {
-            isPlay = !isPlay;
-            //[self playVideo];
-        }
+           // [musicBt stopSpin];
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setDouble:total forKey:@"file_length"];
+            Recordull += size;//Recordull全局变量，记录已下载的文件的大小
+            if (!isPlay&&Recordull > 400000) {
+                isPlay = !isPlay;
+                //[self playVideo];
+            }
     }];
-
+        //断点续载
     [request setAllowResumeForFileDownloads:YES];
     [request startAsynchronous];
-
+    videoRequest = request;
+  
 }
+
+- (void)playVideo{
+    MPMoviePlayerViewController *playerViewController =[[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:@"http://127.0.0.1:12345/vedio.mp4"]];
+    [self presentMoviePlayerViewControllerAnimated:playerViewController];
+}
+
 
 - (void)hidePersentLabel {
     [self.persentLabel setHidden:YES];

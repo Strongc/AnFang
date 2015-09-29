@@ -12,8 +12,8 @@
 #import "UIColor+Extensions.h"
 #import "PayStyle.h"
 #import "PayStyleCollectionViewCell.h"
-//#import "AFNetworking.h"
-//#import "BCPaySDK/Channel/PayPal/PayPalMobile.h"
+#import <AlipaySDK/AlipaySDK.h>
+#import "Order.h"
 
 
 @interface RechargeViewController ()
@@ -25,6 +25,7 @@
     NSIndexPath *currentSelectedIndex1;
     NSIndexPath *previousSelectedIndex1;
     UICollectionView *payStyleCollectionView;
+    //2088902492111085
     
 }
 
@@ -62,9 +63,12 @@
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     [self initControl];
      accountArray = [[NSMutableArray alloc]initWithObjects:@"10元", @"50元",@"100元",@"200元",nil];
+    
+   
     // Do any additional setup after loading the view.
 }
 
@@ -143,7 +147,7 @@
     [commitBtn setBackgroundColor:[UIColor orangeColor]];
     [commitBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     commitBtn.titleLabel.font = [UIFont boldSystemFontOfSize:18*WIDTH/375];
-    [commitBtn addTarget:self action:@selector(doUnionPay) forControlEvents:UIControlEventTouchUpInside];
+    [commitBtn addTarget:self action:@selector(doAliPay) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:commitBtn];
     
 }
@@ -333,34 +337,60 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - 银联在线
-- (void)doUnionPay {
-   // [self doPay:PayChannelUnApp];
+- (NSString *)generateTradeNO
+{
+    static int kNumber = 15;
+    
+    NSString *sourceStr = @"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    NSMutableString *resultStr = [[NSMutableString alloc] init];
+    srand(time(0));
+    for (int i = 0; i < kNumber; i++)
+    {
+        unsigned index = rand() % [sourceStr length];
+        NSString *oneStr = [sourceStr substringWithRange:NSMakeRange(index, 1)];
+        [resultStr appendString:oneStr];
+    }
+    return resultStr;
 }
 
-//#pragma mark - 生成订单号
-//- (NSString *)genOutTradeNo {
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    [formatter setDateFormat:@"yyyyMMddHHmmssSSS"];
-//    return [formatter stringFromDate:[NSDate date]];
-//}
-//
-//
-//- (void)doPay:(PayChannel)channel {
-//    NSString *outTradeNo = [self genOutTradeNo];
-//    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"value",@"key", nil];
-//    
-//    BCPayReq *payReq = [[BCPayReq alloc] init];
-//    payReq.channel = channel;
-//    payReq.title = billTitle;
-//    payReq.totalfee = @"1";
-//    payReq.billno = outTradeNo;
-//    payReq.scheme = @"payDemo";
-//    payReq.viewController = self;
-//    payReq.optional = dict;
-//    [BeeCloud sendBCReq:payReq];
-//}
 
+
+#pragma mark - 支付宝
+- (void)doAliPay {
+    
+    NSString *partner = @"2088021410775742";
+    NSString *seller = @"15655527767";
+    NSString *privateKey = @"MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAMqzsWdaz4/iaGvdZEsDYr+VAU5AF/ysnc3Ftj4YAnu1cx9L+fUNKexwBqaeQrVhQ3GSqlAwRADKPJxsMh4wt3F5qdF78nf/V2ONLFE11RHHOwtvIfeUHFuStYldsFg6HjVKpfYkEF4IqKje6ycK9sWhGcfob8PrjvCqigVa8ni9AgMBAAECgYEAgyGeacuArYd9oBI4WKLXFjNyBcpG+ko9SCpYjHEB4j/vOtbu3E3oyjFqzA1kAGzssaN9FKU0yQIMFfGUtp0zfknHMTFyyLouUJbMSxnpDzIqoJZffD9D3fCCjJOOmsBiF26eaprHnjqh4xQLMbE4uFi2pDoh+8DjEDq5IV4E1CECQQDj6as3klBIiz+8yvEUI4but9zmvdyG3fcJgBs2e+8BA5euAoyLyleqUl9cfGsWpLu8ASIldyJ0dXLJAHimneKVAkEA466oN3EmyM2PbOoXmyNccOw6q2NGUp2QpHlfBVd0ZMwMV2llfmSC8kV3cTXHHc5imVRY4QixY36pEsIbyjSbiQJBAM/tSIVEePYWBCorQ9HJr7puB5yDLoPkURJby3fjjWLxchoQvURzb5M130YzREe+NoAI0Kw5ijeRRw1V3ryzYhkCQQDOeQ1DefFaGFAAzSkrHx4tqYxq8FRNh2YsQYTSK0T6Q7DNdF7+B9hYLHbsy4AOn6L6uWsAaAm12J8qy6y36o1BAkB3pLndLIMNNG26MDAHmukP4qRZJ0ho8ECRgP4HWyYsBxhN2DuR76lIHAtHgKuIZ9MK2A6YbyNSu/Sgavsvpaln";
+    
+    Order *order = [[Order alloc] init];
+    order.partner = partner;
+    order.seller = seller;
+    order.tradeNO = [self generateTradeNO]; //订单ID（由商家自行制定）
+    order.productName = @"套餐"; //商品标题
+    order.productDescription = @""; //商品描述
+    order.amount = [NSString stringWithFormat:@"%.2f",2.00]; //商品价格
+    order.notifyURL =  @"http://www.xxx.com"; //回调URL
+    
+    order.service = @"mobile.securitypay.pay";
+    order.paymentType = @"1";
+    order.inputCharset = @"utf-8";
+    order.itBPay = @"30m";
+    order.showUrl = @"m.alipay.com";
+    NSString *orderSpec = [order description];
+    
+    //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
+    //id<DataSigner> signer = CreateRSADataSigner(privateKey);
+    //NSString *signedString = [signer signString:orderSpec];
+    NSString *appScheme = @"anfang";
+    
+   NSString *orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
+                   orderSpec, privateKey, @"RSA"];
+    [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+        NSLog(@"result = %@",resultDic);
+    }];
+    
+  
+}
 
 
 /*

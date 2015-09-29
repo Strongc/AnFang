@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "ASIHTTPRequest2/ASIHTTPRequest.h"
+#import "ASIHTTPRequest.h"
 
 @interface JRPlayerViewController : UIViewController<AVAudioPlayerDelegate>
 {

@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import<AlipaySDK/AlipaySDK.h>
+#import "DDTTYLogger.h"
+#import "DDLog.h"
 
 @interface AppDelegate ()
 
@@ -14,9 +17,42 @@
 
 @implementation AppDelegate
 
+- (void)startServer
+{
+    // Start the server (and check for problems)
+    
+    NSError *error;
+    if([httpServer start:&error])
+    {
+        NSLog(@"Started HTTP Server on port %hu", [httpServer listeningPort]);
+    }
+    else
+    {
+        NSLog(@"Error starting HTTP Server: %@", error);
+    }
+}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    
+    httpServer = [[HTTPServer alloc]init];
+    
+    [httpServer setType:@"_http._tcp."];
+    
+    [httpServer setPort:12345];
+
+    NSString *webPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Private Documents/Temp"];
+    NSFileManager *fileManager=[NSFileManager defaultManager];
+    if(![fileManager fileExistsAtPath:webPath])
+    {
+        [fileManager createDirectoryAtPath:webPath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    [httpServer setDocumentRoot:webPath];
+    
+    [self startServer];
+
     return YES;
 }
 
@@ -26,11 +62,16 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    
+    
+    //[httpServer stop];
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    
+    //[self startServer];
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
@@ -43,6 +84,20 @@
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
 }
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    //跳转支付宝钱包进行支付，处理支付结果
+    [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+        NSLog(@"result = %@",resultDic);
+    }];
+    
+    return YES;
+}
+
 
 #pragma mark - Core Data stack
 

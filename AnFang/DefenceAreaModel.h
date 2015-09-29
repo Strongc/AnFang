@@ -10,9 +10,12 @@
 
 @interface DefenceAreaModel : NSObject
 
-@property(nonatomic,copy) NSString *areaName;
-@property(nonatomic,copy) NSString *areaDetailInfo;
-@property(nonatomic,copy) NSString *areaId;
+@property(nonatomic,copy) NSString *devName;
+@property(nonatomic,copy) NSString *devState;
+@property(nonatomic,copy) NSString *devId;
 @property(nonatomic,copy) NSString *photoPath;
+
+-(DefenceAreaModel *)initWithDict:(NSDictionary *)dict;
++(DefenceAreaModel *) monitorWithDict:(NSDictionary *)dict;
 
 @end

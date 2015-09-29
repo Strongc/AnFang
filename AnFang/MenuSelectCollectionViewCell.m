@@ -12,6 +12,18 @@
 
 @implementation MenuSelectCollectionViewCell
 
+-(void)setMenuSelect:(MenuSelect *)menuSelect
+{
+    _menuSelect = menuSelect;
+    
+    self.icon.image = [UIImage imageNamed:menuSelect.icon];
+    self.styleLab.text = menuSelect.name;
+    self.menuIndruction.text = menuSelect.intruction;
+    
+
+
+}
+
 -(id)initWithFrame:(CGRect)frame
 {
     

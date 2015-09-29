@@ -130,19 +130,10 @@
     
     MenuSelect *model = [self.menuData objectAtIndex:indexPath.item];
     
-    NSString *name = model.name;
-    cell.styleLab.text = name;
-    NSString *imageName = model.icon;
-    cell.icon.image = [UIImage imageNamed:imageName];
-    cell.menuIndruction.text = model.intruction;
-    
-    BOOL isSelected = [indexPath isEqual:currentSelectedIndex];
-    BOOL isDeselectedShouldAnimate = currentSelectedIndex != nil && [indexPath isEqual:currentSelectedIndex];
-        
-        //[accountCell setHightlightBackground:isSelected withAimate:isDeselectedShouldAnimate];
-        
+    cell.menuSelect = model;
     
     
+
     return cell;
 }
 

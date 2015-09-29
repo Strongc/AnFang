@@ -1,0 +1,1 @@
+IOS_LINECHART_OTHER_LDFLAGS = -framework "CoreFoundation" -framework "CoreGraphics" -framework "UIKit"

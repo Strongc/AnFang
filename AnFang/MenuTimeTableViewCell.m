@@ -16,6 +16,15 @@
     // Initialization code
 }
 
+-(void)setMenuConfig:(MenuConfig *)menuConfig
+{
+
+    _menuConfig = menuConfig;
+    self.menuPrice.text = menuConfig.price;
+    self.menuTime.text = menuConfig.time;
+
+}
+
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     
