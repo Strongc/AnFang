@@ -9,6 +9,8 @@
 		<string>大楼西侧朝南监控</string>
 		<key>state</key>
 		<string>已关机</string>
+		<key>url</key>
+		<string>http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4</string>
 	</dict>
 	<dict>
 		<key>icon</key>
@@ -17,6 +19,8 @@
 		<string>广场朝北监控</string>
 		<key>state</key>
 		<string>工作正常</string>
+		<key>url</key>
+		<string>http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4</string>
 	</dict>
 	<dict>
 		<key>icon</key>
@@ -25,6 +29,8 @@
 		<string>停车场监控</string>
 		<key>state</key>
 		<string>工作正常</string>
+		<key>url</key>
+		<string>http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4</string>
 	</dict>
 	<dict>
 		<key>icon</key>
@@ -33,6 +39,8 @@
 		<string>广场入口监控</string>
 		<key>state</key>
 		<string>无法连接</string>
+		<key>url</key>
+		<string>http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4</string>
 	</dict>
 </array>
 </plist>

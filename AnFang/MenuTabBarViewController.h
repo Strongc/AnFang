@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MenuTabBarViewController : UITabBarController
+@property (weak, nonatomic) IBOutlet UITabBar *mainTabBar;
 
 @end

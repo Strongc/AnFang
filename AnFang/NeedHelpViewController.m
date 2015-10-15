@@ -10,11 +10,13 @@
 #import "UIColor+Extensions.h"
 #import "Common.h"
 
+
 @interface NeedHelpViewController ()
 
 @end
 
 @implementation NeedHelpViewController
+@synthesize avPalyer;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -151,6 +153,54 @@
     
     
 }
+
+-(void)playRecordSound
+{
+    if(self.avPalyer.playing){
+        [self.avPalyer stop];
+        return;
+    
+    }
+    AVAudioPlayer *player = [[AVAudioPlayer alloc]initWithContentsOfURL:urlPlay error:nil];
+    self.avPalyer = player;
+    [self.avPalyer play];
+
+}
+
+- (IBAction)btnDown:(id)sender
+{
+    //创建录音文件，准备录音
+    if ([recorder prepareToRecord]) {
+        //开始
+        [recorder record];
+    }
+    
+    //设置定时检测
+    //timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(detectionVoice) userInfo:nil repeats:YES];
+}
+- (IBAction)btnUp:(id)sender
+{
+    double cTime = recorder.currentTime;
+    if (cTime > 2) {//如果录制时间<2 不发送
+        NSLog(@"发出去");
+    }else {
+        //删除记录的文件
+        [recorder deleteRecording];
+        //删除存储的
+    }
+    [recorder stop];
+    [timer invalidate];
+}
+- (IBAction)btnDragUp:(id)sender
+{
+    //删除录制文件
+    [recorder deleteRecording];
+    [recorder stop];
+    [timer invalidate];
+    
+    NSLog(@"取消发送");
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

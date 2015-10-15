@@ -27,8 +27,15 @@
 @implementation MessageViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor grayColor];
+    
+//    UIImage *imageUnSelect = [UIImage imageNamed:@"message.png"];
+//    UIImage *imageSelected = [UIImage imageNamed:@"messagePress.png"];
+//    
+//    self.navigationController.tabBarItem.image = [imageUnSelect imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    self.navigationController.tabBarItem.selectedImage = [imageSelected imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     AlarmMessageViewController *alarmMessageView = [[AlarmMessageViewController alloc] init];
     SystemMessageViewController *systemMessageView = [[SystemMessageViewController alloc] init];

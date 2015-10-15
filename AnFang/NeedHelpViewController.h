@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import  <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
 
-@interface NeedHelpViewController : UIViewController
+@interface NeedHelpViewController : UIViewController<AVAudioRecorderDelegate>
+{
+    AVAudioRecorder *recorder;
+    NSURL *urlPlay;
+    NSTimer *timer;
+
+}
+@property(strong,nonatomic) AVAudioPlayer *avPalyer;
 
 @end

@@ -24,11 +24,11 @@
     NSError *error;
     if([httpServer start:&error])
     {
-        NSLog(@"Started HTTP Server on port %hu", [httpServer listeningPort]);
+        //NSLog(@"Started HTTP Server on port %hu", [httpServer listeningPort]);
     }
     else
     {
-        NSLog(@"Error starting HTTP Server: %@", error);
+       // NSLog(@"Error starting HTTP Server: %@", error);
     }
 }
 
@@ -92,7 +92,7 @@
     
     //跳转支付宝钱包进行支付，处理支付结果
     [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-        NSLog(@"result = %@",resultDic);
+       // NSLog(@"result = %@",resultDic);
     }];
     
     return YES;

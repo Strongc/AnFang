@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="GnI-8l-sP5">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
@@ -89,6 +88,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <outlet property="mainTabBar" destination="VSF-qv-mkX" id="QBH-yk-OQJ"/>
                         <segue destination="dUt-Dc-VgW" kind="relationship" relationship="viewControllers" id="qVp-fz-z76"/>
                         <segue destination="naJ-OE-xf7" kind="relationship" relationship="viewControllers" id="wp2-me-ldg"/>
                         <segue destination="7tt-i0-2uM" kind="relationship" relationship="viewControllers" id="Np0-BI-3D1"/>
@@ -562,7 +562,9 @@
         <scene sceneID="07k-SG-24c">
             <objects>
                 <navigationController title="AnFangNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="7tt-i0-2uM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="安防系统" selectedImage="anfang.png" id="DaC-fa-ske"/>
+                    <tabBarItem key="tabBarItem" title="安防系统" id="DaC-fa-ske">
+                        <inset key="imageInsets" minX="-2" minY="-31" maxX="0.0" maxY="34"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2b5-Ag-q1D">
@@ -605,7 +607,7 @@
         <scene sceneID="32t-a8-7i8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wwP-zW-rxF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="消息" id="ghQ-79-wNp"/>
+                    <tabBarItem key="tabBarItem" title="消息" image="message" id="ghQ-79-wNp"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AmU-yH-FjE">
@@ -829,7 +831,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="anfang.png" width="16" height="16"/>
+        <image name="message" width="30" height="30"/>
         <image name="setting.png" width="24" height="24"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

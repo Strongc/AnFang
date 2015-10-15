@@ -18,8 +18,9 @@
 
 }
 
-@property (nonatomic, strong) NSString *mediaTitle;
+@property (nonatomic,copy) NSString *mediaTitle;
 @property (nonatomic,strong) AVAudioPlayer *audioPlayer;
+@property (nonatomic,copy) NSString *videoName;
 
 - (instancetype)initWithHTTPLiveStreamingMediaURL:(NSURL *)url;
 - (instancetype)initWithLocalMediaURL:(NSURL *)url;

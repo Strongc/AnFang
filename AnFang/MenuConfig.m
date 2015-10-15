@@ -16,6 +16,7 @@
         
         self.time = dict[@"time"];
         self.price = dict[@"price"];
+       // [self setValuesForKeysWithDictionary:dict];
        
     }
     

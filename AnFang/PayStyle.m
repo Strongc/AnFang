@@ -10,18 +10,19 @@
 
 @implementation PayStyle
 
--(PayStyle *)initWithDict:(NSDictionary *)dict
+-(instancetype)initWithDict:(NSDictionary *)dict
 {
     if(self = [super init]){
     
         self.icon = dict[@"icon"];
+        //[self setValuesForKeysWithDictionary:dict];
     
     }
 
     return self;
 }
 
-+(PayStyle *)appWithDict:(NSDictionary *)dict
++(instancetype)appWithDict:(NSDictionary *)dict
 {
     return [[self alloc] initWithDict:dict];
 

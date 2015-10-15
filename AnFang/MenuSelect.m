@@ -18,6 +18,7 @@
         self.name = dict[@"title"];
         self.intruction = dict[@"intruction"];
         self.details = dict [@"detail"];
+       // [self setValuesForKeysWithDictionary:dict];
         
     }
     

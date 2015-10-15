@@ -15,7 +15,15 @@
 @implementation MenuTabBarViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    UITabBarItem *itemMessage = [self.tabBar.items objectAtIndex:3];
+    UIImage *imageUnSelect = [UIImage imageNamed:@"message.png"];
+    UIImage *imageSelected = [UIImage imageNamed:@"messagePress.png"];
+    
+    itemMessage.image = [imageUnSelect imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    itemMessage.selectedImage = [imageSelected imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+   
     // Do any additional setup after loading the view.
 }
 

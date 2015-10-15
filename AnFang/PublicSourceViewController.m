@@ -180,12 +180,16 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    PublicVideoSource *model = [self.sourceData objectAtIndex:indexPath.item];    
 
+    NSString *strUrl = model.videoUrl;
     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    JRPlayerViewController *videoPlayer = [[mainView instantiateViewControllerWithIdentifier:@"videoPlayer"] initWithHTTPLiveStreamingMediaURL:[NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"]];
+    JRPlayerViewController *videoPlayer = [[mainView instantiateViewControllerWithIdentifier:@"videoPlayer"] initWithHTTPLiveStreamingMediaURL:[NSURL URLWithString:strUrl]];
     
     videoPlayer.hidesBottomBarWhenPushed = YES;
     videoPlayer.navigationController.navigationBarHidden = NO;
+    videoPlayer.videoName = model.videoName;
     [self.navigationController pushViewController:videoPlayer animated:YES];
 
 }

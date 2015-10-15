@@ -42,10 +42,14 @@ static void * playerPlayingContext = &playerPlayingContext;
     CGFloat offsetX;
     CGFloat offsetY;
     UIView *containerView;
-    GradientButton *dropBtn;
-    
+    UIButton *dropBtn;
+    UIButton *cutButton;
+    UIButton *devBtn;
+    UIButton *localBtn;
+    NSMutableArray *dataDic;
+    NSMutableDictionary *dic1;
 }
-
+@property (nonatomic,strong) NSArray *sourceData;
 @property (nonatomic, strong) AVPlayer *player; // 播放器
 @property (nonatomic, strong) AVPlayerItem *playerItem;
 @property (nonatomic, strong) NSURL *mediaURL; // 视频资源的url
@@ -99,6 +103,36 @@ static void * playerPlayingContext = &playerPlayingContext;
 //}
 //
 
+-(NSArray *)sourceData
+{
+    
+    if(_sourceData == nil){
+        
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"LocalVideo.plist" ofType:nil];
+        //2.根据路径加载数据
+        NSArray *arrayDict = [NSArray arrayWithContentsOfFile:path];
+        
+        //3.创建一个可变数组来保存一个一个对象
+        NSMutableArray *arrayModels = [NSMutableArray array];
+        
+        //4.循环字典数组，把每个字典对象转化成一个模型对象
+        for(NSDictionary *dict in arrayDict){
+            
+            //DefenceAreaModel *model = [DefenceAreaModel monitorWithDict:dict];
+            
+            //[arrayModels addObject:model];
+        }
+        
+        _sourceData = arrayModels;
+        
+        
+    }
+    
+    return _sourceData;
+    
+}
+
+
 - (instancetype)initWithLocalMediaURL:(NSURL *)url
 {
     if (self = [super init]) {
@@ -121,15 +155,16 @@ static void * playerPlayingContext = &playerPlayingContext;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor colorWithHexString:@"ededed"];
+    self.view.backgroundColor = [UIColor grayColor];
     
     UIImageView *headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 64*HEIGHT/667)];
     [headView setImage:[UIImage imageNamed:@"header_bg.png"]];
     
     UILabel *headTitle = [[UILabel alloc]initWithFrame:CGRectMake(0, 20*HEIGHT/667, WIDTH, 50*HEIGHT/667)];
     headTitle.textAlignment = NSTextAlignmentCenter;
-    headTitle.text = @"防区设备列表";
+    headTitle.text = @"监控播放";
     headTitle.textColor = [UIColor whiteColor];
+    headTitle.font = [UIFont boldSystemFontOfSize:20];
     [headView addSubview:headTitle];
     [self.view addSubview:headView];
     
@@ -149,43 +184,6 @@ static void * playerPlayingContext = &playerPlayingContext;
     // backBtn.backgroundColor = [UIColor orangeColor];
     [self.view addSubview:backBtn];
 
-    
-    //UINavigationBar *navBar = self.navigationController.navigationBar;
-   // navBar.backgroundColor = [UIColor blueColor];
-    //[self.view addSubview:navBar];
-    
-//        UIImageView *headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0,self.view.width,60)];
-//        [headView setImage:[UIImage imageNamed:@"header_bg.png"]];
-//    
-//        UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, self.view.width, 50)];
-//        title.textAlignment = NSTextAlignmentCenter;
-//        title.text = @"监控播放";
-//        title.textColor = [UIColor whiteColor];
-//        [headView addSubview:title];
-//        [self.navigationController.navigationBar addSubview:headView];
-//    
-//        UIButton *backBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 15, 30, 30)];
-//        //backBtn.backgroundColor = [UIColor greenColor];
-//        [self.view addSubview:backBtn];
-//        backBtn.titleLabel.text = @"返回";
-//        backBtn.titleLabel.textColor = [UIColor whiteColor];
-//        [self.view addSubview:backBtn];
-//        [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-//    
-//        UILabel *backTitle = [[UILabel alloc]initWithFrame:CGRectMake(20, 15, 40, 40)];
-//        backTitle.textAlignment = NSTextAlignmentCenter;
-//        backTitle.text = @"返回";
-//        backTitle.textColor = [UIColor whiteColor];
-//        [headView addSubview:backTitle];
-
-    
-    //[self hidePersentLabel];
-    
-//    audioPlayer = [[AVAudioPlayer alloc]init];
-//    //audioPlayer.delegate = self;
-//    audioPlayer.volume = 0.5;
-//    [audioPlayer prepareToPlay];
-    
     screenWidth = [[UIScreen mainScreen] bounds].size.width;
     screenHeight = [[UIScreen mainScreen] bounds].size.height;
     
@@ -201,7 +199,7 @@ static void * playerPlayingContext = &playerPlayingContext;
         [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
     }
     
-    self.progressView = [[UISlider alloc]initWithFrame:CGRectMake(140, 400, 200, 2)];
+    self.progressView = [[UISlider alloc]initWithFrame:CGRectMake(140*WIDTH/375, 430*HEIGHT/667, 200*WIDTH/375, 2*HEIGHT/667)];
     [self.view addSubview:self.progressView];
 
     [self.progressView setMinimumTrackImage:[[UIImage imageNamed:@"video_num_front.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5) resizingMode:UIImageResizingModeStretch] forState:UIControlStateNormal];
@@ -210,7 +208,7 @@ static void * playerPlayingContext = &playerPlayingContext;
     
     // 改变音量的控件
     
-    volumeSlider = [[UISlider alloc]initWithFrame:CGRectMake(200, 350, 100, 2)];
+    volumeSlider = [[UISlider alloc]initWithFrame:CGRectMake(200*WIDTH/375, 410*HEIGHT/667, 100*WIDTH/375, 2*HEIGHT/667)];
     
     [volumeSlider setMinimumTrackImage:[[UIImage imageNamed:@"video_num_front.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5) resizingMode:UIImageResizingModeStretch] forState:UIControlStateNormal];
     [volumeSlider setMaximumTrackImage:[[UIImage imageNamed:@"video_num_bg.png"]  resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5) resizingMode:UIImageResizingModeStretch] forState:UIControlStateNormal];
@@ -231,44 +229,72 @@ static void * playerPlayingContext = &playerPlayingContext;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
     
     
-    dropBtn = [[GradientButton alloc] initWithFrame:CGRectMake(15,70, 60, 30)];
-    
-    UILabel *title2 = [[UILabel alloc]initWithFrame:CGRectMake(12, 0,60, 30)];
-    title2.text = @"时段";
-    title2.textColor = [UIColor whiteColor];
-    [dropBtn addSubview:title2];
-    [dropBtn useGreenConfirmStyle];
+    dropBtn = [[UIButton alloc] initWithFrame:CGRectMake(70*WIDTH/375,100*HEIGHT/667, 50*WIDTH/375, 25*HEIGHT/667)];
+    dropBtn.backgroundColor = [UIColor colorWithHexString:@"bababa"];
+    [dropBtn setTitle:@"时段" forState:UIControlStateNormal];
+    [dropBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [dropBtn setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+    dropBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:dropBtn];
     [dropBtn addTarget:self action:@selector(showTimeList:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.playButton = [[UIButton alloc]initWithFrame:CGRectMake(20, 390, 20, 20)];
+    devBtn = [[UIButton alloc]initWithFrame:CGRectMake(10*WIDTH/375, 100*HEIGHT/667, 50*WIDTH/375, 25*HEIGHT/667)];
+    devBtn.backgroundColor = [UIColor colorWithHexString:@"bababa"];
+    [devBtn setTitle:@"设备" forState:UIControlStateNormal];
+    [devBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [devBtn setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+    
+    devBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [self.view addSubview:devBtn];
+    
+    localBtn = [[UIButton alloc]initWithFrame:CGRectMake(190*WIDTH/375, 100*HEIGHT/667, 50*WIDTH/375, 25*HEIGHT/667)];
+    localBtn.backgroundColor = [UIColor colorWithHexString:@"bababa"];
+    [localBtn setTitle:@"本地" forState:UIControlStateNormal];
+    [localBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [localBtn setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+    [localBtn addTarget:self action:@selector(showLocalVideoList:) forControlEvents:UIControlEventTouchUpInside];
+    localBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [self.view addSubview:localBtn];
+    
+    cutButton = [[UIButton alloc]initWithFrame:CGRectMake(130*WIDTH/375, 100*HEIGHT/667, 50*WIDTH/375, 25*HEIGHT/667)];
+    cutButton.backgroundColor = [UIColor colorWithHexString:@"bababa"];
+    [cutButton setTitle:@"剪辑" forState:UIControlStateNormal];
+    [cutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [cutButton setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+    cutButton.titleLabel.font = [UIFont systemFontOfSize:15];
+    [self.view addSubview:cutButton];
+
+    self.playButton = [[UIButton alloc]initWithFrame:CGRectMake(20*WIDTH/375, 420*HEIGHT/667, 20*WIDTH/375, 20*HEIGHT/667)];
     [self.playButton setBackgroundImage:[UIImage imageNamed:@"play_disable.png"] forState:UIControlStateNormal];
    
-    UIImageView *playIv = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 15, 15)];
+    UIImageView *playIv = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 15*WIDTH/375, 15*HEIGHT/667)];
     [playIv setImage:[UIImage imageNamed:@"play_nor.png"]];
-    //[self.playButton addSubview:playIv];
     [self.view addSubview:self.playButton];
     [self.playButton addTarget:self action:@selector(play) forControlEvents:UIControlEventTouchUpInside];
     
-    self.fastForwardButton = [[UIButton alloc]initWithFrame:CGRectMake(90, 393, 15, 15)];
+    self.fastForwardButton = [[UIButton alloc]initWithFrame:CGRectMake(100, 425, 15, 15)];
     [self.view addSubview:self.fastForwardButton];
     [self.fastForwardButton setBackgroundImage:[UIImage imageNamed:@"fast_forward_nor.png"] forState:UIControlStateNormal];
     [self.fastForwardButton addTarget:self action:@selector(fastForward) forControlEvents:UIControlEventTouchUpInside];
     
-    self.fastBackwardButton = [[UIButton alloc]initWithFrame:CGRectMake(60, 393, 15, 15)];
+    self.fastBackwardButton = [[UIButton alloc]initWithFrame:CGRectMake(70, 425, 15, 15)];
     [self.view addSubview:self.fastBackwardButton];
-    [self.fastBackwardButton setBackgroundImage:[UIImage imageNamed:@"fast_backward_nor.png"] forState:UIControlStateNormal];
+    [self.fastBackwardButton setBackgroundImage:[UIImage imageNamed:@"fast_backward_disable.png"] forState:UIControlStateNormal];
     [self.fastBackwardButton addTarget:self action:@selector(fastBackward) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *downLoadBtn = [[UIButton alloc]initWithFrame:CGRectMake(250, 76, 40, 25)];
+    UIButton *downLoadBtn = [[UIButton alloc]initWithFrame:CGRectMake(300, 100, 30, 25)];
     [downLoadBtn setBackgroundImage:[UIImage imageNamed:@"down.jpg"] forState:UIControlStateNormal];
     [downLoadBtn addTarget:self action:@selector(downLoadVideo) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:downLoadBtn];
     
-    UIButton *cutBtn = [[UIButton alloc]initWithFrame:CGRectMake(210, 76, 35, 22)];
+    UIButton *cutBtn = [[UIButton alloc]initWithFrame:CGRectMake(260, 100, 25, 22)];
     [cutBtn setBackgroundImage:[UIImage imageNamed:@"cut.png"] forState:UIControlStateNormal];
     [self.view addSubview:cutBtn];
-   
+    
+    UIButton *collectBtn = [[UIButton alloc]initWithFrame:CGRectMake(340, 100, 30, 25)];
+    [collectBtn setBackgroundImage:[UIImage imageNamed:@"collect.png"] forState:UIControlStateNormal];
+    [self.view addSubview:collectBtn];
+    
 }
 
 -(void)back
@@ -287,8 +313,6 @@ static void * playerPlayingContext = &playerPlayingContext;
     NSLog(@"%@",cachePath);
     
     ASIHTTPRequest *request=[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"]];
-       // AudioButton *musicBt = (AudioButton *)[self.view viewWithTag:1];
-        //[musicBt startSpin];
         //下载完存储目录
     [request setDownloadDestinationPath:[cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"vedio.mp4"]]];
         //临时存储目录
@@ -300,21 +324,58 @@ static void * playerPlayingContext = &playerPlayingContext;
             Recordull += size;//Recordull全局变量，记录已下载的文件的大小
             if (!isPlay&&Recordull > 400000) {
                 isPlay = !isPlay;
-                //[self playVideo];
+               
             }
     }];
-        //断点续载
+    
+    //断点续载
     [request setAllowResumeForFileDownloads:YES];
     [request startAsynchronous];
     videoRequest = request;
+    
+    NSString *videoName = _videoName;
+    NSString *url = [cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"vedio.mp4"]];
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"LocalVideo.plist" ofType:nil];
+    //2.根据路径加载数据
+    NSMutableArray *arrayDict = [NSMutableArray arrayWithContentsOfFile:path];
+    
+    NSDictionary *videoDic = [NSDictionary dictionaryWithObjectsAndKeys:videoName,@"name", url,@"url",nil];
+   // [videoDic writeToFile:path atomically:YES];
+    [arrayDict addObject:videoDic];
+    NSLog(@"sssss");
+    
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path1 = [pathArray objectAtIndex:0];
+    //获取文件的完整路径
+   NSString *filePatch = [path1 stringByAppendingPathComponent:@"xiaoxi.plist"];
+   NSLog(@"%@",filePatch);
+    
+    //上面3句可以写成这一句
+    //    NSString *filePatch = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"xiaoxi.plist"];
+    
+    //    NSLog(@"------filepath---%@",filePatch);
+    /*
+     *
+     下面是我的plist路径,在桌面空白处点击一下，前往－按住option-资源库-Developer-CoreSimulator-Devices......就按照下面路径找到plist所在的位置
+     *
+     /Users/baiteng01/Library/Developer/CoreSimulator/Devices/92444384-5241-4934-B078-1A7241F1B687/data/Containers/Data/Application/73005382-D1FB-4BC2-BB4E-1FBC64284141/Documents/xiaoxi.plist
+     *
+     */
+    
+    //写入数据到plist文件
+    dic1 = [NSMutableDictionary dictionaryWithObjectsAndKeys:videoName,@"name", url,@"url",nil];
+    
+   // NSMutableDictionary *dic2 = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"小小兮",@"name",@"6",@"age",@"girl",@"sex",nil];
+    
+    //将上面2个小字典保存到大字典里面
+    dataDic = [NSMutableArray array];
+    [dataDic addObject:dic1];
+    //[dataDic addObject:dic2];
+    //写入plist里面
+    [dataDic writeToFile:filePatch atomically:YES];
   
 }
-
-- (void)playVideo{
-    MPMoviePlayerViewController *playerViewController =[[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:@"http://127.0.0.1:12345/vedio.mp4"]];
-    [self presentMoviePlayerViewControllerAnimated:playerViewController];
-}
-
 
 - (void)hidePersentLabel {
     [self.persentLabel setHidden:YES];
@@ -359,6 +420,38 @@ static void * playerPlayingContext = &playerPlayingContext;
     [pop show];
 }
 
+/**
+    弹出本地视频列表
+ 
+ */
+-(void)showLocalVideoList:(UIButton *)sender
+{
+    
+    CGPoint point = CGPointMake(sender.frame.origin.x + sender.frame.size.width/2, sender.frame.origin.y + sender.frame.size.height);
+   // NSArray *titles = @[@"2015-8-15 18:00-24:00",@"2015-8-15 12:00-18:00",@"2015-8-15 6:00-12:00",@"2015-8-15 00:00-6:00",@"2015-8-14 18:00-24:00",@"2015-8-14 12:00-18:00",@"2015-8-14 6:00-12:00"];
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path1 = [pathArray objectAtIndex:0];
+    //获取文件的完整路径
+    NSString *filePatch = [path1 stringByAppendingPathComponent:@"xiaoxi.plist"];
+
+    NSArray *arrayDict = [NSArray arrayWithContentsOfFile:filePatch];
+    
+    NSMutableArray *arrayModels = [NSMutableArray array];
+    
+    //4.循环字典数组，把每个字典对象转化成一个模型对象
+    for(NSDictionary *dict in arrayDict){
+        
+        NSString *videoName = [dict objectForKey:@"name"];
+        
+        [arrayModels addObject:videoName];
+    }
+
+    PopoverView *pop = [[PopoverView alloc] initWithPoint:point titles:arrayModels images:nil];
+    
+    [pop show];
+}
+
+
 -(void)setUpUI
 {
 
@@ -367,7 +460,7 @@ static void * playerPlayingContext = &playerPlayingContext;
    // [self.view addSubview:containerView];
 
     AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
-    playerLayer.frame = CGRectMake(10, 120, self.view.width-20, 200);
+    playerLayer.frame = CGRectMake(10*WIDTH/375, 180*HEIGHT/667, self.view.width-20*WIDTH/375, 200*HEIGHT/667);
     [self.view.layer addSublayer:playerLayer];
    // [containerView.layer addSublayer:playerLayer];
 

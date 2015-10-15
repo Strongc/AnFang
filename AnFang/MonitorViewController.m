@@ -256,17 +256,19 @@
     {
         [fileManager createDirectoryAtPath:cachePath withIntermediateDirectories:YES attributes:nil error:nil];
     }
-    else if ([fileManager fileExistsAtPath:[cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"vedio.mp4"]]]) {
-       
-       videoPlayer = [[mainView instantiateViewControllerWithIdentifier:@"videoPlayer"] initWithLocalMediaURL:[NSURL URLWithString:[cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"vedio.mp4"]]]];
-        
-    }else{
+//    else if ([fileManager fileExistsAtPath:[cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"vedio.mp4"]]]) {
+//       
+//       videoPlayer = [[mainView instantiateViewControllerWithIdentifier:@"videoPlayer"] initWithLocalMediaURL:[NSURL URLWithString:[cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"vedio.mp4"]]]];
+//        
+//    }
+    else{
     
         videoPlayer = [[mainView instantiateViewControllerWithIdentifier:@"videoPlayer"] initWithHTTPLiveStreamingMediaURL:[NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"]];
     }
     
     videoPlayer.hidesBottomBarWhenPushed = YES;
     videoPlayer.navigationController.navigationBarHidden = NO;
+    
     [self.navigationController pushViewController:videoPlayer animated:YES];
     
 }

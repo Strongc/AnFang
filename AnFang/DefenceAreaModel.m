@@ -19,7 +19,8 @@
         self.photoPath = dict[@"icon"];
         self.devState = dict[@"state"];
         self.devName = dict[@"name"];
-        
+        self.videoUrl = dict[@"url"];
+        //[self setValuesForKeysWithDictionary:dict];
     }
     
     return self;

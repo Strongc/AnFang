@@ -14,11 +14,12 @@
 {
     if(self = [super init]){
         
-        self.videoId = dict[@"id"];
+//        self.videoId = dict[@"id"];
         self.videoUrl = dict[@"url"];
         self.videoImage = dict[@"icon"];
         self.videoTime = dict[@"time"];
         self.videoName = dict[@"name"];
+       // [self setValuesForKeysWithDictionary:dict];
         
     }
     

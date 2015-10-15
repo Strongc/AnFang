@@ -14,6 +14,7 @@
 @property(nonatomic,copy) NSString *devState;
 @property(nonatomic,copy) NSString *devId;
 @property(nonatomic,copy) NSString *photoPath;
+@property(nonatomic,copy) NSString *videoUrl;
 
 -(DefenceAreaModel *)initWithDict:(NSDictionary *)dict;
 +(DefenceAreaModel *) monitorWithDict:(NSDictionary *)dict;
