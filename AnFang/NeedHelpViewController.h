@@ -10,7 +10,7 @@
 #import  <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface NeedHelpViewController : UIViewController<AVAudioRecorderDelegate>
+@interface NeedHelpViewController : UIViewController<AVAudioRecorderDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     AVAudioRecorder *recorder;
     NSURL *urlPlay;
@@ -18,5 +18,6 @@
 
 }
 @property(strong,nonatomic) AVAudioPlayer *avPalyer;
+
 
 @end

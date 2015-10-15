@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>time</key>
+		<string>2014-11-21 03:24:51</string>
+		<key>location</key>
+		<string> 位置: x 1682 ,y 3577</string>
+		<key>state</key>
+		<string>已发送</string>
+	</dict>
+	<dict>
+		<key>time</key>
+		<string>2014-11-22 09:32:34</string>
+		<key>location</key>
+		<string>  位置: x 1765 ,y 3456</string>
+		<key>state</key>
+		<string>发送失败</string>
+	</dict>
+</array>
+</plist>

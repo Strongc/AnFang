@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>time</key>
+		<string>2014-11-21 03:24:51</string>
+		<key>icon</key>
+		<string>location.png</string>
+		<key>message</key>
+		<string>发现东门有两个窃贼，欲抓捕发遭持刀威胁，已成功逃脱，现保持跟踪，等待支援！</string>
+		<key>state</key>
+		<string>已发送</string>
+	</dict>
+	<dict>
+		<key>time</key>
+		<string>2014-12-21 03:24:51</string>
+		<key>icon</key>
+		<string>location.png</string>
+		<key>message</key>
+		<string>发现东门有一个窃贼，欲抓捕发遭持刀威胁，已成功逃脱，现保持跟踪，等待支援！</string>
+		<key>state</key>
+		<string>发送失败</string>
+	</dict>
+</array>
+</plist>

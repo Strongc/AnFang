@@ -182,11 +182,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/ViewController.m"
-            timestampString = "466579270.410763"
+            timestampString = "466580311.276647"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "-initViewController"
             landmarkType = "5">
          </BreakpointContent>
@@ -246,11 +246,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/ViewController.m"
-            timestampString = "466579270.410763"
+            timestampString = "466580311.276647"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "328"
-            endingLineNumber = "328"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
             landmarkName = "-initViewController"
             landmarkType = "5">
          </BreakpointContent>
@@ -262,11 +262,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/ViewController.m"
-            timestampString = "466579270.410763"
+            timestampString = "466580311.276647"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "298"
-            endingLineNumber = "298"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
             landmarkName = "-initViewController"
             landmarkType = "5">
          </BreakpointContent>
@@ -294,11 +294,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/ViewController.m"
-            timestampString = "466579270.410763"
+            timestampString = "466580311.276647"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "268"
-            endingLineNumber = "268"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
             landmarkName = "-initViewController"
             landmarkType = "5">
          </BreakpointContent>
@@ -310,11 +310,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/ViewController.m"
-            timestampString = "466579270.410763"
+            timestampString = "466580311.276647"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "-initViewController"
             landmarkType = "5">
             <Locations>
@@ -358,11 +358,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/ViewController.m"
-            timestampString = "466579270.410763"
+            timestampString = "466580311.276647"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "-initViewController"
             landmarkType = "5">
             <Locations>
@@ -406,11 +406,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/ViewController.m"
-            timestampString = "466579270.410763"
+            timestampString = "466580311.276647"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
             landmarkName = "-initViewController"
             landmarkType = "5">
          </BreakpointContent>
@@ -422,11 +422,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/ViewController.m"
-            timestampString = "466579270.410763"
+            timestampString = "466580311.276647"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
             landmarkName = "-initViewController"
             landmarkType = "5">
          </BreakpointContent>
@@ -438,11 +438,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/ViewController.m"
-            timestampString = "466579270.410763"
+            timestampString = "466580311.276647"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
             landmarkName = "-initViewController"
             landmarkType = "5">
          </BreakpointContent>
@@ -522,6 +522,38 @@
             startingLineNumber = "76"
             endingLineNumber = "76"
             landmarkName = "+stringTobytes:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/NeedHelpViewController.m"
+            timestampString = "466596153.561642"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/PhotoAlarmCell.m"
+            timestampString = "466597577.683618"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "-initWithStyle:reuseIdentifier:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

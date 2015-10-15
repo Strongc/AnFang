@@ -562,9 +562,7 @@
         <scene sceneID="07k-SG-24c">
             <objects>
                 <navigationController title="AnFangNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="7tt-i0-2uM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="安防系统" id="DaC-fa-ske">
-                        <inset key="imageInsets" minX="-2" minY="-31" maxX="0.0" maxY="34"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" tag="1" title="安防系统" id="DaC-fa-ske"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2b5-Ag-q1D">
