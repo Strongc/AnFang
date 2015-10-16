@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface TextPhotoAlarmModel : NSObject
 
@@ -14,6 +15,7 @@
 @property (nonatomic,copy) NSString *message;
 @property (nonatomic,copy) NSString *state;
 @property (nonatomic,copy) NSString *time;
+@property (nonatomic,copy) UIImage *image;
 
 -(instancetype ) initWithDict:(NSDictionary *)dict;
 +(instancetype ) TextPhotoAlarmModelWithDict:(NSDictionary *)dict;

@@ -537,7 +537,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPT-53-eBi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6236" y="2684"/>
+            <point key="canvasLocation" x="7300" y="2684"/>
         </scene>
         <!--设备管理-->
         <scene sceneID="IEe-zH-fUx">
@@ -661,7 +661,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="shN-Nk-O3M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2273" y="3137"/>
+            <point key="canvasLocation" x="3337" y="3137"/>
         </scene>
         <!--套餐选购-->
         <scene sceneID="uYb-by-fm3">
@@ -680,7 +680,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uDW-JD-qoV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3432" y="3202"/>
+            <point key="canvasLocation" x="4496" y="3202"/>
         </scene>
         <!--AreaNav-->
         <scene sceneID="lMX-SJ-JyM">
@@ -717,7 +717,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iOk-qR-rvC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5704" y="2684"/>
+            <point key="canvasLocation" x="6768" y="2684"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CO5-E1-boG">
@@ -755,6 +755,25 @@
             </objects>
             <point key="canvasLocation" x="1250" y="2461"/>
         </scene>
+        <!--图片选择器-->
+        <scene sceneID="26A-j5-l3V">
+            <objects>
+                <viewController storyboardIdentifier="imagePicker" title="图片选择器" id="rWo-du-wdJ" customClass="ImagePickerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EEv-SS-sw3"/>
+                        <viewControllerLayoutGuide type="bottom" id="s45-XX-Fpl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="v7b-sn-ibs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="04f-QR-dE3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4aw-P1-bPA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1768" y="3153"/>
+        </scene>
         <!--AccountNav-->
         <scene sceneID="8wC-yb-D8T">
             <objects>
@@ -789,7 +808,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A47-q6-8L6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1741" y="3137"/>
+            <point key="canvasLocation" x="2805" y="3137"/>
         </scene>
         <!--selectNav-->
         <scene sceneID="Mwx-UG-iKM">
@@ -807,7 +826,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qDF-N7-F8W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2900" y="3202"/>
+            <point key="canvasLocation" x="3964" y="3202"/>
         </scene>
         <!--configNav-->
         <scene sceneID="kL3-k2-OEg">
@@ -826,6 +845,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nUc-fn-XNA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3500" y="2271"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Zb5-91-cUD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3kM-K7-rbR" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RjZ-Xf-06G">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="rWo-du-wdJ" kind="relationship" relationship="rootViewController" id="UXt-Tg-1rg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ns0-px-CcM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1236" y="3153"/>
         </scene>
     </scenes>
     <resources>

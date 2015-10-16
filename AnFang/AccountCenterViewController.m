@@ -77,38 +77,38 @@
     UILabel *title1 = [[UILabel alloc]initWithFrame:CGRectMake(90*WIDTH/375, 30*HEIGHT/667, 140*WIDTH/375, 20*HEIGHT/667)];
     title1.text = @"当前帐户余额:";
     title1.textAlignment = NSTextAlignmentLeft;
-    title1.font = [UIFont boldSystemFontOfSize:20];
+    title1.font = [UIFont boldSystemFontOfSize:20*WIDTH/375];
     title1.textColor = [UIColor whiteColor];
     [backgroundView addSubview:title1];
     
     UILabel *account = [[UILabel alloc]initWithFrame:CGRectMake(230*WIDTH/375, 30*HEIGHT/667, 80*WIDTH/375, 20*HEIGHT/667)];
     account.text = @"¥ 79";
     account.textAlignment = NSTextAlignmentLeft;
-    account.font = [UIFont boldSystemFontOfSize:20];
+    account.font = [UIFont boldSystemFontOfSize:20*WIDTH/375];
     account.textColor = [UIColor whiteColor];
     [backgroundView addSubview:account];
     
     UILabel *title2 = [[UILabel alloc]initWithFrame:CGRectMake(25*WIDTH/375, 80*HEIGHT/667, 115*WIDTH/375, 20*HEIGHT/667)];
     title2.text = @"当前服务类型:";
-    title2.font = [UIFont italicSystemFontOfSize:15];
+    title2.font = [UIFont italicSystemFontOfSize:15*WIDTH/375];
     title2.textColor = [UIColor purpleColor];
     [backgroundView addSubview:title2];
     
     UILabel *setMeal = [[UILabel alloc]initWithFrame:CGRectMake(125*WIDTH/375, 80*HEIGHT/667, 100*WIDTH/375, 20*HEIGHT/667)];
     setMeal.text = @"专业版套餐";
-    setMeal.font = [UIFont italicSystemFontOfSize:15];
+    setMeal.font = [UIFont italicSystemFontOfSize:15*WIDTH/375];
     setMeal.textColor = [UIColor blackColor];
     [backgroundView addSubview:setMeal];
     
     UILabel *timeLab = [[UILabel alloc]initWithFrame:CGRectMake(210*WIDTH/375, 80*HEIGHT/667, 50*WIDTH/375, 20*HEIGHT/667)];
     timeLab.text = @"一季度";
-    timeLab.font = [UIFont italicSystemFontOfSize:15];
+    timeLab.font = [UIFont italicSystemFontOfSize:15*WIDTH/375];
     timeLab.textColor = [UIColor blackColor];
     [backgroundView addSubview:timeLab];
     
     UILabel *timeOdd = [[UILabel alloc]initWithFrame:CGRectMake(260*WIDTH/375, 80*HEIGHT/667, 144*WIDTH/375, 20*HEIGHT/667)];
     timeOdd.text = @"(余15天7小时)";
-    timeOdd.font = [UIFont italicSystemFontOfSize:15];
+    timeOdd.font = [UIFont italicSystemFontOfSize:15*WIDTH/375];
     timeOdd.textColor = [UIColor redColor];
     [backgroundView addSubview:timeOdd];
 
@@ -174,7 +174,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    return 50.0;
+    return 50.0*HEIGHT/667;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

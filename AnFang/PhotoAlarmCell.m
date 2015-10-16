@@ -19,7 +19,7 @@
 
     _photoKeyAlarm = photoKeyAlarm;
     self.messageLab.text = photoKeyAlarm.message;
-    self.locationImage.image = [UIImage imageNamed:photoKeyAlarm.icon];
+    self.locationImage.image = photoKeyAlarm.image;
     self.stateLab.text = photoKeyAlarm.state;
     self.timeLab.text = photoKeyAlarm.time;
 
@@ -61,6 +61,7 @@
         
         UIImageView *locationImage = [[UIImageView alloc]initWithFrame:CGRectMake(10*WIDTH/375, 30*HEIGHT/667, 50*WIDTH/375, 50*HEIGHT/667)];
         [backgroundView addSubview:locationImage];
+      
         self.locationImage = locationImage;
         
         UILabel *stateLab = [[UILabel alloc]initWithFrame:CGRectMake(280*WIDTH/375, 70*HEIGHT/667, 50*WIDTH/375, 20*HEIGHT/667)];

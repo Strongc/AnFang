@@ -81,6 +81,7 @@
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20*HEIGHT/667, WIDTH, 50*HEIGHT/667)];
     title.textAlignment = NSTextAlignmentCenter;
     title.text = @"充值";
+    title.font = [UIFont systemFontOfSize:18];
     title.textColor = [UIColor whiteColor];
     [headView addSubview:title];
     [self.view addSubview:headView];
@@ -89,7 +90,7 @@
     UILabel *backTitle = [[UILabel alloc]initWithFrame:CGRectMake(18*WIDTH/375, 7*HEIGHT/667, 32, 16)];
     backTitle.textAlignment = NSTextAlignmentCenter;
     backTitle.text = @"返回";
-    backTitle.font = [UIFont systemFontOfSize:16*WIDTH/375];
+    backTitle.font = [UIFont systemFontOfSize:16];
     backTitle.textColor = [UIColor whiteColor];
     [backBtn addSubview:backTitle];
     

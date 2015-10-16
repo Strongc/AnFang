@@ -15,10 +15,10 @@
     
     if(self = [super init]){
         
-        self.icon = dict[@"icon"];
-        self.message = dict[@"message"];
-        self.state = dict[@"state"];
-        self.time = dict[@"time"];
+//        self.icon = dict[@"icon"];
+//        self.message = dict[@"message"];
+//        self.state = dict[@"state"];
+//        self.time = dict[@"time"];
         
     }
     return self;

@@ -17,6 +17,7 @@
         
         self.url = dict[@"url"];
         self.state = dict[@"state"];
+        self.time = dict[@"time"];
         
     }
     return self;

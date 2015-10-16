@@ -12,6 +12,7 @@
 
 @property (nonatomic,copy) NSString *url;
 @property (nonatomic,copy) NSString *state;
+@property (nonatomic,copy) NSString *time;
 
 -(instancetype ) initWithDict:(NSDictionary *)dict;
 +(instancetype ) VoiceAlarmModelWithDict:(NSDictionary *)dict;

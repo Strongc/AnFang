@@ -202,11 +202,11 @@
 
     //UIView *headView;
     if(section == 1){
-    CGFloat w = [UIScreen mainScreen].bounds.size.width;
+    //CGFloat w = [UIScreen mainScreen].bounds.size.width;
    // CGFloat rate = w / CELL_CONTENT_WIDTH;
-    UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, w, 30 )];
+    UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 30*HEIGHT/667 )];
     headView.backgroundColor = [UIColor colorWithHexString:@"ededed"];
-    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 30, WIDTH, 1)];
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 30*HEIGHT/667, WIDTH, 1)];
     
     line.backgroundColor = [UIColor colorWithHexString:@"bababa"];
     [headView addSubview:line];
@@ -230,14 +230,14 @@
     if(section == 0){
         return 0;
     }
-    return 30.0;
+    return 30.0*HEIGHT/667;
 }
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    return 60.0;
+    return 60.0*HEIGHT/667;
 
 }
 

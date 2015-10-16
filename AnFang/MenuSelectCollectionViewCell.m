@@ -32,7 +32,7 @@
         
         self.contentView.backgroundColor = [UIColor whiteColor];
         
-        UIView *backgroundView = [[UIView alloc]initWithFrame:CGRectMake(10*WIDTH/375, 0, 155, 75)];
+        UIView *backgroundView = [[UIView alloc]initWithFrame:CGRectMake(10*WIDTH/375, 0, 155*WIDTH/375, 75*HEIGHT/667)];
         backgroundView.layer.borderWidth = 1.5;
         backgroundView.layer.borderColor = [[UIColor colorWithHexString:@"87cefa"]CGColor];
         [self.contentView addSubview:backgroundView];

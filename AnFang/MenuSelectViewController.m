@@ -143,7 +143,7 @@
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return CGSizeMake((WIDTH-30)/2, 75*HEIGHT/667);
+    return CGSizeMake(172.5*WIDTH/375, 75*HEIGHT/667);
     
 }
 
@@ -151,7 +151,7 @@
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     
-    return UIEdgeInsetsMake(10, 10, 10, 10);//上,左，下，右;
+    return UIEdgeInsetsMake(10*HEIGHT/667, 10*WIDTH/375, 10*HEIGHT/667, 10*WIDTH/375);//上,左，下，右;
     
 }
 
@@ -165,7 +165,7 @@
 {
     
     
-    return 30;
+    return 30*WIDTH/375;
     
 }
 

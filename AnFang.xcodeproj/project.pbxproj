@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		042037FF1BD085D300D10004 /* VoiceAlarmCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042037FE1BD085D300D10004 /* VoiceAlarmCell.m */; };
+		042038011BD092AE00D10004 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042038001BD092AE00D10004 /* CoreLocation.framework */; };
+		042038051BD09AD600D10004 /* NSDateString.m in Sources */ = {isa = PBXBuildFile; fileRef = 042038041BD09AD600D10004 /* NSDateString.m */; };
+		042038091BD09DFD00D10004 /* MMLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 042038081BD09DFD00D10004 /* MMLocationManager.m */; };
+		042038131BD0CD8C00D10004 /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 042038101BD0CD8C00D10004 /* UIImage+Extensions.m */; };
+		042038141BD0CD8C00D10004 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 042038121BD0CD8C00D10004 /* UIImage+fixOrientation.m */; };
+		042038171BD0D84F00D10004 /* ImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042038161BD0D84F00D10004 /* ImagePickerViewController.m */; };
 		043FB7AA1BCCDA3C006C96A1 /* private_key.pfx in Resources */ = {isa = PBXBuildFile; fileRef = 043FB7A81BCCDA3C006C96A1 /* private_key.pfx */; };
 		043FB7AB1BCCDA3C006C96A1 /* public_key.der in Resources */ = {isa = PBXBuildFile; fileRef = 043FB7A91BCCDA3C006C96A1 /* public_key.der */; };
 		043FB7AE1BCCDD7F006C96A1 /* Security.m in Sources */ = {isa = PBXBuildFile; fileRef = 043FB7AD1BCCDD7F006C96A1 /* Security.m */; };
@@ -242,6 +249,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		042037FD1BD085D300D10004 /* VoiceAlarmCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceAlarmCell.h; sourceTree = "<group>"; };
+		042037FE1BD085D300D10004 /* VoiceAlarmCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceAlarmCell.m; sourceTree = "<group>"; };
+		042038001BD092AE00D10004 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		042038031BD09AD600D10004 /* NSDateString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateString.h; sourceTree = "<group>"; };
+		042038041BD09AD600D10004 /* NSDateString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateString.m; sourceTree = "<group>"; };
+		042038071BD09DFD00D10004 /* MMLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLocationManager.h; sourceTree = "<group>"; };
+		042038081BD09DFD00D10004 /* MMLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLocationManager.m; sourceTree = "<group>"; };
+		0420380F1BD0CD8C00D10004 /* UIImage+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extensions.h"; sourceTree = "<group>"; };
+		042038101BD0CD8C00D10004 /* UIImage+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extensions.m"; sourceTree = "<group>"; };
+		042038111BD0CD8C00D10004 /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
+		042038121BD0CD8C00D10004 /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
+		042038151BD0D84F00D10004 /* ImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerViewController.h; sourceTree = "<group>"; };
+		042038161BD0D84F00D10004 /* ImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerViewController.m; sourceTree = "<group>"; };
 		043FB7A81BCCDA3C006C96A1 /* private_key.pfx */ = {isa = PBXFileReference; lastKnownFileType = file; path = private_key.pfx; sourceTree = "<group>"; };
 		043FB7A91BCCDA3C006C96A1 /* public_key.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = public_key.der; sourceTree = "<group>"; };
 		043FB7AC1BCCDD7F006C96A1 /* Security.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Security.h; sourceTree = "<group>"; };
@@ -571,6 +591,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04AEFF591BB51461004634A8 /* CoreGraphics.framework in Frameworks */,
+				042038011BD092AE00D10004 /* CoreLocation.framework in Frameworks */,
 				044FA7661BCB830E00478564 /* libiconv.2.4.0.dylib in Frameworks */,
 				044FA7631BCB82EC00478564 /* libstdc++.6.0.9.dylib in Frameworks */,
 				044FA7641BCB82EC00478564 /* libstdc++.dylib in Frameworks */,
@@ -590,7 +612,6 @@
 				04AEFF5F1BB51484004634A8 /* libz.dylib in Frameworks */,
 				04AEFF5D1BB51479004634A8 /* Foundation.framework in Frameworks */,
 				04AEFF5B1BB5146B004634A8 /* UIKit.framework in Frameworks */,
-				04AEFF591BB51461004634A8 /* CoreGraphics.framework in Frameworks */,
 				04AEFF571BB51456004634A8 /* CoreText.framework in Frameworks */,
 				04AEFF551BB5144C004634A8 /* QuartzCore.framework in Frameworks */,
 				04AEFF531BB5143D004634A8 /* CoreTelephony.framework in Frameworks */,
@@ -610,6 +631,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		042038021BD09A8400D10004 /* DateFormat */ = {
+			isa = PBXGroup;
+			children = (
+				042038031BD09AD600D10004 /* NSDateString.h */,
+				042038041BD09AD600D10004 /* NSDateString.m */,
+			);
+			name = DateFormat;
+			sourceTree = "<group>";
+		};
+		042038061BD09DD100D10004 /* LocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				042038071BD09DFD00D10004 /* MMLocationManager.h */,
+				042038081BD09DFD00D10004 /* MMLocationManager.m */,
+			);
+			name = LocationManager;
+			sourceTree = "<group>";
+		};
+		0420380A1BD0CAAE00D10004 /* PickerImage */ = {
+			isa = PBXGroup;
+			children = (
+				042038151BD0D84F00D10004 /* ImagePickerViewController.h */,
+				042038161BD0D84F00D10004 /* ImagePickerViewController.m */,
+			);
+			name = PickerImage;
+			sourceTree = "<group>";
+		};
+		0420380E1BD0CD5000D10004 /* ImageTool */ = {
+			isa = PBXGroup;
+			children = (
+				0420380F1BD0CD8C00D10004 /* UIImage+Extensions.h */,
+				042038101BD0CD8C00D10004 /* UIImage+Extensions.m */,
+				042038111BD0CD8C00D10004 /* UIImage+fixOrientation.h */,
+				042038121BD0CD8C00D10004 /* UIImage+fixOrientation.m */,
+			);
+			name = ImageTool;
+			sourceTree = "<group>";
+		};
 		043FB7AF1BCCDEFB006C96A1 /* Base64 */ = {
 			isa = PBXGroup;
 			children = (
@@ -906,6 +965,10 @@
 		04801E691BB3CA7F00714CC9 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				0420380E1BD0CD5000D10004 /* ImageTool */,
+				0420380A1BD0CAAE00D10004 /* PickerImage */,
+				042038061BD09DD100D10004 /* LocationManager */,
+				042038021BD09A8400D10004 /* DateFormat */,
 				044FFD9D1BCE232C00F74AE9 /* StringToBytes */,
 				043FB7AF1BCCDEFB006C96A1 /* Base64 */,
 				044A82891BC606AE009304F7 /* RSAUtil */,
@@ -1308,6 +1371,8 @@
 				04E5239E1BCF925600F3D0CC /* KeyAlarmCell.m */,
 				04E523A01BCFAA8D00F3D0CC /* PhotoAlarmCell.h */,
 				04E523A11BCFAA8D00F3D0CC /* PhotoAlarmCell.m */,
+				042037FD1BD085D300D10004 /* VoiceAlarmCell.h */,
+				042037FE1BD085D300D10004 /* VoiceAlarmCell.m */,
 			);
 			name = AnFang;
 			sourceTree = "<group>";
@@ -1315,6 +1380,7 @@
 		1BE3F1C289A601FFB5465594 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				042038001BD092AE00D10004 /* CoreLocation.framework */,
 				044FA7651BCB830E00478564 /* libiconv.2.4.0.dylib */,
 				044FA7611BCB82EC00478564 /* libstdc++.6.0.9.dylib */,
 				044FA7621BCB82EC00478564 /* libstdc++.dylib */,
@@ -1597,13 +1663,16 @@
 				04D9A6281BB3D8DA006D7B8A /* MessageViewController.m in Sources */,
 				044AD45E1BBB91A1004D17BB /* WGData.m in Sources */,
 				044FFD971BCDF29E00F74AE9 /* JKBigInteger.m in Sources */,
+				042038131BD0CD8C00D10004 /* UIImage+Extensions.m in Sources */,
 				04D9A6201BB3D8DA006D7B8A /* BusinessMessageViewController.m in Sources */,
 				04D9A62D1BB3D8DA006D7B8A /* RechargeViewController.m in Sources */,
 				04801F551BB3CF4400714CC9 /* MenuSelectCollectionViewCell.m in Sources */,
+				042038091BD09DFD00D10004 /* MMLocationManager.m in Sources */,
 				04801E681BB3CA3400714CC9 /* DefenceAreaModel.m in Sources */,
 				04D9A6231BB3D8DA006D7B8A /* DefenceAreaViewController.m in Sources */,
 				044AD46E1BBBB4C2004D17BB /* NSString+Base64.m in Sources */,
 				04D9A6251BB3D8DA006D7B8A /* JRPlayerViewController.m in Sources */,
+				042037FF1BD085D300D10004 /* VoiceAlarmCell.m in Sources */,
 				044FFDA01BCE237A00F74AE9 /* StringToBytes.m in Sources */,
 				04D9A62B1BB3D8DA006D7B8A /* PersonalCenterViewController.m in Sources */,
 				044AD45B1BBB9071004D17BB /* WGUserData.m in Sources */,
@@ -1637,12 +1706,15 @@
 				04801F701BB3D0BE00714CC9 /* DefenceAreaDevTableViewCell.m in Sources */,
 				04801E601BB3C9BF00714CC9 /* MenuSelect.m in Sources */,
 				044D2D6F1BBA7A350093453A /* LocalVideoModel.m in Sources */,
+				042038171BD0D84F00D10004 /* ImagePickerViewController.m in Sources */,
 				04D9A5DC1BB3D404006D7B8A /* MenuTabBarViewController.m in Sources */,
+				042038141BD0CD8C00D10004 /* UIImage+fixOrientation.m in Sources */,
 				04801F741BB3D0ED00714CC9 /* MonitorInfoTableViewCell.m in Sources */,
 				04E5239B1BCF909E00F3D0CC /* VoiceAlarmModel.m in Sources */,
 				04801F5C1BB3CF9500714CC9 /* PayStyleCollectionViewCell.m in Sources */,
 				04801E7B1BB3CB3D00714CC9 /* AnFangTabBarViewController.m in Sources */,
 				044AD4621BBB96F0004D17BB /* CMTool.m in Sources */,
+				042038051BD09AD600D10004 /* NSDateString.m in Sources */,
 				04801E6D1BB3CABB00714CC9 /* PopoverView.m in Sources */,
 				04801EA31BB3CD0500714CC9 /* GradientButton.m in Sources */,
 				04D9A6271BB3D8DA006D7B8A /* MenuSelectViewController.m in Sources */,
