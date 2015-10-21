@@ -11,8 +11,11 @@
 #import "Common.h"
 #import "PersonCenterTableViewCell.h"
 #import "AccountCenterViewController.h"
+#import "WGAPI.h"
+#import "JSONKit.h"
+#import "CMTool.h"
 
-@interface PersonalCenterViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface PersonalCenterViewController ()<UITableViewDelegate,UITableViewDataSource,NSURLConnectionDataDelegate>
 {
     
     UITableView *personTable;
@@ -21,7 +24,13 @@
     NSMutableArray *optionTitle1;
     NSMutableArray *optionImage2;
     NSMutableArray *optionTitle2;
-    
+   
+    NSString *result;
+    NSMutableData *infoData;
+    NSMutableArray *userInfoArray;
+    NSDictionary *json;
+    NSString *nickName;
+    UILabel *userName;
 }
 
 @end
@@ -32,8 +41,9 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
-    [self ConfigControl];
+    infoData= [[NSMutableData alloc] init];
+    userInfoArray = [[NSMutableArray alloc]init];
+    json = [[NSDictionary alloc]init];
     
     optionTitle1 = [[NSMutableArray alloc]initWithObjects:@"我的行业", @"收藏夹",@"账户中心",nil];
     optionTitle2 = [[NSMutableArray alloc]initWithObjects:@"系统设置",@"意见反馈",nil];
@@ -46,14 +56,108 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];//设置导航栏返回按钮及文字背景颜色
     //self.navigationController.navigationBar.translucent = NO;
     self.navigationItem.backBarButtonItem = item;
-    //[[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [self ConfigControl];
+    [self getUserInfo];
+   
+    //NSURL *url = [NSURL URLWithString:urlStr];
+    //[self setUrl:url];
+  
+   
+}
+
+//-(void)setUrl:(NSURL *)url
+//{
+//    
+//   
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+//                                                           cachePolicy:NSURLRequestReloadIgnoringCacheData
+//                                                       timeoutInterval:0];
+//
+//    NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"2"};
+//    NSDictionary *pageInfo = @{@"page":page,@"usr_id":@"201510141511500870"};
+//    NSString *pageStr = [pageInfo JSONString];
+//    NSString *userInfoData = [@"user=" stringByAppendingString:pageStr];
+//    //解析请求参数，用NSDictionary来存参数，通过自定义的函数parseParams把它解析成一个post格式的字符串
+//    // NSString *parseParamsResult = [self parseParams:params];
+//    NSData *postData = [userInfoData dataUsingEncoding:NSUTF8StringEncoding];
+//    
+//    [request setHTTPMethod:@"POST"];
+//   // [request setURL:url];
+//    [request setHTTPBody:postData];
+//    [request setTimeoutInterval:10.0];
+//
+//    [NSURLConnection connectionWithRequest:request delegate:self];
+//
+//}
+
+
+//-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+//{
+//    [infoData appendData:data];
+//    
+//   
+//}
+//
+//-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+//{
+//
+//    json = [NSJSONSerialization JSONObjectWithData:infoData options:NSJSONReadingMutableLeaves error:nil];
+//    NSLog(@"%@",json);
+//    NSDictionary *userInfo = [json objectForKey:@"data"];
+//    userInfoArray = [userInfo objectForKey:@"datas"];
+//    NSDictionary *info = userInfoArray[0];
+//    NSString *name = [info objectForKey:@"usr_name"];
+//    NSLog(@"%@",name);
+//    userName.text = name;
+//    [connection cancel];
+//    
+//}
+//
+//-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+//{
+//
+//    
+//}
+
+-(void)getUserInfo
+{
     
-    // Do any additional setup after loading the view.
+    NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"2"};
+    NSDictionary *pageInfo = @{@"page":page,@"usr_id":@"201510141511500872"};
+    NSString *pageStr = [pageInfo JSONString];
+    NSString *userInfoData = [@"user=" stringByAppendingString:pageStr];
+    NSString *urlStr=[NSString stringWithFormat:@"http://192.168.0.40:8080/platform/user/page"];
+    //userInfo = [WGAPI httpAsynchronousRequestUrl:urlStr postStr:userInfoData];
+    [WGAPI post:urlStr RequestParams:userInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+       
+        if(data){
+            
+            NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"%@",jsonStr);
+            NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
+            NSDictionary *userInfo = [infojson objectForKey:@"data"];
+            userInfoArray = [userInfo objectForKey:@"datas"];
+            NSDictionary *userMessage = userInfoArray[0];
+            nickName = [userMessage objectForKey:@"usr_name"];
+             
+            [self performSelectorOnMainThread:@selector(refreshUIControl) withObject:data waitUntilDone:YES];//刷新UI线程
+        }
+        
+        
+    }];
+    
+}
+
+-(void)refreshUIControl
+{
+
+    userName.text = nickName;
 }
 
 -(void)ConfigControl
 {
 
+    
     UIImageView *headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 64*HEIGHT/667)];
     [headView setImage:[UIImage imageNamed:@"header_bg.png"]];
     
@@ -94,26 +198,16 @@
     titleLab.textAlignment = NSTextAlignmentCenter;
     titleLab.text = @"暂无头像";
     titleLab.textColor = [UIColor whiteColor];
-    titleLab.font = [UIFont boldSystemFontOfSize:16];
+    titleLab.font = [UIFont boldSystemFontOfSize:16*WIDTH/375];
     [defaultImage addSubview:titleLab];
     
-    UILabel *userName = [[UILabel alloc]initWithFrame:CGRectMake(155*WIDTH/375, 160*HEIGHT/667, 80*WIDTH/375, 15*HEIGHT/667)];
+    userName = [[UILabel alloc]initWithFrame:CGRectMake(155*WIDTH/375, 160*HEIGHT/667, 200*WIDTH/375, 16*HEIGHT/667)];
     userName.textAlignment = NSTextAlignmentCenter;
     userName.textColor = [UIColor blackColor];
     userName.font = [UIFont boldSystemFontOfSize:16*WIDTH/375];
-    userName.text = @"勇敢的阿斗";
-    [self.view addSubview:userName];
     
+    [self.view addSubview:userName];
     [self.view setBackgroundColor:[UIColor whiteColor]];
-//    UIImageView *headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 50)];
-//    [headView setImage:[UIImage imageNamed:@"header_bg.png"]];
-//    
-//    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 5, WIDTH, 50)];
-//    title.textAlignment = NSTextAlignmentCenter;
-//    title.text = @"动态";
-//    title.textColor = [UIColor whiteColor];
-//    [headView addSubview:title];
-   // [self.view addSubview:headView];
 
 }
 

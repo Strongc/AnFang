@@ -7,30 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WGUserData.h"
+#import "WGUserInfo.h"
+#import "AppDelegate.h"
 
 @interface WGData : NSObject
 
 + (NSString*) getStringInDefByKey:(NSString*)key;
 
 + (NSString*) getStringInDefByKey:(NSString*)key Default:(NSString*) strDefault;
++(NSString *)getUserName;
++(NSString *)getPwd;
++(NSString *)getuserId;
 
-// 查询登录返回的token
-
-+(void)setToken:(NSString*)token;
-+(void)setVersion:(NSString*)Version;
-+(void)setUserId:(NSString *)userId;
-+(void)setUserName:(NSString *)name;
-+(void)setPassword:(NSString *)password;
-
-+(void)setLoginType:(BOOL )type;
-+(BOOL)getLoginType;
-
-+(NSString*) getToken;
-+(NSString*) getVersion;
-+(NSString*) getUserName;
-+(NSString*) getUserId;
-+(NSString*)getPassword;
++(void)setUser:(NSDictionary *)user;
++(WGUserInfo *)getUser;
 
 
 @end

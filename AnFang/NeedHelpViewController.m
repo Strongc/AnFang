@@ -15,6 +15,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "NSDateString.h"
 #import "ImagePickerViewController.h"
+#import "AudioRecorderViewController.h"
 
 @interface NeedHelpViewController ()<CLLocationManagerDelegate,PickImageDelegate,UIImagePickerControllerDelegate>
 {
@@ -23,7 +24,15 @@
     NSString *locationTime;
     NSString *coordinateInfo;
     ImagePickerViewController* pickImageViewController;
-    UITextView *text;
+    UITextView *infoText;
+    NSMutableArray *arrayPlist;
+    NSString *plistPath;
+    NSMutableArray *saveArray;
+    UIImage *photoImage;
+    
+    NSString *keyInfoPlistPath;
+    NSMutableArray *keyInfoArrayPlist;
+    NSMutableArray *saveKeyInfoArray;
 
 }
 
@@ -41,9 +50,9 @@
     if(_keyAlarmData == nil){
         
         //1.获取PayStyleIcon.plist文件的路径
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"KeyAlarm.plist" ofType:nil];
+        //NSString *path = [[NSBundle mainBundle] pathForResource:@"keyInfo.plist" ofType:nil];
         //2.根据路径加载数据
-        NSArray *arrayDict = [NSArray arrayWithContentsOfFile:path];
+        NSArray *arrayDict = [NSArray arrayWithContentsOfFile:keyInfoPlistPath];
         
         //3.创建一个可变数组来保存一个一个对象
         NSMutableArray *arrayModels = [NSMutableArray array];
@@ -92,34 +101,34 @@
 
 }
 
-//-(NSArray *)photoAlarmData
-//{
-//
-//    if(_photoAlarmData == nil){
-//        
-//        //1.获取PayStyleIcon.plist文件的路径
-//        NSString *path = [[NSBundle mainBundle] pathForResource:@"TextAndPhotoAlarm.plist" ofType:nil];
-//        //2.根据路径加载数据
-//        NSArray *arrayDict = [NSArray arrayWithContentsOfFile:path];
-//        
-//        //3.创建一个可变数组来保存一个一个对象
-//        NSMutableArray *arrayModels = [NSMutableArray array];
-//        
-//        //4.循环字典数组，把每个字典对象转化成一个模型对象
-//        for(NSDictionary *dict in arrayDict){
-//            
-//            TextPhotoAlarmModel *model = [TextPhotoAlarmModel TextPhotoAlarmModelWithDict:dict];
-//            
-//            [arrayModels addObject:model];
-//        }
-//        
-//        _photoAlarmData = arrayModels;
-//        
-//    }
-//    
-//    return _photoAlarmData;
-//
-//}
+-(NSMutableArray *)photoAlarmData
+{
+
+    if(_photoAlarmData == nil){
+        
+        //1.获取PayStyleIcon.plist文件的路径
+        //NSString *path = [[NSBundle mainBundle] pathForResource:@"TextAndPhotoAlarm.plist" ofType:nil];
+        //2.根据路径加载数据
+        NSArray *arrayDict = [NSArray arrayWithContentsOfFile:plistPath];
+        
+        //3.创建一个可变数组来保存一个一个对象
+        NSMutableArray *arrayModels = [NSMutableArray array];
+        
+        //4.循环字典数组，把每个字典对象转化成一个模型对象
+        for(NSDictionary *dict in arrayDict){
+            
+            TextPhotoAlarmModel *model = [TextPhotoAlarmModel TextPhotoAlarmModelWithDict:dict];
+            
+            [arrayModels addObject:model];
+        }
+        
+        _photoAlarmData = arrayModels;
+        
+    }
+    
+    return _photoAlarmData;
+
+}
 
 - (void)viewDidLoad {
     
@@ -153,6 +162,21 @@
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     
     [center addObserver:self selector:@selector(keyBoardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    //获取完整路径
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    plistPath = [documentsDirectory stringByAppendingPathComponent:@"test.plist"];
+    arrayPlist = [[NSMutableArray alloc]init];
+    saveArray = [NSMutableArray arrayWithContentsOfFile:plistPath];
+    NSLog(@"%@",plistPath);
+    _photoAlarmData = nil;
+    
+    keyInfoPlistPath = [documentsDirectory stringByAppendingPathComponent:@"keyInfo.plist"];
+    keyInfoArrayPlist = [[NSMutableArray alloc]init];
+    saveKeyInfoArray = [NSMutableArray arrayWithContentsOfFile:plistPath];
+     NSLog(@"%@",keyInfoPlistPath);
+    _keyAlarmData = nil;
     
     // Do any additional setup after loading the view.
 }
@@ -207,8 +231,8 @@
      , 180*WIDTH/375, 40*HEIGHT/375)];
     [alarmView addSubview:voiceInfoView];
     
-    text = [[UITextView alloc]initWithFrame:voiceInfoView.frame];
-    [alarmView addSubview:text];
+    infoText = [[UITextView alloc]initWithFrame:voiceInfoView.frame];
+    [alarmView addSubview:infoText];
     
     voiceInfoView.backgroundColor = [UIColor whiteColor];
 
@@ -229,6 +253,8 @@
     UIImageView *voiceImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 50*WIDTH/375, 50*HEIGHT/667)];
     voiceImage.image = [UIImage imageNamed:@"voice.png"];
     [speakBtn addSubview:voiceImage];
+    [speakBtn addTarget:self action:@selector(recordVoice) forControlEvents:UIControlEventTouchUpInside];
+    
     
     UIButton *addBtn = [[UIButton alloc]initWithFrame:CGRectMake(280*WIDTH/375, 35*HEIGHT/667, 50*WIDTH/375, 50*HEIGHT/667)];
     [alarmView addSubview:addBtn];
@@ -241,66 +267,18 @@
     
 }
 
--(void)playRecordSound
+-(void)recordVoice
 {
-    if(self.avPalyer.playing){
-        [self.avPalyer stop];
-        return;
-    
-    }
-    AVAudioPlayer *player = [[AVAudioPlayer alloc]initWithContentsOfURL:urlPlay error:nil];
-    self.avPalyer = player;
-    [self.avPalyer play];
+
+    self.navigationController.navigationBarHidden = YES;
+    UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    AudioRecorderViewController *recoder = [mainView instantiateViewControllerWithIdentifier:@"audioRecorderId"];
+    recoder.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:recoder animated:YES];
+
 
 }
 
-- (IBAction)btnDown:(id)sender
-{
-    //创建录音文件，准备录音
-    if ([recorder prepareToRecord]) {
-        //开始
-        [recorder record];
-    }
-    
-    //设置定时检测
-    //timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(detectionVoice) userInfo:nil repeats:YES];
-}
-- (IBAction)btnUp:(id)sender
-{
-    double cTime = recorder.currentTime;
-    if (cTime > 2) {//如果录制时间<2 不发送
-        NSLog(@"发出去");
-    }else {
-        //删除记录的文件
-        [recorder deleteRecording];
-        //删除存储的
-    }
-    [recorder stop];
-    [timer invalidate];
-}
-- (IBAction)btnDragUp:(id)sender
-{
-    //删除录制文件
-    [recorder deleteRecording];
-    [recorder stop];
-    [timer invalidate];
-    
-    NSLog(@"取消发送");
-}
-
-//一键报警按钮触发事件
--(void)KeyAlarm
-{
-
-    OneKeyAlarmModel *model = [[OneKeyAlarmModel alloc] init];
-    model.time = @"2015-10-21 09:21:36";
-    model.location = @"X 1345 , y 3456";
-    model.state = @"发送失败";
-    [_keyAlarmData addObject:model];
-    [helpMessage reloadData];
-  
- 
-}
 
 //添加图片
 -(void)AddPhotoImage
@@ -468,25 +446,102 @@
     TextPhotoAlarmModel *model;
     NSDate *sendDate;
     NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
-   [dateformatter setDateFormat:@"YY-MM-dd hh:mm:ss"];
+   [dateformatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
     
     for (UIImage* image in arrayMutable) {
         
         sendDate = [NSDate date];
         NSString *  locationString=[dateformatter stringFromDate:sendDate];
         model = [[TextPhotoAlarmModel alloc]init];
+        
+        photoImage = image;
         model.image = image;
         model.time = locationString;
-        model.message = text.text;
+        model.message = infoText.text;
         [_photoAlarmData addObject:model];
         
         
     }
     
-    text.text = nil;
+    [self savePhotoAlarmInfo];
+    
+    infoText.text = nil;
     [helpMessage reloadData];
-   
+    
+    
 }
+
+//保存图文报警信息
+-(void)savePhotoAlarmInfo
+{
+   
+    NSDate *sendDate;
+    sendDate = [NSDate date];
+    NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+    [dateformatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+    NSString *time=[dateformatter stringFromDate:sendDate];
+    
+   
+    //判断是否以创建文件
+    if ([[NSFileManager defaultManager] fileExistsAtPath:plistPath])
+    {
+        //此处可以自己写显示plist文件内容
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+        [dict setObject:infoText.text forKey:@"message"];
+        [dict setObject:time forKey:@"time"];
+        //[dict setObject:photoImage forKey:@"icon"];
+        [saveArray addObject:dict];
+        [saveArray writeToFile:plistPath atomically:YES];
+        NSLog(@"文件已存在");
+    }
+    else
+    {
+        
+        [arrayPlist writeToFile:plistPath atomically:YES];
+        
+    }
+
+}
+
+//一键报警按钮触发事件
+-(void)KeyAlarm
+{
+    
+    NSDate *sendDate;
+    NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+    [dateformatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+    sendDate = [NSDate date];
+    NSString * time=[dateformatter stringFromDate:sendDate];
+    OneKeyAlarmModel *model = [[OneKeyAlarmModel alloc] init];
+    model.time = time;
+    NSString *location = @"X 1345 , y 3456";
+    model.location = location;
+    //    model.state = @"发送失败";
+    [_keyAlarmData addObject:model];
+    [helpMessage reloadData];
+    
+    
+    //判断是否以创建文件
+    if ([[NSFileManager defaultManager] fileExistsAtPath:keyInfoPlistPath])
+    {
+        //此处可以自己写显示plist文件内容
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+        [dict setObject:location forKey:@"message"];
+        [dict setObject:time forKey:@"time"];
+        [dict setObject:location forKey:@"location"];
+        [saveKeyInfoArray addObject:dict];
+        [saveKeyInfoArray writeToFile:keyInfoPlistPath atomically:YES];
+        NSLog(@"文件已存在");
+    }
+    else
+    {
+        
+        [keyInfoArrayPlist writeToFile:keyInfoPlistPath atomically:YES];
+        
+    }
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

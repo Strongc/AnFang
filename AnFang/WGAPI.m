@@ -11,12 +11,14 @@
 #import "HttpRequest.h"
 #import "AFURLRequestSerialization.h"
 #import "WGData.h"
+#import "JSONKit.h"
 //#define NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/base"
 
 //项目根路径
 #ifdef DEBUG
 
-NSString *const CMAPIBaseURL=@"http://192.168.0.42:8080/wellgood/base";
+//NSString *const CMAPIBaseURL=@"http://192.168.0.42:8080/wellgood/base";
+NSString *const CMAPIBaseURL = @"http://192.168.0.41:8080/platform";
 #else
 //NSString *const CMAPIBaseURL=@"http://guanwu.puyuntech.com/yht_api/";
 NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
@@ -87,7 +89,7 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
 {
     NSMutableDictionary* dictMutable = [param mutableCopy];
     if (![dictMutable objectForKey:@"token"]&&![url isEqualToString: API_USER_LOGIN]) {
-        [dictMutable setObject:[WGData getToken] forKey:@"token"];
+        //[dictMutable setObject:[WGData getToken] forKey:@"token"];
     }
     
     return [dictMutable copy];
@@ -236,7 +238,27 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
     return result;
 }
 
-
++(NSDictionary*) httpAsynchronousRequestUrl:(NSString*) spec postStr:(NSString *)sData
+{
+    NSURL *url = [NSURL URLWithString:spec];
+    NSMutableURLRequest *requst = [NSMutableURLRequest requestWithURL:url];
+    [requst setHTTPMethod:@"POST"];
+    NSData *postData = [sData dataUsingEncoding:NSUTF8StringEncoding];
+    [requst setHTTPBody:postData];
+    [requst setTimeoutInterval:20.0];
+    
+    NSHTTPURLResponse *urlResponse = nil;
+    NSError *error = nil;
+    //如果使用局部变量指针需要传指针的地址
+    NSData *data = [NSURLConnection sendSynchronousRequest:requst returningResponse:&urlResponse error:&error];
+    NSDictionary *content = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+    NSString *returnStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"code:%ld",[urlResponse statusCode]);
+//    if ([urlResponse statusCode] == 200) {
+//        return returnStr;
+//    }
+    return content;
+}
 
 /**
  * post异步请求封装函数
@@ -245,6 +267,9 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
  *
  
  */
+
+//+(void)post:(NSString *)URL RequestParams:(NSString *)params FinishBlock:(+ (NSData *)sendSynchronousRequest:(NSURLRequest *)requeblock
+
 + (void)post:(NSString *)URL RequestParams:(NSString *)params FinishBlock:(void (^)(NSURLResponse *response, NSData *data, NSError *connectionError)) block{
     //把传进来的URL字符串转变为URL地址
     NSURL *url = [NSURL URLWithString:URL];
@@ -252,6 +277,7 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestReloadIgnoringCacheData
                                                        timeoutInterval:0];
+  
     //解析请求参数，用NSDictionary来存参数，通过自定义的函数parseParams把它解析成一个post格式的字符串
    // NSString *parseParamsResult = [self parseParams:params];
     NSData *postData = [params dataUsingEncoding:NSUTF8StringEncoding];
@@ -262,6 +288,7 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
     //创建一个新的队列（开启新线程）
     NSOperationQueue *queue = [NSOperationQueue new];
     //发送异步请求，请求完以后返回的数据，通过completionHandler参数来调用
+    //[NSURLConnection sendSynchronousRequest:request returningResponse:response error:nil];
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:queue
                            completionHandler:block];
@@ -271,30 +298,43 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
 //post请求
 +(void)postUrl:(NSString *)url Param:(NSString *)param Settings:(id)settings completion:(void (^)(BOOL, NSDictionary *, NSError *))completion
 {
+    
+    NSURL *URL = [NSURL URLWithString:url];
+    //请求初始化，可以在这针对缓存，超时做出一些设置
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL
+                                                           cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                                       timeoutInterval:0];
+    
+    //解析请求参数，用NSDictionary来存参数，通过自定义的函数parseParams把它解析成一个post格式的字符串
+    // NSString *parseParamsResult = [self parseParams:params];
+    NSData *postData = [param dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:postData];
     //param = [self beforeRequest:url Param:param Settings:settings];
     
-    [self checkWeb:^{
-        [HttpRequest post:CMAPIBaseURL params:param
-                  success:^(id responseObject)
-         {
-             // DDLogVerbose(@"%@",responseObject);
-             WGResult* result = [self result:responseObject Settings:settings];
-             if (result)
-             {
-                 completion([result succeed],[result result],nil);
-             }
-             else
-             {
-                 completion(NO,nil,nil);
-             }
-         }
-                  failure:^(NSError *error)
-         {
-             WGResult* result = [self error:error];
-             
-             completion([result succeed],[result result],error);
-         }];
-    }];
+//    [self checkWeb:^{
+//        [HttpRequest post:[CMAPIBaseURL stringByAppendingString:url] params:param
+//                  success:^(id responseObject)
+//         {
+//             // DDLogVerbose(@"%@",responseObject);
+//             WGResult* result = [self result:responseObject Settings:settings];
+//             if (result)
+//             {
+//                 completion([result succeed],[result result],nil);
+//             }
+//             else
+//             {
+//                 completion(NO,nil,nil);
+//             }
+//         }
+//                  failure:^(NSError *error)
+//         {
+//             WGResult* result = [self error:error];
+//             
+//             completion([result succeed],[result result],error);
+//         }];
+//    }];
 }
 
 //上传图像

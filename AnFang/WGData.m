@@ -7,21 +7,13 @@
 //
 
 #import "WGData.h"
+#import "CoreArchive.h"
 
-#define USER_KEY_ID @"id"
-#define USER_KEY_NAME @"name"
-#define USER_KEY_TEL @"tel"
-#define USER_KEY_USERIMAGE @"userImage"
-#define USER_KEY_TOKEN @"token"
-#define USER_KEY_PWD @"pwd"
-#define USER_KEY_ICKNAME @"ickname"
-#define USER_KEY_OTHERLOGIN @"otherLogin"
 
 @implementation WGData
 
-+(NSString *) getStringInDefByKey:(NSString *)key
++ (NSString*) getStringInDefByKey:(NSString*)key
 {
-    
     return [self getStringInDefByKey:key Default:@"0"];
 }
 
@@ -36,83 +28,103 @@
     return result;
 }
 
-+(void)setToken:(NSString*)token
++(WGUserInfo*) getUser
 {
     NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
-    [userDefaults setValue:token forKey:USER_KEY_TOKEN];
+    
+    AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    NSString* tel = [userDefaults objectForKey:@"name"];
+    NSFetchRequest* fetchRequest;
+    NSError* error;
+    WGUserInfo* userData;
+    if (tel)
+    {
+        fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"WGUserInfo"];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"strTel CONTAINS '%@'", tel]];
+        NSArray* array = [appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        if (array.count > 0)
+        {
+            userData = array[0];
+        }
+        else
+        {
+            userData = nil;
+        }
+    }
+    return userData;
 }
 
-
-+(void)setUserId:(NSString *)userId
++(void)setUser:(NSDictionary*)dict
 {
     
     NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
-    [userDefaults setValue:userId forKey:USER_KEY_ID];
+    
+    AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    BOOL isNew = YES;
+    WGUserInfo* userData = [self getUser];
+    
+    if (userData) {
+        isNew = NO;
+    }
+    else
+    {
+        isNew = YES;
+    }
+    
+    if (isNew)
+    {
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"WGUserInfo" inManagedObjectContext:appDelegate.managedObjectContext];
+        userData = [[WGUserInfo alloc] initWithEntity:entity insertIntoManagedObjectContext:appDelegate.managedObjectContext];
+    }
+    
+   
+    userData.strName = [NSString stringWithFormat:@"%@",[dict objectForKey:@"name"]];
+    userData.strUserId = [NSString stringWithFormat:@"%@",[dict objectForKey:@"userId"]];
+    userData.strPwd = [NSString stringWithFormat:@"%@",[dict objectForKey:@"pwd"]];;
+   
+    //    if([dict objectForKey:@"id_card"] == nil){
+    //        userData.strName = @"";
+    //    }else{
+    //        userData.strName = [dict objectForKey:@"id_card"];
+    //    }
+    
+    //    userData.strJifen = [dict objectForKey:@"id_card"];//依然报错
+   
+    [appDelegate saveContext];
+    [userDefaults setObject:[dict objectForKey:@"name"] forKey:@"name"];
 }
 
-+(void)setUserName:(NSString *)name
++(NSString *)getUserName
 {
     
-    NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
-    [userDefaults setValue:name forKey:USER_KEY_NAME];
+    WGUserInfo* userData = [self getUser];
+    if(userData){
+        return userData.strName;
+    }else{
+        return  @"";
+    }
+
 }
 
-
-+(void)setPassword:(NSString *)password{
-    
-    NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
-    [userDefaults setValue:password forKey:USER_KEY_PWD];
-    
-}
-
-
-+(void)setVersion:(NSString *)Version{
-    NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
-    //    [userDefaults setValue:Version forKey:@"version"];
-    //后台的版本是给安卓使用的，iOS直接取pinfo.list里的配置
-    [userDefaults setValue:[NSString stringWithFormat:@"v%@",[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]] forKey:@"version"];
-}
-
-+(void)setLoginType:(BOOL )type{
-    
-    NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
-    [userDefaults setBool:type forKey:USER_KEY_OTHERLOGIN];
-    
-}
-+(BOOL)getLoginType{
-    
-    
-    NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
-    NSLog(@"xxxxxxx%@",[userDefaults valueForKey:USER_KEY_OTHERLOGIN]);
-    return [[userDefaults valueForKey:USER_KEY_OTHERLOGIN] isEqualToNumber:@(1)];
-    
-}
-+(NSString *)getVersion{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    //读取
-    NSString *str=
-    //(NSString *)[defaults objectForKey:@"version"];
-    [NSString stringWithFormat:@"v%@",[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
-    return str;
-    
-}
-
-+(NSString*) getToken
++(NSString *)getuserId
 {
-    return [self getStringInDefByKey:USER_KEY_TOKEN Default:@""];
-}
-+(NSString*) getUserName
-{
-    return [self getStringInDefByKey:USER_KEY_NAME Default:@""];
-}
-+(NSString*) getUserId
-{
-    return [self getStringInDefByKey:USER_KEY_ID Default:@""];
-}
-+(NSString*)getPassword{
-    return [self getStringInDefByKey:USER_KEY_PWD Default:@""];
     
+    WGUserInfo* userData = [self getUser];
+    if (userData) {
+        return userData.strUserId;
+    }
+    else
+    {
+        return @"0";
+    }
+
+}
+
++(NSString*) getPwd
+{
+    return [self getStringInDefByKey:@"pwd" Default:@""];
 }
 
 

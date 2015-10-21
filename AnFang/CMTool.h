@@ -19,5 +19,6 @@
 +(BOOL) isConnectionAvailable;
 
 + (NSString*)dictionaryToJson:(NSDictionary *)dic;
++ (NSDictionary *)parseJSONStringToNSDictionary:(NSString *)JSONString;
 
 @end

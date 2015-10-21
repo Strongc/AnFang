@@ -35,4 +35,42 @@
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
++(NSDictionary *)parseJSONStringToNSDictionary:(NSString *)JSONString {
+    
+    if (JSONString == nil) {
+        
+        return nil;
+        
+        
+        
+    }
+    
+    
+    
+    NSData *jsonData = [JSONString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSError *err;
+    
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                         
+                                                        options:NSJSONReadingMutableContainers
+                         
+                                                          error:&err];
+    
+    if(err) {
+        
+        NSLog(@"json解析失败：%@",err);
+        
+        return nil;
+        
+    }
+    
+    return dic;
+    
+    
+//    NSData *JSONData = [JSONString dataUsingEncoding:NSUTF8StringEncoding];
+//    NSDictionary *responseJSON = [NSJSONSerialization JSONObjectWithData:JSONData options:NSJSONReadingMutableLeaves error:nil];
+//    return responseJSON;
+}
+
 @end

@@ -31,6 +31,17 @@
     // Configure the view for the selected state
 }
 
+-(void)setAlarmMessage:(AlarmMessageModel *)alarmMessage
+{
+    _alarmMessage = alarmMessage;
+    
+    self.messageTime.text = alarmMessage.time;
+    self.messageInfo.text = alarmMessage.content;
+
+
+
+}
+
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     
@@ -48,19 +59,19 @@
         //self.areaImage = areaImage;
         
         UILabel *messageTime = [[UILabel alloc]initWithFrame:CGRectMake(90, 15, 200, 15)];
-        messageTime.text = @"2015-5-21  23:25";
+        //messageTime.text = @"2015-5-21  23:25";
         messageTime.textColor = [UIColor blackColor];
         messageTime.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:messageTime];
         self.messageTime = messageTime;
         
         UILabel *areaDetailInfo = [[UILabel alloc]initWithFrame:CGRectMake(90, 26, 230, 40)];
-        areaDetailInfo.text = @"食堂防区异常";
+        //areaDetailInfo.text = @"食堂防区异常";
         //areaDetailInfo.numberOfLines = 0;
         areaDetailInfo.textColor = [UIColor blackColor];
         areaDetailInfo.font = [UIFont systemFontOfSize:13];
         [self.contentView addSubview:areaDetailInfo];
-        self.areaInfo = areaDetailInfo;
+        self.messageInfo = areaDetailInfo;
         
         UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 64*HEIGHT/667, WIDTH, 1.0)];
         line.backgroundColor = [UIColor grayColor];

@@ -20,7 +20,7 @@
     _photoKeyAlarm = photoKeyAlarm;
     self.messageLab.text = photoKeyAlarm.message;
     self.locationImage.image = photoKeyAlarm.image;
-    self.stateLab.text = photoKeyAlarm.state;
+   // self.stateLab.text = photoKeyAlarm.state;
     self.timeLab.text = photoKeyAlarm.time;
 
 }
@@ -74,6 +74,7 @@
             self.stateLab.textColor = [UIColor greenColor];
         }
         else{
+            
             self.stateLab.textColor = [UIColor redColor];
         }
         

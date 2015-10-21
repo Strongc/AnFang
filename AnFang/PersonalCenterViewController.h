@@ -11,5 +11,5 @@
 @interface PersonalCenterViewController : UIViewController
 
 //@property (weak, nonatomic) IBOutlet UITableView *personTable;
-
+@property(nonatomic,copy) NSString *name;
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AlarmMessageModel.h"
 
 @interface AlarmMessageTableViewCell : UITableViewCell
 
@@ -14,8 +15,10 @@
 @property (nonatomic,weak) UILabel *messageTime;
 
 /** 防区信息*/
-@property (nonatomic,weak) UILabel *areaInfo;
+@property (nonatomic,weak) UILabel *messageInfo;
 
 @property (nonatomic,weak) UIButton *checkBtn;
+
+@property (nonatomic,strong) AlarmMessageModel *alarmMessage;
 
 @end

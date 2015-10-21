@@ -50,6 +50,8 @@ typedef enum{
 +(void)checkWeb:(void (^)())end;
 +(BOOL)checkWeb;
 
+
++(NSDictionary*) httpAsynchronousRequestUrl:(NSString*) spec postStr:(NSString *)sData;
 /**
     get请求
  */
