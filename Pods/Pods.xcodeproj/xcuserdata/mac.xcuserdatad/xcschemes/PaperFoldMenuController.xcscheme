@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6CA4082AE7978DD82C123353"
+               BlueprintIdentifier = "354CC65C6F864B8847CEDECB"
                BuildableName = "libPaperFoldMenuController.a"
                BlueprintName = "PaperFoldMenuController"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -11,6 +11,7 @@
 @interface NSDateString : NSObject
 
 +(NSString *)stringFromDate:(NSDate *)date;
++(NSString *)ret32bitString;
 
 
 @end

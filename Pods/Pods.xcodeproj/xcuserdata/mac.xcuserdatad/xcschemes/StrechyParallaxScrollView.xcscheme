@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "27F8443E3E965C2B3B7626D0"
+               BlueprintIdentifier = "3E189A2C09E343503AE92E5B"
                BuildableName = "libStrechyParallaxScrollView.a"
                BlueprintName = "StrechyParallaxScrollView"
                ReferencedContainer = "container:Pods.xcodeproj">

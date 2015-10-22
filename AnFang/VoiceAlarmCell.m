@@ -55,6 +55,8 @@
         UIButton *playBtn = [[UIButton alloc]initWithFrame:CGRectMake(130*WIDTH/375, 33*HEIGHT/667, 60*WIDTH/375, 15*HEIGHT/667)];
         [playBtn setTitle:@"播放语音" forState:UIControlStateNormal];
         playBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14*WIDTH/375];
+        
+        self.playBtn = playBtn;
         [backgroundView addSubview:playBtn];
         [playBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         [playBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
@@ -66,6 +68,7 @@
     return self;
     
 }
+
 
 - (void)awakeFromNib {
     // Initialization code

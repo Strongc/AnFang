@@ -13,6 +13,12 @@
 #define kRecordAudioFile @"myRecord.caf"
 
 @interface AudioRecorderViewController ()<AVAudioRecorderDelegate>
+{
+
+    NSString *recoderPlistPath;
+    NSMutableArray *recoderSaveArray;
+    
+}
 
 @property (nonatomic,strong) AVAudioRecorder *audioRecorder;//音频录音机
 @property (nonatomic,strong) AVAudioPlayer *audioPlayer;//音频播放器，用于播放录音文件
@@ -23,6 +29,9 @@
 @property (strong, nonatomic)  UIButton *resume;//恢复录音
 @property (strong, nonatomic)  UIButton *stop;//停止录音
 @property (strong, nonatomic)  UIProgressView *audioPower;//音频波动
+@property (strong, nonatomic)  NSMutableArray *urlArray;
+
+@property int recordCount;
 
 @end
 
@@ -30,9 +39,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _recordCount = 1;
+    self.urlArray = [[NSMutableArray alloc]init];
     [self setAudioSession];
     [self initControl];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    //获取完整路径
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    recoderPlistPath = [documentsDirectory stringByAppendingString:@"recoder.plist"];
+    recoderSaveArray = [NSMutableArray arrayWithContentsOfFile:recoderPlistPath];
     // Do any additional setup after loading the view.
 }
 
@@ -79,7 +95,7 @@
     [self.view addSubview:self.resume];
     [self.resume addTarget:self action:@selector(resumeClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.stop = [[UIButton alloc] initWithFrame:CGRectMake(288*WIDTH/375, 470*HEIGHT/667, 52*WIDTH/375, 52*HEIGHT/667)];
+     self.stop = [[UIButton alloc] initWithFrame:CGRectMake(288*WIDTH/375, 470*HEIGHT/667, 52*WIDTH/375, 52*HEIGHT/667)];
     [self.stop setBackgroundImage:[UIImage imageNamed:@"lyj_tian"] forState:UIControlStateNormal];
     [self.stop setBackgroundImage:[UIImage imageNamed:@"lyj_luzhian"] forState:UIControlStateHighlighted];
     [self.view addSubview:self.stop];
@@ -105,6 +121,22 @@
     [audioSession setActive:YES error:nil];
 }
 
+#pragma mark - UI事件
+/**
+ *  点击录音按钮
+ *
+ *  @param sender 录音按钮
+ */
+- (void)recordClick:(UIButton *)sender {
+    
+    _recordCount ++;
+    if (![self.audioRecorder isRecording]) {
+        [self.audioRecorder record];//首次使用应用时如果调用record方法会询问用户是否允许使用麦克风
+        self.timer.fireDate=[NSDate distantPast];
+    }
+}
+
+
 /**
  *  取得录音文件保存路径
  *
@@ -112,7 +144,9 @@
  */
 -(NSURL *)getSavePath{
     NSString *urlStr=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    urlStr=[urlStr stringByAppendingPathComponent:kRecordAudioFile];
+    NSString *urlStr1 = [urlStr stringByAppendingString:[NSString stringWithFormat:@"%d",_recordCount]];
+    urlStr=[urlStr1 stringByAppendingPathComponent:kRecordAudioFile];
+    [self.urlArray addObject:urlStr];
     NSLog(@"file path:%@",urlStr);
     NSURL *url=[NSURL fileURLWithPath:urlStr];
     return url;
@@ -190,32 +224,31 @@
  */
 -(NSTimer *)timer{
     if (!_timer) {
-        _timer=[NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(audioPowerChange) userInfo:nil repeats:YES];
+        _timer=[NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(updateProgress) userInfo:nil repeats:YES];
     }
     return _timer;
 }
 
+
 /**
- *  录音声波状态设置
+ *  更新播放进度
  */
--(void)audioPowerChange{
-    [self.audioRecorder updateMeters];//更新测量值
-    float power= [self.audioRecorder averagePowerForChannel:0];//取得第一个通道的音频，注意音频强度范围时-160到0
-    CGFloat progress=(1.0/160.0)*(power+160.0);
-    [self.audioPower setProgress:progress];
+-(void)updateProgress{
+    
+    
+    float progress= self.audioPlayer.currentTime /self.audioPlayer.duration;
+    //[self.playProgress setProgress:progress animated:true];
+    
 }
-#pragma mark - UI事件
-/**
- *  点击录音按钮
- *
- *  @param sender 录音按钮
- */
-- (void)recordClick:(UIButton *)sender {
-    if (![self.audioRecorder isRecording]) {
-        [self.audioRecorder record];//首次使用应用时如果调用record方法会询问用户是否允许使用麦克风
-        self.timer.fireDate=[NSDate distantPast];
-    }
-}
+///**
+// *  录音声波状态设置
+// */
+//-(void)audioPowerChange{
+//    [self.audioRecorder updateMeters];//更新测量值
+//    float power= [self.audioRecorder averagePowerForChannel:0];//取得第一个通道的音频，注意音频强度范围时-160到0
+//    CGFloat progress=(1.0/160.0)*(power+160.0);
+//    [self.audioPower setProgress:progress];
+//}
 
 /**
  *  点击暂定按钮
@@ -258,14 +291,17 @@
  *  @param flag     是否成功
  */
 -(void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag{
-    if (![self.audioPlayer isPlaying]) {
-        [self.audioPlayer play];
-    }
-    [self backAction];
     
+//    if (![self.audioPlayer isPlaying]) {
+//        [self.audioPlayer play];
+//    }
+    //[self.delegate flushRecoder:(NSMutableArray *)];
+    
+    [self backAction];
     
     NSLog(@"录音完成!");
 }
+
 
 
 - (void)didReceiveMemoryWarning {

@@ -23,4 +23,16 @@
     return destDateString;
 }
 
++(NSString *)ret32bitString
+
+{
+    
+    char data[3];
+    
+    for (int x=0;x<3;data[x++] = (char)('A' + (arc4random_uniform(26))));
+    
+    return [[NSString alloc] initWithBytes:data length:3 encoding:NSUTF8StringEncoding];
+    
+}
+
 @end

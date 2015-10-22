@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "885C3354FADD961A8B3C7EA0"
+               BlueprintIdentifier = "749B27A814B158CAFE2D91B1"
                BuildableName = "libios-linechart.a"
                BlueprintName = "ios-linechart"
                ReferencedContainer = "container:Pods.xcodeproj">

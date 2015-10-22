@@ -10,7 +10,7 @@
 
 @protocol AudioRecoderDelegate <NSObject>
 
--(void) flushRecoder:(NSMutableArray *)arrayMutable;
+-(void) flushRecoder:(NSMutableArray *)recoderUrlArray;
 
 @end
 

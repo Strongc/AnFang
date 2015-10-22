@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "679CE85B7291032FD945B318"
+               BlueprintIdentifier = "1F3D052899E9E076A84EED0B"
                BuildableName = "libKOKeyboard.a"
                BlueprintName = "KOKeyboard"
                ReferencedContainer = "container:Pods.xcodeproj">

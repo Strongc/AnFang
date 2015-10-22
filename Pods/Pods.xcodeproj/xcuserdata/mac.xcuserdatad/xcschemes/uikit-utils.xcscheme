@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D6855405DA6102153715B74D"
+               BlueprintIdentifier = "E5A4DE7DDD8753A05AC636E4"
                BuildableName = "libuikit-utils.a"
                BlueprintName = "uikit-utils"
                ReferencedContainer = "container:Pods.xcodeproj">

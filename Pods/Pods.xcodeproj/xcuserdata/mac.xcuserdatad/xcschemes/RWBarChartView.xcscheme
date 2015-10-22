@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D68E9807FDD8978814D65846"
+               BlueprintIdentifier = "54B6F8159A9A1A980329BA35"
                BuildableName = "libRWBarChartView.a"
                BlueprintName = "RWBarChartView"
                ReferencedContainer = "container:Pods.xcodeproj">

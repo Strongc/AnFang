@@ -14,5 +14,6 @@
 @property (nonatomic,strong) UILabel *timeLab;
 @property (nonatomic,strong) UILabel *stateLab;
 @property (nonatomic,strong) VoiceAlarmModel *voiceModel;
+@property (nonatomic,strong) UIButton *playBtn;
 
 @end

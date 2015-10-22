@@ -126,7 +126,7 @@
     NSDictionary *pageInfo = @{@"page":page,@"usr_id":@"201510141511500872"};
     NSString *pageStr = [pageInfo JSONString];
     NSString *userInfoData = [@"user=" stringByAppendingString:pageStr];
-    NSString *urlStr=[NSString stringWithFormat:@"http://192.168.0.40:8080/platform/user/page"];
+    NSString *urlStr=[NSString stringWithFormat:@"http://192.168.0.41:8080/platform/user/page"];
     //userInfo = [WGAPI httpAsynchronousRequestUrl:urlStr postStr:userInfoData];
     [WGAPI post:urlStr RequestParams:userInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
        

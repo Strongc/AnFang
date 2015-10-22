@@ -178,7 +178,7 @@
 -(void)initViewController
 {
     
-    NSString *urlStr=[NSString stringWithFormat:@"http://192.168.0.40:8080/platform/user/login"];
+    NSString *urlStr=[NSString stringWithFormat:@"http://192.168.0.41:8080/platform/user/login"];
     NSString *userName = name.text;
     NSString *pwd = passWordField.text;
     
@@ -203,29 +203,29 @@
         
     }else{
         
-        
-        [WGAPI post:urlStr RequestParams:paramStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-            
-            if(data){
-            
-                NSString *json =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:json];
-                NSLog(@"%@",json);
-                NSDictionary *messageJson = [infojson objectForKey:@"data"];
-                message = [messageJson objectForKey:@"message"];
-                NSLog(@"%@",message);
-                if([message isEqualToString:@"登录成功"]){
-                
-                     [self performSelectorOnMainThread:@selector(jumpToMainView) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
-                    
-                }else {
-                
-                    [self performSelectorOnMainThread:@selector(errorMessage:) withObject:message waitUntilDone:YES];
-                }
-                
-            }
-            
-        }];
+         [self jumpToMainView];
+//        [WGAPI post:urlStr RequestParams:paramStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+//            
+//            if(data){
+//            
+//                NSString *json =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//                NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:json];
+//                NSLog(@"%@",json);
+//                NSDictionary *messageJson = [infojson objectForKey:@"data"];
+//                message = [messageJson objectForKey:@"message"];
+//                NSLog(@"%@",message);
+//                if([message isEqualToString:@"登录成功"]){
+//                
+//                     [self performSelectorOnMainThread:@selector(jumpToMainView) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
+//                    
+//                }else {
+//                
+//                    [self performSelectorOnMainThread:@selector(errorMessage:) withObject:message waitUntilDone:YES];
+//                }
+//                
+//            }
+//            
+//        }];
         
     }
     

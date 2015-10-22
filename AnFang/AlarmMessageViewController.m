@@ -56,7 +56,7 @@
 
 -(void)getAlarmMessage
 {
-    NSString *urlStr=[NSString stringWithFormat:@"http://192.168.0.40:8080/platform/alarm/page"];
+    NSString *urlStr=[NSString stringWithFormat:@"http://192.168.0.41:8080/platform/alarm/page"];
     NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"2"};
     NSDictionary *pageInfo = @{@"page":page,@"alrm_id":@"201510112342290296"};
     NSString *pageStr = [pageInfo JSONString];

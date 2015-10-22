@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BE5A0596F14609E11BF2610F"
+               BlueprintIdentifier = "4F0F8616E30AEB811E62533C"
                BuildableName = "libNCICharts.a"
                BlueprintName = "NCICharts"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -55,6 +55,7 @@ PODS:
   - JBChartView (2.8.16)
   - KOKeyboard (0.0.1)
   - Masonry (0.6.3)
+  - MBProgressHUD (0.9.1)
   - MTASdk (1.4.1.1)
   - NCICharts (2.0.1)
   - NSDate+TimeAgo (1.0.3)
@@ -93,6 +94,7 @@ DEPENDENCIES:
   - JBChartView (~> 2.8.14)
   - KOKeyboard (~> 0.0)
   - Masonry (~> 0.6)
+  - MBProgressHUD (~> 0.9.1)
   - MTASdk (~> 1.4.1.1)
   - NCICharts (~> 2.0.1)
   - NSDate+TimeAgo (~> 1.0.2)
@@ -125,6 +127,7 @@ SPEC CHECKSUMS:
   JBChartView: 8e65b7fbb4e7f1f2c0197575734fce4af1c19e17
   KOKeyboard: ca0bcbcf1f02992a2e4422cf2cb964436257a688
   Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MTASdk: bbd97f9eb4ebbb6027fdcb5078c79b9b6e6f0ccd
   NCICharts: 14a333dafaa3aec48f678ef76d2f3ffd88c1dd46
   NSDate+TimeAgo: 416f55d2696d3744c313091c5a9280d47f8238fe

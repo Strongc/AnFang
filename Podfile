@@ -29,4 +29,4 @@ pod 'RWBarChartView', '~> 1.2.0'
 pod 'NCICharts', '~> 2.0.1'
 pod 'ios-linechart', '~> 1.3.2'
 pod 'CocoaHTTPServer','~>2.3'
-
+pod 'MBProgressHUD','~>0.9.1'
