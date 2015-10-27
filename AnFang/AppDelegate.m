@@ -10,6 +10,7 @@
 #import<AlipaySDK/AlipaySDK.h>
 #import "DDTTYLogger.h"
 #import "DDLog.h"
+#import "VideoPlaySDK.h"
 
 @interface AppDelegate ()
 
@@ -35,6 +36,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    VP_InitSDK();
 //    [DDLog addLogger:[DDTTYLogger sharedInstance]];
 //    
 //    httpServer = [[HTTPServer alloc]init];

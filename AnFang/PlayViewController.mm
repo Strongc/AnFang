@@ -18,8 +18,8 @@ static void *_vpHandle = NULL;
 
 @interface PlayViewController ()
 
-@property (strong, nonatomic) UIView *playView;
-@property (strong, nonatomic) UIImageView *captureImageView;
+@property (weak, nonatomic) IBOutlet UIView *playView;
+@property (weak, nonatomic) IBOutlet UIImageView *captureImageView;
 
 @end
 
@@ -33,128 +33,75 @@ static void *_vpHandle = NULL;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _playView = [[UIView alloc] initWithFrame:CGRectMake(0, 70*HEIGHT/667, WIDTH, 225*HEIGHT/667)];
-    _playView.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:_playView];
+    UIImageView *headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 64*HEIGHT/667)];
+    [headView setImage:[UIImage imageNamed:@"header_bg.png"]];
+    
+    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20*HEIGHT/667, WIDTH, 50*HEIGHT/667)];
+    title.textAlignment = NSTextAlignmentCenter;
+    title.text = @"视频";
+    title.textColor = [UIColor whiteColor];
+    [headView addSubview:title];
+    [self.view addSubview:headView];
+    
+    UIButton *backBtn = [[UIButton alloc] initWithFrame:CGRectMake(10*WIDTH/375, 30*HEIGHT/667, 60*WIDTH/375, 30*HEIGHT/667)];
+    UILabel *backTitle = [[UILabel alloc]initWithFrame:CGRectMake(18*WIDTH/375, 7*HEIGHT/667, 32, 16)];
+    backTitle.textAlignment = NSTextAlignmentCenter;
+    backTitle.text = @"返回";
+    backTitle.font = [UIFont systemFontOfSize:16];
+    backTitle.textColor = [UIColor whiteColor];
+    [backBtn addSubview:backTitle];
+    
+    UIImageView *backImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 5*HEIGHT/667, 20, 20)];
+    backImage.image = [UIImage imageNamed:@"back.png"];
+    [backBtn addSubview:backImage];
+    [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backBtn];
 
-    //[self initControlData];
+    //[self initViewControllerData];
     // Do any additional setup after loading the view from its nib.
 }
 
-//配置界面的控件
--(void)initControlData
+-(void)initViewControllerData
 {
 
-    _playView = [[UIView alloc] initWithFrame:CGRectMake(0, 70*HEIGHT/667, WIDTH, 225*HEIGHT/667)];
-    _playView.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:_playView];
+    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(33*WIDTH/375, 460*HEIGHT/667, 310*WIDTH/375, 87*HEIGHT/667)];
+    backView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:backView];
     
-    UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(43*WIDTH/375, 362*HEIGHT/667, 100*WIDTH/375, 30*HEIGHT/667)];
-    field.borderStyle = UITextBorderStyleRoundedRect;
-    [self.view addSubview:field];
-    
-    UIButton *playBtn = [[UIButton alloc]initWithFrame:CGRectMake(60*WIDTH/375, 354*HEIGHT/667, 30*WIDTH/375, 30*HEIGHT/667)];
-    playBtn.titleLabel.text = @"预览";
-    playBtn.titleLabel.textColor = [UIColor blueColor];
-    playBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [self.view addSubview:playBtn];
-    
-    UIButton *stopBtn = [[UIButton alloc]initWithFrame:CGRectMake(98*WIDTH/375, 362*HEIGHT/667, 30*WIDTH/375, 30*HEIGHT/667)];
-    stopBtn.titleLabel.text = @"停止";
-    stopBtn.titleLabel.textColor = [UIColor blueColor];
-    stopBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [self.view addSubview:stopBtn];
-    
-    UIButton *pictureBtn = [[UIButton alloc]initWithFrame:CGRectMake(182*WIDTH/375, 362*HEIGHT/667, 30*WIDTH/375, 30*HEIGHT/667)];
-    pictureBtn.titleLabel.text = @"抓图";
-    pictureBtn.titleLabel.textColor = [UIColor blueColor];
-    pictureBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [self.view addSubview:pictureBtn];
-    
-    _captureImageView = [[UIImageView alloc]initWithFrame:CGRectMake(214*WIDTH/375, 353*HEIGHT/667, 70*WIDTH/375, 45*HEIGHT/667)];
-
-    UITextField *field1 = [[UITextField alloc] initWithFrame:CGRectMake(30*WIDTH/375, 406*HEIGHT/667, 122*WIDTH/375, 30*HEIGHT/667)];
-    field1.borderStyle = UITextBorderStyleRoundedRect;
-    [self.view addSubview:field1];
-    
-    UIButton *repeatedBtn = [[UIButton alloc]initWithFrame:CGRectMake(38*WIDTH/375, 406*HEIGHT/667, 30*WIDTH/375, 30*HEIGHT/667)];
-    repeatedBtn.titleLabel.text = @"回放";
-    repeatedBtn.titleLabel.textColor = [UIColor blueColor];
-    repeatedBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [self.view addSubview:repeatedBtn];
-    
-    UIButton *pauseBtn = [[UIButton alloc]initWithFrame:CGRectMake(76*WIDTH/375, 406*HEIGHT/667, 30*WIDTH/375, 30*HEIGHT/667)];
-    pauseBtn.titleLabel.text = @"暂停";
-    pauseBtn.titleLabel.textColor = [UIColor blueColor];
-    pauseBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [self.view addSubview:pauseBtn];
-    
-    UIButton *stopBtn1 = [[UIButton alloc]initWithFrame:CGRectMake(114*WIDTH/375, 406*HEIGHT/667, 30*WIDTH/375, 30*HEIGHT/667)];
-    stopBtn1.titleLabel.text = @"停止";
-    stopBtn1.titleLabel.textColor = [UIColor blueColor];
-    stopBtn1.titleLabel.font = [UIFont systemFontOfSize:15];
-    [self.view addSubview:stopBtn1];
-    
-    UITextField *field2 = [[UITextField alloc] initWithFrame:CGRectMake(187*WIDTH/375, 406*HEIGHT/667, 122*WIDTH/375, 30*HEIGHT/667)];
-    field2.borderStyle = UITextBorderStyleRoundedRect;
-    [self.view addSubview:field2];
-    
-    UIButton *videoBtn = [[UIButton alloc]initWithFrame:CGRectMake(203*WIDTH/375, 406*HEIGHT/667, 30*WIDTH/375, 30*HEIGHT/667)];
-    videoBtn.titleLabel.text = @"录像";
-    videoBtn.titleLabel.textColor = [UIColor blueColor];
-    videoBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [self.view addSubview:videoBtn];
-
-    UIButton *stopBtn2 = [[UIButton alloc]initWithFrame:CGRectMake(241*WIDTH/375, 406*HEIGHT/667, 30*WIDTH/375, 30*HEIGHT/667)];
-    stopBtn2.titleLabel.text = @"停止";
-    stopBtn2.titleLabel.textColor = [UIColor blueColor];
-    stopBtn2.titleLabel.font = [UIFont systemFontOfSize:15];
-    [self.view addSubview:stopBtn2];
-
-    UIView *controlView = [[UIView alloc] initWithFrame:CGRectMake(33*WIDTH/375, 461*HEIGHT/667, 254*WIDTH/375, 87*HEIGHT/667)];
-    controlView.backgroundColor = [UIColor lightGrayColor];
-    [self.view addSubview:controlView];
-    
-    UIButton *upBtn = [[UIButton alloc]initWithFrame:CGRectMake(38*WIDTH/375, 8*HEIGHT/667, 30*WIDTH/375, 30*HEIGHT/667)];
-    [controlView addSubview:upBtn];
-    
-    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(99*WIDTH/375, 8*HEIGHT/667, 56*WIDTH/375, 21*HEIGHT/667)];
-    title.textColor = [UIColor grayColor];
+    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 8*HEIGHT/667, backView.frame.size.width, 21*HEIGHT/667)];
+    [backView addSubview:title];
     title.text = @"云台控制";
+    title.textAlignment = NSTextAlignmentCenter;
     title.font = [UIFont systemFontOfSize:14];
-    [controlView addSubview:title];
     
-    UIButton *stopBtn3 = [[UIButton alloc]initWithFrame:CGRectMake(112*WIDTH/375, 37*HEIGHT/667, 30*WIDTH/375, 30*HEIGHT/667)];
-    stopBtn3.titleLabel.text = @"停";
-    stopBtn3.titleLabel.textColor = [UIColor brownColor];
-    stopBtn3.titleLabel.font = [UIFont systemFontOfSize:15];
-    [controlView addSubview:stopBtn3];
+    UIButton *upBtn = [[UIButton alloc]initWithFrame:CGRectMake(38, 8, 30, 27)];
+    upBtn.titleLabel.text = @"⬆️";
+    upBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    upBtn.tag = 12;
+    [upBtn addTarget:self action:@selector(ptzAction:) forControlEvents:UIControlEventTouchUpInside];
+    [backView addSubview:upBtn];
     
-    UIButton *yuanBtn = [[UIButton alloc]initWithFrame:CGRectMake(176*WIDTH/375, 16*HEIGHT/667, 30*WIDTH/375, 30*HEIGHT/667)];
-    yuanBtn.titleLabel.text = @"远";
-    yuanBtn.titleLabel.textColor = [UIColor brownColor];
-    yuanBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [controlView addSubview:yuanBtn];
+    UIButton *leftBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, 29, 30, 30)];
+    leftBtn.titleLabel.text = @"⬅️";
+    leftBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    leftBtn.tag = 14;
+    [leftBtn addTarget:self action:@selector(ptzAction:) forControlEvents:UIControlEventTouchUpInside];
+    [backView addSubview:leftBtn];
     
-    UIButton *jinBtn = [[UIButton alloc]initWithFrame:CGRectMake(206*WIDTH/375, 16*HEIGHT/667, 30*WIDTH/375, 30*HEIGHT/667)];
-    jinBtn.titleLabel.text = @"近";
-    jinBtn.titleLabel.textColor = [UIColor brownColor];
-    jinBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [controlView addSubview:jinBtn];
-    
-    UIButton *lightBtn = [[UIButton alloc]initWithFrame:CGRectMake(176*WIDTH/375, 54*HEIGHT/667, 30*WIDTH/375, 30*HEIGHT/667)];
-    lightBtn.titleLabel.text = @"明";
-    lightBtn.titleLabel.textColor = [UIColor brownColor];
-    lightBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [controlView addSubview:lightBtn];
-    
-    UIButton *anBtn = [[UIButton alloc]initWithFrame:CGRectMake(206*WIDTH/375, 54*HEIGHT/667, 30*WIDTH/375, 30*HEIGHT/667)];
-    anBtn.titleLabel.text = @"暗";
-    anBtn.titleLabel.textColor = [UIColor brownColor];
-    anBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [controlView addSubview:anBtn];
+    UIButton *rightBtn = [[UIButton alloc]initWithFrame:CGRectMake(58, 29, 30, 30)];
+    rightBtn.titleLabel.text = @"➡️";
+    rightBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    rightBtn.tag = 15;
+    [rightBtn addTarget:self action:@selector(ptzAction:) forControlEvents:UIControlEventTouchUpInside];
+    [backView addSubview:rightBtn];
 
-    
+    UIButton *downBtn = [[UIButton alloc]initWithFrame:CGRectMake(38, 49, 30, 30)];
+    downBtn.titleLabel.text = @"⬇️";
+    downBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    downBtn.tag =13;
+    [downBtn addTarget:self action:@selector(ptzAction:) forControlEvents:UIControlEventTouchUpInside];
+    [backView addSubview:downBtn];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -162,14 +109,22 @@ static void *_vpHandle = NULL;
     // Dispose of any resources that can be recreated.
 }
 
+-(void)backAction
+{
+    //NSLog(@"%@",@"ddddd");
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 //状态回调函数
 void StatusCallBack(PLAY_STATE playState, VP_HANDLE hLogin, void *pHandl)
 {
     NSLog(@"playState is %d", playState);
 }
 
+#pragma mark - Preview
 - (IBAction)playAction:(UIButton *)sender {
-    
+
     //获取播放地址
     VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
     _realPlayURL = [[CRealPlayURL alloc] init];
@@ -190,15 +145,15 @@ void StatusCallBack(PLAY_STATE playState, VP_HANDLE hLogin, void *pHandl)
     VideoPlayInfo *videoInfo = [[VideoPlayInfo alloc] init];
     CDeviceInfo *deviceInfo = [[CDeviceInfo alloc] init];
     result = [vmsNetSDK getDeviceInfo:_serverAddress
-                          toSessionID:_mspInfo.sessionID
-                           toDeviceID:_cameraInfo.deviceID
-                         toDeviceInfo:deviceInfo];
+                               toSessionID:_mspInfo.sessionID
+                                toDeviceID:_cameraInfo.deviceID
+                              toDeviceInfo:deviceInfo];
     
     // 设备的用户名和密码, 需要调用VMSNetSDK中的接口 getDeviceInfo 获得的CDeviceInfo中属性：userName和password获取。
     if(result)
     {
         videoInfo.strUser = deviceInfo.userName;
-        NSLog(@"姓名：%@",deviceInfo.userName);
+         NSLog(@"姓名：%@",deviceInfo.userName);
         videoInfo.strPsw = deviceInfo.password;
     }
     else
@@ -209,6 +164,7 @@ void StatusCallBack(PLAY_STATE playState, VP_HANDLE hLogin, void *pHandl)
     
     //填充vidioInfo
     videoInfo.strID =  _cameraInfo.cameraID;
+    NSLog(@"Id %@",videoInfo.strID);
     videoInfo.protocalType  = PROTOCAL_UDP;
     videoInfo.playType      = REAL_PLAY;
     videoInfo.streamMethod  = STREAM_METHOD_VTDU;
@@ -244,7 +200,6 @@ void StatusCallBack(PLAY_STATE playState, VP_HANDLE hLogin, void *pHandl)
             NSLog(@"start VP_RealPlay failed");
         }
     }
-
 }
 
 //停止预览或回放
@@ -400,7 +355,7 @@ void StatusCallBack(PLAY_STATE playState, VP_HANDLE hLogin, void *pHandl)
 }
 
 //云台控制，其他云台控制动作可在SDK的头文件中查看
-- (IBAction)ptzAction:(UIButton *)sender {
+- (void)ptzAction:(UIButton *)sender {
     
     // 是否有云台控制权限
     if (NO == _cameraInfo.isPTZControl)
@@ -460,8 +415,10 @@ void StatusCallBack(PLAY_STATE playState, VP_HANDLE hLogin, void *pHandl)
                        toCameraID:_cameraInfo.cameraID]; //3.0SDK云台控制为UDP方式发送命令
     }
 }
-- (IBAction)onClickCapture:(UIButton *)sender {
-    
+
+//抓图
+- (IBAction)onClickCapture:(id)sender
+{
     // 获取抓图信息
     CaptureInfo *captureInfo = [[CaptureInfo alloc] init];
     if (![VideoPlayUtility getCaptureInfo:self.cameraInfo.cameraID toCaptureInfo:captureInfo])
@@ -484,7 +441,6 @@ void StatusCallBack(PLAY_STATE playState, VP_HANDLE hLogin, void *pHandl)
         NSLog(@"VP_Capture failed");
     }
     [_captureImageView setImage:[UIImage imageWithContentsOfFile:captureInfo.strCapturePath]];
-
 }
 
 // 录像

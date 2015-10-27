@@ -190,19 +190,19 @@
     NSString *str = @"user=";
     NSString *paramStr = [str stringByAppendingString:paramsStr];
     
-    if(![CMTool isConnectionAvailable]){
-            [SVProgressHUD showInfoWithStatus:@"网络没有连接！"];
+//    if(![CMTool isConnectionAvailable]){
+//            [SVProgressHUD showInfoWithStatus:@"网络没有连接！"];
+//    
+//    }else if([userName isEqualToString:@""]){
+//        
+//        [SVProgressHUD showInfoWithStatus:@"请输入用户名！"];
+//    
+//    }else if ([pwd isEqualToString:@""]){
+//   
+//         [SVProgressHUD showInfoWithStatus:@"请输入密码！"];
+//        
+//    }else{
     
-    }else if([userName isEqualToString:@""]){
-        
-        [SVProgressHUD showInfoWithStatus:@"请输入用户名！"];
-    
-    }else if ([pwd isEqualToString:@""]){
-   
-         [SVProgressHUD showInfoWithStatus:@"请输入密码！"];
-        
-    }else{
-        
          [self jumpToMainView];
 //        [WGAPI post:urlStr RequestParams:paramStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 //            
@@ -227,7 +227,7 @@
 //            
 //        }];
         
-    }
+   // }
     
 }
 

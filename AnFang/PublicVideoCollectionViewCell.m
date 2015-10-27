@@ -33,7 +33,7 @@
         [self.contentView addSubview:publicVideoImage];
         self.publicVideoImage = publicVideoImage;
         
-        UILabel *videoTitle = [[UILabel alloc]initWithFrame:CGRectMake(10*WIDTH/375, 95*HEIGHT/667, 70*WIDTH/375, 25*HEIGHT/667)];
+        UILabel *videoTitle = [[UILabel alloc]initWithFrame:CGRectMake(10*WIDTH/375, 95*HEIGHT/667, 70*WIDTH/375, 40*HEIGHT/667)];
         videoTitle.numberOfLines = 0;
         videoTitle.font = [UIFont systemFontOfSize:10*WIDTH/375];
         videoTitle.textColor = [UIColor blackColor];

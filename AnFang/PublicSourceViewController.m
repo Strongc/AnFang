@@ -131,7 +131,9 @@
     _lineList = [NSMutableArray array];
     _mspInfo = [[CMSPInfo alloc]init];
     BOOL result = [vmsNetSDK getLineList:_serverAddress toLineInfoList:_lineList];
-    _selectedLineID = [_lineList[1] lineID];
+    _selectedLineID = 2;
+    
+
     if (NO == result) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
                                                             message:@"获取线路失败"
@@ -139,16 +141,19 @@
                                                   otherButtonTitles:nil, nil];
         [alertView show];
         return;
-    }else{
-        
-        BOOL result = [vmsNetSDK login:_serverAddress
-                            toUserName:@"test"
-                            toPassword:@"12345"
-                              toLineID:_selectedLineID toServInfo:_mspInfo]; //方法执行后，msp信息将写入mapInfo
-        
-        
+    }
+    
+    BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"test" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
+    if (NO == result1) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"登录失败"
+                                                           delegate:nil cancelButtonTitle:@"好"
+                                                  otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
     }
 
+    
     [self _getAllResources];
     [videoCollection reloadData];
     
@@ -273,17 +278,6 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-//    PublicVideoSource *model = [self.sourceData objectAtIndex:indexPath.item];    
-//
-//    NSString *strUrl = model.videoUrl;
-//    UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    JRPlayerViewController *videoPlayer = [[mainView instantiateViewControllerWithIdentifier:@"videoPlayer"] initWithHTTPLiveStreamingMediaURL:[NSURL URLWithString:strUrl]];
-//    
-//    videoPlayer.hidesBottomBarWhenPushed = YES;
-//    videoPlayer.navigationController.navigationBarHidden = NO;
-//    videoPlayer.videoName = model.videoName;
-//    [self.navigationController pushViewController:videoPlayer animated:YES];
     
     if ([_allResorceList[indexPath.row] isMemberOfClass:[CCameraInfo class]]) {
         PlayViewController *playVC = [[PlayViewController alloc] init];
