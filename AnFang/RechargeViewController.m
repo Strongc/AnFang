@@ -361,15 +361,22 @@
 - (void)doAliPay {
     
     NSString *partner = @"2088021410775742";
-    NSString *seller = @"15655527767";
-    NSString *privateKey = @"MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAMqzsWdaz4/iaGvdZEsDYr+VAU5AF/ysnc3Ftj4YAnu1cx9L+fUNKexwBqaeQrVhQ3GSqlAwRADKPJxsMh4wt3F5qdF78nf/V2ONLFE11RHHOwtvIfeUHFuStYldsFg6HjVKpfYkEF4IqKje6ycK9sWhGcfob8PrjvCqigVa8ni9AgMBAAECgYEAgyGeacuArYd9oBI4WKLXFjNyBcpG+ko9SCpYjHEB4j/vOtbu3E3oyjFqzA1kAGzssaN9FKU0yQIMFfGUtp0zfknHMTFyyLouUJbMSxnpDzIqoJZffD9D3fCCjJOOmsBiF26eaprHnjqh4xQLMbE4uFi2pDoh+8DjEDq5IV4E1CECQQDj6as3klBIiz+8yvEUI4but9zmvdyG3fcJgBs2e+8BA5euAoyLyleqUl9cfGsWpLu8ASIldyJ0dXLJAHimneKVAkEA466oN3EmyM2PbOoXmyNccOw6q2NGUp2QpHlfBVd0ZMwMV2llfmSC8kV3cTXHHc5imVRY4QixY36pEsIbyjSbiQJBAM/tSIVEePYWBCorQ9HJr7puB5yDLoPkURJby3fjjWLxchoQvURzb5M130YzREe+NoAI0Kw5ijeRRw1V3ryzYhkCQQDOeQ1DefFaGFAAzSkrHx4tqYxq8FRNh2YsQYTSK0T6Q7DNdF7+B9hYLHbsy4AOn6L6uWsAaAm12J8qy6y36o1BAkB3pLndLIMNNG26MDAHmukP4qRZJ0ho8ECRgP4HWyYsBxhN2DuR76lIHAtHgKuIZ9MK2A6YbyNSu/Sgavsvpaln";
+    NSString *seller = @"3266924131@qq.com";
+    
+    NSString *str1 = @"-----BEGIN PRIVATE KEY-----";
+    NSString *str3 = @"-----END PRIVATE KEY-----";
+    
+    NSString *privateKeyTemp = @"MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAMqzsWdaz4/iaGvdZEsDYr+VAU5AF/ysnc3Ftj4YAnu1cx9L+fUNKexwBqaeQrVhQ3GSqlAwRADKPJxsMh4wt3F5qdF78nf/V2ONLFE11RHHOwtvIfeUHFuStYldsFg6HjVKpfYkEF4IqKje6ycK9sWhGcfob8PrjvCqigVa8ni9AgMBAAECgYEAgyGeacuArYd9oBI4WKLXFjNyBcpG+ko9SCpYjHEB4j/vOtbu3E3oyjFqzA1kAGzssaN9FKU0yQIMFfGUtp0zfknHMTFyyLouUJbMSxnpDzIqoJZffD9D3fCCjJOOmsBiF26eaprHnjqh4xQLMbE4uFi2pDoh+8DjEDq5IV4E1CECQQDj6as3klBIiz+8yvEUI4but9zmvdyG3fcJgBs2e+8BA5euAoyLyleqUl9cfGsWpLu8ASIldyJ0dXLJAHimneKVAkEA466oN3EmyM2PbOoXmyNccOw6q2NGUp2QpHlfBVd0ZMwMV2llfmSC8kV3cTXHHc5imVRY4QixY36pEsIbyjSbiQJBAM/tSIVEePYWBCorQ9HJr7puB5yDLoPkURJby3fjjWLxchoQvURzb5M130YzREe+NoAI0Kw5ijeRRw1V3ryzYhkCQQDOeQ1DefFaGFAAzSkrHx4tqYxq8FRNh2YsQYTSK0T6Q7DNdF7+B9hYLHbsy4AOn6L6uWsAaAm12J8qy6y36o1BAkB3pLndLIMNNG26MDAHmukP4qRZJ0ho8ECRgP4HWyYsBxhN2DuR76lIHAtHgKuIZ9MK2A6YbyNSu/Sgavsvpaln";
+    
+    NSString *str2 = [str1 stringByAppendingString:privateKeyTemp];
+    NSString *privateKey = [str2 stringByAppendingString:str3];
     
     Order *order = [[Order alloc] init];
     order.partner = partner;
     order.seller = seller;
     order.tradeNO = [self generateTradeNO]; //订单ID（由商家自行制定）
     order.productName = @"套餐"; //商品标题
-    order.productDescription = @""; //商品描述
+    order.productDescription = @"安防服务套餐"; //商品描述
     order.amount = [NSString stringWithFormat:@"%.2f",2.00]; //商品价格
     order.notifyURL =  @"http://www.xxx.com"; //回调URL
     
@@ -383,11 +390,14 @@
     //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
     id<DataSigner> signer = CreateRSADataSigner(privateKey);
     NSString *signedString = [signer signString:orderSpec];
+    NSLog(@"私钥：%@",signedString);
+    
     NSString *appScheme = @"anfang";
     
-   NSString *orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
+    NSString *orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
                    orderSpec, privateKey, signedString];
     [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+        
         NSLog(@"result = %@",resultDic);
     }];
     

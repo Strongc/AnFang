@@ -219,6 +219,9 @@
 		04D034101BDF39CB00E9E2BE /* ResourceTreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D0340F1BDF39CB00E9E2BE /* ResourceTreeViewController.m */; };
 		04D034151BDF3A9E00E9E2BE /* PlayViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 04D034141BDF3A9E00E9E2BE /* PlayViewController.mm */; };
 		04D034191BDF4FD700E9E2BE /* PlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D034181BDF4FD700E9E2BE /* PlayViewController.xib */; };
+		04D0341E1BDF675300E9E2BE /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D0341B1BDF675300E9E2BE /* libWeChatSDK.a */; };
+		04D034201BDF679300E9E2BE /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D0341F1BDF679300E9E2BE /* libWeChatSDK.a */; };
+		04D034251BDF68A000E9E2BE /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D034241BDF68A000E9E2BE /* WXApiManager.m */; };
 		04D9A5D91BB3D27B006D7B8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D9A5D71BB3D27B006D7B8A /* Main.storyboard */; };
 		04D9A5DC1BB3D404006D7B8A /* MenuTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9A5DB1BB3D404006D7B8A /* MenuTabBarViewController.m */; };
 		04D9A5E11BB3D4A7006D7B8A /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 04D9A5E01BB3D4A7006D7B8A /* ZipArchive.mm */; };
@@ -673,6 +676,12 @@
 		04D034131BDF3A9E00E9E2BE /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
 		04D034141BDF3A9E00E9E2BE /* PlayViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PlayViewController.mm; sourceTree = "<group>"; };
 		04D034181BDF4FD700E9E2BE /* PlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayViewController.xib; sourceTree = "<group>"; };
+		04D0341B1BDF675300E9E2BE /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		04D0341C1BDF675300E9E2BE /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		04D0341D1BDF675300E9E2BE /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		04D0341F1BDF679300E9E2BE /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libWeChatSDK.a; path = SDKExport/libWeChatSDK.a; sourceTree = "<group>"; };
+		04D034231BDF68A000E9E2BE /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
+		04D034241BDF68A000E9E2BE /* WXApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiManager.m; sourceTree = "<group>"; };
 		04D8BDBE1BC7ADA20004FE29 /* openssl */ = {isa = PBXFileReference; lastKnownFileType = folder; name = openssl; path = ../openssl; sourceTree = "<group>"; };
 		04D9A5D81BB3D27B006D7B8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04D9A5DA1BB3D404006D7B8A /* MenuTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTabBarViewController.h; sourceTree = "<group>"; };
@@ -786,8 +795,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D034201BDF679300E9E2BE /* libWeChatSDK.a in Frameworks */,
 				04D0338A1BDF0C5400E9E2BE /* libASIHTTPRequest.a in Frameworks */,
 				04D033891BDF0C4700E9E2BE /* AlipaySDK.framework in Frameworks */,
+				04D0341E1BDF675300E9E2BE /* libWeChatSDK.a in Frameworks */,
 				04D033881BDF0C3700E9E2BE /* SystemConfiguration.framework in Frameworks */,
 				04D033871BDF0C2900E9E2BE /* CoreTelephony.framework in Frameworks */,
 				04D033861BDF0C1400E9E2BE /* QuartzCore.framework in Frameworks */,
@@ -1012,6 +1023,7 @@
 		04801E271BB3C15C00714CC9 /* AnFang */ = {
 			isa = PBXGroup;
 			children = (
+				04D0341A1BDF675300E9E2BE /* SDKExport */,
 				04D033421BDF094900E9E2BE /* MCRSDK */,
 				04D033471BDF094900E9E2BE /* VideoPlaySDK */,
 				04D033501BDF094900E9E2BE /* VMSNetSDK */,
@@ -1162,6 +1174,8 @@
 		04801E691BB3CA7F00714CC9 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				04D034221BDF685A00E9E2BE /* WeiXinPayTool */,
+				04D034211BDF680600E9E2BE /* UITool */,
 				04D033951BDF0CFB00E9E2BE /* AliPayUtil */,
 				04DBE4D41BD740930032939E /* UserInfo */,
 				0420380E1BD0CD5000D10004 /* ImageTool */,
@@ -1175,23 +1189,7 @@
 				0448B1FC1BB5092300DBE65C /* BadgeView */,
 				0448B1F81BB4ED3F00DBE65C /* TabBarItem */,
 				04D9A5DD1BB3D463006D7B8A /* ZipArchive */,
-				04801F511BB3CEEC00714CC9 /* Common.h */,
-				04801EA11BB3CD0500714CC9 /* GradientButton.h */,
-				04801EA21BB3CD0500714CC9 /* GradientButton.m */,
-				04801E9D1BB3CCDB00714CC9 /* AVPlayerDemoPlaybackView.h */,
-				04801E9E1BB3CCDB00714CC9 /* AVPlayerDemoPlaybackView.m */,
-				04801E9F1BB3CCDB00714CC9 /* AVPlayerManager.h */,
 				04801E961BB3CC4200714CC9 /* DownVideo */,
-				04801E931BB3CC3600714CC9 /* MHTabBarController.h */,
-				04801E941BB3CC3600714CC9 /* MHTabBarController.m */,
-				04801E8D1BB3CC0600714CC9 /* UIColor+Extensions.h */,
-				04801E8E1BB3CC0600714CC9 /* UIColor+Extensions.m */,
-				04801E8F1BB3CC0600714CC9 /* UIView+KGViewExtend.h */,
-				04801E901BB3CC0600714CC9 /* UIView+KGViewExtend.m */,
-				04801E871BB3CBDA00714CC9 /* QHCommonUtil.h */,
-				04801E881BB3CBDA00714CC9 /* QHCommonUtil.m */,
-				04801E891BB3CBDA00714CC9 /* QHConfiguredObj.h */,
-				04801E8A1BB3CBDA00714CC9 /* QHConfiguredObj.m */,
 				04801E7C1BB3CB5000714CC9 /* MessgaeListTabBar */,
 				04801E751BB3CB1800714CC9 /* AnFangTabBar */,
 				04801E6E1BB3CACC00714CC9 /* VideoListTabBar */,
@@ -1642,6 +1640,49 @@
 			path = openssl;
 			sourceTree = "<group>";
 		};
+		04D0341A1BDF675300E9E2BE /* SDKExport */ = {
+			isa = PBXGroup;
+			children = (
+				04D0341B1BDF675300E9E2BE /* libWeChatSDK.a */,
+				04D0341C1BDF675300E9E2BE /* WXApi.h */,
+				04D0341D1BDF675300E9E2BE /* WXApiObject.h */,
+			);
+			name = SDKExport;
+			path = ../../SDKSample_v2.0/SDKExport;
+			sourceTree = "<group>";
+		};
+		04D034211BDF680600E9E2BE /* UITool */ = {
+			isa = PBXGroup;
+			children = (
+				04801E941BB3CC3600714CC9 /* MHTabBarController.m */,
+				04801E901BB3CC0600714CC9 /* UIView+KGViewExtend.m */,
+				04801E8F1BB3CC0600714CC9 /* UIView+KGViewExtend.h */,
+				04801EA11BB3CD0500714CC9 /* GradientButton.h */,
+				04801E8D1BB3CC0600714CC9 /* UIColor+Extensions.h */,
+				04801EA21BB3CD0500714CC9 /* GradientButton.m */,
+				04801E9E1BB3CCDB00714CC9 /* AVPlayerDemoPlaybackView.m */,
+				04801E9D1BB3CCDB00714CC9 /* AVPlayerDemoPlaybackView.h */,
+				04801E8E1BB3CC0600714CC9 /* UIColor+Extensions.m */,
+				04801E891BB3CBDA00714CC9 /* QHConfiguredObj.h */,
+				04801E881BB3CBDA00714CC9 /* QHCommonUtil.m */,
+				04801E8A1BB3CBDA00714CC9 /* QHConfiguredObj.m */,
+				04801F511BB3CEEC00714CC9 /* Common.h */,
+				04801E9F1BB3CCDB00714CC9 /* AVPlayerManager.h */,
+				04801E871BB3CBDA00714CC9 /* QHCommonUtil.h */,
+				04801E931BB3CC3600714CC9 /* MHTabBarController.h */,
+			);
+			name = UITool;
+			sourceTree = "<group>";
+		};
+		04D034221BDF685A00E9E2BE /* WeiXinPayTool */ = {
+			isa = PBXGroup;
+			children = (
+				04D034231BDF68A000E9E2BE /* WXApiManager.h */,
+				04D034241BDF68A000E9E2BE /* WXApiManager.m */,
+			);
+			name = WeiXinPayTool;
+			sourceTree = "<group>";
+		};
 		04D9A5DD1BB3D463006D7B8A /* ZipArchive */ = {
 			isa = PBXGroup;
 			children = (
@@ -1818,6 +1859,7 @@
 		1BE3F1C289A601FFB5465594 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04D0341F1BDF679300E9E2BE /* libWeChatSDK.a */,
 				04D0336C1BDF0A9500E9E2BE /* libssl.a */,
 				04D033681BDF0A7400E9E2BE /* CoreMedia.framework */,
 				04D033661BDF0A6A00E9E2BE /* libz.1.2.5.dylib */,
@@ -2158,6 +2200,7 @@
 				04E523A21BCFAA8D00F3D0CC /* PhotoAlarmCell.m in Sources */,
 				04DBE4DA1BD741650032939E /* NSString+File.m in Sources */,
 				04801E5C1BB3C98E00714CC9 /* MenuConfig.m in Sources */,
+				04D034251BDF68A000E9E2BE /* WXApiManager.m in Sources */,
 				04801EA01BB3CCDB00714CC9 /* AVPlayerDemoPlaybackView.m in Sources */,
 				04801F601BB3CFCD00714CC9 /* PersonCenterTableViewCell.m in Sources */,
 				0448B1FF1BB5093D00DBE65C /* UIView+MGBadgeView.m in Sources */,
@@ -2373,6 +2416,8 @@
 					"$(PROJECT_DIR)/VideoPlaySDK/lib",
 					"$(PROJECT_DIR)/VMSNetSDK/lib",
 					"$(PROJECT_DIR)/MCRSDK",
+					/Users/mac/Desktop/SDKSample_v2.0/SDKExport,
+					"$(PROJECT_DIR)/SDKExport",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2431,6 +2476,8 @@
 					"$(PROJECT_DIR)/VideoPlaySDK/lib",
 					"$(PROJECT_DIR)/VMSNetSDK/lib",
 					"$(PROJECT_DIR)/MCRSDK",
+					/Users/mac/Desktop/SDKSample_v2.0/SDKExport,
+					"$(PROJECT_DIR)/SDKExport",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

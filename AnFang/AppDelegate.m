@@ -11,6 +11,7 @@
 #import "DDTTYLogger.h"
 #import "DDLog.h"
 #import "VideoPlaySDK.h"
+#import "WXApiManager.h"
 
 @interface AppDelegate ()
 
@@ -37,7 +38,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    //初始化视频播放库
     VP_InitSDK();
+    
+    //向微信注册
+    [WXApi registerApp:@"wxd930ea5d5a258f4f" withDescription:@"demo 2.0"];
 //    [DDLog addLogger:[DDTTYLogger sharedInstance]];
 //    
 //    httpServer = [[HTTPServer alloc]init];
@@ -86,6 +91,12 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+}
+
+-(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+
+    return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
 }
 
 - (BOOL)application:(UIApplication *)application
