@@ -12,6 +12,7 @@
 #import "PublicVideoCollectionViewCell.h"
 #import "JRPlayerViewController.h"
 #import "PublicVideoSource.h"
+#import "PlayViewController.h"
 
 @interface PublicSourceViewController ()
 {
@@ -20,6 +21,10 @@
     NSMutableArray *publicVideoTitle;
     NSMutableArray *publicVideoImage;
     NSMutableArray *heightArr;
+    NSMutableArray *_allResorceList;
+    NSMutableArray *_lineList;
+    int _selectedLineID;
+
 
 }
 
@@ -28,6 +33,65 @@
 @end
 
 @implementation PublicSourceViewController
+
+//获取当前层级的所有资源
+- (NSMutableArray *)_getAllResources {
+    
+    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
+    _allResorceList = [NSMutableArray array];
+    //NSMutableArray *tempArray = [NSMutableArray array];
+    
+    //判断当前对象应该获取控制中心还是区域下的资源
+    //    if (nil == _regionInfo) {
+    //
+    //            //获取控制中心下的控制中心
+    //            [vmsNetSDK getControlUnitList:_serverAddress
+    //                              toSessionID:_mspInfo.sessionID
+    //                          toControlUnitID:_controlUnitInfo.controlUnitID
+    //                             toNumPerOnce:50
+    //                                toCurPage:1
+    //                        toControlUnitList:tempArray];
+    //            [_allResorceList addObjectsFromArray:tempArray];
+    //
+    //            //获取控制中心下的区域
+    //            [vmsNetSDK getRegionListFromCtrlUnit:_serverAddress
+    //                                     toSessionID:_mspInfo.sessionID
+    //                                 toControlUnitID:0
+    //                                    toNumPerOnce:50
+    //                                       toCurPage:1
+    //                                    toRegionList:tempArray];
+    //            [_allResorceList addObjectsFromArray:tempArray];
+    //
+    //            //获取控制中心下的设备
+    //            [vmsNetSDK getCameraListFromCtrlUnit:_serverAddress
+    //                                     toSessionID:_mspInfo.sessionID
+    //                                 toControlUnitID:0
+    //                                    toNumPerOnce:50
+    //                                       toCurPage:1
+    //                                    toCameraList:tempArray];
+    //            [_allResorceList addObjectsFromArray:tempArray];
+    //
+    //    } else {
+    
+    //获取区域下的区域
+    [vmsNetSDK getRegionListFromRegion:_serverAddress
+                           toSessionID:_mspInfo.sessionID
+                            toRegionID:9
+                          toNumPerOnce:50
+                             toCurPage:1
+                          toRegionList:_allResorceList];
+    
+    //获取区域下的设备
+    [vmsNetSDK getCameraListFromRegion:_serverAddress
+                           toSessionID:_mspInfo.sessionID
+                            toRegionID:9
+                          toNumPerOnce:50
+                             toCurPage:1
+                          toCameraList:_allResorceList];
+    //}
+    return _allResorceList;
+}
+
 
 -(NSArray *)sourceData
 {
@@ -61,6 +125,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self ConfigControl];
+    
+    _serverAddress = @"http://112.12.17.3";
+    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
+    _lineList = [NSMutableArray array];
+    _mspInfo = [[CMSPInfo alloc]init];
+    BOOL result = [vmsNetSDK getLineList:_serverAddress toLineInfoList:_lineList];
+    _selectedLineID = [_lineList[1] lineID];
+    if (NO == result) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"获取线路失败"
+                                                           delegate:nil cancelButtonTitle:@"好"
+                                                  otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }else{
+        
+        BOOL result = [vmsNetSDK login:_serverAddress
+                            toUserName:@"test"
+                            toPassword:@"12345"
+                              toLineID:_selectedLineID toServInfo:_mspInfo]; //方法执行后，msp信息将写入mapInfo
+        
+        
+    }
+
+    [self _getAllResources];
+    [videoCollection reloadData];
+    
     
 //    publicVideoTitle = [[NSMutableArray alloc]initWithObjects:@"江干区天成路工商银行", @"滨江区江南大道华润超市",@"滨江区江陵路国美电器",@"西湖区凤起路中国银行",@"滨江区彩虹城",@"江干区天成路工商银行",@"江干区天成路工商银行",@"江干区天成路工商银行",@"江干区天成路工商银行",@"江干区天成路工商银行",@"江干区天成路工商银行",@"江干区天成路工商银行",@"江干区天成路工商银行",@"江干区天成路工商银行",@"江干区天成路工商银行",@"滨江区江南大道华润超市",@"滨江区江陵路国美电器",@"西湖区凤起路中国银行",nil];
 //    
@@ -113,7 +204,8 @@
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
 
-    return self.sourceData.count;
+    //return self.sourceData.count;
+    return _allResorceList.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -122,13 +214,14 @@
     static NSString *identifyId = @"cell";
     PublicVideoCollectionViewCell *cell = (PublicVideoCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifyId forIndexPath:indexPath];
    
-    PublicVideoSource *model = [self.sourceData objectAtIndex:indexPath.item];
+    //PublicVideoSource *model = [self.sourceData objectAtIndex:indexPath.item];
     //NSString *name = model.videoImage;
     
 //    cell.publicVideoImage.image = [UIImage imageNamed:name];
 //    cell.videoTimeLab.text = model.videoTime;
 //    cell.videoTitle.text = model.videoName;
-    cell.publicSource = model;
+    //cell.publicSource = model;
+    cell.videoTitle.text = [_allResorceList[indexPath.row] name];
    
     CGRect originFrame = cell.frame;
     
@@ -181,16 +274,28 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    PublicVideoSource *model = [self.sourceData objectAtIndex:indexPath.item];    
-
-    NSString *strUrl = model.videoUrl;
-    UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    JRPlayerViewController *videoPlayer = [[mainView instantiateViewControllerWithIdentifier:@"videoPlayer"] initWithHTTPLiveStreamingMediaURL:[NSURL URLWithString:strUrl]];
+//    PublicVideoSource *model = [self.sourceData objectAtIndex:indexPath.item];    
+//
+//    NSString *strUrl = model.videoUrl;
+//    UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    JRPlayerViewController *videoPlayer = [[mainView instantiateViewControllerWithIdentifier:@"videoPlayer"] initWithHTTPLiveStreamingMediaURL:[NSURL URLWithString:strUrl]];
+//    
+//    videoPlayer.hidesBottomBarWhenPushed = YES;
+//    videoPlayer.navigationController.navigationBarHidden = NO;
+//    videoPlayer.videoName = model.videoName;
+//    [self.navigationController pushViewController:videoPlayer animated:YES];
     
-    videoPlayer.hidesBottomBarWhenPushed = YES;
-    videoPlayer.navigationController.navigationBarHidden = NO;
-    videoPlayer.videoName = model.videoName;
-    [self.navigationController pushViewController:videoPlayer animated:YES];
+    if ([_allResorceList[indexPath.row] isMemberOfClass:[CCameraInfo class]]) {
+        PlayViewController *playVC = [[PlayViewController alloc] init];
+        
+        //把预览回放和云台控制所需的参数传过去
+        playVC.serverAddress = _serverAddress;
+        playVC.mspInfo = _mspInfo;
+        playVC.cameraInfo = _allResorceList[indexPath.row];
+        [self.navigationController pushViewController:playVC animated:YES];
+        return;
+    }
+
 
 }
 

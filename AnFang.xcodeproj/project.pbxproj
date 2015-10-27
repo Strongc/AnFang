@@ -216,6 +216,8 @@
 		04D033F51BDF0EC200E9E2BE /* base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D033F41BDF0EC200E9E2BE /* base64.m */; };
 		04D033FA1BDF0F5900E9E2BE /* RSADataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D033F71BDF0F5900E9E2BE /* RSADataSigner.m */; };
 		04D033FB1BDF0F5900E9E2BE /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D033F91BDF0F5900E9E2BE /* RSADataVerifier.m */; };
+		04D033FF1BDF13F100E9E2BE /* PlayViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 04D033FD1BDF13F100E9E2BE /* PlayViewController.mm */; };
+		04D034001BDF13F100E9E2BE /* PlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D033FE1BDF13F100E9E2BE /* PlayViewController.xib */; };
 		04D9A5D91BB3D27B006D7B8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D9A5D71BB3D27B006D7B8A /* Main.storyboard */; };
 		04D9A5DC1BB3D404006D7B8A /* MenuTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9A5DB1BB3D404006D7B8A /* MenuTabBarViewController.m */; };
 		04D9A5E11BB3D4A7006D7B8A /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 04D9A5E01BB3D4A7006D7B8A /* ZipArchive.mm */; };
@@ -665,6 +667,9 @@
 		04D033F71BDF0F5900E9E2BE /* RSADataSigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSADataSigner.m; sourceTree = "<group>"; };
 		04D033F81BDF0F5900E9E2BE /* RSADataVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSADataVerifier.h; sourceTree = "<group>"; };
 		04D033F91BDF0F5900E9E2BE /* RSADataVerifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSADataVerifier.m; sourceTree = "<group>"; };
+		04D033FC1BDF13F100E9E2BE /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
+		04D033FD1BDF13F100E9E2BE /* PlayViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PlayViewController.mm; sourceTree = "<group>"; };
+		04D033FE1BDF13F100E9E2BE /* PlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayViewController.xib; sourceTree = "<group>"; };
 		04D8BDBE1BC7ADA20004FE29 /* openssl */ = {isa = PBXFileReference; lastKnownFileType = folder; name = openssl; path = ../openssl; sourceTree = "<group>"; };
 		04D9A5D81BB3D27B006D7B8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04D9A5DA1BB3D404006D7B8A /* MenuTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTabBarViewController.h; sourceTree = "<group>"; };
@@ -1061,6 +1066,7 @@
 			children = (
 				04E5239C1BCF918000F3D0CC /* AnFang */,
 				04D9A5D71BB3D27B006D7B8A /* Main.storyboard */,
+				04D033FE1BDF13F100E9E2BE /* PlayViewController.xib */,
 				04801E3A1BB3C15C00714CC9 /* LaunchScreen.xib */,
 				04801F711BB3D0C800714CC9 /* Monitor */,
 				04801F6D1BB3D09400714CC9 /* DefenceAreaDev */,
@@ -1727,6 +1733,8 @@
 		04D9A6461BB3DDB7006D7B8A /* PublicSource */ = {
 			isa = PBXGroup;
 			children = (
+				04D033FC1BDF13F100E9E2BE /* PlayViewController.h */,
+				04D033FD1BDF13F100E9E2BE /* PlayViewController.mm */,
 				04D9A6101BB3D8DA006D7B8A /* PublicSourceViewController.h */,
 				04D9A6111BB3D8DA006D7B8A /* PublicSourceViewController.m */,
 			);
@@ -2023,6 +2031,7 @@
 				04801F3A1BB3CE6D00714CC9 /* tab_qworld_press@2x.png in Resources */,
 				04801F401BB3CE6D00714CC9 /* theme_icon_universe@2x.png in Resources */,
 				04801EB41BB3CE1500714CC9 /* 2.png in Resources */,
+				04D034001BDF13F100E9E2BE /* PlayViewController.xib in Resources */,
 				04801EBB1BB3CE1500714CC9 /* bank.png in Resources */,
 				04801F2E1BB3CE6D00714CC9 /* slider.png in Resources */,
 				04801F161BB3CE6D00714CC9 /* menu_icon_groupaudio@2x.png in Resources */,
@@ -2177,6 +2186,7 @@
 				042038051BD09AD600D10004 /* NSDateString.m in Sources */,
 				04801E6D1BB3CABB00714CC9 /* PopoverView.m in Sources */,
 				04801EA31BB3CD0500714CC9 /* GradientButton.m in Sources */,
+				04D033FF1BDF13F100E9E2BE /* PlayViewController.mm in Sources */,
 				04D9A6271BB3D8DA006D7B8A /* MenuSelectViewController.m in Sources */,
 				04801E341BB3C15C00714CC9 /* ViewController.m in Sources */,
 				04801E8C1BB3CBDA00714CC9 /* QHConfiguredObj.m in Sources */,
