@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 //@class HTTPServer;
-#import "HTTPServer.h"
+//#import "HTTPServer.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
 
-    HTTPServer *httpServer;
+   // HTTPServer *httpServer;
 
 }
 

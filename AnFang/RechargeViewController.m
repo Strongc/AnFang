@@ -14,6 +14,7 @@
 #import "PayStyleCollectionViewCell.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "Order.h"
+#import "DataSigner.h"
 
 
 @interface RechargeViewController ()
@@ -380,12 +381,12 @@
     NSString *orderSpec = [order description];
     
     //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
-    //id<DataSigner> signer = CreateRSADataSigner(privateKey);
-    //NSString *signedString = [signer signString:orderSpec];
+    id<DataSigner> signer = CreateRSADataSigner(privateKey);
+    NSString *signedString = [signer signString:orderSpec];
     NSString *appScheme = @"anfang";
     
    NSString *orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
-                   orderSpec, privateKey, @"RSA"];
+                   orderSpec, privateKey, signedString];
     [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
         NSLog(@"result = %@",resultDic);
     }];

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VMSNetSDK.h"
 
 @interface PublicSourceViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 

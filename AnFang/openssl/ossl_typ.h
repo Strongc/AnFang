@@ -55,7 +55,7 @@
 #ifndef HEADER_OPENSSL_TYPES_H
 #define HEADER_OPENSSL_TYPES_H
 
-#include <openssl/e_os2.h>
+#include "e_os2.h"
 
 #ifdef NO_ASN1_TYPEDEFS
 #define ASN1_INTEGER		ASN1_STRING
@@ -137,7 +137,7 @@ typedef struct dh_method DH_METHOD;
 typedef struct dsa_st DSA;
 typedef struct dsa_method DSA_METHOD;
 
-typedef struct rsa_st RSA;
+typedef struct rsa_st RSa;
 typedef struct rsa_meth_st RSA_METHOD;
 
 typedef struct rand_meth_st RAND_METHOD;
