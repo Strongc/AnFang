@@ -277,6 +277,16 @@
 		04DEDA061BE06EE100116789 /* fs_icon_wave_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA021BE06EE100116789 /* fs_icon_wave_1.png */; };
 		04DEDA071BE06EE100116789 /* fs_icon_wave_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA031BE06EE100116789 /* fs_icon_wave_2.png */; };
 		04DEDA0A1BE0740900116789 /* FSVoiceBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DEDA091BE0740900116789 /* FSVoiceBubble.m */; };
+		04DEDA0F1BE0906300116789 /* 丽晶宾馆基站.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA0E1BE0906300116789 /* 丽晶宾馆基站.jpg */; };
+		04DEDA111BE090AE00116789 /* 新天地大厦基站.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA101BE090AE00116789 /* 新天地大厦基站.jpg */; };
+		04DEDA131BE090F600116789 /* 磐安移动_公司大门口.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA121BE090F600116789 /* 磐安移动_公司大门口.jpg */; };
+		04DEDA151BE0915F00116789 /* 武义移动_环城北路营业厅大门.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA141BE0915F00116789 /* 武义移动_环城北路营业厅大门.jpg */; };
+		04DEDA171BE093C900116789 /* 永康移动_公司楼顶基站.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA161BE093C900116789 /* 永康移动_公司楼顶基站.jpg */; };
+		04DEDA191BE0946800116789 /* 兰溪移动_公司大门进出口.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA181BE0946800116789 /* 兰溪移动_公司大门进出口.jpg */; };
+		04DEDA1E1BE0961800116789 /* 东阳移动_主营业厅.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA1A1BE0961800116789 /* 东阳移动_主营业厅.jpg */; };
+		04DEDA1F1BE0961800116789 /* 浦江移动_蔬菜基地1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA1B1BE0961800116789 /* 浦江移动_蔬菜基地1.jpg */; };
+		04DEDA201BE0961800116789 /* 浦江移动_蔬菜基地2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA1C1BE0961800116789 /* 浦江移动_蔬菜基地2.jpg */; };
+		04DEDA211BE0961800116789 /* 浙江大学附属第四医院.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA1D1BE0961800116789 /* 浙江大学附属第四医院.jpg */; };
 		04E4002A1BB903AE0098F2D4 /* MonitorArea.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04E400291BB903AE0098F2D4 /* MonitorArea.plist */; };
 		04E5239B1BCF909E00F3D0CC /* VoiceAlarmModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5239A1BCF909E00F3D0CC /* VoiceAlarmModel.m */; };
 		04E5239F1BCF925600F3D0CC /* KeyAlarmCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5239E1BCF925600F3D0CC /* KeyAlarmCell.m */; };
@@ -791,6 +801,17 @@
 		04DEDA031BE06EE100116789 /* fs_icon_wave_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fs_icon_wave_2.png; sourceTree = "<group>"; };
 		04DEDA081BE0740900116789 /* FSVoiceBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSVoiceBubble.h; sourceTree = "<group>"; };
 		04DEDA091BE0740900116789 /* FSVoiceBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSVoiceBubble.m; sourceTree = "<group>"; };
+		04DEDA0D1BE08ECE00116789 /* CUJ.aac */ = {isa = PBXFileReference; lastKnownFileType = file; path = CUJ.aac; sourceTree = "<group>"; };
+		04DEDA0E1BE0906300116789 /* 丽晶宾馆基站.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "丽晶宾馆基站.jpg"; sourceTree = "<group>"; };
+		04DEDA101BE090AE00116789 /* 新天地大厦基站.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "新天地大厦基站.jpg"; sourceTree = "<group>"; };
+		04DEDA121BE090F600116789 /* 磐安移动_公司大门口.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "磐安移动_公司大门口.jpg"; sourceTree = "<group>"; };
+		04DEDA141BE0915F00116789 /* 武义移动_环城北路营业厅大门.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "武义移动_环城北路营业厅大门.jpg"; sourceTree = "<group>"; };
+		04DEDA161BE093C900116789 /* 永康移动_公司楼顶基站.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "永康移动_公司楼顶基站.jpg"; sourceTree = "<group>"; };
+		04DEDA181BE0946800116789 /* 兰溪移动_公司大门进出口.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "兰溪移动_公司大门进出口.jpg"; sourceTree = "<group>"; };
+		04DEDA1A1BE0961800116789 /* 东阳移动_主营业厅.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "东阳移动_主营业厅.jpg"; sourceTree = "<group>"; };
+		04DEDA1B1BE0961800116789 /* 浦江移动_蔬菜基地1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "浦江移动_蔬菜基地1.jpg"; sourceTree = "<group>"; };
+		04DEDA1C1BE0961800116789 /* 浦江移动_蔬菜基地2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "浦江移动_蔬菜基地2.jpg"; sourceTree = "<group>"; };
+		04DEDA1D1BE0961800116789 /* 浙江大学附属第四医院.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "浙江大学附属第四医院.jpg"; sourceTree = "<group>"; };
 		04E400291BB903AE0098F2D4 /* MonitorArea.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MonitorArea.plist; sourceTree = "<group>"; };
 		04E523991BCF909E00F3D0CC /* VoiceAlarmModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceAlarmModel.h; sourceTree = "<group>"; };
 		04E5239A1BCF909E00F3D0CC /* VoiceAlarmModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceAlarmModel.m; sourceTree = "<group>"; };
@@ -812,7 +833,6 @@
 		04EAC0501BD8F2780009F2F0 /* record_animate_12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_12.png; sourceTree = "<group>"; };
 		04EAC0511BD8F2780009F2F0 /* record_animate_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_13.png; sourceTree = "<group>"; };
 		04EAC0521BD8F2780009F2F0 /* record_animate_14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_14.png; sourceTree = "<group>"; };
-		04EAC0611BD8FCFB0009F2F0 /* NLOmyRecord.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NLOmyRecord.caf; sourceTree = "<group>"; };
 		6563E09E4651676361820012 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		815A5FE989008A8FD1FBBB82 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F3C40336A7B22936EFB1F1AE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1076,6 +1096,7 @@
 				043FB7A91BCCDA3C006C96A1 /* public_key.der */,
 				04D9A63D1BB3DA42006D7B8A /* PayStyleIcon.plist */,
 				04D9A63B1BB3DA2B006D7B8A /* MenuConfig.plist */,
+				04DEDA0D1BE08ECE00116789 /* CUJ.aac */,
 				04D9A6391BB3DA1A006D7B8A /* PublicVideo.plist */,
 				04D9A6371BB3D972006D7B8A /* menu.plist */,
 				04801E291BB3C15C00714CC9 /* Info.plist */,
@@ -1084,7 +1105,6 @@
 				0448CC081BBA908100F120EC /* LocalVideo.plist */,
 				045595DD1BCF86E700BB5094 /* KeyAlarm.plist */,
 				045595DF1BCF872900BB5094 /* TextAndPhotoAlarm.plist */,
-				04EAC0611BD8FCFB0009F2F0 /* NLOmyRecord.caf */,
 				045595E11BCF876800BB5094 /* VoiceAlarm.plist */,
 			);
 			name = "Supporting Files";
@@ -1286,7 +1306,17 @@
 			isa = PBXGroup;
 			children = (
 				04DEDA001BE06EE100116789 /* fs_chat_bubble.png */,
+				04DEDA0E1BE0906300116789 /* 丽晶宾馆基站.jpg */,
 				04DEDA011BE06EE100116789 /* fs_icon_wave_0.png */,
+				04DEDA181BE0946800116789 /* 兰溪移动_公司大门进出口.jpg */,
+				04DEDA101BE090AE00116789 /* 新天地大厦基站.jpg */,
+				04DEDA161BE093C900116789 /* 永康移动_公司楼顶基站.jpg */,
+				04DEDA1A1BE0961800116789 /* 东阳移动_主营业厅.jpg */,
+				04DEDA1B1BE0961800116789 /* 浦江移动_蔬菜基地1.jpg */,
+				04DEDA1C1BE0961800116789 /* 浦江移动_蔬菜基地2.jpg */,
+				04DEDA1D1BE0961800116789 /* 浙江大学附属第四医院.jpg */,
+				04DEDA141BE0915F00116789 /* 武义移动_环城北路营业厅大门.jpg */,
+				04DEDA121BE090F600116789 /* 磐安移动_公司大门口.jpg */,
 				04DEDA021BE06EE100116789 /* fs_icon_wave_1.png */,
 				04DEDA031BE06EE100116789 /* fs_icon_wave_2.png */,
 				04D034301BDF88A900E9E2BE /* ProgressHUD */,
@@ -2059,14 +2089,17 @@
 				04801ECE1BB3CE2F00714CC9 /* dev.png in Resources */,
 				04801EBA1BB3CE1500714CC9 /* backward_nor@2x.png in Resources */,
 				04801F491BB3CE6D00714CC9 /* voice.png in Resources */,
+				04DEDA201BE0961800116789 /* 浦江移动_蔬菜基地2.jpg in Resources */,
 				044D2D6A1BBA73450093453A /* collect.png in Resources */,
 				04D9A63A1BB3DA1A006D7B8A /* PublicVideo.plist in Resources */,
+				04DEDA1E1BE0961800116789 /* 东阳移动_主营业厅.jpg in Resources */,
 				04EAC0541BD8F2780009F2F0 /* record_animate_02.png in Resources */,
 				04EAC0551BD8F2780009F2F0 /* record_animate_03.png in Resources */,
 				04801F181BB3CE6D00714CC9 /* mulchat_header_icon_circle@2x.png in Resources */,
 				049B6F0D1BD88E6E00ED4E32 /* mic_normal_358x358@2x.png in Resources */,
 				04D9A5D91BB3D27B006D7B8A /* Main.storyboard in Resources */,
 				04DED9EF1BE0600200116789 /* Let It Go.mp3 in Resources */,
+				04DEDA151BE0915F00116789 /* 武义移动_环城北路营业厅大门.jpg in Resources */,
 				04EAC05B1BD8F2780009F2F0 /* record_animate_09.png in Resources */,
 				049B6F0C1BD88E6E00ED4E32 /* black_bg_ip5@2x.png in Resources */,
 				04801F411BB3CE6D00714CC9 /* theme_icon_yellowduck@2x.png in Resources */,
@@ -2082,11 +2115,14 @@
 				04801ED41BB3CE2F00714CC9 /* forward_nor@2x.png in Resources */,
 				04D9A63E1BB3DA42006D7B8A /* PayStyleIcon.plist in Resources */,
 				04801F331BB3CE6D00714CC9 /* sliderbg@2x.png in Resources */,
+				04DEDA111BE090AE00116789 /* 新天地大厦基站.jpg in Resources */,
 				04801F321BB3CE6D00714CC9 /* sliderbg.png in Resources */,
 				045595E01BCF872900BB5094 /* TextAndPhotoAlarm.plist in Resources */,
 				045595D61BCF3C2300BB5094 /* messagePress.png in Resources */,
 				04801F361BB3CE6D00714CC9 /* tab_buddy_press@2x.png in Resources */,
 				043FB7AA1BCCDA3C006C96A1 /* private_key.pfx in Resources */,
+				04DEDA1F1BE0961800116789 /* 浦江移动_蔬菜基地1.jpg in Resources */,
+				04DEDA191BE0946800116789 /* 兰溪移动_公司大门进出口.jpg in Resources */,
 				04EAC05E1BD8F2780009F2F0 /* record_animate_12.png in Resources */,
 				04801F3E1BB3CE6D00714CC9 /* theme_icon_penguin@2x.png in Resources */,
 				04801EB91BB3CE1500714CC9 /* backward_disable@2x.png in Resources */,
@@ -2105,11 +2141,13 @@
 				04801F1D1BB3CE6D00714CC9 /* pause_nor@2x.png in Resources */,
 				04EAC0601BD8F2780009F2F0 /* record_animate_14.png in Resources */,
 				04801ED01BB3CE2F00714CC9 /* fast_backward_disable@2x.png in Resources */,
+				04DEDA211BE0961800116789 /* 浙江大学附属第四医院.jpg in Resources */,
 				04801F471BB3CE6D00714CC9 /* video_volume_bg@2x.png in Resources */,
 				04801F421BB3CE6D00714CC9 /* theme_icon@2x.png in Resources */,
 				04DEDA041BE06EE100116789 /* fs_chat_bubble.png in Resources */,
 				04801EB61BB3CE1500714CC9 /* alarm.png in Resources */,
 				04801F171BB3CE6D00714CC9 /* menu_icon_QR@2x.png in Resources */,
+				04DEDA0F1BE0906300116789 /* 丽晶宾馆基站.jpg in Resources */,
 				04801F2B1BB3CE6D00714CC9 /* sidebar_favorit@2x.png in Resources */,
 				04EAC0531BD8F2780009F2F0 /* record_animate_01.png in Resources */,
 				04801F291BB3CE6D00714CC9 /* sidebar_business@2x.png in Resources */,
@@ -2120,6 +2158,7 @@
 				04801EB51BB3CE1500714CC9 /* aio_face_manage_cover_default@2x.png in Resources */,
 				04801F241BB3CE6D00714CC9 /* proccbg@2x.png in Resources */,
 				04EAC0581BD8F2780009F2F0 /* record_animate_06.png in Resources */,
+				04DEDA171BE093C900116789 /* 永康移动_公司楼顶基站.jpg in Resources */,
 				04801EBF1BB3CE1500714CC9 /* buddy_header_icon_group@2x.png in Resources */,
 				04D9A63C1BB3DA2B006D7B8A /* MenuConfig.plist in Resources */,
 				04801F301BB3CE6D00714CC9 /* sliderbg_2.png in Resources */,
@@ -2168,6 +2207,7 @@
 				04801F2D1BB3CE6D00714CC9 /* sidebar_purse@2x.png in Resources */,
 				04D034321BDF88F400E9E2BE /* ProgressHUD.bundle in Resources */,
 				04801F391BB3CE6D00714CC9 /* tab_qworld_nor@2x.png in Resources */,
+				04DEDA131BE090F600116789 /* 磐安移动_公司大门口.jpg in Resources */,
 				04801EB81BB3CE1500714CC9 /* back.png in Resources */,
 				04801F2A1BB3CE6D00714CC9 /* sidebar_decoration@2x.png in Resources */,
 				04801ED31BB3CE2F00714CC9 /* forward_disable@2x.png in Resources */,

@@ -24,6 +24,7 @@
     NSMutableArray *_allResorceList;
     NSMutableArray *_lineList;
     int _selectedLineID;
+    NSMutableArray  *volumImages ;
 
 
 }
@@ -157,12 +158,10 @@
     [self _getAllResources];
     [videoCollection reloadData];
     
-    
-//    publicVideoTitle = [[NSMutableArray alloc]initWithObjects:@"江干区天成路工商银行", @"滨江区江南大道华润超市",@"滨江区江陵路国美电器",@"西湖区凤起路中国银行",@"滨江区彩虹城",@"江干区天成路工商银行",@"江干区天成路工商银行",@"江干区天成路工商银行",@"江干区天成路工商银行",@"江干区天成路工商银行",@"江干区天成路工商银行",@"江干区天成路工商银行",@"江干区天成路工商银行",@"江干区天成路工商银行",@"江干区天成路工商银行",@"滨江区江南大道华润超市",@"滨江区江陵路国美电器",@"西湖区凤起路中国银行",nil];
-//    
-//    publicVideoTime = [[NSMutableArray alloc]initWithObjects:@"2015-4-3",@"2015-5-3",@"2015-2-3",@"2015-6-10",@"2015-6-24",@"2015-5-24",@"2015-8-3",@"2015-9-3",@"2015-8-16", @"2015-8-3",@"2015-9-3",@"2015-8-16",@"2015-8-3",@"2015-9-3",@"2015-8-16",@"2015-8-16",@"2015-8-3",@"2015-9-3",nil];
-//    
-//    publicVideoImage = [[NSMutableArray alloc]initWithObjects:@"dev.png",@"alarm.png",@"dev.png",@"cut.png",@"dev.png",@"slider.png",@"dev.png",@"dev.png",@"dev.png",@"dev.png",@"dev.png",@"dev.png",@"alarm.png",@"dev.png",@"dev.png",@"alarm.png",@"dev.png",@"dev.png",nil];
+    volumImages = [[NSMutableArray alloc]initWithObjects:@"丽晶宾馆基站.jpg",@"新天地大厦基站.jpg",@"磐安移动_公司大门口.jpg",
+                   @"新天地大厦基站.jpg", @"武义移动_环城北路营业厅大门.jpg",@"永康移动_公司楼顶基站.jpg",@"武义移动_环城北路营业厅大门.jpg",@"兰溪移动_公司大门进出口.jpg",@"武义移动_环城北路营业厅大门.jpg",@"浦江移动_蔬菜基地1.jpg",@"浦江移动_蔬菜基地2.jpg",@"丽晶宾馆基站.jpg",@"浙江大学附属第四医院.jpg",
+                   @"武义移动_环城北路营业厅大门.jpg",@"东阳移动_主营业厅.jpg",nil];
+
     // Do any additional setup after loading the view.
 }
 
@@ -229,7 +228,7 @@
     //cell.publicSource = model;
     cell.videoTitle.text = [_allResorceList[indexPath.row] name];
     //cell.publicVideoImage.image = [_allResorceList[indexPath.row] ];
-    
+    cell.publicVideoImage.image = [UIImage imageNamed:volumImages[indexPath.row]];
     CGRect originFrame = cell.frame;
     
     if((indexPath.item)%3 == 0){

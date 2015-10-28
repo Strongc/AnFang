@@ -21,7 +21,7 @@
 #import "NSDateString.h"
 
 
-#define kRecordAudioFile @"myRecord.caf"
+#define kRecordAudioFile @".aac"
 
 @interface NeedHelpViewController ()<CLLocationManagerDelegate,PickImageDelegate,FSVoiceBubbleDelegate,UIImagePickerControllerDelegate,AVAudioRecorderDelegate,AVAudioPlayerDelegate>
 {
@@ -49,6 +49,7 @@
     NSMutableArray *voiceInfoArrayPlist;
     NSString *playAudioUrl;
     UIProgressView *playProgress;//播放进度
+    NSMutableArray *volumImages;
 
 }
 @property (assign, nonatomic) NSInteger currentRow;
@@ -155,6 +156,10 @@
     
     [super viewDidLoad];
     
+    volumImages = [[NSMutableArray alloc]initWithObjects:@"丽晶宾馆基站.jpg",@"新天地大厦基站.jpg",@"磐安移动_公司大门口.jpg",
+                   @"新天地大厦基站.jpg", @"武义移动_环城北路营业厅大门.jpg",@"永康移动_公司楼顶基站.jpg",@"武义移动_环城北路营业厅大门.jpg",@"兰溪移动_公司大门进出口.jpg",@"武义移动_环城北路营业厅大门.jpg",@"浦江移动_蔬菜基地1.jpg",@"浦江移动_蔬菜基地2.jpg",@"",@"浙江大学附属第四医院.jpg",
+                   @"武义移动_环城北路营业厅大门.jpg",@"东阳移动_主营业厅.jpg",nil];
+
     MyAudioRecorder = [[AVAudioRecorder alloc]init];
     _currentRow = -1;
     voicePathArray = [[NSMutableArray alloc]init];
@@ -340,13 +345,13 @@
 -(NSDictionary *)getAudioSetting{
     NSMutableDictionary *dicM=[NSMutableDictionary dictionary];
     //设置录音格式
-    [dicM setObject:@(kAudioFormatLinearPCM) forKey:AVFormatIDKey];
+    [dicM setObject:@(kAudioFormatMPEG4AAC) forKey:AVFormatIDKey];
     //设置录音采样率，8000是电话采样率，对于一般录音已经够了
-    [dicM setObject:@(44100) forKey:AVSampleRateKey];
+    [dicM setObject:@(1000.0) forKey:AVSampleRateKey];
     //设置通道,这里采用单声道
-    [dicM setObject:@(1) forKey:AVNumberOfChannelsKey];
+    [dicM setObject:@(2) forKey:AVNumberOfChannelsKey];
     //每个采样点位数,分为8、16、24、32
-    [dicM setObject:@(16) forKey:AVLinearPCMBitDepthKey];
+    [dicM setObject:@(8) forKey:AVLinearPCMBitDepthKey];
     //是否使用浮点数采样
     [dicM setObject:@(YES) forKey:AVLinearPCMIsFloatKey];
     //....其他设置等
@@ -681,10 +686,12 @@
         
         VoiceAlarmModel *model = [self.voiceAlarmData objectAtIndex:indexPath.row];
         voicecell.voiceModel = model;
-        playAudioUrl = model.url;
-        NSURL *contentUrl = [NSURL URLWithString:playAudioUrl];
-        voicecell.voiceBubble.contentURL = [[NSBundle mainBundle] URLForResource:@"Let It Go" withExtension:@"mp3"];;
+        NSString *strUrl = model.url;
+        NSLog(@"%@",strUrl);
+        NSURL *contentUrl = [NSURL URLWithString:strUrl];
+        voicecell.voiceBubble.contentURL = [[NSBundle mainBundle] URLForResource:@"CUJ" withExtension:@"aac"];
         voicecell.timeLab.text = model.time;
+       
         voicecell.voiceBubble.tag = indexPath.row;
         if (indexPath.row == _currentRow ) {
             
