@@ -23,6 +23,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import "CoreArchive.h"
 
+
 @interface ViewController ()<NSURLConnectionDataDelegate>
 {
     GradientButton *loginBtn;
@@ -196,13 +197,14 @@
 //    }else if([userName isEqualToString:@""]){
 //        
 //        [SVProgressHUD showInfoWithStatus:@"请输入用户名！"];
-//    
+    
 //    }else if ([pwd isEqualToString:@""]){
 //   
 //         [SVProgressHUD showInfoWithStatus:@"请输入密码！"];
 //        
 //    }else{
     
+      
          [self jumpToMainView];
 //        [WGAPI post:urlStr RequestParams:paramStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 //            
@@ -235,7 +237,8 @@
 -(void)jumpToMainView
 {
     
-    [SVProgressHUD showInfoWithStatus:@"登录成功"];
+    //[SVProgressHUD showInfoWithStatus:@"登录成功"];
+   
     self.navigationController.navigationBarHidden = YES;
     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     MenuTabBarViewController *menuTab = [mainView instantiateViewControllerWithIdentifier:@"menuTabBar"];
@@ -251,37 +254,6 @@
 
 }
 
--(void)generateKeyPair:(NSUInteger)keySize
-{
-    
-   // KeyPairGenerator
-    OSStatus sanityCheck = noErr;
-    publicKey = NULL;
-    privateKey = NULL;
-
-    NSMutableDictionary * privateKeyAttr = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary * publicKeyAttr = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary * keyPairAttr = [[NSMutableDictionary alloc] init];
-    
-    [keyPairAttr setObject:(__bridge id)kSecAttrKeyTypeRSA forKey:(__bridge id)kSecAttrKeyType];
-    [keyPairAttr setObject:[NSNumber numberWithUnsignedInteger:keySize] forKey:(__bridge id)kSecAttrKeySizeInBits];
-    
-    [privateKeyAttr setObject:[NSNumber numberWithBool:YES] forKey:(__bridge id)kSecAttrIsPermanent];
-    [privateKeyAttr setObject:[NSNumber numberWithBool:YES] forKey:(__bridge id)kSecAttrCanEncrypt];
-    [privateKeyAttr setObject:[NSNumber numberWithBool:YES] forKey:(__bridge id)kSecAttrCanDecrypt];
-    [privateKeyAttr setObject:privateTag forKey:(__bridge id)kSecAttrApplicationTag];
-
-    [publicKeyAttr setObject:[NSNumber numberWithBool:YES] forKey:(__bridge id)kSecAttrIsPermanent];
-    [publicKeyAttr setObject:publicTag forKey:(__bridge id)kSecAttrApplicationTag];
-
-    [keyPairAttr setObject:privateKeyAttr forKey:(__bridge id)kSecPrivateKeyAttrs];
-    [keyPairAttr setObject:publicKeyAttr forKey:(__bridge id)kSecPublicKeyAttrs];
-    
-    sanityCheck = SecKeyGeneratePair((__bridge CFDictionaryRef)keyPairAttr, &publicKey, &privateKey);
-   // LOGGING_FACILITY( sanityCheck == noErr && publicKeyRef != NULL && privateKeyRef != NULL, @"Something really bad went wrong with generating the key pair.");
-    
-    
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

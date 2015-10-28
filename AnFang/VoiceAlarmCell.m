@@ -46,20 +46,24 @@
         titleLab.font = [UIFont boldSystemFontOfSize:12*WIDTH/375];
         titleLab.text = @"语音报警";
         
+        FSVoiceBubble *voiceBubble = [[FSVoiceBubble alloc] initWithFrame:CGRectMake(60*WIDTH/375, 20*HEIGHT/667, backgroundView.frame.size.width-120, 40*HEIGHT/667)];
+        [backgroundView addSubview:voiceBubble];
+        self.voiceBubble = voiceBubble;
+        
         UILabel *stateLab = [[UILabel alloc]initWithFrame:CGRectMake(280*WIDTH/375, 60*HEIGHT/667, 50*WIDTH/375, 20*HEIGHT/667)];
         self.stateLab = stateLab;
         [backgroundView addSubview:stateLab];
         stateLab.font = [UIFont boldSystemFontOfSize:12*WIDTH/375];
         stateLab.textAlignment = NSTextAlignmentRight;
         
-        UIButton *playBtn = [[UIButton alloc]initWithFrame:CGRectMake(130*WIDTH/375, 33*HEIGHT/667, 60*WIDTH/375, 15*HEIGHT/667)];
-        [playBtn setTitle:@"播放语音" forState:UIControlStateNormal];
-        playBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14*WIDTH/375];
-        
-        self.playBtn = playBtn;
-        [backgroundView addSubview:playBtn];
-        [playBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        [playBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+//        UIButton *playBtn = [[UIButton alloc]initWithFrame:CGRectMake(130*WIDTH/375, 33*HEIGHT/667, 60*WIDTH/375, 15*HEIGHT/667)];
+//        [playBtn setTitle:@"播放语音" forState:UIControlStateNormal];
+//        playBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14*WIDTH/375];
+//        
+//        self.playBtn = playBtn;
+//        //[backgroundView addSubview:playBtn];
+//        [playBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+//        [playBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
         
         
     

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E4D5714EF0DAFFB243656192"
+               BlueprintIdentifier = "B154BE21748D98D07A785479"
                BuildableName = "libVBPieChart.a"
                BlueprintName = "VBPieChart"
                ReferencedContainer = "container:Pods.xcodeproj">

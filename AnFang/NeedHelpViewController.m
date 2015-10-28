@@ -12,15 +12,18 @@
 #import "KeyAlarmCell.h"
 #import "PhotoAlarmCell.h"
 #import "VoiceAlarmCell.h"
+#import "FSVoiceBubble.h"
 #import <CoreLocation/CoreLocation.h>
 #import "NSDateString.h"
 #import "ImagePickerViewController.h"
 //#import "AudioRecorderViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "NSDateString.h"
+
+
 #define kRecordAudioFile @"myRecord.caf"
 
-@interface NeedHelpViewController ()<CLLocationManagerDelegate,PickImageDelegate,UIImagePickerControllerDelegate,AVAudioRecorderDelegate,AVAudioPlayerDelegate>
+@interface NeedHelpViewController ()<CLLocationManagerDelegate,PickImageDelegate,FSVoiceBubbleDelegate,UIImagePickerControllerDelegate,AVAudioRecorderDelegate,AVAudioPlayerDelegate>
 {
     UITableView *helpMessage;
     CLLocationManager *locManager;
@@ -48,7 +51,7 @@
     UIProgressView *playProgress;//播放进度
 
 }
-
+@property (assign, nonatomic) NSInteger currentRow;
 @property (nonatomic,strong) NSMutableArray *keyAlarmData;
 @property (nonatomic,strong) NSMutableArray *photoAlarmData;
 @property (nonatomic,strong) NSMutableArray *voiceAlarmData;
@@ -153,7 +156,7 @@
     [super viewDidLoad];
     
     MyAudioRecorder = [[AVAudioRecorder alloc]init];
-    
+    _currentRow = -1;
     voicePathArray = [[NSMutableArray alloc]init];
     self.view.backgroundColor = [UIColor colorWithHexString:@"ededed"];
     [self ConfigControl];
@@ -678,8 +681,19 @@
         
         VoiceAlarmModel *model = [self.voiceAlarmData objectAtIndex:indexPath.row];
         voicecell.voiceModel = model;
-        
-        
+        playAudioUrl = model.url;
+        NSURL *contentUrl = [NSURL URLWithString:playAudioUrl];
+        voicecell.voiceBubble.contentURL = [[NSBundle mainBundle] URLForResource:@"Let It Go" withExtension:@"mp3"];;
+        voicecell.timeLab.text = model.time;
+        voicecell.voiceBubble.tag = indexPath.row;
+        if (indexPath.row == _currentRow ) {
+            
+            [voicecell.voiceBubble startAnimating];
+        } else {
+            
+            [voicecell.voiceBubble stopAnimating];
+        }
+
         //[voicecell.playBtn addTarget:self action:@selector(playAudio) forControlEvents:UIControlEventTouchUpInside];
         
         NSString *content = voicecell.stateLab.text;
@@ -699,6 +713,13 @@
     return cell;
 
 }
+
+- (void)voiceBubbleDidStartPlaying:(FSVoiceBubble *)voiceBubble
+{
+    NSLog(@"ddddd");
+    _currentRow = voiceBubble.tag;
+}
+
 
 #pragma mark - UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -723,11 +744,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    NSInteger row = indexPath.row;
-    NSLog(@"%ld",(long)row);
-    playAudioUrl = [saveVoiceInfoArray[indexPath.row] objectForKey:@"url"];
-    [self playAudio];
-    NSLog(@"%@",playAudioUrl);
+//    NSInteger row = indexPath.row;
+//    NSLog(@"%ld",(long)row);
+////    playAudioUrl = [saveVoiceInfoArray[indexPath.row] objectForKey:@"url"];
+////   // [self playAudio];
+//    NSLog(@"%@",playAudioUrl);
 
 }
 
@@ -914,47 +935,47 @@
 
 
 
--(void)playAudio
-{
-    NSURL *url=[NSURL fileURLWithPath:playAudioUrl];
-    //NSLog(@"%@",url);
-    NSError *error=nil;
-   AVAudioPlayer *audioPlayer=[[AVAudioPlayer alloc]initWithContentsOfURL:url error:&error];
-    audioPlayer.numberOfLoops=0;
-    audioPlayer.delegate=self;
-    [audioPlayer prepareToPlay];
-    
-    playProgress.hidden = NO;
-    if (![audioPlayer isPlaying]) {
-        [audioPlayer play];
-        self.playTimer.fireDate = [NSDate distantPast];//恢复定时器
-    }
-    self.audioPlayer = audioPlayer;
-
-}
-
-/**
- *  更新播放进度
- */
--(void)updateProgress{
-    float progress= self.audioPlayer.currentTime /self.audioPlayer.duration;
-    [playProgress setProgress:progress animated:true];
-    if(progress ==1.0){
-    
-        [self.audioPlayer stop];
-         playProgress.progress = 0.0;
-    }
-}
-
-#pragma mark - 播放器代理方法
--(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
-    
-    playProgress.hidden = YES;
-    playProgress.progress = 0.0;
-    _audioPlayer = nil;
-    [_playTimer invalidate];
-    NSLog(@"音乐播放完成...");
-}
+//-(void)playAudio
+//{
+//    NSURL *url=[NSURL fileURLWithPath:playAudioUrl];
+//    //NSLog(@"%@",url);
+//    NSError *error=nil;
+//   AVAudioPlayer *audioPlayer=[[AVAudioPlayer alloc]initWithContentsOfURL:url error:&error];
+//    audioPlayer.numberOfLoops=0;
+//    audioPlayer.delegate=self;
+//    [audioPlayer prepareToPlay];
+//    
+//    playProgress.hidden = NO;
+//    if (![audioPlayer isPlaying]) {
+//        [audioPlayer play];
+//        self.playTimer.fireDate = [NSDate distantPast];//恢复定时器
+//    }
+//    self.audioPlayer = audioPlayer;
+//
+//}
+//
+///**
+// *  更新播放进度
+// */
+//-(void)updateProgress{
+//    float progress= self.audioPlayer.currentTime /self.audioPlayer.duration;
+//    [playProgress setProgress:progress animated:true];
+//    if(progress ==1.0){
+//    
+//        [self.audioPlayer stop];
+//         playProgress.progress = 0.0;
+//    }
+//}
+//
+//#pragma mark - 播放器代理方法
+//-(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
+//    
+//    playProgress.hidden = YES;
+//    playProgress.progress = 0.0;
+//    _audioPlayer = nil;
+//    [_playTimer invalidate];
+//    NSLog(@"音乐播放完成...");
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

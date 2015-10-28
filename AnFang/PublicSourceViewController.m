@@ -215,6 +215,7 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    //[VideoPlayUtility getCaptureInfo:self.cameraInfo.cameraID toCaptureInfo:captureInfo];
 
     static NSString *identifyId = @"cell";
     PublicVideoCollectionViewCell *cell = (PublicVideoCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifyId forIndexPath:indexPath];
@@ -227,7 +228,8 @@
 //    cell.videoTitle.text = model.videoName;
     //cell.publicSource = model;
     cell.videoTitle.text = [_allResorceList[indexPath.row] name];
-   
+    //cell.publicVideoImage.image = [_allResorceList[indexPath.row] ];
+    
     CGRect originFrame = cell.frame;
     
     if((indexPath.item)%3 == 0){

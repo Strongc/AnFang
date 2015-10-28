@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "79A1AA3A61CBE124613A36C0"
+               BlueprintIdentifier = "A9AB6A8CDBDEFDD0E38ACA22"
                BuildableName = "libPDKTStickySectionHeadersCollectionViewLayout.a"
                BlueprintName = "PDKTStickySectionHeadersCollectionViewLayout"
                ReferencedContainer = "container:Pods.xcodeproj">

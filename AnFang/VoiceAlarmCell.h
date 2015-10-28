@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "VoiceAlarmModel.h"
+#import "FSVoiceBubble.h"
 
 @interface VoiceAlarmCell : UITableViewCell
 
@@ -16,4 +17,6 @@
 @property (nonatomic,strong) VoiceAlarmModel *voiceModel;
 @property (nonatomic,strong) UIButton *playBtn;
 
+@property (strong, nonatomic) UIImageView *portraitImageView;
+@property (strong, nonatomic) FSVoiceBubble *voiceBubble;
 @end

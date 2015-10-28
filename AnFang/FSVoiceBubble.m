@@ -58,9 +58,9 @@
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImageNamed(@"fs_icon_wave_2") imageWithOverlayColor:self.waveColor]  forState:UIControlStateNormal];
-    [button setBackgroundImage:UIImageNamed(@"fs_chat_bubble") forState:UIControlStateNormal];
-    [button setTitle:@"0\"" forState:UIControlStateNormal];
+    [button setImage:[[UIImage imageNamed:@"fs_icon_wave_0.png"] imageWithOverlayColor:self.waveColor]  forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"fs_chat_bubble.png"] forState:UIControlStateNormal];
+    //[button setTitle:@"0\"" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(voiceClicked:) forControlEvents:UIControlEventTouchUpInside];
     button.backgroundColor                = [UIColor clearColor];
@@ -70,7 +70,7 @@
     button.imageView.animationRepeatCount = 30;
     button.imageView.clipsToBounds        = NO;
     button.imageView.contentMode          = UIViewContentModeCenter;
-    button.contentHorizontalAlignment     = UIControlContentHorizontalAlignmentRight;
+    button.contentHorizontalAlignment     = UIControlContentHorizontalAlignmentCenter;
     [self addSubview:button];
     self.contentButton = button;
     
@@ -125,7 +125,7 @@
 {
     if (![_waveColor isEqual:waveColor]) {
         _waveColor = waveColor;
-        [_contentButton setImage:[UIImageNamed(@"fs_icon_wave_2") imageWithOverlayColor:waveColor]  forState:UIControlStateNormal];
+        [_contentButton setImage:[[UIImage imageNamed:@"fs_icon_wave_1.png"] imageWithOverlayColor:waveColor]  forState:UIControlStateNormal];
     }
 }
 
@@ -204,7 +204,7 @@
             error = [NSError errorWithDomain:@"A voice audio should't last longer than 60 seconds" code:300 userInfo:nil];
         }
         NSString *title = [NSString stringWithFormat:@"%@\"",@(seconds)];
-        [_contentButton setTitle:title forState:UIControlStateNormal];
+       // [_contentButton setTitle:title forState:UIControlStateNormal];
         NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
         CGFloat titleWidth = [[[NSAttributedString alloc] initWithString:title attributes:attributes] size].width;
 
@@ -233,9 +233,9 @@
 - (void)startAnimating
 {
     if (!_contentButton.imageView.isAnimating) {
-        UIImage *image0 = [UIImageNamed(@"fs_icon_wave_0") imageWithOverlayColor:_animatingWaveColor];
-        UIImage *image1 = [UIImageNamed(@"fs_icon_wave_1") imageWithOverlayColor:_animatingWaveColor];
-        UIImage *image2 = [UIImageNamed(@"fs_icon_wave_2") imageWithOverlayColor:_animatingWaveColor];
+        UIImage *image0 = [[UIImage imageNamed:@"fs_icon_wave_0.png"] imageWithOverlayColor:_animatingWaveColor];
+        UIImage *image1 = [[UIImage imageNamed:@"fs_icon_wave_1.png"] imageWithOverlayColor:_animatingWaveColor];
+        UIImage *image2 = [[UIImage imageNamed:@"fs_icon_wave_2.png"] imageWithOverlayColor:_animatingWaveColor];
         _contentButton.imageView.animationImages = @[image0, image1, image2];
         [_contentButton.imageView startAnimating];
     }
