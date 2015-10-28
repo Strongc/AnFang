@@ -21,7 +21,7 @@
 #import "NSDateString.h"
 
 
-#define kRecordAudioFile @".aac"
+#define kRecordAudioFile @".caf"
 
 @interface NeedHelpViewController ()<CLLocationManagerDelegate,PickImageDelegate,FSVoiceBubbleDelegate,UIImagePickerControllerDelegate,AVAudioRecorderDelegate,AVAudioPlayerDelegate>
 {
@@ -50,6 +50,7 @@
     NSString *playAudioUrl;
     UIProgressView *playProgress;//播放进度
     NSMutableArray *volumImages;
+    NSString *urlStr2;
 
 }
 @property (assign, nonatomic) NSInteger currentRow;
@@ -155,6 +156,17 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    
+    NSFileManager *manager=[NSFileManager defaultManager];
+    //文件路径
+    NSString *filepath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"voice.plist"];
+    if(![filepath isEqualToString:@""]){
+        if ([manager removeItemAtPath:filepath error:nil]) {
+            NSLog(@"文件删除成功");
+        }
+
+    }
     
     volumImages = [[NSMutableArray alloc]initWithObjects:@"丽晶宾馆基站.jpg",@"新天地大厦基站.jpg",@"磐安移动_公司大门口.jpg",
                    @"新天地大厦基站.jpg", @"武义移动_环城北路营业厅大门.jpg",@"永康移动_公司楼顶基站.jpg",@"武义移动_环城北路营业厅大门.jpg",@"兰溪移动_公司大门进出口.jpg",@"武义移动_环城北路营业厅大门.jpg",@"浦江移动_蔬菜基地1.jpg",@"浦江移动_蔬菜基地2.jpg",@"",@"浙江大学附属第四医院.jpg",
@@ -345,11 +357,11 @@
 -(NSDictionary *)getAudioSetting{
     NSMutableDictionary *dicM=[NSMutableDictionary dictionary];
     //设置录音格式
-    [dicM setObject:@(kAudioFormatMPEG4AAC) forKey:AVFormatIDKey];
+    [dicM setObject:@(kAudioFormatLinearPCM) forKey:AVFormatIDKey];
     //设置录音采样率，8000是电话采样率，对于一般录音已经够了
-    [dicM setObject:@(1000.0) forKey:AVSampleRateKey];
-    //设置通道,这里采用单声道
-    [dicM setObject:@(2) forKey:AVNumberOfChannelsKey];
+    [dicM setObject:@(8000) forKey:AVSampleRateKey];
+    //设置通道
+    [dicM setObject:@(1) forKey:AVNumberOfChannelsKey];
     //每个采样点位数,分为8、16、24、32
     [dicM setObject:@(8) forKey:AVLinearPCMBitDepthKey];
     //是否使用浮点数采样
@@ -415,9 +427,10 @@
 - (void)recordClick {
     
    
+    NSString *path = [[NSBundle mainBundle] bundlePath];
     NSString *fileName = [NSDateString ret32bitString];
     NSString *fileName1 = [fileName stringByAppendingString:kRecordAudioFile];
-    NSString *urlStr2=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    urlStr2 =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     urlStr = [urlStr2 stringByAppendingPathComponent:fileName1];
     [voicePathArray addObject:urlStr];
     
@@ -688,8 +701,9 @@
         voicecell.voiceModel = model;
         NSString *strUrl = model.url;
         NSLog(@"%@",strUrl);
-        NSURL *contentUrl = [NSURL URLWithString:strUrl];
-        voicecell.voiceBubble.contentURL = [[NSBundle mainBundle] URLForResource:@"CUJ" withExtension:@"aac"];
+      
+        NSURL *url=[NSURL fileURLWithPath:strUrl];
+        voicecell.voiceBubble.contentURL = url;
         voicecell.timeLab.text = model.time;
        
         voicecell.voiceBubble.tag = indexPath.row;
@@ -907,12 +921,12 @@
  *
  *  @return 定时器
  */
--(NSTimer *)playTimer{
-    if (!_playTimer) {
-        _playTimer=[NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(updateProgress) userInfo:nil repeats:YES];
-    }
-    return _playTimer;
-}
+//-(NSTimer *)playTimer{
+//    if (!_playTimer) {
+//        _playTimer=[NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(updateProgress) userInfo:nil repeats:YES];
+//    }
+//    return _playTimer;
+//}
 
 
 /**
@@ -944,7 +958,7 @@
 
 //-(void)playAudio
 //{
-//    NSURL *url=[NSURL fileURLWithPath:playAudioUrl];
+//    NSURL *url=[[NSBundle mainBundle] URLForResource:@"aa" withExtension:@"mp3"];
 //    //NSLog(@"%@",url);
 //    NSError *error=nil;
 //   AVAudioPlayer *audioPlayer=[[AVAudioPlayer alloc]initWithContentsOfURL:url error:&error];
@@ -960,7 +974,7 @@
 //    self.audioPlayer = audioPlayer;
 //
 //}
-//
+
 ///**
 // *  更新播放进度
 // */
