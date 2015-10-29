@@ -18,7 +18,7 @@
 #ifdef DEBUG
 
 //NSString *const CMAPIBaseURL=@"http://192.168.0.42:8080/wellgood/base";
-NSString *const CMAPIBaseURL = @"http://192.168.0.41:8080/platform";
+NSString *const CMAPIBaseURL = @"http://192.168.0.42:8080/platform/";
 #else
 //NSString *const CMAPIBaseURL=@"http://guanwu.puyuntech.com/yht_api/";
 NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
@@ -272,7 +272,9 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
 
 + (void)post:(NSString *)URL RequestParams:(NSString *)params FinishBlock:(void (^)(NSURLResponse *response, NSData *data, NSError *connectionError)) block{
     //把传进来的URL字符串转变为URL地址
-    NSURL *url = [NSURL URLWithString:URL];
+    NSString *strUrl = [CMAPIBaseURL stringByAppendingString:URL];
+    
+    NSURL *url = [NSURL URLWithString:strUrl];
     //请求初始化，可以在这针对缓存，超时做出一些设置
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestReloadIgnoringCacheData

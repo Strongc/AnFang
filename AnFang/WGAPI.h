@@ -10,7 +10,36 @@
 #import "AFNetworking.h"
 
 #define RESULT @"result"
+//用户登录
 #define API_USER_LOGIN @"user/login"
+//获取用户信息
+#define API_GET_USERINFO @"user/page"
+//获取报警数据
+#define API_GET_ALARMINFO @"alarm/page"
+//获取防区数据
+#define API_GET_AREAINFO @"area/page"
+//获取摄像头数据
+#define API_GET_CAMERAINFO @"camera/page"
+//获取主机数据
+#define API_GET_HOSTINFO @"host/page"
+//获取消息数据
+#define API_GET_MESSAGEINFO @"message/page"
+//获取单位数据
+#define API_GET_ORGANIZATIONINFO @"organization/page"
+//获取传感器数据
+#define API_GET_SENSORINFO @"sensor/page"
+//获取任务数据
+#define API_GET_TASKINFO @"task/page"
+//获取视频资源
+#define API_GET_VIDEOINFO @"video/page"
+//获取系统分组数据
+#define API_GET_SYSGROUPINFO @"sysGroup/page"
+//获取系统角色数据
+#define API_GET_SYSROLEINFO @"sysRole/page"
+//获取系统权限数据
+#define API_GET_SYSPERMISSIONINFO @"sysPermission/page"
+
+
 typedef enum{
 
   WGResultTypeDictionary,

@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WGAPI.h"
-#import "SVProgressHUD.h"
+//#import "SVProgressHUD.h"
 #import "CMTool.h"
 #import <Security/Security.h>
 
@@ -27,7 +26,6 @@
     
 }
 
-- (void)generateKeyPair:(NSUInteger)keySize;
 
 @end
 

@@ -13,6 +13,7 @@
 #import "JRPlayerViewController.h"
 #import "PublicVideoSource.h"
 #import "PlayViewController.h"
+#import "SDRefresh.h"
 
 @interface PublicSourceViewController ()
 {
@@ -29,6 +30,8 @@
 
 }
 
+@property (nonatomic, weak) SDRefreshFooterView *refreshFooter;
+@property (nonatomic, weak) SDRefreshHeaderView *refreshHeader;
 @property (nonatomic,strong) NSArray *sourceData;
 
 @end
@@ -40,39 +43,6 @@
     
     VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
     _allResorceList = [NSMutableArray array];
-    //NSMutableArray *tempArray = [NSMutableArray array];
-    
-    //判断当前对象应该获取控制中心还是区域下的资源
-    //    if (nil == _regionInfo) {
-    //
-    //            //获取控制中心下的控制中心
-    //            [vmsNetSDK getControlUnitList:_serverAddress
-    //                              toSessionID:_mspInfo.sessionID
-    //                          toControlUnitID:_controlUnitInfo.controlUnitID
-    //                             toNumPerOnce:50
-    //                                toCurPage:1
-    //                        toControlUnitList:tempArray];
-    //            [_allResorceList addObjectsFromArray:tempArray];
-    //
-    //            //获取控制中心下的区域
-    //            [vmsNetSDK getRegionListFromCtrlUnit:_serverAddress
-    //                                     toSessionID:_mspInfo.sessionID
-    //                                 toControlUnitID:0
-    //                                    toNumPerOnce:50
-    //                                       toCurPage:1
-    //                                    toRegionList:tempArray];
-    //            [_allResorceList addObjectsFromArray:tempArray];
-    //
-    //            //获取控制中心下的设备
-    //            [vmsNetSDK getCameraListFromCtrlUnit:_serverAddress
-    //                                     toSessionID:_mspInfo.sessionID
-    //                                 toControlUnitID:0
-    //                                    toNumPerOnce:50
-    //                                       toCurPage:1
-    //                                    toCameraList:tempArray];
-    //            [_allResorceList addObjectsFromArray:tempArray];
-    //
-    //    } else {
     
     //获取区域下的区域
     [vmsNetSDK getRegionListFromRegion:_serverAddress
@@ -89,7 +59,7 @@
                           toNumPerOnce:50
                              toCurPage:1
                           toCameraList:_allResorceList];
-    //}
+    
     return _allResorceList;
 }
 
@@ -199,9 +169,50 @@
     videoCollection.scrollEnabled = YES;
     [videoCollection registerClass:[PublicVideoCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
     [videoCollection reloadData];
-    
+  //  [self setupHeader];
+  //  [self setupFooter];
     
 }
+
+- (void)setupHeader
+{
+    SDRefreshHeaderView *refreshHeader = [SDRefreshHeaderView refreshView];
+    
+    // 默认是在navigationController环境下，如果不是在此环境下，请设置 refreshHeader.isEffectedByNavigationController = NO;
+    [refreshHeader addToScrollView:videoCollection];
+    
+    __weak SDRefreshHeaderView *weakRefreshHeader = refreshHeader;
+    __weak typeof(self) weakSelf = self;
+    refreshHeader.beginRefreshingOperation = ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            //weakSelf.totalRowCount += 3;
+            [videoCollection reloadData];
+            [weakRefreshHeader endRefreshing];
+        });
+    };
+    
+    // 进入页面自动加载一次数据
+    [refreshHeader autoRefreshWhenViewDidAppear];
+}
+
+- (void)setupFooter
+{
+    SDRefreshFooterView *refreshFooter = [SDRefreshFooterView refreshView];
+    [refreshFooter addToScrollView:videoCollection];
+    [refreshFooter addTarget:self refreshAction:@selector(footerRefresh)];
+    _refreshFooter = refreshFooter;
+}
+
+
+- (void)footerRefresh
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //self.totalRowCount += 2;
+        [videoCollection reloadData];
+        [self.refreshFooter endRefreshing];
+    });
+}
+
 
 #pragma mark UICollectionViewDataSource
 

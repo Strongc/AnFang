@@ -288,6 +288,11 @@
 		04DEDA201BE0961800116789 /* 浦江移动_蔬菜基地2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA1C1BE0961800116789 /* 浦江移动_蔬菜基地2.jpg */; };
 		04DEDA211BE0961800116789 /* 浙江大学附属第四医院.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA1D1BE0961800116789 /* 浙江大学附属第四医院.jpg */; };
 		04DEDA261BE0B11100116789 /* bb.caf in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA251BE0B11100116789 /* bb.caf */; };
+		04DEDA371BE0E26800116789 /* sdRefeshView_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA2D1BE0E26800116789 /* sdRefeshView_arrow@2x.png */; };
+		04DEDA381BE0E26800116789 /* SDRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DEDA301BE0E26800116789 /* SDRefreshFooterView.m */; };
+		04DEDA391BE0E26800116789 /* SDRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DEDA321BE0E26800116789 /* SDRefreshHeaderView.m */; };
+		04DEDA3A1BE0E26800116789 /* SDRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DEDA341BE0E26800116789 /* SDRefreshView.m */; };
+		04DEDA3B1BE0E26800116789 /* UIView+SDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DEDA361BE0E26800116789 /* UIView+SDExtension.m */; };
 		04E4002A1BB903AE0098F2D4 /* MonitorArea.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04E400291BB903AE0098F2D4 /* MonitorArea.plist */; };
 		04E5239B1BCF909E00F3D0CC /* VoiceAlarmModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5239A1BCF909E00F3D0CC /* VoiceAlarmModel.m */; };
 		04E5239F1BCF925600F3D0CC /* KeyAlarmCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5239E1BCF925600F3D0CC /* KeyAlarmCell.m */; };
@@ -813,6 +818,16 @@
 		04DEDA1C1BE0961800116789 /* 浦江移动_蔬菜基地2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "浦江移动_蔬菜基地2.jpg"; sourceTree = "<group>"; };
 		04DEDA1D1BE0961800116789 /* 浙江大学附属第四医院.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "浙江大学附属第四医院.jpg"; sourceTree = "<group>"; };
 		04DEDA251BE0B11100116789 /* bb.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = bb.caf; sourceTree = "<group>"; };
+		04DEDA2D1BE0E26800116789 /* sdRefeshView_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sdRefeshView_arrow@2x.png"; sourceTree = "<group>"; };
+		04DEDA2E1BE0E26800116789 /* SDRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDRefresh.h; sourceTree = "<group>"; };
+		04DEDA2F1BE0E26800116789 /* SDRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDRefreshFooterView.h; sourceTree = "<group>"; };
+		04DEDA301BE0E26800116789 /* SDRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDRefreshFooterView.m; sourceTree = "<group>"; };
+		04DEDA311BE0E26800116789 /* SDRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDRefreshHeaderView.h; sourceTree = "<group>"; };
+		04DEDA321BE0E26800116789 /* SDRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDRefreshHeaderView.m; sourceTree = "<group>"; };
+		04DEDA331BE0E26800116789 /* SDRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDRefreshView.h; sourceTree = "<group>"; };
+		04DEDA341BE0E26800116789 /* SDRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDRefreshView.m; sourceTree = "<group>"; };
+		04DEDA351BE0E26800116789 /* UIView+SDExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDExtension.h"; sourceTree = "<group>"; };
+		04DEDA361BE0E26800116789 /* UIView+SDExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDExtension.m"; sourceTree = "<group>"; };
 		04E400291BB903AE0098F2D4 /* MonitorArea.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MonitorArea.plist; sourceTree = "<group>"; };
 		04E523991BCF909E00F3D0CC /* VoiceAlarmModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceAlarmModel.h; sourceTree = "<group>"; };
 		04E5239A1BCF909E00F3D0CC /* VoiceAlarmModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceAlarmModel.m; sourceTree = "<group>"; };
@@ -1036,6 +1051,13 @@
 			name = StringToBytes;
 			sourceTree = "<group>";
 		};
+		0450D8651BE1BF5A0069A8D5 /* DataSaveUtil */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = DataSaveUtil;
+			sourceTree = "<group>";
+		};
 		045595E31BCF8BD200BB5094 /* AnFang */ = {
 			isa = PBXGroup;
 			children = (
@@ -1079,7 +1101,7 @@
 				04D033471BDF094900E9E2BE /* VideoPlaySDK */,
 				04D033501BDF094900E9E2BE /* VMSNetSDK */,
 				04801EA41BB3CD1A00714CC9 /* Resources */,
-				04801E691BB3CA7F00714CC9 /* Util */,
+				04801E691BB3CA7F00714CC9 /* Utils */,
 				04801E531BB3C81200714CC9 /* Controllers */,
 				04801E521BB3C80500714CC9 /* Models */,
 				04801E511BB3C7F600714CC9 /* Views */,
@@ -1223,9 +1245,11 @@
 			name = DefenceArea;
 			sourceTree = "<group>";
 		};
-		04801E691BB3CA7F00714CC9 /* Util */ = {
+		04801E691BB3CA7F00714CC9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				0450D8651BE1BF5A0069A8D5 /* DataSaveUtil */,
+				04DEDA2B1BE0E20600116789 /* SDRefresh */,
 				04DED9E71BE05D5C00116789 /* VoiceUtils */,
 				04D034221BDF685A00E9E2BE /* WeiXinPayTool */,
 				04D034211BDF680600E9E2BE /* UITool */,
@@ -1248,7 +1272,7 @@
 				04801E6E1BB3CACC00714CC9 /* VideoListTabBar */,
 				04801E6A1BB3CA9500714CC9 /* Popover */,
 			);
-			name = Util;
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		04801E6A1BB3CA9500714CC9 /* Popover */ = {
@@ -1935,6 +1959,31 @@
 			name = VoiceUtils;
 			sourceTree = "<group>";
 		};
+		04DEDA2B1BE0E20600116789 /* SDRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				04DEDA2C1BE0E26800116789 /* Lib */,
+			);
+			name = SDRefresh;
+			sourceTree = "<group>";
+		};
+		04DEDA2C1BE0E26800116789 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				04DEDA2D1BE0E26800116789 /* sdRefeshView_arrow@2x.png */,
+				04DEDA2E1BE0E26800116789 /* SDRefresh.h */,
+				04DEDA2F1BE0E26800116789 /* SDRefreshFooterView.h */,
+				04DEDA301BE0E26800116789 /* SDRefreshFooterView.m */,
+				04DEDA311BE0E26800116789 /* SDRefreshHeaderView.h */,
+				04DEDA321BE0E26800116789 /* SDRefreshHeaderView.m */,
+				04DEDA331BE0E26800116789 /* SDRefreshView.h */,
+				04DEDA341BE0E26800116789 /* SDRefreshView.m */,
+				04DEDA351BE0E26800116789 /* UIView+SDExtension.h */,
+				04DEDA361BE0E26800116789 /* UIView+SDExtension.m */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
 		04E400221BB8E4710098F2D4 /* OpensslRSAWrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -2217,6 +2266,7 @@
 				04801EC21BB3CE1500714CC9 /* chat_bottom_smile_press@2x.png in Resources */,
 				04801F1B1BB3CE6D00714CC9 /* offical_account_icon@2x.png in Resources */,
 				04801F3C1BB3CE6D00714CC9 /* tab_recent_press@2x.png in Resources */,
+				04DEDA371BE0E26800116789 /* sdRefeshView_arrow@2x.png in Resources */,
 				04EAC05F1BD8F2780009F2F0 /* record_animate_13.png in Resources */,
 				045595DE1BCF86E700BB5094 /* KeyAlarm.plist in Resources */,
 				04801F1F1BB3CE6D00714CC9 /* play_disable@2x.png in Resources */,
@@ -2287,6 +2337,7 @@
 				04D9A6281BB3D8DA006D7B8A /* MessageViewController.m in Sources */,
 				044AD45E1BBB91A1004D17BB /* WGData.m in Sources */,
 				044FFD971BCDF29E00F74AE9 /* JKBigInteger.m in Sources */,
+				04DEDA381BE0E26800116789 /* SDRefreshFooterView.m in Sources */,
 				04DED9EA1BE05DB000116789 /* UIImage+FSExtension.m in Sources */,
 				04D0339B1BDF0DBC00E9E2BE /* NSDataEx.m in Sources */,
 				042038131BD0CD8C00D10004 /* UIImage+Extensions.m in Sources */,
@@ -2297,6 +2348,7 @@
 				042038091BD09DFD00D10004 /* MMLocationManager.m in Sources */,
 				04801E681BB3CA3400714CC9 /* DefenceAreaModel.m in Sources */,
 				04D9A6231BB3D8DA006D7B8A /* DefenceAreaViewController.m in Sources */,
+				04DEDA3A1BE0E26800116789 /* SDRefreshView.m in Sources */,
 				044AD46E1BBBB4C2004D17BB /* NSString+Base64.m in Sources */,
 				04D9A6251BB3D8DA006D7B8A /* JRPlayerViewController.m in Sources */,
 				042037FF1BD085D300D10004 /* VoiceAlarmCell.m in Sources */,
@@ -2382,6 +2434,7 @@
 				04D0342E1BDF6FD300E9E2BE /* payRequsestHandler.mm in Sources */,
 				04801E851BB3CB9700714CC9 /* SCNavTabBarController.m in Sources */,
 				045595E91BCF8E0000BB5094 /* TextPhotoAlarmModel.m in Sources */,
+				04DEDA3B1BE0E26800116789 /* UIView+SDExtension.m in Sources */,
 				04D033F11BDF0E8F00E9E2BE /* DataVerifier.m in Sources */,
 				044FFD9C1BCDF2B900F74AE9 /* tommath.c in Sources */,
 				044AD46B1BBBB492004D17BB /* NSData+Base64.m in Sources */,
@@ -2392,6 +2445,7 @@
 				04DBE4E01BD75F490032939E /* WGUserInfo.m in Sources */,
 				04D9A5EE1BB3D535006D7B8A /* ioapi.c in Sources */,
 				04801E731BB3CAFD00714CC9 /* VideoListTabBar.m in Sources */,
+				04DEDA391BE0E26800116789 /* SDRefreshHeaderView.m in Sources */,
 				04D9A62F1BB3D8DA006D7B8A /* SecuritySystemViewController.m in Sources */,
 				04801E911BB3CC0600714CC9 /* UIColor+Extensions.m in Sources */,
 				04D9A5EB1BB3D510006D7B8A /* zip.c in Sources */,

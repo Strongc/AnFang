@@ -227,15 +227,17 @@
     NSLog(@"%@",voicePlistPath);
     
     [self setAudioSession];
+   
     
     // Do any additional setup after loading the view.
 }
 
+//监听键盘弹出事件
 -(void)keyBoardWillChangeFrame:(NSNotification *)noteInfo
 {
 
     CGRect rectEnd = [noteInfo.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGFloat keyboardY = rectEnd.origin.y-self.view.frame.size.height;
+    CGFloat keyboardY = rectEnd.origin.y - self.view.frame.size.height;
     CGFloat tranformValue = keyboardY;
     self.view.transform = CGAffineTransformMakeTranslation(0, tranformValue);
 
@@ -800,8 +802,8 @@
     [self savePhotoAlarmInfo];
     
     infoText.text = nil;
+   // [self.view endEditing:YES];
     [helpMessage reloadData];
-    
     
 }
 

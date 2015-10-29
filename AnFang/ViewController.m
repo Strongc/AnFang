@@ -22,9 +22,11 @@
 #import "RsaFactory.h"
 #import <AFNetworking/AFNetworking.h>
 #import "CoreArchive.h"
+#import "WGAPI.h"
+#import "SVProgressHUD.h"
 
 
-@interface ViewController ()<NSURLConnectionDataDelegate>
+@interface ViewController ()
 {
     GradientButton *loginBtn;
     NSString *token;
@@ -102,84 +104,16 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];//设置导航栏返回按钮及文字背景颜色
     self.navigationItem.backBarButtonItem = item;
     
-    
+   
 
     // Do any additional setup after loading the view, typically from a nib.
 }
-
-//-(void)setUrl:(NSString *)urlStr
-//{
-//    
-//    NSURL *url = [NSURL URLWithString:urlStr];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
-//                                                           cachePolicy:NSURLRequestReloadIgnoringCacheData
-//                                                       timeoutInterval:0];
-//    NSString *userName = name.text;
-//    NSString *pwd = passWordField.text;
-// 
-//    NSDictionary *params = @{@"usr_name":@"leijiahong",
-//                             @"usr_pwd":@"123456"
-//                             };
-//    
-//    NSString *paramsStr = [CMTool dictionaryToJson:params];
-//    NSString *str = @"user=";
-//    NSString *paramStr = [str stringByAppendingString:paramsStr];
-//    
-//    //解析请求参数，用NSDictionary来存参数，通过自定义的函数parseParams把它解析成一个post格式的字符串
-//    NSData *postData = [paramStr dataUsingEncoding:NSUTF8StringEncoding];
-//    
-//    [request setHTTPMethod:@"POST"];
-//    [request setHTTPBody:postData];
-//   // [request setTimeoutInterval:10.0];
-//    
-//    [NSURLConnection connectionWithRequest:request delegate:self];
-//    
-//}
-//
-//
-//-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-//{
-//    [infoData appendData:data];
-//    
-//}
-//
-//-(void)connectionDidFinishLoading:(NSURLConnection *)connection
-//{
-//    connection = nil;
-//    //NSMutableArray *userInfoArray = [[NSMutableArray alloc]init];
-//    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:infoData options:NSJSONReadingMutableLeaves error:nil];
-//    // NSLog(@"%@",json);
-//    NSDictionary *userInfo = [json objectForKey:@"data"];
-//    message = [userInfo objectForKey:@"message"];
-//    if([message isEqualToString:@"登录成功"]){
-//    
-//        [SVProgressHUD showInfoWithStatus:@"登录成功"];
-//        self.navigationController.navigationBarHidden = YES;
-//        UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//        MenuTabBarViewController *menuTab = [mainView instantiateViewControllerWithIdentifier:@"menuTabBar"];
-//        [self.navigationController pushViewController:menuTab animated:YES];
-//        
-//    }else{
-//    
-//    
-//        [SVProgressHUD showInfoWithStatus:@"用户名不存在"];
-//    }
-//        
-//   
-//    
-//}
-//
-//-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-//{
-//    
-//    
-//}
 
 
 -(void)initViewController
 {
     
-    NSString *urlStr=[NSString stringWithFormat:@"http://192.168.0.41:8080/platform/user/login"];
+    //NSString *urlStr=[NSString stringWithFormat:@"http://192.168.0.42:8080/platform/user/login"];
     NSString *userName = name.text;
     NSString *pwd = passWordField.text;
     
@@ -191,66 +125,68 @@
     NSString *str = @"user=";
     NSString *paramStr = [str stringByAppendingString:paramsStr];
     
-//    if(![CMTool isConnectionAvailable]){
-//            [SVProgressHUD showInfoWithStatus:@"网络没有连接！"];
-//    
-//    }else if([userName isEqualToString:@""]){
-//        
-//        [SVProgressHUD showInfoWithStatus:@"请输入用户名！"];
+    if(![CMTool isConnectionAvailable]){
+        [SVProgressHUD showInfoWithStatus:@"网络没有连接！"];
     
-//    }else if ([pwd isEqualToString:@""]){
-//   
-//         [SVProgressHUD showInfoWithStatus:@"请输入密码！"];
-//        
-//    }else{
-    
-      
-         [self jumpToMainView];
-//        [WGAPI post:urlStr RequestParams:paramStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-//            
-//            if(data){
-//            
-//                NSString *json =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//                NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:json];
-//                NSLog(@"%@",json);
-//                NSDictionary *messageJson = [infojson objectForKey:@"data"];
-//                message = [messageJson objectForKey:@"message"];
-//                NSLog(@"%@",message);
-//                if([message isEqualToString:@"登录成功"]){
-//                
-//                     [self performSelectorOnMainThread:@selector(jumpToMainView) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
-//                    
-//                }else {
-//                
-//                    [self performSelectorOnMainThread:@selector(errorMessage:) withObject:message waitUntilDone:YES];
-//                }
-//                
-//            }
-//            
-//        }];
+    }else if([userName isEqualToString:@""]){
         
-   // }
+        [SVProgressHUD showInfoWithStatus:@"请输入用户名！"];
+    
+    }else if ([pwd isEqualToString:@""]){
+   
+        [SVProgressHUD showInfoWithStatus:@"请输入密码！"];
+        
+    }else{
+ 
+        [SVProgressHUD showWithStatus:@"加载中..."];
+        [WGAPI post:API_USER_LOGIN RequestParams:paramStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            
+            if(data){
+                
+                //[self performSelectorOnMainThread:@selector(hideProgressHUD) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
+                NSString *json =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:json];
+                NSLog(@"%@",json);
+                NSDictionary *messageJson = [infojson objectForKey:@"data"];
+                message = [messageJson objectForKey:@"message"];
+                NSLog(@"%@",message);
+                if([message isEqualToString:@"登陆成功"]){
+                
+                     [self performSelectorOnMainThread:@selector(jumpToMainView) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
+                    
+                }else {
+                
+                    [self performSelectorOnMainThread:@selector(errorMessage:) withObject:message waitUntilDone:YES];
+                }
+                
+            }
+            
+        }];
+        
+    }
     
 }
 
 //登录成功后界面跳转
 -(void)jumpToMainView
 {
+
+    [SVProgressHUD showSuccessWithStatus:@"登录成功！" maskType:SVProgressHUDMaskTypeBlack];
+     NSString *userName = name.text;
+    [CoreArchive setStr:userName key:@"name"];
     
-    //[SVProgressHUD showInfoWithStatus:@"登录成功"];
-   
     self.navigationController.navigationBarHidden = YES;
     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     MenuTabBarViewController *menuTab = [mainView instantiateViewControllerWithIdentifier:@"menuTabBar"];
     [self.navigationController pushViewController:menuTab animated:YES];
-
+    
 }
 
 //提示错误信息
 -(void)errorMessage:(NSString *)str
 {
 
-     [SVProgressHUD showInfoWithStatus:str];
+     [SVProgressHUD  showErrorWithStatus:str];
 
 }
 

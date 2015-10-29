@@ -14,6 +14,7 @@
 #import "WGAPI.h"
 #import "JSONKit.h"
 #import "CMTool.h"
+#import "CoreArchive.h"
 
 @interface PersonalCenterViewController ()<UITableViewDelegate,UITableViewDataSource,NSURLConnectionDataDelegate>
 {
@@ -59,76 +60,19 @@
     [self ConfigControl];
     [self getUserInfo];
    
-    //NSURL *url = [NSURL URLWithString:urlStr];
-    //[self setUrl:url];
-  
-   
 }
-
-//-(void)setUrl:(NSURL *)url
-//{
-//    
-//   
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
-//                                                           cachePolicy:NSURLRequestReloadIgnoringCacheData
-//                                                       timeoutInterval:0];
-//
-//    NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"2"};
-//    NSDictionary *pageInfo = @{@"page":page,@"usr_id":@"201510141511500870"};
-//    NSString *pageStr = [pageInfo JSONString];
-//    NSString *userInfoData = [@"user=" stringByAppendingString:pageStr];
-//    //解析请求参数，用NSDictionary来存参数，通过自定义的函数parseParams把它解析成一个post格式的字符串
-//    // NSString *parseParamsResult = [self parseParams:params];
-//    NSData *postData = [userInfoData dataUsingEncoding:NSUTF8StringEncoding];
-//    
-//    [request setHTTPMethod:@"POST"];
-//   // [request setURL:url];
-//    [request setHTTPBody:postData];
-//    [request setTimeoutInterval:10.0];
-//
-//    [NSURLConnection connectionWithRequest:request delegate:self];
-//
-//}
-
-
-//-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-//{
-//    [infoData appendData:data];
-//    
-//   
-//}
-//
-//-(void)connectionDidFinishLoading:(NSURLConnection *)connection
-//{
-//
-//    json = [NSJSONSerialization JSONObjectWithData:infoData options:NSJSONReadingMutableLeaves error:nil];
-//    NSLog(@"%@",json);
-//    NSDictionary *userInfo = [json objectForKey:@"data"];
-//    userInfoArray = [userInfo objectForKey:@"datas"];
-//    NSDictionary *info = userInfoArray[0];
-//    NSString *name = [info objectForKey:@"usr_name"];
-//    NSLog(@"%@",name);
-//    userName.text = name;
-//    [connection cancel];
-//    
-//}
-//
-//-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-//{
-//
-//    
-//}
 
 -(void)getUserInfo
 {
     
+    NSString *name = [CoreArchive strForKey:@"name"];
     NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"2"};
-    NSDictionary *pageInfo = @{@"page":page,@"usr_id":@"201510141511500872"};
+    NSDictionary *pageInfo = @{@"page":page,@"usr_name":name};
     NSString *pageStr = [pageInfo JSONString];
     NSString *userInfoData = [@"user=" stringByAppendingString:pageStr];
-    NSString *urlStr=[NSString stringWithFormat:@"http://192.168.0.41:8080/platform/user/page"];
+   // NSString *urlStr=[NSString stringWithFormat:@"http://192.168.0.42:8080/platform/user/page"];
     //userInfo = [WGAPI httpAsynchronousRequestUrl:urlStr postStr:userInfoData];
-    [WGAPI post:urlStr RequestParams:userInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+    [WGAPI post:API_GET_USERINFO RequestParams:userInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
        
         if(data){
             
@@ -137,10 +81,15 @@
             NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
             NSDictionary *userInfo = [infojson objectForKey:@"data"];
             userInfoArray = [userInfo objectForKey:@"datas"];
-            NSDictionary *userMessage = userInfoArray[0];
-            nickName = [userMessage objectForKey:@"usr_name"];
-             
-            [self performSelectorOnMainThread:@selector(refreshUIControl) withObject:data waitUntilDone:YES];//刷新UI线程
+            
+            if(userInfoArray.count > 0){
+                
+                NSDictionary *userMessage = userInfoArray[0];
+                nickName = [userMessage objectForKey:@"usr_name"];
+                [self performSelectorOnMainThread:@selector(refreshUIControl) withObject:data waitUntilDone:YES];//刷新UI线程
+            }
+           
+            
         }
         
         
@@ -157,7 +106,6 @@
 -(void)ConfigControl
 {
 
-    
     UIImageView *headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 64*HEIGHT/667)];
     [headView setImage:[UIImage imageNamed:@"header_bg.png"]];
     

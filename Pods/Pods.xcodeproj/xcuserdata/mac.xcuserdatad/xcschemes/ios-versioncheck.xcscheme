@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6B82B1792648DDDFFD1DACF8"
+               BlueprintIdentifier = "5871B4A12D03C645B541C2E6"
                BuildableName = "libios-versioncheck.a"
                BlueprintName = "ios-versioncheck"
                ReferencedContainer = "container:Pods.xcodeproj">

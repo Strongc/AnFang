@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "781D9F775C6B1CA977877A8D"
+               BlueprintIdentifier = "42F1D8DC705754DD9CC34C7E"
                BuildableName = "libEGODatabase.a"
                BlueprintName = "EGODatabase"
                ReferencedContainer = "container:Pods.xcodeproj">

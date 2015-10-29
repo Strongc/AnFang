@@ -43,7 +43,7 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];//设置导航栏返回按钮及文字背景颜色
     //self.navigationController.navigationBar.translucent = NO;
     self.navigationItem.backBarButtonItem = item;
-
+    [needHelpView.view endEditing:YES];
     // Do any additional setup after loading the view.
 }
 

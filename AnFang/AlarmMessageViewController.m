@@ -13,6 +13,9 @@
 #import "WGAPI.h"
 #import "JSONKit.h"
 #import "CMTool.h"
+#import "SDRefresh.h"
+//#import "LoadMoreTableFooterView.h"
+
 
 @interface AlarmMessageViewController ()
 {
@@ -23,7 +26,11 @@
      //NSDictionary *messageInfo;
      NSMutableArray *tempArray;
     
+    // LoadMoreTableFooterView *loadMoreTableFooterView;
 }
+
+@property (nonatomic, weak) SDRefreshFooterView *refreshFooter;
+@property (nonatomic, weak) SDRefreshHeaderView *refreshHeader;
 
 @end
 
@@ -33,7 +40,7 @@
     
     [super viewDidLoad];
     
-   // messageInfo = [[NSDictionary alloc] init];
+    // messageInfo = [[NSDictionary alloc] init];
     messageArray = [[NSMutableArray alloc]init];
     tempArray = [[NSMutableArray alloc]init];
     //self.view.backgroundColor = [UIColor blackColor];
@@ -42,15 +49,57 @@
     messageTable.delegate = self;
     messageTable.dataSource = self;
     messageTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-    messageTable.backgroundColor = [UIColor colorWithHexString:@"ededed"];
+    messageTable.backgroundColor = [UIColor whiteColor];
     // monitorTable.separatorStyle = NO;
     [self.view addSubview:messageTable];
     
+    [self setupHeader];
+    [self setupFooter];
+
     messageTime = [[NSMutableArray alloc]initWithObjects:@"2015-5-21  23:25", @"2015-5-13  14:25",@"2015-5-4  21:25",@"2015-4-21  19:25",nil];
     messageTitle = [[NSMutableArray alloc]initWithObjects:@"食堂防区异常",@"停车场防区异常",@"华业大厦北侧广场异常",@"华业大厦一楼走廊异常", nil];
 
-    [self getAlarmMessage];
+   // [self getAlarmMessage];
     // Do any additional setup after loading the view.
+}
+
+- (void)setupHeader
+{
+    SDRefreshHeaderView *refreshHeader = [SDRefreshHeaderView refreshView];
+    
+    // 默认是在navigationController环境下，如果不是在此环境下，请设置 refreshHeader.isEffectedByNavigationController = NO;
+    [refreshHeader addToScrollView:messageTable];
+    
+    __weak SDRefreshHeaderView *weakRefreshHeader = refreshHeader;
+    __weak typeof(self) weakSelf = self;
+    refreshHeader.beginRefreshingOperation = ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            //weakSelf.totalRowCount += 3;
+            [messageTable reloadData];
+            [weakRefreshHeader endRefreshing];
+        });
+    };
+    
+    // 进入页面自动加载一次数据
+    [refreshHeader autoRefreshWhenViewDidAppear];
+}
+
+- (void)setupFooter
+{
+    SDRefreshFooterView *refreshFooter = [SDRefreshFooterView refreshView];
+    [refreshFooter addToScrollView:messageTable];
+    [refreshFooter addTarget:self refreshAction:@selector(footerRefresh)];
+    _refreshFooter = refreshFooter;
+}
+
+
+- (void)footerRefresh
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //self.totalRowCount += 2;
+        [messageTable reloadData];
+        [self.refreshFooter endRefreshing];
+    });
 }
 
 
@@ -99,7 +148,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return messageArray.count;
+    return messageTitle.count;
     
 }
 
@@ -119,8 +168,8 @@
         
     }
     
-    AlarmMessageModel *model = [messageArray objectAtIndex:indexPath.row];
-    cell.alarmMessage = model;
+    //AlarmMessageModel *model = [messageArray objectAtIndex:indexPath.row];
+    cell.messageInfo.text = messageTitle[indexPath.row];
     
     [cell.checkBtn addTarget:self action:@selector(jumpToDetailView) forControlEvents:UIControlEventTouchUpInside];
     
@@ -144,6 +193,8 @@
    // [self.navigationController pushViewController:defenceArea animated:YES];
     
 }
+
+
 
 -(void)jumpToDetailView
 {
