@@ -34,7 +34,6 @@
     AnFangTabBarViewController *navTabBarController = [[AnFangTabBarViewController alloc] init];
     //navTabBarController.navTabBarColor = [UIColor blackColor];
   
-    
     navTabBarController.subViewControllers = @[needHelpView,monitorView];
     [navTabBarController addParentController:self];
     
@@ -44,6 +43,8 @@
     //self.navigationController.navigationBar.translucent = NO;
     self.navigationItem.backBarButtonItem = item;
     [navTabBarController.view endEditing:YES];
+    
+   
     // Do any additional setup after loading the view.
 }
 

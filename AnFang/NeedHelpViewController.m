@@ -225,12 +225,21 @@
     voiceInfoArrayPlist = [[NSMutableArray alloc]init];
     _voiceAlarmData = nil;
     NSLog(@"%@",voicePlistPath);
-    
+    [self ConfigControl];
     [self setAudioSession];
    
-    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideKeyBoard) name:@"hideKeyBoard" object:nil];
+
     // Do any additional setup after loading the view.
 }
+
+-(void)hideKeyBoard
+{
+    //[self.view endEditing:YES];
+     [infoText resignFirstResponder];
+    
+}
+
 
 //监听键盘弹出事件
 -(void)keyBoardWillChangeFrame:(NSNotification *)noteInfo

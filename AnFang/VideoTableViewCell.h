@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VideoModel.h"
 
 @interface VideoTableViewCell : UITableViewCell
 
@@ -18,5 +19,7 @@
 
 /** 视频时间*/
 @property (nonatomic,weak) UILabel * videoTime;
+
+@property (nonatomic,strong) VideoModel *videoModel;
 
 @end

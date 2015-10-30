@@ -14,6 +14,9 @@
 #import "PopoverView.h"
 #import "UIColor+Extensions.h"
 #import "Common.h"
+#import "WGAPI.h"
+#import "JSONKit.h"
+#import "CMTool.h"
 
 //#import "JRPlayerView.h"
 
@@ -24,7 +27,7 @@ static void * playerItemDurationContext = &playerItemDurationContext;
 static void * playerItemStatusContext = &playerItemStatusContext;
 static void * playerPlayingContext = &playerPlayingContext;
 
-@interface JRPlayerViewController ()
+@interface JRPlayerViewController ()<PopoverViewChooseDataSource,PopoverViewChooseDelegate>
 {
     CGFloat screenWidth;
     CGFloat screenHeight;
@@ -48,6 +51,8 @@ static void * playerPlayingContext = &playerPlayingContext;
     UIButton *localBtn;
     NSMutableArray *dataDic;
     NSMutableDictionary *dic1;
+    PopoverView *popView;
+    NSArray *titles;
 }
 @property (nonatomic,strong) NSArray *sourceData;
 @property (nonatomic, strong) AVPlayer *player; // 播放器
@@ -295,6 +300,11 @@ static void * playerPlayingContext = &playerPlayingContext;
     [collectBtn setBackgroundImage:[UIImage imageNamed:@"collect.png"] forState:UIControlStateNormal];
     [self.view addSubview:collectBtn];
     
+    UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(100, 600, 60, 20)];
+    [self.view addSubview:lab];
+    
+   // [self getVideoInfoById];
+    
 }
 
 -(void)back
@@ -302,6 +312,29 @@ static void * playerPlayingContext = &playerPlayingContext;
     NSLog(@"%@",@"ddddd");
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+//-(void)getVideoInfoById
+//{
+//    
+//    NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"5"};
+//    NSDictionary *pageInfo = @{@"cam_id":self.cameraId,@"page":page};
+//    NSString *pageStr = [pageInfo JSONString];
+//    NSString *videoInfoData = [@"video=" stringByAppendingString:pageStr];
+//    
+//    [WGAPI post:API_GET_VIDEOINFO RequestParams:videoInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+//        
+//        if(data){
+//        
+//             NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//             NSLog(@"%@",jsonStr);
+//             NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
+//        
+//        }
+//    }];
+//    
+//    
+//}
+
 
 //视频下载
 -(void)downLoadVideo
@@ -413,11 +446,29 @@ static void * playerPlayingContext = &playerPlayingContext;
 {
     
     CGPoint point = CGPointMake(sender.frame.origin.x + sender.frame.size.width/2, sender.frame.origin.y + sender.frame.size.height);
-    NSArray *titles = @[@"2015-8-15 18:00-24:00",@"2015-8-15 12:00-18:00",@"2015-8-15 6:00-12:00",@"2015-8-15 00:00-6:00",@"2015-8-14 18:00-24:00",@"2015-8-14 12:00-18:00",@"2015-8-14 6:00-12:00"];
+    titles = @[@"2015-8-15 18:00-24:00",@"2015-8-15 12:00-18:00",@"2015-8-15 6:00-12:00",@"2015-8-15 00:00-6:00",@"2015-8-14 18:00-24:00",@"2015-8-14 12:00-18:00",@"2015-8-14 6:00-12:00"];
     
-    PopoverView *pop = [[PopoverView alloc] initWithPoint:point titles:titles images:nil];
+    popView  = [[PopoverView alloc] initWithPoint:point titles:titles images:nil];
+    popView.dropDownDataSource = self;
+    popView.dropDownDelegate = self;
     
-    [pop show];
+    [popView show];
+}
+
+-(NSInteger)numberOfSections
+{
+
+    return 1;
+}
+-(NSInteger)numberOfRowsInSection:(NSInteger)section
+{
+   
+    return [titles count];
+}
+
+-(NSString *)titleInSection:(NSInteger)section index:(NSInteger) index
+{
+    return titles[index];
 }
 
 /**

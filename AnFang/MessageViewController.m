@@ -7,6 +7,7 @@
 //
 
 #import "MessageViewController.h"
+#import "MHTabBarController.h"
 
 @interface MessageViewController ()
 {
@@ -48,6 +49,10 @@
     userMessageView.title = @"资讯内容";
     businessView.title = @"商业活动";
     
+//    MHTabBarController *tabBarController = [[MHTabBarController alloc] init];
+//    NSArray *viewControllers = [NSArray arrayWithObjects:alarmMessageView, systemMessageView, userMessageView, businessView,nil];
+//    tabBarController.delegate = self;
+//    tabBarController.viewControllers = viewControllers;
     SCNavTabBarController *navTabBarController = [[SCNavTabBarController alloc] init];
     
     navTabBarController.subViewControllers = @[alarmMessageView, systemMessageView,userMessageView,businessView];

@@ -25,7 +25,7 @@
      NSMutableArray *messageArray;
      //NSDictionary *messageInfo;
      NSMutableArray *tempArray;
-    
+     UILabel *alertLab;
     // LoadMoreTableFooterView *loadMoreTableFooterView;
 }
 
@@ -60,6 +60,11 @@
     messageTitle = [[NSMutableArray alloc]initWithObjects:@"食堂防区异常",@"停车场防区异常",@"华业大厦北侧广场异常",@"华业大厦一楼走廊异常", nil];
 
     [self getAlarmMessage];
+    
+    alertLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 80, WIDTH, 15*HEIGHT/667)];
+    [self.view addSubview:alertLab];
+    alertLab.text = @"暂无内容！";
+    alertLab.textAlignment = NSTextAlignmentCenter;
     // Do any additional setup after loading the view.
 }
 
@@ -145,6 +150,14 @@
 -(void)refreshData
 {
     
+    if(messageArray.count > 0){
+        
+        alertLab.hidden = YES;
+    }else if (messageArray.count == 0){
+        
+        alertLab.hidden = NO;;
+    }
+
     [messageTable reloadData];
 }
 

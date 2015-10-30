@@ -79,8 +79,8 @@
             NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             NSLog(@"%@",jsonStr);
             NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
-            NSDictionary *userInfo = [infojson objectForKey:@"data"];
-            userInfoArray = [userInfo objectForKey:@"datas"];
+           // NSDictionary *userInfo = [infojson objectForKey:@"data"];
+            userInfoArray = [infojson objectForKey:@"datas"];
             
             if(userInfoArray.count > 0){
                 

@@ -16,6 +16,8 @@
 #import "JSONKit.h"
 #import "CMTool.h"
 #import "CameraModel.h"
+//#import "MonitorDevInfoViewController.h"
+#import "DeviceManagerViewController.h"
 
 @interface MonitorViewController ()
 {
@@ -95,6 +97,9 @@
     cameraArray = [[NSMutableArray alloc]init];
     
     [self getAreaInfo];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"hideKeyBoard" object:nil];
+
     // NSLog(@"防区ID：%@",areaId);
    // [self getCameraInfo];
     // Do any additional setup after loading the view.
@@ -251,7 +256,7 @@
 -(void)getCameraInfo:(NSString *)areaId
 {
     
-    NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"4"};//@"area_id":@"201510120000030712",
+    NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"5"};//@"area_id":@"201510120000030712",
     NSDictionary *pageInfo = @{@"area_id":@"201510120000030712",@"page":page};
     NSString *pageStr = [pageInfo JSONString];
     NSString *userInfoData = [@"camera=" stringByAppendingString:pageStr];
@@ -330,7 +335,7 @@
     
     }
     
-    CameraModel *model = [self.sourceData objectAtIndex:indexPath.row];
+    CameraModel *model = [cameraArray objectAtIndex:indexPath.row];
     cell.cameraModel = model;
     
     return cell;
@@ -349,7 +354,23 @@
 {
     
     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    JRPlayerViewController *videoPlayer;
+    
+    DeviceManagerViewController *devManagerView = [mainView instantiateViewControllerWithIdentifier:@"deviceManagerId"];
+    
+    
+    
+    //monitorInfoView.hidesBottomBarWhenPushed = YES;
+    devManagerView.navigationController.navigationBarHidden = NO;
+    CameraModel *model = [cameraArray objectAtIndex:indexPath.row];
+    devManagerView.devVendor = model.cameraVendor;
+    devManagerView.devParam = model.cameraParam;
+    devManagerView.deviceState = model.cameraState;
+    devManagerView.devModel = model.cameraName;
+    devManagerView.devId = model.cameraId;
+    
+    [self.navigationController pushViewController:devManagerView animated:YES];
+    
+    //JRPlayerViewController *videoPlayer;
    // NSString *webPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Private Documents/Temp"];//临时存储目录
     
     NSString *cachePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Private Documents/Cache"];//下载完成存储目录
@@ -365,15 +386,14 @@
 //       videoPlayer = [[mainView instantiateViewControllerWithIdentifier:@"videoPlayer"] initWithLocalMediaURL:[NSURL URLWithString:[cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"vedio.mp4"]]]];
 //        
 //    }
-    else{
+//    else{
+//    
+//        videoPlayer = [[mainView instantiateViewControllerWithIdentifier:@"videoPlayer"] initWithHTTPLiveStreamingMediaURL:[NSURL URLWithString:@"http://www.51ios.net/archives/784"]];
+//    }
     
-        videoPlayer = [[mainView instantiateViewControllerWithIdentifier:@"videoPlayer"] initWithHTTPLiveStreamingMediaURL:[NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"]];
-    }
-    
-    videoPlayer.hidesBottomBarWhenPushed = YES;
-    videoPlayer.navigationController.navigationBarHidden = NO;
-    
-    [self.navigationController pushViewController:videoPlayer animated:YES];
+//    CameraModel *model = [cameraArray objectAtIndex:indexPath.row];
+//    videoPlayer.cameraId = model.cameraId;
+
     
 }
 /*

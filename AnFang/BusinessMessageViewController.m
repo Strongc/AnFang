@@ -7,8 +7,13 @@
 //
 
 #import "BusinessMessageViewController.h"
+#import "Common.h"
 
-@interface BusinessMessageViewController ()
+@interface BusinessMessageViewController (){
+
+    UILabel *alertLab;
+    
+}
 
 @end
 
@@ -16,6 +21,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    alertLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 80, WIDTH, 15*HEIGHT/667)];
+    [self.view addSubview:alertLab];
+    alertLab.text = @"暂无内容！";
+    alertLab.textAlignment = NSTextAlignmentCenter;
     // Do any additional setup after loading the view.
 }
 

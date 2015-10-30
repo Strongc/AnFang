@@ -19,6 +19,7 @@
     UITableView *messageTable;
     NSMutableArray *sysMessageArray;
     NSMutableArray *tempArray;
+    UILabel *alertLab;
 }
 
 @end
@@ -39,6 +40,10 @@
     // monitorTable.separatorStyle = NO;
     [self.view addSubview:messageTable];
 
+    alertLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 80, WIDTH, 15*HEIGHT/667)];
+    [self.view addSubview:alertLab];
+    alertLab.text = @"暂无内容！";
+    alertLab.textAlignment = NSTextAlignmentCenter;
     [self getSystemMessage];
     // Do any additional setup after loading the view.
 }
@@ -83,7 +88,14 @@
 
 -(void)refreshData
 {
-    
+    if(sysMessageArray.count > 0){
+        
+        alertLab.hidden = YES;
+    }else if (sysMessageArray.count == 0){
+        
+        alertLab.hidden = NO;;
+    }
+
     [messageTable reloadData];
 }
 

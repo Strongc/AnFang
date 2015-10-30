@@ -13,9 +13,19 @@
 -(CameraModel *)initWithDict:(NSDictionary *)dict
 {
     if(self = [super init]){
-        self.cameraName = dict[@"cam_vendor"];
-        self.cameraState = dict[@"deleteStatus"];
+        self.cameraName = dict[@"cam_model"];
+        
+        if(dict[@"is_access"]){
+        
+            self.cameraState = @"已关闭";
+        }else {
+        
+            self.cameraState = @"工作正常";
+        }
+        
         self.cameraId = dict[@"cam_id"];
+        self.cameraParam = dict[@"cam_param"];
+        self.cameraVendor = dict[@"cam_vendor"];
     }
     
     return self;

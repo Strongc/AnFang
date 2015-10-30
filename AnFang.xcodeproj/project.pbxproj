@@ -28,6 +28,8 @@
 		044AD4621BBB96F0004D17BB /* CMTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 044AD4611BBB96F0004D17BB /* CMTool.m */; };
 		044AD46B1BBBB492004D17BB /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 044AD46A1BBBB492004D17BB /* NSData+Base64.m */; };
 		044AD46E1BBBB4C2004D17BB /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 044AD46D1BBBB4C2004D17BB /* NSString+Base64.m */; };
+		044C2FB91BE3552B00DE2613 /* MonitorDevInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044C2FB81BE3552B00DE2613 /* MonitorDevInfoViewController.m */; };
+		044C2FBC1BE366F400DE2613 /* VideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 044C2FBB1BE366F400DE2613 /* VideoModel.m */; };
 		044D2D6A1BBA73450093453A /* collect.png in Resources */ = {isa = PBXBuildFile; fileRef = 044D2D681BBA73450093453A /* collect.png */; };
 		044D2D6B1BBA73450093453A /* collect2.png in Resources */ = {isa = PBXBuildFile; fileRef = 044D2D691BBA73450093453A /* collect2.png */; };
 		044D2D6F1BBA7A350093453A /* LocalVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 044D2D6E1BBA7A350093453A /* LocalVideoModel.m */; };
@@ -370,6 +372,10 @@
 		044AD46A1BBBB492004D17BB /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		044AD46C1BBBB4C2004D17BB /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
 		044AD46D1BBBB4C2004D17BB /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
+		044C2FB71BE3552B00DE2613 /* MonitorDevInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonitorDevInfoViewController.h; sourceTree = "<group>"; };
+		044C2FB81BE3552B00DE2613 /* MonitorDevInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonitorDevInfoViewController.m; sourceTree = "<group>"; };
+		044C2FBA1BE366F400DE2613 /* VideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoModel.h; sourceTree = "<group>"; };
+		044C2FBB1BE366F400DE2613 /* VideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoModel.m; sourceTree = "<group>"; };
 		044D2D681BBA73450093453A /* collect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = collect.png; sourceTree = "<group>"; };
 		044D2D691BBA73450093453A /* collect2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = collect2.png; sourceTree = "<group>"; };
 		044D2D6D1BBA7A350093453A /* LocalVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalVideoModel.h; sourceTree = "<group>"; };
@@ -1048,6 +1054,15 @@
 			name = LocalVideos;
 			sourceTree = "<group>";
 		};
+		044F3E071BE32E330071023C /* MHTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				04801E931BB3CC3600714CC9 /* MHTabBarController.h */,
+				04801E941BB3CC3600714CC9 /* MHTabBarController.m */,
+			);
+			name = MHTabBarController;
+			sourceTree = "<group>";
+		};
 		044FFD9D1BCE232C00F74AE9 /* StringToBytes */ = {
 			isa = PBXGroup;
 			children = (
@@ -1255,6 +1270,7 @@
 		04801E691BB3CA7F00714CC9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				044F3E071BE32E330071023C /* MHTabBarController */,
 				0450D8651BE1BF5A0069A8D5 /* DataSaveUtil */,
 				04DEDA2B1BE0E20600116789 /* SDRefresh */,
 				04DED9E71BE05D5C00116789 /* VoiceUtils */,
@@ -1753,7 +1769,6 @@
 		04D034211BDF680600E9E2BE /* UITool */ = {
 			isa = PBXGroup;
 			children = (
-				04801E941BB3CC3600714CC9 /* MHTabBarController.m */,
 				04801E901BB3CC0600714CC9 /* UIView+KGViewExtend.m */,
 				04801E8F1BB3CC0600714CC9 /* UIView+KGViewExtend.h */,
 				04801EA11BB3CD0500714CC9 /* GradientButton.h */,
@@ -1768,7 +1783,6 @@
 				04801F511BB3CEEC00714CC9 /* Common.h */,
 				04801E9F1BB3CCDB00714CC9 /* AVPlayerManager.h */,
 				04801E871BB3CBDA00714CC9 /* QHCommonUtil.h */,
-				04801E931BB3CC3600714CC9 /* MHTabBarController.h */,
 			);
 			name = UITool;
 			sourceTree = "<group>";
@@ -1890,6 +1904,8 @@
 				04D9A5FD1BB3D8DA006D7B8A /* DefenceAreaDevListViewController.m */,
 				047975B31BD4EF4F006380D5 /* AudioRecorderViewController.h */,
 				047975B41BD4EF4F006380D5 /* AudioRecorderViewController.m */,
+				044C2FB71BE3552B00DE2613 /* MonitorDevInfoViewController.h */,
+				044C2FB81BE3552B00DE2613 /* MonitorDevInfoViewController.m */,
 			);
 			name = AnFangSystem;
 			sourceTree = "<group>";
@@ -2006,6 +2022,8 @@
 			children = (
 				04E4748F1BE217BA003EC374 /* CameraModel.h */,
 				04E474901BE217BA003EC374 /* CameraModel.m */,
+				044C2FBA1BE366F400DE2613 /* VideoModel.h */,
+				044C2FBB1BE366F400DE2613 /* VideoModel.m */,
 			);
 			name = CameraModel;
 			sourceTree = "<group>";
@@ -2356,6 +2374,7 @@
 				044AD45E1BBB91A1004D17BB /* WGData.m in Sources */,
 				044FFD971BCDF29E00F74AE9 /* JKBigInteger.m in Sources */,
 				04DEDA381BE0E26800116789 /* SDRefreshFooterView.m in Sources */,
+				044C2FBC1BE366F400DE2613 /* VideoModel.m in Sources */,
 				04DED9EA1BE05DB000116789 /* UIImage+FSExtension.m in Sources */,
 				04D0339B1BDF0DBC00E9E2BE /* NSDataEx.m in Sources */,
 				042038131BD0CD8C00D10004 /* UIImage+Extensions.m in Sources */,
@@ -2391,6 +2410,7 @@
 				04DBE4DA1BD741650032939E /* NSString+File.m in Sources */,
 				04801E5C1BB3C98E00714CC9 /* MenuConfig.m in Sources */,
 				04D034251BDF68A000E9E2BE /* WXApiManager.m in Sources */,
+				044C2FB91BE3552B00DE2613 /* MonitorDevInfoViewController.m in Sources */,
 				04801EA01BB3CCDB00714CC9 /* AVPlayerDemoPlaybackView.m in Sources */,
 				04801F601BB3CFCD00714CC9 /* PersonCenterTableViewCell.m in Sources */,
 				0448B1FF1BB5093D00DBE65C /* UIView+MGBadgeView.m in Sources */,

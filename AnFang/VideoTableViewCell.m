@@ -21,6 +21,16 @@
     // Configure the view for the selected state
 }
 
+
+-(void)setVideoModel:(VideoModel *)videoModel
+{
+    _videoModel = videoModel;
+    
+    self.videoTime.text = videoModel.videoTime;
+    self.videoTitle.text = videoModel.videoName;
+
+}
+
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     
@@ -37,15 +47,15 @@
         [self.contentView addSubview:videoImage];
         self.videoImage = videoImage;
         
-        UILabel *videoTime = [[UILabel alloc]initWithFrame:CGRectMake(250, 18, 200, 15)];
-        videoTime.text = @"2015-5-21  23:25";
+        UILabel *videoTime = [[UILabel alloc]initWithFrame:CGRectMake(80, 40, 200, 15)];
+        //videoTime.text = @"2015-5-21  23:25";
         videoTime.textColor = [UIColor blackColor];
         videoTime.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:videoTime];
         self.videoTime = videoTime;
         
         UILabel *videoTitle = [[UILabel alloc]initWithFrame:CGRectMake(80, 5, 230, 40)];
-        videoTitle.text = @"北区停车过道出现可疑人物";
+        //videoTitle.text = @"北区停车过道出现可疑人物";
         //areaDetailInfo.numberOfLines = 0;
         videoTitle.textColor = [UIColor blackColor];
         videoTitle.font = [UIFont systemFontOfSize:13];

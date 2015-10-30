@@ -21,6 +21,7 @@
 @property (nonatomic,copy) NSString *mediaTitle;
 @property (nonatomic,strong) AVAudioPlayer *audioPlayer;
 @property (nonatomic,copy) NSString *videoName;
+@property (nonatomic,copy) NSString *cameraId;
 
 - (instancetype)initWithHTTPLiveStreamingMediaURL:(NSURL *)url;
 - (instancetype)initWithLocalMediaURL:(NSURL *)url;

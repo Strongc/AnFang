@@ -125,6 +125,7 @@
     NSString *str = @"user=";
     NSString *paramStr = [str stringByAppendingString:paramsStr];
     
+    //[self jumpToMainView];
     if(![CMTool isConnectionAvailable]){
         [SVProgressHUD showInfoWithStatus:@"网络没有连接！"];
     

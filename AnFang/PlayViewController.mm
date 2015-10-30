@@ -173,6 +173,7 @@ void StatusCallBack(PLAY_STATE playState, VP_HANDLE hLogin, void *pHandl)
     videoInfo.pPlayHandle   = (id)self.playView;
     videoInfo.bSystransform = NO;
     videoInfo.strPlayUrl = _realPlayURL.url1;
+    NSLog(@"视频播放地址：%@",videoInfo.strPlayUrl);
     
     if (_vpHandle != NULL)
     {

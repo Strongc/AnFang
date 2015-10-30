@@ -10,12 +10,25 @@
 #import "Common.h"
 #import "UIColor+Extensions.h"
 #import "JRPlayerViewController.h"
+#import "VideoTableViewCell.h"
+#import "VideoModel.h"
+#import "JSONKit.h"
+#import "WGAPI.h"
+#import "CMTool.h"
 
 @interface DeviceManagerViewController ()
+{
+
+    UITableView *videoList;
+    NSMutableArray *tempArray;
+    NSMutableArray *videoArray;
+    UILabel *alertLab;
+}
 
 @end
 
 @implementation DeviceManagerViewController
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -35,7 +48,9 @@
     
     [super viewDidLoad];
     [self ConfigControl];
-    
+    videoArray = [[NSMutableArray alloc]init];
+    tempArray = [[NSMutableArray alloc]init];
+    [self getVideoInfoById];
     // Do any additional setup after loading the view.
 }
 
@@ -68,8 +83,8 @@
 
     UILabel *devArea = [[UILabel alloc]initWithFrame:CGRectMake(10*WIDTH/375, 80*HEIGHT/667, 280*WIDTH/375, 15*HEIGHT/667)];
     NSString *text = @"华业大厦广场北区－";
-    NSString *text1 = [text stringByAppendingString:self.deviceName];
-    devArea.text = text1;
+    //NSString *text1 = [text stringByAppendingString:self.deviceName];
+    devArea.text = text;
     devArea.textColor = [UIColor blackColor];
     devArea.font = [UIFont boldSystemFontOfSize:14*WIDTH/375];
     [self.view addSubview:devArea];
@@ -78,73 +93,77 @@
     devImage.image = [UIImage imageNamed:@"dev.png"];
     [self.view addSubview:devImage];
 
-    UILabel *devStyle = [[UILabel alloc]initWithFrame:CGRectMake(140*WIDTH/375, 115*HEIGHT/667, 150*WIDTH/375, 15*HEIGHT/667)];
-    devStyle.text = @"型号:         T-PCX760";
-    devStyle.textColor = [UIColor blackColor];
-    devStyle.font = [UIFont boldSystemFontOfSize:14*WIDTH/375];
-    [self.view addSubview:devStyle];
+    UILabel *devVendor = [[UILabel alloc]initWithFrame:CGRectMake(140*WIDTH/375, 130*HEIGHT/667, 150*WIDTH/375, 15*HEIGHT/667)];
+    NSString *ventorTitle = @"厂商:    ";
+    devVendor.text = [ventorTitle stringByAppendingString:self.devVendor];
+    devVendor.textColor = [UIColor blackColor];
+    devVendor.font = [UIFont boldSystemFontOfSize:14*WIDTH/375];
+    [self.view addSubview:devVendor];
     
-    UILabel *controlStyle = [[UILabel alloc]initWithFrame:CGRectMake(140*WIDTH/375, 140*HEIGHT/667, 200*WIDTH/375, 15*HEIGHT/667)];
-    controlStyle.text = @"控制方式：4轴可控，焦距可控";
-    controlStyle.textColor = [UIColor blackColor];
-    controlStyle.font = [UIFont boldSystemFontOfSize:14*WIDTH/375];
-    [self.view addSubview:controlStyle];
+    UILabel *devModel = [[UILabel alloc]initWithFrame:CGRectMake(140*WIDTH/375, 160*HEIGHT/667, 200*WIDTH/375, 15*HEIGHT/667)];
+    NSString *modelHead = @"型号:    ";
+    devModel.text = [modelHead stringByAppendingString:self.devModel];
+    devModel.textColor = [UIColor blackColor];
+    devModel.font = [UIFont boldSystemFontOfSize:14*WIDTH/375];
+    [self.view addSubview:devModel];
     
-    UILabel *runStyle = [[UILabel alloc]initWithFrame:CGRectMake(140*WIDTH/375, 165*HEIGHT/667, 240*WIDTH/375, 15*HEIGHT/667)];
-    runStyle.text = @"运行方式：1分钟视角循环,实时上传";
-    runStyle.textColor = [UIColor blackColor];
-    runStyle.font = [UIFont boldSystemFontOfSize:14*WIDTH/375];
-    [self.view addSubview:runStyle];
+    UILabel *devParam = [[UILabel alloc]initWithFrame:CGRectMake(140*WIDTH/375, 190*HEIGHT/667, 240*WIDTH/375, 15*HEIGHT/667)];
+    NSString *paramHead = @"设备参数:    ";
+    devParam.text = [paramHead stringByAppendingString:self.devParam];
+    devParam.textColor = [UIColor blackColor];
+    devParam.font = [UIFont boldSystemFontOfSize:14*WIDTH/375];
+    [self.view addSubview:devParam];
     
-    UILabel *dataStore = [[UILabel alloc]initWithFrame:CGRectMake(140*WIDTH/375, 190*HEIGHT/667, 100*WIDTH/375, 15*HEIGHT/667)];
-    dataStore.text = @"数据存储：32G";
-    dataStore.textColor = [UIColor blackColor];
-    dataStore.font = [UIFont boldSystemFontOfSize:14*WIDTH/375];
-    [self.view addSubview:dataStore];
+//    UILabel *dataStore = [[UILabel alloc]initWithFrame:CGRectMake(140*WIDTH/375, 190*HEIGHT/667, 100*WIDTH/375, 15*HEIGHT/667)];
+//    dataStore.text = @"数据存储：32G";
+//    dataStore.textColor = [UIColor blackColor];
+//    dataStore.font = [UIFont boldSystemFontOfSize:14*WIDTH/375];
+//    [self.view addSubview:dataStore];
     
-    UILabel *connectStyle = [[UILabel alloc]initWithFrame:CGRectMake(140*WIDTH/375, 215*HEIGHT/667, 130*WIDTH/375, 15*HEIGHT/667)];
-    connectStyle.text = @"接入方式：云接入";
-    connectStyle.textColor = [UIColor blackColor];
-    connectStyle.font = [UIFont boldSystemFontOfSize:14*WIDTH/375];
-    [self.view addSubview:connectStyle];
+//    UILabel *connectStyle = [[UILabel alloc]initWithFrame:CGRectMake(140*WIDTH/375, 215*HEIGHT/667, 130*WIDTH/375, 15*HEIGHT/667)];
+//    connectStyle.text = @"接入方式：云接入";
+//    connectStyle.textColor = [UIColor blackColor];
+//    connectStyle.font = [UIFont boldSystemFontOfSize:14*WIDTH/375];
+//    [self.view addSubview:connectStyle];
     
-    UILabel *devState = [[UILabel alloc]initWithFrame:CGRectMake(140*WIDTH/375, 240*HEIGHT/667, 90*WIDTH/375, 15*HEIGHT/667)];
-    devState.text = @"设备状态：";
+    UILabel *devState = [[UILabel alloc]initWithFrame:CGRectMake(140*WIDTH/375, 220*HEIGHT/667, 120*WIDTH/375, 15*HEIGHT/667)];
+    NSString *stateHead = @"设备状态:   ";
+    devState.text = [stateHead stringByAppendingString:self.deviceState];
     devState.textColor = [UIColor blackColor];
     devState.font = [UIFont boldSystemFontOfSize:14*WIDTH/375];
-    [self.view addSubview:devState];
-    UILabel *devState1 = [[UILabel alloc]initWithFrame:CGRectMake(210*WIDTH/375, 240*HEIGHT/667, 90*WIDTH/375, 15*HEIGHT/667)];
-    devState1.text = self.deviceState;
-    if([devState1.text isEqualToString:@"已关机"]){
+//    [self.view addSubview:devState];
+//    UILabel *devState1 = [[UILabel alloc]initWithFrame:CGRectMake(210*WIDTH/375, 240*HEIGHT/667, 90*WIDTH/375, 15*HEIGHT/667)];
+    //devState.text = self.deviceState;
+    if([devState.text isEqualToString:@"已关机"]){
         
-        devState1.textColor = [UIColor grayColor];
-    }else if ([devState1.text isEqualToString:@"工作正常"]){
+        devState.textColor = [UIColor grayColor];
+    }else if ([devState.text isEqualToString:@"工作正常"]){
         
-        devState1.textColor = [UIColor greenColor];
-    }else if([devState1.text isEqualToString:@"无法连接"]){
+        devState.textColor = [UIColor greenColor];
+    }else if([devState.text isEqualToString:@"无法连接"]){
         
-        devState1.textColor = [UIColor redColor];
+        devState.textColor = [UIColor redColor];
     }
     
-    devState1.font = [UIFont boldSystemFontOfSize:14*WIDTH/375];
-    [self.view addSubview:devState1];
+    devState.font = [UIFont boldSystemFontOfSize:14*WIDTH/375];
+    [self.view addSubview:devState];
     
     UIButton *timeMonitor = [[UIButton alloc]initWithFrame:CGRectMake(10*WIDTH/375, 280*HEIGHT/667, 80*WIDTH/375, 30*HEIGHT/667)];
-    [self.view addSubview:timeMonitor];
+    //[self.view addSubview:timeMonitor];
     timeMonitor.backgroundColor = [UIColor orangeColor];
     timeMonitor.titleLabel.textColor= [UIColor whiteColor];
     timeMonitor.titleLabel.font= [UIFont boldSystemFontOfSize:14*WIDTH/375];
     [timeMonitor setTitle:@"实时监控" forState:UIControlStateNormal];
     
     UIButton *setBtn = [[UIButton alloc]initWithFrame:CGRectMake(100*WIDTH/375, 280*HEIGHT/667, 80*WIDTH/375, 30*HEIGHT/667)];
-    [self.view addSubview:setBtn];
+   // [self.view addSubview:setBtn];
     setBtn.backgroundColor = [UIColor grayColor];
     setBtn.titleLabel.textColor= [UIColor whiteColor];
     setBtn.titleLabel.font= [UIFont boldSystemFontOfSize:14*WIDTH/375];
     [setBtn setTitle:@"设置" forState:UIControlStateNormal];
     
     UIButton *videoManager = [[UIButton alloc]initWithFrame:CGRectMake(190*WIDTH/375, 280*HEIGHT/667, 80*WIDTH/375, 30*HEIGHT/667)];
-    [self.view addSubview:videoManager];
+   // [self.view addSubview:videoManager];
     videoManager.backgroundColor = [UIColor blueColor];
     videoManager.titleLabel.textColor= [UIColor whiteColor];
     videoManager.titleLabel.font= [UIFont boldSystemFontOfSize:14*WIDTH/375];
@@ -152,11 +171,82 @@
     [videoManager addTarget:self action:@selector(jumpToVideoManagerView) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *closeDev = [[UIButton alloc]initWithFrame:CGRectMake(280*WIDTH/375, 280*HEIGHT/667, 80*WIDTH/375, 30*HEIGHT/667)];
-    [self.view addSubview:closeDev];
+    //[self.view addSubview:closeDev];
     closeDev.backgroundColor = [UIColor redColor];
     closeDev.titleLabel.textColor= [UIColor whiteColor];
     closeDev.titleLabel.font= [UIFont boldSystemFontOfSize:14*WIDTH/375];
     [closeDev setTitle:@"关闭设备" forState:UIControlStateNormal];
+    
+    UIView *blueLine = [[UIView alloc]initWithFrame:CGRectMake(0, 290*HEIGHT/667, WIDTH, 3.0)];
+    [self.view addSubview:blueLine];
+    blueLine.backgroundColor = [UIColor colorWithHexString:@"6495ED"];
+    
+    UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 293*HEIGHT/667, WIDTH, 40*HEIGHT/667)];
+    [self.view addSubview:titleView];
+    titleView.backgroundColor = [UIColor colorWithHexString:@"ededed"];
+    UIView *grayLine = [[UIView alloc]initWithFrame:CGRectMake(0, 333*HEIGHT/667, WIDTH, 3.0)];
+    [self.view addSubview:grayLine];
+    grayLine.backgroundColor = [UIColor colorWithHexString:@"bababa"];
+    
+    UILabel *title5 = [[UILabel alloc]initWithFrame:CGRectMake(15*WIDTH/375, 10*HEIGHT/667, 80*WIDTH/375, 20*HEIGHT/667)];
+    [titleView addSubview:title5];
+    title5.text = @"视频列表";
+    title5.textColor = [UIColor blackColor];
+    title5.font = [UIFont boldSystemFontOfSize:20*WIDTH/375];
+    
+    videoList = [[UITableView alloc] initWithFrame:CGRectMake(0, 336*HEIGHT/667, WIDTH, HEIGHT) style:UITableViewStylePlain];
+    videoList.delegate = self;
+    videoList.dataSource = self;
+    videoList.separatorStyle = UITableViewCellSeparatorStyleNone;
+    videoList.backgroundColor = [UIColor colorWithHexString:@"ededed"];
+    [self.view addSubview:videoList];
+    
+    alertLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 350, WIDTH, 15*HEIGHT/667)];
+    [self.view addSubview:alertLab];
+    alertLab.text = @"暂无内容！";
+    alertLab.textAlignment = NSTextAlignmentCenter;
+//    if(videoArray.count != 0){
+//    
+//        alertLab.hidden = YES;
+//    }else{
+//    
+//        alertLab.hidden = NO;
+//    }
+
+
+}
+
+-(void)getVideoInfoById
+{
+
+    NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"5"};
+    NSDictionary *pageInfo = @{@"cam_id":self.devId,@"page":page};
+    NSString *pageStr = [pageInfo JSONString];
+    NSString *videoInfoData = [@"video=" stringByAppendingString:pageStr];
+
+    [WGAPI post:API_GET_VIDEOINFO RequestParams:videoInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+
+        if(data){
+
+             NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+             NSLog(@"%@",jsonStr);
+             NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
+            if(infojson != nil){
+            
+                NSDictionary *videoInfo = [infojson objectForKey:@"data"];
+                tempArray = [videoInfo objectForKey:@"datas"];
+                for(NSDictionary *dict in tempArray){
+                
+                    VideoModel *model = [VideoModel VideoWithDict:dict];
+                    [videoArray addObject:model];
+                }
+            
+            }
+            [self performSelectorOnMainThread:@selector(refreshData) withObject:data waitUntilDone:YES];
+
+        }
+    }];
+
 
 }
 
@@ -166,14 +256,77 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)jumpToVideoManagerView
+-(void)refreshData
+{
+    if(videoArray.count > 0){
+        
+        alertLab.hidden = YES;
+    }else if (videoArray.count == 0){
+    
+        alertLab.hidden = NO;;
+    }
+    [videoList reloadData];
+}
+
+
+#pragma mark - UITableViewDataSource
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    
+    return videoArray.count;
+    
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    static NSString *reuseIdentify = @"cell";
+    VideoTableViewCell *cell = (VideoTableViewCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentify];
+    
+    if(cell == nil){
+        
+        cell = [[VideoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentify];
+        
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.backgroundColor = [UIColor colorWithHexString:@"ededed"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+    }
+    
+    VideoModel *model = [videoArray objectAtIndex:indexPath.row];
+    cell.videoModel = model;
+    
+    return cell;
+    
+}
+
+#pragma mark - UITableViewDelegate
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    return 60.0*WIDTH/375;
+    
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    VideoModel *model = [videoArray objectAtIndex:indexPath.row];
+    
+    NSString *url = model.videoUrl;
+    [self jumpToVideoManagerView:url];
+
+}
+
+
+-(void)jumpToVideoManagerView:(NSString *)videoUrl
 {
     
    UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-   JRPlayerViewController *videoPlayer = [[mainView instantiateViewControllerWithIdentifier:@"videoPlayer"] initWithHTTPLiveStreamingMediaURL:[NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"]];
+   JRPlayerViewController *videoPlayer = [[mainView instantiateViewControllerWithIdentifier:@"videoPlayer"] initWithHTTPLiveStreamingMediaURL:[NSURL URLWithString:videoUrl]];
     
     videoPlayer.navigationController.navigationBarHidden = NO;
-    videoPlayer.hidesBottomBarWhenPushed = YES;
+    videoPlayer.hidesBottomBarWhenPushed = NO;
     [self.navigationController pushViewController:videoPlayer animated:YES];
 
 }
