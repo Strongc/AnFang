@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AlarmMessageModel.h"
+#import "SystemMessageModel.h"
 
 @interface AlarmMessageTableViewCell : UITableViewCell
 
@@ -20,5 +21,7 @@
 @property (nonatomic,weak) UIButton *checkBtn;
 
 @property (nonatomic,strong) AlarmMessageModel *alarmMessage;
+
+@property (nonatomic,strong) SystemMessageModel *sysMessage;
 
 @end

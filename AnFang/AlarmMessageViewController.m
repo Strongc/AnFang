@@ -59,7 +59,7 @@
     messageTime = [[NSMutableArray alloc]initWithObjects:@"2015-5-21  23:25", @"2015-5-13  14:25",@"2015-5-4  21:25",@"2015-4-21  19:25",nil];
     messageTitle = [[NSMutableArray alloc]initWithObjects:@"食堂防区异常",@"停车场防区异常",@"华业大厦北侧广场异常",@"华业大厦一楼走廊异常", nil];
 
-   // [self getAlarmMessage];
+    [self getAlarmMessage];
     // Do any additional setup after loading the view.
 }
 
@@ -105,27 +105,31 @@
 
 -(void)getAlarmMessage
 {
-    NSString *urlStr=[NSString stringWithFormat:@"http://192.168.0.41:8080/platform/alarm/page"];
+   // NSString *urlStr=[NSString stringWithFormat:@"http://192.168.0.41:8080/platform/alarm/page"];,@"alrm_id":@"201510112342290296"
     NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"2"};
-    NSDictionary *pageInfo = @{@"page":page,@"alrm_id":@"201510112342290296"};
+    NSDictionary *pageInfo = @{@"page":page};
     NSString *pageStr = [pageInfo JSONString];
     NSString *userInfoData = [@"alarm=" stringByAppendingString:pageStr];
     
-    [WGAPI post:urlStr RequestParams:userInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+    [WGAPI post:API_GET_ALARMINFO RequestParams:userInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
         if(data){
         
              NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
              NSLog(@"%@",jsonStr);
              NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
-             NSDictionary *messageInfo = [infojson objectForKey:@"data"];
-             NSString *messageInfoStr = [CMTool dictionaryToJson:messageInfo];
-             NSLog(@"%@",messageInfoStr);
-             tempArray = [messageInfo objectForKey:@"datas"];
-            for(NSDictionary *dict in tempArray){
+            if(infojson != nil){
+//                NSDictionary *messageInfo = [infojson objectForKey:@"datas"];
+//                NSString *messageInfoStr = [CMTool dictionaryToJson:messageInfo];
+//                NSLog(@"%@",messageInfoStr);
+                tempArray = [infojson objectForKey:@"datas"];
+                for(NSDictionary *dict in tempArray){
+                    
+                    AlarmMessageModel *model = [AlarmMessageModel AlarmMessageModelWithDict:dict];
+                    [messageArray addObject:model];
+                }
+
             
-                 AlarmMessageModel *model = [AlarmMessageModel AlarmMessageModelWithDict:dict];
-                [messageArray addObject:model];
             }
             [self performSelectorOnMainThread:@selector(refreshData) withObject:data waitUntilDone:YES];
             
@@ -136,6 +140,7 @@
 
 
 }
+
 
 -(void)refreshData
 {
@@ -148,7 +153,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return messageTitle.count;
+    return  messageArray.count;
     
 }
 
@@ -168,8 +173,8 @@
         
     }
     
-    //AlarmMessageModel *model = [messageArray objectAtIndex:indexPath.row];
-    cell.messageInfo.text = messageTitle[indexPath.row];
+    AlarmMessageModel *model = [messageArray objectAtIndex:indexPath.row];
+    cell.alarmMessage = model;
     
     [cell.checkBtn addTarget:self action:@selector(jumpToDetailView) forControlEvents:UIControlEventTouchUpInside];
     

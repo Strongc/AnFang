@@ -12,6 +12,10 @@
 #import "MonitorInfoTableViewCell.h"
 #import "DefenceAreaViewController.h"
 #import "JRPlayerViewController.h"
+#import "WGAPI.h"
+#import "JSONKit.h"
+#import "CMTool.h"
+#import "CameraModel.h"
 
 @interface MonitorViewController ()
 {
@@ -21,6 +25,10 @@
     NSMutableArray *defenceAreaName;
     NSMutableArray *defenceAreaInfo;
     NSMutableArray *defenceAreaImage;
+    NSMutableArray *tempArray;
+   // NSString *areaId;
+    NSString *tempId;
+    NSMutableArray *cameraArray;
 
 }
 @property (nonatomic,strong) NSArray *sourceData;
@@ -44,7 +52,7 @@
         //4.循环字典数组，把每个字典对象转化成一个模型对象
         for(NSDictionary *dict in arrayDict){
             
-            DefenceAreaModel *model = [DefenceAreaModel monitorWithDict:dict];
+            CameraModel *model = [CameraModel CameraWithDict:dict];
             
             [arrayModels addObject:model];
         }
@@ -58,7 +66,6 @@
     
 }
 
-
 -(void)viewWillAppear:(BOOL)animated
 {
 
@@ -69,6 +76,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    [self.view endEditing:YES];
     self.view.backgroundColor = [UIColor colorWithHexString:@"ededed"];
     self.view.backgroundColor = [UIColor whiteColor];
     [self ConfigControl];
@@ -82,7 +91,12 @@
     
     defenceAreaInfo = [[NSMutableArray alloc]initWithObjects:@"   车位监控3个，大楼摄像机1个，北墙西墙红外探头2对...",@"   车位监控2个，大楼摄像机1个，北墙西墙红外探头3对...",@"   车位监控1个，大楼摄像机1个，北墙西墙红外探头4对...",@"   车位监控3个，大楼摄像机3个，北墙西墙红外探头2对...", nil];
 
+    tempArray = [[NSMutableArray alloc]init];
+    cameraArray = [[NSMutableArray alloc]init];
     
+    [self getAreaInfo];
+    // NSLog(@"防区ID：%@",areaId);
+   // [self getCameraInfo];
     // Do any additional setup after loading the view.
 }
 
@@ -196,6 +210,96 @@
     
 }
 
+//获取防区信息
+-(void)getAreaInfo
+{
+    
+    NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"2"};
+    NSDictionary *pageInfo = @{@"page":page};
+    NSString *pageStr = [pageInfo JSONString];
+    NSString *userInfoData = [@"area=" stringByAppendingString:pageStr];
+    
+    [WGAPI post:API_GET_AREAINFO RequestParams:userInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if(data){
+            
+            NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            //NSLog(@"%@",jsonStr);
+            NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
+            if(infojson != nil){
+                NSDictionary *messageInfo = [infojson objectForKey:@"data"];
+                NSString *messageInfoStr = [CMTool dictionaryToJson:messageInfo];
+               // NSLog(@"%@",messageInfoStr);
+                tempArray = [messageInfo objectForKey:@"datas"];
+                NSDictionary *dict = tempArray[0];
+                tempId = [dict objectForKey:@"area_id"];
+                
+                [self getCameraInfo:tempId];
+               // NSLog(@"%@",tempId);
+                
+            }
+            [self performSelectorOnMainThread:@selector(getAreaId) withObject:data waitUntilDone:YES];
+
+        
+        
+        }
+        
+    }];
+
+}
+
+ //获取防区的所有摄像头信息
+-(void)getCameraInfo:(NSString *)areaId
+{
+    
+    NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"4"};//@"area_id":@"201510120000030712",
+    NSDictionary *pageInfo = @{@"area_id":@"201510120000030712",@"page":page};
+    NSString *pageStr = [pageInfo JSONString];
+    NSString *userInfoData = [@"camera=" stringByAppendingString:pageStr];
+    
+    [WGAPI post:API_GET_CAMERAINFO RequestParams:userInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if(data){
+        
+            NSString *jsonStr1 =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"%@",jsonStr1);
+            NSDictionary *infojson1 = [CMTool parseJSONStringToNSDictionary:jsonStr1];
+            if(infojson1 != nil){
+                NSDictionary *messageInfo = [infojson1 objectForKey:@"data"];
+                NSString *messageInfoStr = [CMTool dictionaryToJson:messageInfo];
+                NSLog(@"%@",messageInfoStr);
+                tempArray = [messageInfo objectForKey:@"datas"];
+                for(NSDictionary *dict in tempArray){
+                
+                    CameraModel *model = [CameraModel CameraWithDict:dict];
+                    [cameraArray addObject:model];
+                }
+
+                 [self performSelectorOnMainThread:@selector(refreshData) withObject:data waitUntilDone:YES];
+            
+            }
+        
+        
+        }
+    }];
+
+
+}
+
+-(void)getAreaId
+{
+
+    //areaId = tempId;
+   // [self getCameraInfo];
+    
+}
+
+-(void)refreshData
+{
+    
+    [monitorTable reloadData];
+}
+
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -206,7 +310,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    return self.sourceData.count;
+    return cameraArray.count;
 
 }
 
@@ -226,8 +330,8 @@
     
     }
     
-    DefenceAreaModel *model = [self.sourceData objectAtIndex:indexPath.item];
-    cell.defenceArea = model;
+    CameraModel *model = [self.sourceData objectAtIndex:indexPath.row];
+    cell.cameraModel = model;
     
     return cell;
     

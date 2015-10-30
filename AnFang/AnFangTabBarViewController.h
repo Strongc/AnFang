@@ -10,7 +10,7 @@
 
 @class AnFangTabBar;
 
-@interface AnFangTabBarViewController : UIViewController
+@interface AnFangTabBarViewController : UIViewController<UITabBarDelegate>
 
 @property (nonatomic, assign)   BOOL        showArrowButton;            // Default value: YES
 @property (nonatomic, assign)   BOOL        scrollAnimation;            // Default value: NO

@@ -37,8 +37,16 @@
     
     self.messageTime.text = alarmMessage.time;
     self.messageInfo.text = alarmMessage.content;
+  
+}
 
 
+-(void)setSysMessage:(SystemMessageModel *)sysMessage
+{
+
+    _sysMessage = sysMessage;
+    self.messageInfo.text = sysMessage.content;
+    self.messageTime.text = sysMessage.time;
 
 }
 

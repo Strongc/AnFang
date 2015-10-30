@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DefenceAreaModel.h"
+#import "CameraModel.h"
 
 @interface MonitorInfoTableViewCell : UITableViewCell
 
-@property (nonatomic,strong) DefenceAreaModel *defenceArea;
+@property (nonatomic,strong) CameraModel *cameraModel;
 
 ///** 防区照片*/
 //@property (nonatomic,weak) UIImageView *areaImage;

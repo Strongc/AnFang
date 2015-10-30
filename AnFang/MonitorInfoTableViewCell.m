@@ -14,21 +14,16 @@
 @interface MonitorInfoTableViewCell()
 
 
-
-
 @end
 
 @implementation MonitorInfoTableViewCell
 
--(void)setDefenceArea:(DefenceAreaModel *)defenceArea
+-(void)setCameraModel:(CameraModel *)cameraModel
 {
-
-    _defenceArea = defenceArea;
+    _cameraModel = cameraModel;
+    self.devName.text = cameraModel.cameraName;
+    self.devState.text = cameraModel.cameraState;
     
-    self.devImage.image = [UIImage imageNamed:defenceArea.photoPath];
-    self.devName.text = defenceArea.devName;
-    self.devState.text = defenceArea.devState;
-
 
 }
 

@@ -159,6 +159,9 @@
                     [self performSelectorOnMainThread:@selector(errorMessage:) withObject:message waitUntilDone:YES];
                 }
                 
+            }else{
+               
+               [SVProgressHUD  showErrorWithStatus:@"网络异常，请检查网络！"];
             }
             
         }];
