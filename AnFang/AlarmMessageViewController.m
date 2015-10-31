@@ -26,6 +26,7 @@
      //NSDictionary *messageInfo;
      NSMutableArray *tempArray;
      UILabel *alertLab;
+    int pageSize;
     // LoadMoreTableFooterView *loadMoreTableFooterView;
 }
 
@@ -58,7 +59,7 @@
 
     messageTime = [[NSMutableArray alloc]initWithObjects:@"2015-5-21  23:25", @"2015-5-13  14:25",@"2015-5-4  21:25",@"2015-4-21  19:25",nil];
     messageTitle = [[NSMutableArray alloc]initWithObjects:@"食堂防区异常",@"停车场防区异常",@"华业大厦北侧广场异常",@"华业大厦一楼走廊异常", nil];
-
+     pageSize = 1;
     [self getAlarmMessage];
     
     alertLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 80, WIDTH, 15*HEIGHT/667)];
@@ -76,11 +77,13 @@
     [refreshHeader addToScrollView:messageTable];
     
     __weak SDRefreshHeaderView *weakRefreshHeader = refreshHeader;
-    __weak typeof(self) weakSelf = self;
+    //__weak typeof(self) weakSelf = self;
     refreshHeader.beginRefreshingOperation = ^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            //weakSelf.totalRowCount += 3;
-            [messageTable reloadData];
+            
+             pageSize += 1;
+            [messageArray removeAllObjects];
+            [self getAlarmMessage];
             [weakRefreshHeader endRefreshing];
         });
     };
@@ -91,57 +94,57 @@
 
 - (void)setupFooter
 {
-    SDRefreshFooterView *refreshFooter = [SDRefreshFooterView refreshView];
-    [refreshFooter addToScrollView:messageTable];
-    [refreshFooter addTarget:self refreshAction:@selector(footerRefresh)];
-    _refreshFooter = refreshFooter;
+        SDRefreshFooterView *refreshFooter = [SDRefreshFooterView refreshView];
+        [refreshFooter addToScrollView:messageTable];
+        [refreshFooter addTarget:self refreshAction:@selector(footerRefresh)];
+        _refreshFooter = refreshFooter;
 }
 
 
 - (void)footerRefresh
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        //self.totalRowCount += 2;
-        [messageTable reloadData];
-        [self.refreshFooter endRefreshing];
-    });
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+       
+            [self.refreshFooter endRefreshing];
+        });
 }
 
 
 -(void)getAlarmMessage
 {
-   // NSString *urlStr=[NSString stringWithFormat:@"http://192.168.0.41:8080/platform/alarm/page"];,@"alrm_id":@"201510112342290296"
-    NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"2"};
-    NSDictionary *pageInfo = @{@"page":page};
-    NSString *pageStr = [pageInfo JSONString];
-    NSString *userInfoData = [@"alarm=" stringByAppendingString:pageStr];
     
-    [WGAPI post:API_GET_ALARMINFO RequestParams:userInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSString *pagesize = [NSString stringWithFormat:@"%d",pageSize];
+        NSDictionary *page = @{@"pageNo":@"1",@"pageSize":pagesize};
+        NSDictionary *pageInfo = @{@"page":page};
+        NSString *pageStr = [pageInfo JSONString];
+        NSString *userInfoData = [@"alarm=" stringByAppendingString:pageStr];
+    
+        [WGAPI post:API_GET_ALARMINFO RequestParams:userInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
-        if(data){
+            if(data){
         
-             NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-             NSLog(@"%@",jsonStr);
-             NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
-            if(infojson != nil){
+                NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                NSLog(@"%@",jsonStr);
+                NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
+                if(infojson != nil){
 //                NSDictionary *messageInfo = [infojson objectForKey:@"datas"];
 //                NSString *messageInfoStr = [CMTool dictionaryToJson:messageInfo];
 //                NSLog(@"%@",messageInfoStr);
-                tempArray = [infojson objectForKey:@"datas"];
-                for(NSDictionary *dict in tempArray){
+                    tempArray = [infojson objectForKey:@"datas"];
+                    for(NSDictionary *dict in tempArray){
                     
-                    AlarmMessageModel *model = [AlarmMessageModel AlarmMessageModelWithDict:dict];
-                    [messageArray addObject:model];
-                }
+                        AlarmMessageModel *model = [AlarmMessageModel AlarmMessageModelWithDict:dict];
+                        [messageArray addObject:model];
+                    }
 
             
-            }
-            [self performSelectorOnMainThread:@selector(refreshData) withObject:data waitUntilDone:YES];
+                }
+                [self performSelectorOnMainThread:@selector(refreshData) withObject:data waitUntilDone:YES];
             
-        }
+            }
       
     
-    }];
+        }];
 
 
 }

@@ -199,8 +199,11 @@
 #pragma mark -
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"hideKeyBoard" object:nil];
     _currentIndex = scrollView.contentOffset.x / SCREEN_WIDTH;
     _navTabBar.currentItemIndex = _currentIndex;
+    
 }
 
 #pragma mark - SCNavTabBarDelegate Methods

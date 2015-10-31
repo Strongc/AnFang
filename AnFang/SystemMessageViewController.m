@@ -12,15 +12,18 @@
 #import "WGAPI.h"
 #import "JSONKit.h"
 #import "CMTool.h"
+#import "SDRefresh.h"
 
 @interface SystemMessageViewController ()
 {
-
     UITableView *messageTable;
     NSMutableArray *sysMessageArray;
     NSMutableArray *tempArray;
     UILabel *alertLab;
+    int pageSize;
 }
+@property (nonatomic,weak) SDRefreshFooterView *refreshFooter;
+@property (nonatomic,weak) SDRefreshHeaderView *refreshHeader;
 
 @end
 
@@ -29,6 +32,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
     sysMessageArray = [[NSMutableArray alloc]init];
     tempArray = [[NSMutableArray alloc] init];
     
@@ -44,14 +48,59 @@
     [self.view addSubview:alertLab];
     alertLab.text = @"暂无内容！";
     alertLab.textAlignment = NSTextAlignmentCenter;
+    pageSize = 1;
     [self getSystemMessage];
+    [self setupHeader];
+    [self setupFooter];
     // Do any additional setup after loading the view.
 }
 
+- (void)setupHeader
+{
+    SDRefreshHeaderView *refreshHeader = [SDRefreshHeaderView refreshView];
+    
+    // 默认是在navigationController环境下，如果不是在此环境下，请设置 refreshHeader.isEffectedByNavigationController = NO;
+    [refreshHeader addToScrollView:messageTable];
+    
+    __weak SDRefreshHeaderView *weakRefreshHeader = refreshHeader;
+    //__weak typeof(self) weakSelf = self;
+    refreshHeader.beginRefreshingOperation = ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            pageSize += 1;
+            [sysMessageArray removeAllObjects];
+            [self getSystemMessage];
+            [weakRefreshHeader endRefreshing];
+        });
+    };
+    
+    // 进入页面自动加载一次数据
+    [refreshHeader autoRefreshWhenViewDidAppear];
+}
+
+- (void)setupFooter
+{
+    SDRefreshFooterView *refreshFooter = [SDRefreshFooterView refreshView];
+    [refreshFooter addToScrollView:messageTable];
+    [refreshFooter addTarget:self refreshAction:@selector(footerRefresh)];
+    _refreshFooter = refreshFooter;
+}
+
+
+- (void)footerRefresh
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [self.refreshFooter endRefreshing];
+    });
+}
+
+
 -(void)getSystemMessage
 {
-    // NSString *urlStr=[NSString stringWithFormat:@"http://192.168.0.41:8080/platform/alarm/page"];,@"alrm_id":@"201510112342290296"
-    NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"2"};
+    
+    NSString *pagesize = [NSString stringWithFormat:@"%d",pageSize];
+    NSDictionary *page = @{@"pageNo":@"1",@"pageSize":pagesize};
     NSDictionary *pageInfo = @{@"page":page};
     NSString *pageStr = [pageInfo JSONString];
     NSString *userInfoData = [@"message=" stringByAppendingString:pageStr];

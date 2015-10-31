@@ -556,7 +556,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPT-53-eBi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8364" y="2684"/>
+            <point key="canvasLocation" x="8327" y="2722"/>
         </scene>
         <!--设备管理-->
         <scene sceneID="IEe-zH-fUx">

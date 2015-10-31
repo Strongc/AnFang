@@ -157,7 +157,9 @@
     
     [super viewDidLoad];
     
+    [self setUpForDismissKeyboard];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tapAnywhereToDismissKeyboard:) name:@"hideKeyBoard" object:nil];
     NSFileManager *manager=[NSFileManager defaultManager];
     //文件路径
     NSString *filepath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"voice.plist"];
@@ -211,13 +213,11 @@
     plistPath = [documentsDirectory stringByAppendingPathComponent:@"test.plist"];
     arrayPlist = [[NSMutableArray alloc]init];
     saveArray = [NSMutableArray arrayWithContentsOfFile:plistPath];
-   
     _photoAlarmData = nil;
     
     keyInfoPlistPath = [documentsDirectory stringByAppendingPathComponent:@"keyInfo.plist"];
     keyInfoArrayPlist = [[NSMutableArray alloc]init];
     saveKeyInfoArray = [NSMutableArray arrayWithContentsOfFile:keyInfoPlistPath];
-    
     _keyAlarmData = nil;
     
     voicePlistPath = [documentsDirectory stringByAppendingPathComponent:@"voice.plist"];
@@ -227,19 +227,9 @@
     NSLog(@"%@",voicePlistPath);
     [self ConfigControl];
     [self setAudioSession];
-   
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideKeyBoard) name:@"hideKeyBoard" object:nil];
 
     // Do any additional setup after loading the view.
 }
-
--(void)hideKeyBoard
-{
-    //[self.view endEditing:YES];
-     [infoText resignFirstResponder];
-    
-}
-
 
 //监听键盘弹出事件
 -(void)keyBoardWillChangeFrame:(NSNotification *)noteInfo
@@ -350,6 +340,32 @@
     
 }
 
+//点击空白处隐藏键盘
+- (void)setUpForDismissKeyboard {
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    UITapGestureRecognizer *singleTapGR =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(tapAnywhereToDismissKeyboard:)];
+    NSOperationQueue *mainQuene =[NSOperationQueue mainQueue];
+    [nc addObserverForName:UIKeyboardWillShowNotification
+                    object:nil
+                     queue:mainQuene
+                usingBlock:^(NSNotification *note){
+                    [self.view addGestureRecognizer:singleTapGR];
+                }];
+    [nc addObserverForName:UIKeyboardWillHideNotification
+                    object:nil
+                     queue:mainQuene
+                usingBlock:^(NSNotification *note){
+                    [self.view removeGestureRecognizer:singleTapGR];
+                }];
+}
+
+- (void)tapAnywhereToDismissKeyboard:(UIGestureRecognizer *)gestureRecognizer {
+    //此method会将self.view里所有的subview的first responder都resign掉
+    [self.view endEditing:YES];
+}
+
 /**
  *  设置音频会话
  */
@@ -438,7 +454,7 @@
 - (void)recordClick {
     
    
-    NSString *path = [[NSBundle mainBundle] bundlePath];
+    //NSString *path = [[NSBundle mainBundle] bundlePath];
     NSString *fileName = [NSDateString ret32bitString];
     NSString *fileName1 = [fileName stringByAppendingString:kRecordAudioFile];
     urlStr2 =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];

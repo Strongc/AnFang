@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/MonitorViewController.m"
-            timestampString = "467889277.876846"
+            timestampString = "467953144.534524"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "458"
-            endingLineNumber = "458">
+            startingLineNumber = "491"
+            endingLineNumber = "491">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/MonitorViewController.m"
-            timestampString = "467889277.876846"
+            timestampString = "467953144.534524"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "432"
-            endingLineNumber = "432">
+            startingLineNumber = "465"
+            endingLineNumber = "465">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -276,11 +276,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/NeedHelpViewController.m"
-            timestampString = "467713269.56044"
+            timestampString = "467955783.926285"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -308,11 +308,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/NeedHelpViewController.m"
-            timestampString = "467861494.670365"
+            timestampString = "467958625.870241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "256"
-            endingLineNumber = "256"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
             landmarkName = "-locationManager:didUpdateLocations:"
             landmarkType = "5">
          </BreakpointContent>
@@ -324,11 +324,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/NeedHelpViewController.m"
-            timestampString = "467861494.670365"
+            timestampString = "467958625.870241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "634"
-            endingLineNumber = "634"
+            startingLineNumber = "650"
+            endingLineNumber = "650"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -372,11 +372,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/NeedHelpViewController.m"
-            timestampString = "467861494.670365"
+            timestampString = "467958625.870241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "597"
-            endingLineNumber = "597"
+            startingLineNumber = "613"
+            endingLineNumber = "613"
             landmarkName = "-AddPhotoImage"
             landmarkType = "5">
          </BreakpointContent>
@@ -388,11 +388,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/NeedHelpViewController.m"
-            timestampString = "467861494.670365"
+            timestampString = "467958625.870241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "791"
-            endingLineNumber = "791"
+            startingLineNumber = "807"
+            endingLineNumber = "807"
             landmarkName = "-flushImageViews:"
             landmarkType = "5">
          </BreakpointContent>
@@ -498,11 +498,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/AlarmMessageViewController.m"
-            timestampString = "467890996.249187"
+            timestampString = "467952466.8598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "-refreshData"
             landmarkType = "5">
          </BreakpointContent>
@@ -514,11 +514,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/NeedHelpViewController.m"
-            timestampString = "467861494.670365"
+            timestampString = "467958625.870241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
+            startingLineNumber = "415"
+            endingLineNumber = "415"
             landmarkName = "-audioRecorder"
             landmarkType = "5">
          </BreakpointContent>
@@ -530,11 +530,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/NeedHelpViewController.m"
-            timestampString = "467861494.670365"
+            timestampString = "467958625.870241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "321"
-            endingLineNumber = "321"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
             landmarkName = "-ConfigControl"
             landmarkType = "5">
          </BreakpointContent>
@@ -546,11 +546,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/NeedHelpViewController.m"
-            timestampString = "467861494.670365"
+            timestampString = "467958625.870241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "909"
-            endingLineNumber = "909"
+            startingLineNumber = "925"
+            endingLineNumber = "925"
             landmarkName = "-flushRecoder"
             landmarkType = "5">
          </BreakpointContent>
@@ -562,11 +562,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/NeedHelpViewController.m"
-            timestampString = "467861494.670365"
+            timestampString = "467958625.870241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "729"
-            endingLineNumber = "729"
+            startingLineNumber = "745"
+            endingLineNumber = "745"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -578,11 +578,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/NeedHelpViewController.m"
-            timestampString = "467861494.670365"
+            timestampString = "467958625.870241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "397"
-            endingLineNumber = "397"
+            startingLineNumber = "413"
+            endingLineNumber = "413"
             landmarkName = "-audioRecorder"
             landmarkType = "5">
          </BreakpointContent>
@@ -706,11 +706,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/NeedHelpViewController.m"
-            timestampString = "467861494.670365"
+            timestampString = "467958625.870241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "710"
-            endingLineNumber = "710"
+            startingLineNumber = "726"
+            endingLineNumber = "726"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -738,11 +738,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/NeedHelpViewController.m"
-            timestampString = "467861494.670365"
+            timestampString = "467958625.870241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "715"
-            endingLineNumber = "715"
+            startingLineNumber = "731"
+            endingLineNumber = "731"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -786,11 +786,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/NeedHelpViewController.m"
-            timestampString = "467861494.670365"
+            timestampString = "467958625.870241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "713"
-            endingLineNumber = "713"
+            startingLineNumber = "729"
+            endingLineNumber = "729"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -802,11 +802,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/NeedHelpViewController.m"
-            timestampString = "467861494.670365"
+            timestampString = "467958625.870241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "716"
-            endingLineNumber = "716"
+            startingLineNumber = "732"
+            endingLineNumber = "732"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -866,11 +866,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/AlarmMessageViewController.m"
-            timestampString = "467890996.249187"
+            timestampString = "467952466.8598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "-getAlarmMessage"
             landmarkType = "5">
          </BreakpointContent>
@@ -882,11 +882,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/NeedHelpViewController.m"
-            timestampString = "467861494.670365"
+            timestampString = "467958625.870241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
             landmarkName = "-keyBoardWillChangeFrame:"
             landmarkType = "5">
          </BreakpointContent>
@@ -914,11 +914,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/AlarmMessageViewController.m"
-            timestampString = "467890996.249187"
+            timestampString = "467952466.8598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "-getAlarmMessage"
             landmarkType = "5">
          </BreakpointContent>
@@ -930,11 +930,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/SystemMessageViewController.m"
-            timestampString = "467890996.249187"
+            timestampString = "467952596.778425"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "-getSystemMessage"
             landmarkType = "5">
          </BreakpointContent>
@@ -946,11 +946,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/SystemMessageViewController.m"
-            timestampString = "467890996.249187"
+            timestampString = "467952596.778425"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "-getSystemMessage"
             landmarkType = "5">
          </BreakpointContent>
@@ -962,11 +962,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/MonitorViewController.m"
-            timestampString = "467884178.161339"
+            timestampString = "467953144.534524"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
+            startingLineNumber = "284"
+            endingLineNumber = "284"
             landmarkName = "-getAreaInfo"
             landmarkType = "5">
          </BreakpointContent>
@@ -978,11 +978,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/MonitorViewController.m"
-            timestampString = "467884178.161339"
+            timestampString = "467953059.449904"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
             landmarkName = "-ConfigControl"
             landmarkType = "5">
          </BreakpointContent>
@@ -994,11 +994,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/MonitorViewController.m"
-            timestampString = "467884178.161339"
+            timestampString = "467953144.534524"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
             landmarkName = "-getAreaInfo"
             landmarkType = "5">
          </BreakpointContent>
@@ -1010,11 +1010,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/MonitorViewController.m"
-            timestampString = "467884178.161339"
+            timestampString = "467953144.534524"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
             landmarkName = "-getAreaInfo"
             landmarkType = "5">
          </BreakpointContent>
@@ -1026,11 +1026,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/MonitorViewController.m"
-            timestampString = "467884178.161339"
+            timestampString = "467953144.534524"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
+            startingLineNumber = "317"
+            endingLineNumber = "317"
             landmarkName = "-getCameraInfo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1042,11 +1042,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/MonitorViewController.m"
-            timestampString = "467884178.161339"
+            timestampString = "467953144.534524"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
+            startingLineNumber = "316"
+            endingLineNumber = "316"
             landmarkName = "-getCameraInfo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1058,11 +1058,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/MonitorViewController.m"
-            timestampString = "467884178.161339"
+            timestampString = "467953144.534524"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
+            startingLineNumber = "308"
+            endingLineNumber = "308"
             landmarkName = "-getCameraInfo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1074,11 +1074,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/MonitorViewController.m"
-            timestampString = "467884178.161339"
+            timestampString = "467953144.534524"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "312"
+            endingLineNumber = "312"
             landmarkName = "-getCameraInfo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1090,11 +1090,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/MonitorViewController.m"
-            timestampString = "467884178.161339"
+            timestampString = "467953144.534524"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "267"
-            endingLineNumber = "267"
+            startingLineNumber = "313"
+            endingLineNumber = "313"
             landmarkName = "-getCameraInfo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1106,11 +1106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/MonitorViewController.m"
-            timestampString = "467884178.161339"
+            timestampString = "467953144.534524"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "268"
-            endingLineNumber = "268"
+            startingLineNumber = "314"
+            endingLineNumber = "314"
             landmarkName = "-getCameraInfo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1122,11 +1122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/MonitorViewController.m"
-            timestampString = "467884178.161339"
+            timestampString = "467953144.534524"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
+            startingLineNumber = "315"
+            endingLineNumber = "315"
             landmarkName = "-getCameraInfo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1138,11 +1138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/MonitorViewController.m"
-            timestampString = "467884178.161339"
+            timestampString = "467953144.534524"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
+            startingLineNumber = "310"
+            endingLineNumber = "310"
             landmarkName = "-getCameraInfo:"
             landmarkType = "5">
             <Locations>
@@ -1186,11 +1186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/MonitorViewController.m"
-            timestampString = "467884178.161339"
+            timestampString = "467953144.534524"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
             landmarkName = "-getCameraInfo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1202,28 +1202,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/MonitorViewController.m"
-            timestampString = "467884178.161339"
+            timestampString = "467953144.534524"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
             landmarkName = "-getAreaInfo"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AnFang/NeedHelpViewController.m"
-            timestampString = "467861550.148008"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
-            landmarkName = "-hideKeyBoard"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1272,6 +1256,22 @@
             startingLineNumber = "42"
             endingLineNumber = "42"
             landmarkName = "-initWithStyle:reuseIdentifier:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/DeviceManagerViewController.m"
+            timestampString = "467953593.561898"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
+            landmarkName = "-getVideoInfoById"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

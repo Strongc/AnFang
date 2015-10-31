@@ -18,12 +18,12 @@
 #import "CameraModel.h"
 //#import "MonitorDevInfoViewController.h"
 #import "DeviceManagerViewController.h"
+#import "SDRefresh.h"
 
 @interface MonitorViewController ()
 {
     
     UITableView *monitorTable;
-   
     NSMutableArray *defenceAreaName;
     NSMutableArray *defenceAreaInfo;
     NSMutableArray *defenceAreaImage;
@@ -31,9 +31,12 @@
    // NSString *areaId;
     NSString *tempId;
     NSMutableArray *cameraArray;
+    int pageSize;
 
 }
 @property (nonatomic,strong) NSArray *sourceData;
+@property (nonatomic,weak) SDRefreshHeaderView *refreshHeader;
+@property (nonatomic,weak) SDRefreshFooterView *refreshFooter;
 
 @end
 
@@ -70,7 +73,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-
+   
     self.navigationController.navigationBarHidden = YES;
 
 }
@@ -95,10 +98,10 @@
 
     tempArray = [[NSMutableArray alloc]init];
     cameraArray = [[NSMutableArray alloc]init];
-    
+    pageSize = 1;
     [self getAreaInfo];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"hideKeyBoard" object:nil];
+    
 
     // NSLog(@"防区ID：%@",areaId);
    // [self getCameraInfo];
@@ -212,8 +215,51 @@
     monitorTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     monitorTable.backgroundColor = [UIColor colorWithHexString:@"ededed"];
     [self.view addSubview:monitorTable];
+    [self setupHeader];
+    [self setupFooter];
     
 }
+
+- (void)setupHeader
+{
+    SDRefreshHeaderView *refreshHeader = [SDRefreshHeaderView refreshView];
+    
+    // 默认是在navigationController环境下，如果不是在此环境下，请设置 refreshHeader.isEffectedByNavigationController = NO;
+    [refreshHeader addToScrollView:monitorTable];
+    
+    __weak SDRefreshHeaderView *weakRefreshHeader = refreshHeader;
+    //__weak typeof(self) weakSelf = self;
+    refreshHeader.beginRefreshingOperation = ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            pageSize += 1;
+            [cameraArray removeAllObjects];
+            [self getAreaInfo];
+            [weakRefreshHeader endRefreshing];
+        });
+    };
+    
+    // 进入页面自动加载一次数据
+    [refreshHeader autoRefreshWhenViewDidAppear];
+}
+
+- (void)setupFooter
+{
+    SDRefreshFooterView *refreshFooter = [SDRefreshFooterView refreshView];
+    [refreshFooter addToScrollView:monitorTable];
+    [refreshFooter addTarget:self refreshAction:@selector(footerRefresh)];
+    _refreshFooter = refreshFooter;
+}
+
+
+- (void)footerRefresh
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [self.refreshFooter endRefreshing];
+    });
+}
+
 
 //获取防区信息
 -(void)getAreaInfo
@@ -232,7 +278,7 @@
             NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
             if(infojson != nil){
                 NSDictionary *messageInfo = [infojson objectForKey:@"data"];
-                NSString *messageInfoStr = [CMTool dictionaryToJson:messageInfo];
+               // NSString *messageInfoStr = [CMTool dictionaryToJson:messageInfo];
                // NSLog(@"%@",messageInfoStr);
                 tempArray = [messageInfo objectForKey:@"datas"];
                 NSDictionary *dict = tempArray[0];
@@ -242,7 +288,7 @@
                // NSLog(@"%@",tempId);
                 
             }
-            [self performSelectorOnMainThread:@selector(getAreaId) withObject:data waitUntilDone:YES];
+            //[self performSelectorOnMainThread:@selector(getAreaId) withObject:data waitUntilDone:YES];
 
         
         
@@ -255,8 +301,8 @@
  //获取防区的所有摄像头信息
 -(void)getCameraInfo:(NSString *)areaId
 {
-    
-    NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"5"};//@"area_id":@"201510120000030712",
+    NSString *pagesize = [NSString stringWithFormat:@"%d",pageSize];
+    NSDictionary *page = @{@"pageNo":@"1",@"pageSize":pagesize};//@"area_id":@"201510120000030712",
     NSDictionary *pageInfo = @{@"area_id":@"201510120000030712",@"page":page};
     NSString *pageStr = [pageInfo JSONString];
     NSString *userInfoData = [@"camera=" stringByAppendingString:pageStr];
@@ -286,15 +332,6 @@
         }
     }];
 
-
-}
-
--(void)getAreaId
-{
-
-    //areaId = tempId;
-   // [self getCameraInfo];
-    
 }
 
 -(void)refreshData
@@ -302,8 +339,6 @@
     
     [monitorTable reloadData];
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -356,8 +391,6 @@
     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     DeviceManagerViewController *devManagerView = [mainView instantiateViewControllerWithIdentifier:@"deviceManagerId"];
-    
-    
     
     //monitorInfoView.hidesBottomBarWhenPushed = YES;
     devManagerView.navigationController.navigationBarHidden = NO;

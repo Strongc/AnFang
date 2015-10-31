@@ -15,15 +15,18 @@
 #import "JSONKit.h"
 #import "WGAPI.h"
 #import "CMTool.h"
+#import "SDRefresh.h"
 
 @interface DeviceManagerViewController ()
 {
-
+    int pageSize;
     UITableView *videoList;
     NSMutableArray *tempArray;
     NSMutableArray *videoArray;
     UILabel *alertLab;
 }
+@property (nonatomic,weak) SDRefreshFooterView *refreshFooter;
+@property (nonatomic,weak) SDRefreshHeaderView *refreshHeader;
 
 @end
 
@@ -50,6 +53,9 @@
     [self ConfigControl];
     videoArray = [[NSMutableArray alloc]init];
     tempArray = [[NSMutableArray alloc]init];
+    [self setupHeader];
+    [self setupFooter];
+    pageSize = 1;
     [self getVideoInfoById];
     // Do any additional setup after loading the view.
 }
@@ -168,7 +174,7 @@
     videoManager.titleLabel.textColor= [UIColor whiteColor];
     videoManager.titleLabel.font= [UIFont boldSystemFontOfSize:14*WIDTH/375];
     [videoManager setTitle:@"管理视频" forState:UIControlStateNormal];
-    [videoManager addTarget:self action:@selector(jumpToVideoManagerView) forControlEvents:UIControlEventTouchUpInside];
+    //[videoManager addTarget:self action:@selector(jumpToVideoManagerView) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *closeDev = [[UIButton alloc]initWithFrame:CGRectMake(280*WIDTH/375, 280*HEIGHT/667, 80*WIDTH/375, 30*HEIGHT/667)];
     //[self.view addSubview:closeDev];
@@ -216,10 +222,51 @@
 
 }
 
+- (void)setupHeader
+{
+    SDRefreshHeaderView *refreshHeader = [SDRefreshHeaderView refreshView];
+    
+    // 默认是在navigationController环境下，如果不是在此环境下，请设置 refreshHeader.isEffectedByNavigationController = NO;
+    [refreshHeader addToScrollView:videoList];
+    
+    __weak SDRefreshHeaderView *weakRefreshHeader = refreshHeader;
+    //__weak typeof(self) weakSelf = self;
+    refreshHeader.beginRefreshingOperation = ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            pageSize += 1;
+            [videoArray removeAllObjects];
+            [self getVideoInfoById];
+            [weakRefreshHeader endRefreshing];
+        });
+    };
+    
+    // 进入页面自动加载一次数据
+    [refreshHeader autoRefreshWhenViewDidAppear];
+}
+
+- (void)setupFooter
+{
+    SDRefreshFooterView *refreshFooter = [SDRefreshFooterView refreshView];
+    [refreshFooter addToScrollView:videoList];
+    [refreshFooter addTarget:self refreshAction:@selector(footerRefresh)];
+    _refreshFooter = refreshFooter;
+}
+
+
+- (void)footerRefresh
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [self.refreshFooter endRefreshing];
+    });
+}
+
+
 -(void)getVideoInfoById
 {
-
-    NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"5"};
+    NSString *pagesize = [NSString stringWithFormat:@"%d",pageSize];
+    NSDictionary *page = @{@"pageNo":@"1",@"pageSize":pagesize};
     NSDictionary *pageInfo = @{@"cam_id":self.devId,@"page":page};
     NSString *pageStr = [pageInfo JSONString];
     NSString *videoInfoData = [@"video=" stringByAppendingString:pageStr];
