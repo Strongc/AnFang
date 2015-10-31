@@ -12,6 +12,7 @@
 
 #import "SVProgressHUD.h"
 #import "SVIndefiniteAnimatedView.h"
+#import "UIColor+HexColor.h"
 #import <QuartzCore/QuartzCore.h>
 
 NSString * const SVProgressHUDDidReceiveTouchEventNotification = @"SVProgressHUDDidReceiveTouchEventNotification";
@@ -79,7 +80,7 @@ static const CGFloat SVProgressHUDUndefinedProgress = -1;
 + (SVProgressHUD*)sharedView {
     static dispatch_once_t once;
     static SVProgressHUD *sharedView;
-    dispatch_once(&once, ^ { sharedView = [[self alloc] initWithFrame:[[UIScreen mainScreen] bounds]]; });
+    dispatch_once(&once, ^ { sharedView = [[self alloc] initWithFrame:[[UIScreen mainScreen] bounds]];});
     return sharedView;
 }
 

@@ -20,6 +20,7 @@
     UIView *menuView;
     BOOL touch;
     UIView *coverView;
+    
     // RectViewForMessage *rectMenu;
 }
 
@@ -45,7 +46,6 @@
     
     alarmMessageView.title = @"安防消息";
     systemMessageView.title = @"温馨提醒";
-    
     userMessageView.title = @"资讯内容";
     businessView.title = @"商业活动";
     
@@ -54,13 +54,15 @@
 //    tabBarController.delegate = self;
 //    tabBarController.viewControllers = viewControllers;
     SCNavTabBarController *navTabBarController = [[SCNavTabBarController alloc] init];
-    
     navTabBarController.subViewControllers = @[alarmMessageView, systemMessageView,userMessageView,businessView];
     [navTabBarController addParentController:self];
     
     UIButton *item = [navTabBarController.navTabBar.items objectAtIndex:1];
     [item.badgeView setPosition:MGBadgePositionTopRight];
     [item.badgeView setBadgeColor:[UIColor redColor]];
+    
+    NSInteger n = systemMessageView.amount;
+    NSLog(@"数量：%ld",(long)n);
     [item.badgeView setBadgeValue:2];
 
 //    arMenu = @[@[@"建讨论组",@"menu_icon_createDiscuss.png"],

@@ -185,6 +185,7 @@
     [self.view addSubview:chefangBtn];
     chefangBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20*WIDTH/375];
     [chefangBtn setTitle:@"撤 防" forState:UIControlStateNormal];
+    [chefangBtn addTarget:self action:@selector(CheFangAction) forControlEvents:UIControlEventTouchUpInside];
     [chefangBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [chefangBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     chefangBtn.backgroundColor = [UIColor redColor];
@@ -285,13 +286,9 @@
                 tempId = [dict objectForKey:@"area_id"];
                 
                 [self getCameraInfo:tempId];
-               // NSLog(@"%@",tempId);
-                
+            
             }
             //[self performSelectorOnMainThread:@selector(getAreaId) withObject:data waitUntilDone:YES];
-
-        
-        
         }
         
     }];
@@ -338,6 +335,35 @@
 {
     
     [monitorTable reloadData];
+}
+
+-(void)CheFangAction
+{
+    
+    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:nil
+                                                   message:@"确定要撤防？"
+                                                  delegate:self
+                                         cancelButtonTitle:@"确定"
+                                         otherButtonTitles:@"取消",nil];
+    
+    [alert show];
+
+}
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            NSLog(@"%ld",(long)buttonIndex);
+            break;
+            
+        case 1:
+            NSLog(@"%ld",(long)buttonIndex);
+            break;
+        default:
+            break;
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {

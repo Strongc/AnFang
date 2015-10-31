@@ -11,4 +11,6 @@
 
 @interface SystemMessageViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
+@property (nonatomic,strong) NSMutableArray *sysMessageArray;
+@property (nonatomic,assign) NSInteger amount;
 @end

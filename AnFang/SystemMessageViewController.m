@@ -13,11 +13,12 @@
 #import "JSONKit.h"
 #import "CMTool.h"
 #import "SDRefresh.h"
+#import "MessageViewController.h"
 
 @interface SystemMessageViewController ()
 {
     UITableView *messageTable;
-    NSMutableArray *sysMessageArray;
+    
     NSMutableArray *tempArray;
     UILabel *alertLab;
     int pageSize;
@@ -33,7 +34,7 @@
     
     [super viewDidLoad];
     
-    sysMessageArray = [[NSMutableArray alloc]init];
+    self.sysMessageArray = [[NSMutableArray alloc]init];
     tempArray = [[NSMutableArray alloc] init];
     
     messageTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT) style:UITableViewStylePlain];
@@ -41,7 +42,6 @@
     messageTable.dataSource = self;
     messageTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     messageTable.backgroundColor = [UIColor whiteColor];
-    // monitorTable.separatorStyle = NO;
     [self.view addSubview:messageTable];
 
     alertLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 80, WIDTH, 15*HEIGHT/667)];
@@ -52,6 +52,13 @@
     [self getSystemMessage];
     [self setupHeader];
     [self setupFooter];
+   
+//    MessageViewController *messageView = [[MessageViewController alloc] init];
+//    UIButton *item = [messageView.navTabBarController.navTabBar.items objectAtIndex:1];
+//    [item.badgeView setPosition:MGBadgePositionTopRight];
+//    [item.badgeView setBadgeColor:[UIColor redColor]];
+//    [item.badgeView setBadgeValue:sysMessageArray.count];
+
     // Do any additional setup after loading the view.
 }
 
@@ -68,7 +75,7 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
             pageSize += 1;
-            [sysMessageArray removeAllObjects];
+            [self.sysMessageArray removeAllObjects];
             [self getSystemMessage];
             [weakRefreshHeader endRefreshing];
         });
@@ -120,7 +127,7 @@
                 for(NSDictionary *dict in tempArray){
                     
                     SystemMessageModel *model = [SystemMessageModel SystemMessageModelWithDict:dict];
-                    [sysMessageArray addObject:model];
+                    [self.sysMessageArray addObject:model];
                 }
                 
                 
@@ -137,14 +144,15 @@
 
 -(void)refreshData
 {
-    if(sysMessageArray.count > 0){
+    if(self.sysMessageArray.count > 0){
         
         alertLab.hidden = YES;
-    }else if (sysMessageArray.count == 0){
+    }else if (self.sysMessageArray.count == 0){
         
         alertLab.hidden = NO;;
     }
 
+     self.amount = self.sysMessageArray.count;
     [messageTable reloadData];
 }
 
@@ -154,7 +162,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return  sysMessageArray.count;
+    return  self.sysMessageArray.count;
     
 }
 
@@ -174,7 +182,7 @@
         
     }
     
-    SystemMessageModel *model = [sysMessageArray objectAtIndex:indexPath.row];
+    SystemMessageModel *model = [self.sysMessageArray objectAtIndex:indexPath.row];
     cell.sysMessage = model;
     
     [cell.checkBtn addTarget:self action:@selector(jumpToDetailView) forControlEvents:UIControlEventTouchUpInside];
