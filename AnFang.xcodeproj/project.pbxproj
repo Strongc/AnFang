@@ -220,7 +220,6 @@
 		04D033FB1BDF0F5900E9E2BE /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D033F91BDF0F5900E9E2BE /* RSADataVerifier.m */; };
 		04D034101BDF39CB00E9E2BE /* ResourceTreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D0340F1BDF39CB00E9E2BE /* ResourceTreeViewController.m */; };
 		04D034151BDF3A9E00E9E2BE /* PlayViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 04D034141BDF3A9E00E9E2BE /* PlayViewController.mm */; };
-		04D0341E1BDF675300E9E2BE /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D0341B1BDF675300E9E2BE /* libWeChatSDK.a */; };
 		04D034201BDF679300E9E2BE /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D0341F1BDF679300E9E2BE /* libWeChatSDK.a */; };
 		04D034251BDF68A000E9E2BE /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D034241BDF68A000E9E2BE /* WXApiManager.m */; };
 		04D0342D1BDF6FD300E9E2BE /* ApiXml.mm in Sources */ = {isa = PBXBuildFile; fileRef = 04D034281BDF6FD300E9E2BE /* ApiXml.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -711,9 +710,6 @@
 		04D0340F1BDF39CB00E9E2BE /* ResourceTreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceTreeViewController.m; sourceTree = "<group>"; };
 		04D034131BDF3A9E00E9E2BE /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
 		04D034141BDF3A9E00E9E2BE /* PlayViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PlayViewController.mm; sourceTree = "<group>"; };
-		04D0341B1BDF675300E9E2BE /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
-		04D0341C1BDF675300E9E2BE /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
-		04D0341D1BDF675300E9E2BE /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		04D0341F1BDF679300E9E2BE /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libWeChatSDK.a; path = SDKExport/libWeChatSDK.a; sourceTree = "<group>"; };
 		04D034231BDF68A000E9E2BE /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
 		04D034241BDF68A000E9E2BE /* WXApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiManager.m; sourceTree = "<group>"; };
@@ -861,6 +857,8 @@
 		04EAC0501BD8F2780009F2F0 /* record_animate_12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_12.png; sourceTree = "<group>"; };
 		04EAC0511BD8F2780009F2F0 /* record_animate_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_13.png; sourceTree = "<group>"; };
 		04EAC0521BD8F2780009F2F0 /* record_animate_14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_14.png; sourceTree = "<group>"; };
+		3E0159CB1BE71F0500A04EE1 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXApi.h; path = SDKExport/WXApi.h; sourceTree = SOURCE_ROOT; };
+		3E0159CC1BE71F0500A04EE1 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXApiObject.h; path = SDKExport/WXApiObject.h; sourceTree = SOURCE_ROOT; };
 		6563E09E4651676361820012 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		815A5FE989008A8FD1FBBB82 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F3C40336A7B22936EFB1F1AE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -874,7 +872,6 @@
 				04D034201BDF679300E9E2BE /* libWeChatSDK.a in Frameworks */,
 				04D0338A1BDF0C5400E9E2BE /* libASIHTTPRequest.a in Frameworks */,
 				04D033891BDF0C4700E9E2BE /* AlipaySDK.framework in Frameworks */,
-				04D0341E1BDF675300E9E2BE /* libWeChatSDK.a in Frameworks */,
 				04D033881BDF0C3700E9E2BE /* SystemConfiguration.framework in Frameworks */,
 				04D033871BDF0C2900E9E2BE /* CoreTelephony.framework in Frameworks */,
 				04D033861BDF0C1400E9E2BE /* QuartzCore.framework in Frameworks */,
@@ -1758,9 +1755,8 @@
 		04D0341A1BDF675300E9E2BE /* SDKExport */ = {
 			isa = PBXGroup;
 			children = (
-				04D0341B1BDF675300E9E2BE /* libWeChatSDK.a */,
-				04D0341C1BDF675300E9E2BE /* WXApi.h */,
-				04D0341D1BDF675300E9E2BE /* WXApiObject.h */,
+				3E0159CB1BE71F0500A04EE1 /* WXApi.h */,
+				3E0159CC1BE71F0500A04EE1 /* WXApiObject.h */,
 			);
 			name = SDKExport;
 			path = ../../SDKSample_v2.0/SDKExport;
@@ -2100,6 +2096,7 @@
 				04801E221BB3C15C00714CC9 /* Frameworks */,
 				04801E231BB3C15C00714CC9 /* Resources */,
 				F89ADAB668EF141C5B8E978E /* Copy Pods Resources */,
+				754123D6435025FF0AD2E32C /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2343,6 +2340,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		754123D6435025FF0AD2E32C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F89ADAB668EF141C5B8E978E /* Copy Pods Resources */ = {

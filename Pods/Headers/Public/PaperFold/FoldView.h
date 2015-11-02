@@ -1,5 +1,1 @@
-XSym
-0059
-d11f8f084029a3e63ca4232c01f571ab
 ../../../PaperFold/PaperFold/PaperFold/PaperFold/FoldView.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    

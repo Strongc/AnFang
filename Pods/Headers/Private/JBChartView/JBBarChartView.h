@@ -1,5 +1,1 @@
-XSym
-0045
-8e814076c080c0d055443fb3ec15c2b4
 ../../../JBChartView/Classes/JBBarChartView.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  

@@ -1,5 +1,1 @@
-XSym
-0051
-7aa2214a72016c662bd6053abc434443
 ../../../CocoaAsyncSocket/Source/CocoaAsyncSocket.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            

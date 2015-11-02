@@ -1,5 +1,1 @@
-XSym
-0087
-f247d9e24ae04b456df6d1258aa38e0f
 ../../../SWTableViewCell/SWTableViewCell/PodFiles/SWUtilityButtonTapGestureRecognizer.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        

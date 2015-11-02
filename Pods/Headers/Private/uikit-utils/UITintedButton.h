@@ -1,5 +1,1 @@
-XSym
-0057
-1e20800e990916f1f417423585cb3313
 ../../../uikit-utils/Classes/TintedViews/UITintedButton.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      

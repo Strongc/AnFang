@@ -1,5 +1,1 @@
-XSym
-0057
-173ec54fd19b141dee006e273e155b8e
 ../../../CocoaHTTPServer/Core/HTTPAuthenticationRequest.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      

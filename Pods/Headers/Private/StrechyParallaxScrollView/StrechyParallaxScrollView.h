@@ -1,5 +1,1 @@
-XSym
-0114
-a4a969f4f23e3d0d8ea29a6820aa8f27
 ../../../StrechyParallaxScrollView/StrechyParallaxScrollView/StrechyParallaxScrollView/StrechyParallaxScrollView.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             

@@ -1,5 +1,1 @@
-XSym
-0071
-0a05d6e5818744ff46e25f9defb97f1a
 ../../../ASIHTTPRequest/Classes/CloudFiles/ASICloudFilesObjectRequest.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        

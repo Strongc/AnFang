@@ -1,5 +1,1 @@
-XSym
-0088
-605f58677fb67aec8001bb88017608b6
 ../../../CTAssetsPickerController/CTAssetsPickerController/CTAssetsGroupViewController.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       

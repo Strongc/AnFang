@@ -1,5 +1,1 @@
-XSym
-0060
-93fe0c4dbc760ecca83c17e7b09bcc15
 ../../../uikit-utils/Classes/TintedViews/UITintedTextfield.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   

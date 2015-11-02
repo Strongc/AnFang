@@ -1,5 +1,1 @@
-XSym
-0068
-31376ba3f915b7ab313184985e8e3ca1
 ../../../PaperFold/PaperFold/PaperFold/PaperFold/UIView+Screenshot.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           

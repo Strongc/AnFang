@@ -1,5 +1,1 @@
-XSym
-0051
-bb9f18a511290d1499df364e5577396a
 ../../../VBPieChart/VBPieChart/Classes/VBPieChart.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            

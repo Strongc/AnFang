@@ -1,5 +1,1 @@
-XSym
-0078
-cb3a5afb0cec4e4c4a1c86f825a589cb
 ../../../CTAssetsPickerController/CTAssetsPickerController/ALAsset+assetType.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 

@@ -47,7 +47,6 @@ PODS:
     - CocoaLumberjack/Default
   - CTAssetsPickerController (2.6.0)
   - EGODatabase (2.0)
-  - EGOTableViewPullRefreshAndLoadMore (1.0.4)
   - HMSegmentedControl (1.5.2)
   - ios-linechart (1.3.2):
     - uikit-utils (~> 0.5.1)
@@ -88,7 +87,6 @@ DEPENDENCIES:
   - CocoaLumberjack (= 2.0.0-rc)
   - CTAssetsPickerController (~> 2.6.0)
   - EGODatabase (~> 2.0)
-  - EGOTableViewPullRefreshAndLoadMore (~> 1.0.4)
   - HMSegmentedControl
   - ios-linechart (~> 1.3.2)
   - iOS-Slide-Menu (~> 1.4.6)
@@ -120,7 +118,6 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 04c5b9b7479dd4276a09700fcd6644423ea1751c
   CTAssetsPickerController: 1ca60a0ee73c76101a82a8e1e845f4b8a24731cf
   EGODatabase: 8192f4d2bb9f05e38fe8be07a87dcd8066325ee3
-  EGOTableViewPullRefreshAndLoadMore: 118a0824590db042d42e08fcc442b93cebf15e73
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
   ios-linechart: 8f5a932e2d3e46a2f0c65f1cbc4aa7bc8a26e28b
   iOS-Slide-Menu: 3a8b157f87694fce888899f169e05b433575ff90
@@ -148,4 +145,4 @@ SPEC CHECKSUMS:
   URBMediaFocusViewController: 21618bda6290f74b2767059e983f3a7f4f3e8cd1
   VBPieChart: ea8f9220d050a25b25d70b94ae8c193d7fb9c5e1
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

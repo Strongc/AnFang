@@ -1,5 +1,1 @@
-XSym
-0056
-46d73cdacc2f63f360337dd01421c714
 ../../../uikit-utils/Classes/TintedViews/UITintedLabel.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       

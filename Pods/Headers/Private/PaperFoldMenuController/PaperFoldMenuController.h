@@ -1,5 +1,1 @@
-XSym
-0082
-ccd127797dd1fc9504f06fe195cb5266
 ../../../PaperFoldMenuController/PaperFoldMenuController/PaperFoldMenuController.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             

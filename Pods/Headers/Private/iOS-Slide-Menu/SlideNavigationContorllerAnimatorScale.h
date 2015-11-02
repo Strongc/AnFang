@@ -1,5 +1,1 @@
-XSym
-0092
-1d4770c1769cae09e82963a61b8c091e
 ../../../iOS-Slide-Menu/SlideMenu/Source/Animations/SlideNavigationContorllerAnimatorScale.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   

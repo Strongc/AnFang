@@ -1,5 +1,1 @@
-XSym
-0057
-757545b1f9dc36cab76a60b578423b58
 ../../../VBPieChart/VBPieChart/Classes/UIColor+HexColor.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      

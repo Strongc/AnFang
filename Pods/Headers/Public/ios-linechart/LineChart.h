@@ -1,5 +1,1 @@
-XSym
-0048
-536dd7232ac8892d57d98584abe1606c
 ../../../ios-linechart/ios-linechart/LineChart.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               

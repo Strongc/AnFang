@@ -1,5 +1,1 @@
-XSym
-0049
-daab795bd57ac7f795185bcd85231ba5
 ../../../ios-linechart/ios-linechart/LCInfoView.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              

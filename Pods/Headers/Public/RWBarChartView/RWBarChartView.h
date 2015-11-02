@@ -1,5 +1,1 @@
-XSym
-0055
-c1dfc47560b39ad61243d56410a00a84
 ../../../RWBarChartView/RWBarChartView/RWBarChartView.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        

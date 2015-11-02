@@ -1,5 +1,1 @@
-XSym
-0056
-3fa3f13bcd134d330e445aff7ec5c0fa
 ../../../ASIHTTPRequest/Classes/S3/ASIS3ServiceRequest.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       

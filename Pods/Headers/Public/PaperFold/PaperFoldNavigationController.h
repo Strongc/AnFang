@@ -1,5 +1,1 @@
-XSym
-0080
-f20cb76d3926b08995d62c63710a6b7e
 ../../../PaperFold/PaperFold/PaperFold/PaperFold/PaperFoldNavigationController.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               

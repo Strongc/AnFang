@@ -1,5 +1,1 @@
-XSym
-0059
-b16f25185d86108122d15c946eb347d9
 ../../../CocoaHTTPServer/Extensions/WebDAV/DELETEResponse.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    

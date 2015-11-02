@@ -1,5 +1,1 @@
-XSym
-0046
-3b6936685b9ad8c77f87a32cf582e2fd
 ../../../CocoaHTTPServer/Core/HTTPConnection.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 

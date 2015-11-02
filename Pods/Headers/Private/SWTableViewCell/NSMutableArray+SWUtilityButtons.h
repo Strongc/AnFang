@@ -1,5 +1,1 @@
-XSym
-0083
-bfea50ca26641392cc0a9aee0db8c3ae
 ../../../SWTableViewCell/SWTableViewCell/PodFiles/NSMutableArray+SWUtilityButtons.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            

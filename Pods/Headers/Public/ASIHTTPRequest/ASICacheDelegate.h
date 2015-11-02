@@ -1,5 +1,1 @@
-XSym
-0050
-11b03acac15308b1e3fe649c7073c64e
 ../../../ASIHTTPRequest/Classes/ASICacheDelegate.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             

@@ -1,5 +1,1 @@
-XSym
-0042
-2629373dbdf2b9d0e09673a114b80e7d
 ../../../JBChartView/Classes/JBChartView.h
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     

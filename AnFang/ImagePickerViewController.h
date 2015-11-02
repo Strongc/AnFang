@@ -12,7 +12,6 @@
 
 @protocol PickImageDelegate <NSObject>
 
-//-(void) replaceImage:(UIImage*)image Name:(NSString*)name;
 -(void) flushImageViews:(NSMutableArray*)arrayMutable;
 
 @end
