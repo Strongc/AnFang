@@ -1,1 +1,5 @@
+XSym
+0048
+9d33ec47e0c097e605c6fac8e72dc05d
 ../../../ASIHTTPRequest/Classes/S3/ASIS3Bucket.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               

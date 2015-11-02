@@ -1,1 +1,5 @@
+XSym
+0051
+cc38baa2e7ff665dd30e34af253fac36
 ../../../ASIHTTPRequest/Classes/ASIDataCompressor.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            

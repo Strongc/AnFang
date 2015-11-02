@@ -1,1 +1,5 @@
+XSym
+0064
+1ae50b7929b7e89d9a4dd8743b5cc1d1
 ../../../PaperFold/PaperFold/PaperFold/PaperFold/MultiFoldView.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               

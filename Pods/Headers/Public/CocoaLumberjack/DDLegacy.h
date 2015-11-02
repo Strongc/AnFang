@@ -1,1 +1,5 @@
+XSym
+0043
+a9a2f1347aac041708951c50bb011e1a
 ../../../CocoaLumberjack/Classes/DDLegacy.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    

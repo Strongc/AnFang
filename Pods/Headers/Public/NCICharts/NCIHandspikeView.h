@@ -1,1 +1,5 @@
+XSym
+0052
+c9f1d5bc8293dabafc6a2c263f214c81
 ../../../NCICharts/NCIChart/views/NCIHandspikeView.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           

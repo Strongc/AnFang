@@ -1,1 +1,5 @@
+XSym
+0067
+98d55cc98b73873e7a89cd58fbf3f994
 ../../../HMSegmentedControl/HMSegmentedControl/HMSegmentedControl.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            

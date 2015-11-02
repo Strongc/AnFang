@@ -1,1 +1,5 @@
+XSym
+0080
+e6d0c0a1d01ef110b8bc2c342c691239
 ../../../SWTableViewCell/SWTableViewCell/PodFiles/SWLongPressGestureRecognizer.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               

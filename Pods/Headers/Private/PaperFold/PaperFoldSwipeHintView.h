@@ -1,1 +1,5 @@
+XSym
+0073
+d00f74b132c672a327b56c3d98a96476
 ../../../PaperFold/PaperFold/PaperFold/PaperFold/PaperFoldSwipeHintView.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      

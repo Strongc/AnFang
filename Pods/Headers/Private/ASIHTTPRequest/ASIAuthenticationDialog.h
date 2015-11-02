@@ -1,1 +1,5 @@
+XSym
+0057
+d3c55f2a0f1a5ab69beb3dc7702f0b18
 ../../../ASIHTTPRequest/Classes/ASIAuthenticationDialog.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      

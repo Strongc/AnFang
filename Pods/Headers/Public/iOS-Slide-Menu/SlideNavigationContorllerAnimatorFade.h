@@ -1,1 +1,5 @@
+XSym
+0091
+579fd094f796bb7053d22a8ec70f9b4f
 ../../../iOS-Slide-Menu/SlideMenu/Source/Animations/SlideNavigationContorllerAnimatorFade.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    

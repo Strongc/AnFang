@@ -1,1 +1,5 @@
+XSym
+0051
+6ded9b8626080d25686d195957416157
 ../../../VBPieChart/VBPieChart/Classes/VBPiePiece.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            

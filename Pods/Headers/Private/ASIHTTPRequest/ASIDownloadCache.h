@@ -1,1 +1,5 @@
+XSym
+0050
+2d0b34773b99f3b243a40123c9c8cedb
 ../../../ASIHTTPRequest/Classes/ASIDownloadCache.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             

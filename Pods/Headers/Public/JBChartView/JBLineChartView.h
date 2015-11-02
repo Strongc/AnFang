@@ -1,1 +1,5 @@
+XSym
+0046
+610710c0d676f771ef604de798511c45
 ../../../JBChartView/Classes/JBLineChartView.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 

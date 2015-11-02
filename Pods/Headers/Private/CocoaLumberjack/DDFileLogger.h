@@ -1,1 +1,5 @@
+XSym
+0047
+efc40693a4097bce554bfe576bb55585
 ../../../CocoaLumberjack/Classes/DDFileLogger.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

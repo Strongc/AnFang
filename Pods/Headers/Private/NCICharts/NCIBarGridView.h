@@ -1,1 +1,5 @@
+XSym
+0050
+508277ce4ac3b532725a43f134487983
 ../../../NCICharts/NCIChart/views/NCIBarGridView.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             

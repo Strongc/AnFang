@@ -1,1 +1,5 @@
+XSym
+0067
+64659ca7cf804d6db3ccb5321b671447
 ../../../SWTableViewCell/SWTableViewCell/PodFiles/SWTableViewCell.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            

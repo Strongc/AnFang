@@ -1,1 +1,5 @@
+XSym
+0040
+8868f859aaf6b8528ead400fa3a4067b
 ../../../SZTextView/Classes/SZTextView.h
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
