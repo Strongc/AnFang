@@ -38,7 +38,10 @@
 #define API_GET_SYSROLEINFO @"sysRole/page"
 //获取系统权限数据
 #define API_GET_SYSPERMISSIONINFO @"sysPermission/page"
-
+//布防
+#define API_ADDLINE @"host/addLine"
+//撤防
+#define API_REMOVELINE @"host/removeLine"
 
 typedef enum{
 

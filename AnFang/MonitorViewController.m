@@ -19,6 +19,8 @@
 //#import "MonitorDevInfoViewController.h"
 #import "DeviceManagerViewController.h"
 #import "SDRefresh.h"
+#import "CoreArchive.h"
+#import "SVProgressHUD.h"
 
 @interface MonitorViewController ()
 {
@@ -28,10 +30,16 @@
     NSMutableArray *defenceAreaInfo;
     NSMutableArray *defenceAreaImage;
     NSMutableArray *tempArray;
+    NSMutableArray *tempHostArray;
    // NSString *areaId;
     NSString *tempId;
+    NSString *hostId;
+    NSString *hostStatus;
+    NSString *bufangInfo;
     NSMutableArray *cameraArray;
     int pageSize;
+    UIButton *chefangBtn;
+    UIButton *bufangBtn;
 
 }
 @property (nonatomic,strong) NSArray *sourceData;
@@ -87,6 +95,9 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self ConfigControl];
     
+    NSString *userId = [CoreArchive strForKey:@"userId"];
+    NSLog(@"%@",userId);
+    
     UINavigationBar *bar = [self.navigationController navigationBar];
     CGFloat navBarHeight = 44*HEIGHT/667;
     CGRect rect = CGRectMake(0, 0, WIDTH, navBarHeight);
@@ -98,11 +109,10 @@
 
     tempArray = [[NSMutableArray alloc]init];
     cameraArray = [[NSMutableArray alloc]init];
+    tempHostArray = [[NSMutableArray alloc]init];
     pageSize = 1;
     [self getAreaInfo];
     
-    
-
     // NSLog(@"防区ID：%@",areaId);
    // [self getCameraInfo];
     // Do any additional setup after loading the view.
@@ -171,17 +181,19 @@
     [refreshBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [refreshBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     
-    UIButton *bufangBtn = [[UIButton alloc]initWithFrame:CGRectMake(40*WIDTH/375, 175*HEIGHT/667, 110*WIDTH/375, 40*HEIGHT/667)];
+    bufangBtn = [[UIButton alloc]initWithFrame:CGRectMake(40*WIDTH/375, 175*HEIGHT/667, 110*WIDTH/375, 40*HEIGHT/667)];
     [self.view addSubview:bufangBtn];
     bufangBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20*WIDTH/375];
     [bufangBtn setTitle:@"布 防" forState:UIControlStateNormal];
     [bufangBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [bufangBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     bufangBtn.backgroundColor = [UIColor greenColor];
+    //[bufangBtn setBackgroundImage:<#(nullable UIImage *)#> forState:<#(UIControlState)#>];
     bufangBtn.layer.borderColor = [[UIColor grayColor]CGColor];
     bufangBtn.layer.borderWidth = 1.0;
+    [bufangBtn addTarget:self action:@selector(BuFangRequestAction) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *chefangBtn = [[UIButton alloc]initWithFrame:CGRectMake(220*WIDTH/375, 175*HEIGHT/667, 110*WIDTH/375, 40*HEIGHT/667)];
+    chefangBtn = [[UIButton alloc]initWithFrame:CGRectMake(220*WIDTH/375, 175*HEIGHT/667, 110*WIDTH/375, 40*HEIGHT/667)];
     [self.view addSubview:chefangBtn];
     chefangBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20*WIDTH/375];
     [chefangBtn setTitle:@"撤 防" forState:UIControlStateNormal];
@@ -220,6 +232,146 @@
     [self setupFooter];
     
 }
+
+//获取当前用户的主机信息
+-(void)getUserHostInfo
+{
+
+    //chefangBtn.userInteractionEnabled = NO;
+    NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"2"};
+    NSDictionary *pageInfo = @{@"page":page};
+    NSString *pageStr = [pageInfo JSONString];
+    NSString *hostInfoData = [@"host=" stringByAppendingString:pageStr];
+    
+    [WGAPI post:API_GET_HOSTINFO RequestParams:hostInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if(data){
+            
+            NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            //NSLog(@"%@",jsonStr);
+            NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
+            if(infojson != nil){
+                NSDictionary *messageInfo = [infojson objectForKey:@"data"];
+                // NSString *messageInfoStr = [CMTool dictionaryToJson:messageInfo];
+                // NSLog(@"%@",messageInfoStr);
+                tempHostArray = [messageInfo objectForKey:@"datas"];
+                if(tempHostArray.count > 0){
+                    NSDictionary *dict = tempHostArray[0];
+                    hostId = [dict objectForKey:@"host_id"];
+                    hostStatus = [dict objectForKey:@"host_status"];
+                    //[self BuFangRequestAction:@"201510231107140078"];
+
+                
+                }
+                [self performSelectorOnMainThread:@selector(setButtonStatus) withObject:data waitUntilDone:YES];//刷新UI线程
+
+            }
+            
+        }
+        
+    }];
+
+
+}
+
+-(void) setButtonStatus{
+
+    if([hostStatus isEqualToString:@"FALSE"]){
+    
+        chefangBtn.userInteractionEnabled = NO;
+        [chefangBtn setBackgroundColor:[UIColor grayColor]];
+        bufangBtn.userInteractionEnabled = YES;
+    }else if ([hostStatus isEqualToString:@"TRUE"]){
+    
+        chefangBtn.userInteractionEnabled = YES;
+        bufangBtn.userInteractionEnabled = NO;
+        [bufangBtn setBackgroundColor:[UIColor grayColor]];
+    }
+
+}
+
+//保存主机ID信息
+-(void)saveHostInfo
+{
+    
+    [CoreArchive setStr:hostId key:@"hostId"];
+    
+}
+
+//布防
+-(void)BuFangRequestAction
+{
+
+   // NSString *hostIds = [CoreArchive strForKey:@"hostId"];
+    NSString *hostParam = [@"hostIds=" stringByAppendingString:@"201510231107140078"];
+    
+    [WGAPI post:API_ADDLINE RequestParams:hostParam FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if(data){
+        
+            NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
+            if(infojson != nil){
+            
+                bufangInfo = [infojson objectForKey:@"data"];
+                if([bufangInfo isEqualToString:@"sucess"]){
+                
+                    
+                    [self performSelectorOnMainThread:@selector(ResponseInfo) withObject:data waitUntilDone:YES];//刷新UI线程
+                }
+                
+            }
+        
+        
+        }
+    }];
+
+
+}
+
+-(void)ResponseInfo
+{
+    
+    chefangBtn.userInteractionEnabled = YES;
+    [SVProgressHUD showSuccessWithStatus:@"布防成功！" maskType:SVProgressHUDMaskTypeBlack];
+    bufangBtn.userInteractionEnabled = NO;
+
+}
+
+-(void)CheFangRequest
+{
+    NSString *hostParam = [@"hostIds=" stringByAppendingString:@"201510231107140078"];
+    
+    [WGAPI post:API_REMOVELINE RequestParams:hostParam FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if(data){
+            
+            NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
+            if(infojson != nil){
+                
+                bufangInfo = [infojson objectForKey:@"data"];
+                if([bufangInfo isEqualToString:@"sucess"]){
+                    
+                    
+                    [self performSelectorOnMainThread:@selector(ResponseInfo2) withObject:data waitUntilDone:YES];//刷新UI线程
+                }
+                
+            }
+            
+            
+        }
+    }];
+
+    
+}
+
+-(void)ResponseInfo2
+{
+    
+    chefangBtn.userInteractionEnabled = NO;
+    [SVProgressHUD showSuccessWithStatus:@"撤防成功！" maskType:SVProgressHUDMaskTypeBlack];
+    bufangBtn.userInteractionEnabled = YES;
+    
+}
+
 
 - (void)setupHeader
 {
@@ -337,6 +489,7 @@
     [monitorTable reloadData];
 }
 
+
 -(void)CheFangAction
 {
     
@@ -354,7 +507,7 @@
 {
     switch (buttonIndex) {
         case 0:
-            NSLog(@"%ld",(long)buttonIndex);
+            [self CheFangRequest];
             break;
             
         case 1:

@@ -158,7 +158,7 @@
         alertLab.hidden = YES;
     }else if (messageArray.count == 0){
         
-        alertLab.hidden = NO;;
+        alertLab.hidden = NO;
     }
 
     [messageTable reloadData];

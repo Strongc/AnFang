@@ -32,6 +32,7 @@
     NSDictionary *json;
     NSString *nickName;
     UILabel *userName;
+    
 }
 
 @end
@@ -59,6 +60,10 @@
     self.navigationItem.backBarButtonItem = item;
     [self ConfigControl];
     [self getUserInfo];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserInfo) name:@"getUserInfo" object:nil];
+   // NSString *Id = [CoreArchive strForKey:@"userId"];
+   // NSLog(@"%@",Id);
+    //[self getUserInfo];
    
 }
 
@@ -86,6 +91,8 @@
                 
                 NSDictionary *userMessage = userInfoArray[0];
                 nickName = [userMessage objectForKey:@"usr_name"];
+               // userId = [userMessage objectForKey:@"usr_id"];
+                
                 [self performSelectorOnMainThread:@selector(refreshUIControl) withObject:data waitUntilDone:YES];//刷新UI线程
             }
            
@@ -99,8 +106,9 @@
 
 -(void)refreshUIControl
 {
-
+    
     userName.text = nickName;
+    //[CoreArchive setStr:userId key:@"userId"];
 }
 
 -(void)ConfigControl
