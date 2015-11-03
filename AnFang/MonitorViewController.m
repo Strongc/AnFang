@@ -112,7 +112,7 @@
     tempHostArray = [[NSMutableArray alloc]init];
     pageSize = 1;
     [self getAreaInfo];
-    
+    [self getUserHostInfo];
     // NSLog(@"防区ID：%@",areaId);
    // [self getCameraInfo];
     // Do any additional setup after loading the view.
@@ -275,34 +275,29 @@
 
 -(void) setButtonStatus{
 
+    [CoreArchive setStr:hostId key:@"hostId"];
     if([hostStatus isEqualToString:@"FALSE"]){
     
         chefangBtn.userInteractionEnabled = NO;
         [chefangBtn setBackgroundColor:[UIColor grayColor]];
         bufangBtn.userInteractionEnabled = YES;
+        [bufangBtn setBackgroundColor:[UIColor greenColor]];
     }else if ([hostStatus isEqualToString:@"TRUE"]){
     
         chefangBtn.userInteractionEnabled = YES;
+        [chefangBtn setBackgroundColor:[UIColor greenColor]];
         bufangBtn.userInteractionEnabled = NO;
         [bufangBtn setBackgroundColor:[UIColor grayColor]];
     }
 
 }
 
-//保存主机ID信息
--(void)saveHostInfo
-{
-    
-    [CoreArchive setStr:hostId key:@"hostId"];
-    
-}
-
 //布防
 -(void)BuFangRequestAction
 {
 
-   // NSString *hostIds = [CoreArchive strForKey:@"hostId"];
-    NSString *hostParam = [@"hostIds=" stringByAppendingString:@"201510231107140078"];
+    NSString *hostIds = [CoreArchive strForKey:@"hostId"];
+    NSString *hostParam = [@"hostIds=" stringByAppendingString:hostIds];
     
     [WGAPI post:API_ADDLINE RequestParams:hostParam FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if(data){
@@ -331,15 +326,18 @@
 {
     
     chefangBtn.userInteractionEnabled = YES;
+    [chefangBtn setBackgroundColor:[UIColor greenColor]];
     [SVProgressHUD showSuccessWithStatus:@"布防成功！" maskType:SVProgressHUDMaskTypeBlack];
     bufangBtn.userInteractionEnabled = NO;
+    [bufangBtn setBackgroundColor:[UIColor grayColor]];
 
 }
 
 -(void)CheFangRequest
 {
-    NSString *hostParam = [@"hostIds=" stringByAppendingString:@"201510231107140078"];
-    
+    //NSString *hostParam = [@"hostIds=" stringByAppendingString:@"201510231107140078"];
+    NSString *hostIds = [CoreArchive strForKey:@"hostId"];
+    NSString *hostParam = [@"hostIds=" stringByAppendingString:hostIds];
     [WGAPI post:API_REMOVELINE RequestParams:hostParam FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if(data){
             
@@ -367,8 +365,10 @@
 {
     
     chefangBtn.userInteractionEnabled = NO;
+    [chefangBtn setBackgroundColor:[UIColor grayColor]];
     [SVProgressHUD showSuccessWithStatus:@"撤防成功！" maskType:SVProgressHUDMaskTypeBlack];
     bufangBtn.userInteractionEnabled = YES;
+    [bufangBtn setBackgroundColor:[UIColor greenColor]];
     
 }
 
