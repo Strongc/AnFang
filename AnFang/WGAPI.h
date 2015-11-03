@@ -12,8 +12,10 @@
 #define RESULT @"result"
 //用户登录
 #define API_USER_LOGIN @"user/login"
-//获取用户信息
+//分页获取用户信息
 #define API_GET_USERINFO @"user/page"
+//获取用户信息
+#define API_GET_USEDATA  @"user/getUser"
 //获取报警数据
 #define API_GET_ALARMINFO @"alarm/page"
 //获取防区数据

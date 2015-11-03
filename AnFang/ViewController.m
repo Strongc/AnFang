@@ -194,6 +194,7 @@
     //[[NSNotificationCenter defaultCenter] postNotificationName:@"getUserInfo" object:nil];
     
 }
+
 -(void)getUserInfo
 {
     
