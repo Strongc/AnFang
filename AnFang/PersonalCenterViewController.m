@@ -31,7 +31,7 @@
     NSMutableArray *userInfoArray;
     NSDictionary *json;
     NSString *nickName;
-    UILabel *userName;
+    
     
 }
 
@@ -59,7 +59,8 @@
     //self.navigationController.navigationBar.translucent = NO;
     self.navigationItem.backBarButtonItem = item;
     [self ConfigControl];
-    [self getUserInfo];
+    
+   // [self getUserInfo];
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserInfo) name:@"getUserInfo" object:nil];
    // NSString *Id = [CoreArchive strForKey:@"userId"];
    // NSLog(@"%@",Id);
@@ -107,7 +108,7 @@
 -(void)refreshUIControl
 {
     
-    userName.text = nickName;
+    
     //[CoreArchive setStr:userId key:@"userId"];
 }
 
@@ -157,11 +158,11 @@
     titleLab.font = [UIFont boldSystemFontOfSize:16*WIDTH/375];
     [defaultImage addSubview:titleLab];
     
-    userName = [[UILabel alloc]initWithFrame:CGRectMake(155*WIDTH/375, 160*HEIGHT/667, 200*WIDTH/375, 16*HEIGHT/667)];
+    UILabel *userName = [[UILabel alloc]initWithFrame:CGRectMake(155*WIDTH/375, 160*HEIGHT/667, 200*WIDTH/375, 16*HEIGHT/667)];
     userName.textAlignment = NSTextAlignmentCenter;
     userName.textColor = [UIColor blackColor];
     userName.font = [UIFont boldSystemFontOfSize:16*WIDTH/375];
-    
+    userName.text = [CoreArchive strForKey:@"name"];
     [self.view addSubview:userName];
     [self.view setBackgroundColor:[UIColor whiteColor]];
 

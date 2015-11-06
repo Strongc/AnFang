@@ -12,15 +12,12 @@
 #import "Common.h"
 #import "GradientButton.h"
 #import "MenuTabBarViewController.h"
-#import "RSA.h"
+//#import "RSA.h"
 #import "JSONKit.h"
-#import "Security.h"
-#import "Base64.h"
+//#import "Security.h"
 #import "CMTool.h"
-#import "CMTool.h"
-#import "JKBigInteger.h"
-#import "RsaFactory.h"
-#import <AFNetworking/AFNetworking.h>
+//#import "JKBigInteger.h"
+//#import "RsaFactory.h"
 #import "CoreArchive.h"
 #import "WGAPI.h"
 #import "SVProgressHUD.h"
@@ -33,6 +30,7 @@
     NSString *message;
     NSMutableArray *userInfoArray;
     NSString *userId;
+    //NSString *userName;
    // NSMutableData *infoData;
 }
 
@@ -58,7 +56,7 @@
     
     UIButton *regBtn = [[UIButton alloc]initWithFrame:CGRectMake(WIDTH-50, 15, 40, 40)];
     [self.view addSubview:regBtn];
-    [regBtn setTitle:@"注册" forState:UIControlStateNormal];
+    //[regBtn setTitle:@"注册" forState:UIControlStateNormal];
     regBtn.titleLabel.font = [UIFont systemFontOfSize:16];
     regBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [regBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -66,7 +64,7 @@
     
     [self.view setBackgroundColor:[UIColor colorWithHexString:@"ededed"]];
     
-    UIView *inputView = [[UIView alloc] initWithFrame:CGRectMake(0, (headView.bottom+20)*WIDTH/375, self.view.width, 100*HEIGHT/667)];
+    UIView *inputView = [[UIView alloc] initWithFrame:CGRectMake(0, (headView.bottom+20), self.view.width, 100*HEIGHT/667)];
     inputView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:inputView];
     
@@ -82,7 +80,7 @@
     line3.backgroundColor = [UIColor colorWithHexString:@"ededed"];
     [inputView addSubview:line3];
     
-    loginBtn = [[GradientButton alloc] initWithFrame:CGRectMake(15*WIDTH/375, 220*WIDTH/375, self.view.width-30*WIDTH/375, 40*HEIGHT/667)];
+    loginBtn = [[GradientButton alloc] initWithFrame:CGRectMake(15*WIDTH/375, 220*WIDTH/375, self.view.width-30, 45)];
     
     UILabel *title2 = [[UILabel alloc]initWithFrame:CGRectMake(150*WIDTH/375, 0, 40*WIDTH/375, 40*HEIGHT/667)];
     title2.text = @"登录";
@@ -94,12 +92,13 @@
     
     name = [[UITextField alloc] initWithFrame:CGRectMake(10*WIDTH/375, 5*WIDTH/375, self.view.width-20*WIDTH/375, 40*HEIGHT/667)];
     [inputView addSubview:name];
-    name.placeholder = @"手机号／邮箱／用户名";
+    name.placeholder = @"手机号/邮箱/用户名";
     
     passWordField = [[UITextField alloc]initWithFrame:CGRectMake(10*WIDTH/375, 50*WIDTH/375, self.view.width-20*WIDTH/375, 40*HEIGHT/667)];
     [inputView addSubview:passWordField];
     passWordField.placeholder = @"密码";
     passWordField.secureTextEntry = YES;
+    passWordField.keyboardType = UIKeyboardTypeNumberPad;
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] init];
     item.title = @"返回";
@@ -127,7 +126,7 @@
     NSString *str = @"user=";
     NSString *paramStr = [str stringByAppendingString:paramsStr];
     
-    //[self jumpToMainView];
+   // [self jumpToMainView];
     if(![CMTool isConnectionAvailable]){
         [SVProgressHUD showInfoWithStatus:@"网络没有连接！"];
     
@@ -151,18 +150,19 @@
                 NSString *json =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                 NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:json];
                 NSLog(@"%@",json);
-                NSDictionary *messageJson = [infojson objectForKey:@"data"];
-                message = [messageJson objectForKey:@"message"];
-                NSLog(@"%@",message);
-                if([message isEqualToString:@"登陆成功"]){
-                
-                     [self performSelectorOnMainThread:@selector(jumpToMainView) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
-                    
-                    
-                    
-                }else {
-                
-                    [self performSelectorOnMainThread:@selector(errorMessage:) withObject:message waitUntilDone:YES];
+                if(infojson != nil){
+                    NSDictionary *messageJson = [infojson objectForKey:@"data"];
+                    message = [messageJson objectForKey:@"message"];
+                    NSLog(@"%@",message);
+                    if([message isEqualToString:@"登陆成功"]){
+                        
+                        [self performSelectorOnMainThread:@selector(jumpToMainView) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
+                        
+                    }else {
+                        
+                        [self performSelectorOnMainThread:@selector(errorMessage:) withObject:message waitUntilDone:YES];
+                    }
+
                 }
                 
             }else{
@@ -186,7 +186,7 @@
      NSString *userName = name.text;
     [CoreArchive setStr:userName key:@"name"];
     self.navigationController.navigationBarHidden = YES;
-    [self getUserInfo];
+   // [self getUserInfo];
     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     MenuTabBarViewController *menuTab = [mainView instantiateViewControllerWithIdentifier:@"menuTabBar"];
     [self.navigationController pushViewController:menuTab animated:YES];
@@ -205,7 +205,7 @@
     NSString *userInfoData = [@"user=" stringByAppendingString:pageStr];
     // NSString *urlStr=[NSString stringWithFormat:@"http://192.168.0.42:8080/platform/user/page"];
     //userInfo = [WGAPI httpAsynchronousRequestUrl:urlStr postStr:userInfoData];
-    [WGAPI post:API_GET_USERINFO RequestParams:userInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+    [WGAPI post:API_GET_USEDATA RequestParams:nil FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
         if(data){
             
@@ -213,21 +213,14 @@
             NSLog(@"%@",jsonStr);
             NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
             // NSDictionary *userInfo = [infojson objectForKey:@"data"];
-            userInfoArray = [infojson objectForKey:@"datas"];
+            NSDictionary *userInfo = [infojson objectForKey:@"data"];
+            userId = [userInfo objectForKey:@"usr_id"];
             
-            if(userInfoArray.count > 0){
-                
-                NSDictionary *userMessage = userInfoArray[0];
-                //nickName = [userMessage objectForKey:@"usr_name"];
-                userId = [userMessage objectForKey:@"usr_id"];
-                
-                [self performSelectorOnMainThread:@selector(saveUserInfo) withObject:data waitUntilDone:YES];//刷新UI线程
-            }
-            
+               [self performSelectorOnMainThread:@selector(saveUserInfo) withObject:data waitUntilDone:YES];//刷新UI线程
+
             
         }
-        
-        
+    
     }];
     
 }

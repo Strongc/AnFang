@@ -52,8 +52,9 @@
         titleLab.font = [UIFont boldSystemFontOfSize:12*WIDTH/375];
         titleLab.text = @"一键报警";
         
-        UILabel *locationLab = [[UILabel alloc]initWithFrame:CGRectMake(220*WIDTH/375, 5*HEIGHT/667, 120*WIDTH/375, 20*HEIGHT/667)];
+        UILabel *locationLab = [[UILabel alloc]initWithFrame:CGRectMake(80*WIDTH/375, 5*HEIGHT/667, 220*WIDTH/375, 30*HEIGHT/667)];
         self.locationLab = locationLab;
+        locationLab.numberOfLines = 0;
         [backgroundView addSubview:locationLab];
         locationLab.textAlignment = NSTextAlignmentCenter;
         locationLab.textColor = [UIColor blackColor];

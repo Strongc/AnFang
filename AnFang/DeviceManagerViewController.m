@@ -282,14 +282,16 @@
             
                 NSDictionary *videoInfo = [infojson objectForKey:@"data"];
                 tempArray = [videoInfo objectForKey:@"datas"];
-                for(NSDictionary *dict in tempArray){
+                if(tempArray.count > 0){
+                    for(NSDictionary *dict in tempArray){
                 
-                    VideoModel *model = [VideoModel VideoWithDict:dict];
-                    [videoArray addObject:model];
+                        VideoModel *model = [VideoModel VideoWithDict:dict];
+                        [videoArray addObject:model];
+                    }
+                     [self performSelectorOnMainThread:@selector(refreshData) withObject:data waitUntilDone:YES];
                 }
-            
             }
-            [self performSelectorOnMainThread:@selector(refreshData) withObject:data waitUntilDone:YES];
+           
 
         }
     }];
@@ -308,11 +310,12 @@
     if(videoArray.count > 0){
         
         alertLab.hidden = YES;
+        [videoList reloadData];
     }else if (videoArray.count == 0){
     
         alertLab.hidden = NO;;
     }
-    [videoList reloadData];
+    
 }
 
 

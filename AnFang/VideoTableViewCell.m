@@ -42,7 +42,7 @@
         // [self.contentView addSubview:lab];
         lab.backgroundColor = [UIColor whiteColor];
         
-        UIImageView *videoImage = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 50, 60)];
+        UIImageView *videoImage = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 50, 60*HEIGHT/667)];
         videoImage.image = [UIImage imageNamed:@"alarm.png"];
         [self.contentView addSubview:videoImage];
         self.videoImage = videoImage;

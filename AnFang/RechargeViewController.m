@@ -12,12 +12,12 @@
 #import "UIColor+Extensions.h"
 #import "PayStyle.h"
 #import "PayStyleCollectionViewCell.h"
-#import <AlipaySDK/AlipaySDK.h>
-#import "Order.h"
-#import "DataSigner.h"
-#import "payRequsestHandler.h"
-#import "WXApiObject.h"
-#import "WXApi.h"
+//#import <AlipaySDK/AlipaySDK.h>
+//#import "Order.h"
+//#import "DataSigner.h"
+//#import "payRequsestHandler.h"
+//#import "WXApiObject.h"
+//#import "WXApi.h"
 
 
 @interface RechargeViewController ()
@@ -374,35 +374,35 @@
     NSString *str2 = [str1 stringByAppendingString:privateKeyTemp];
     NSString *privateKey = [str2 stringByAppendingString:str3];
     
-    Order *order = [[Order alloc] init];
-    order.partner = partner;
-    order.seller = seller;
-    order.tradeNO = [self generateTradeNO]; //订单ID（由商家自行制定）
-    order.productName = @"套餐"; //商品标题
-    order.productDescription = @"安防服务套餐"; //商品描述
-    order.amount = [NSString stringWithFormat:@"%.2f",2.00]; //商品价格
-    order.notifyURL =  @"http://www.xxx.com"; //回调URL
-    
-    order.service = @"mobile.securitypay.pay";
-    order.paymentType = @"1";
-    order.inputCharset = @"utf-8";
-    order.itBPay = @"30m";
-    order.showUrl = @"m.alipay.com";
-    NSString *orderSpec = [order description];
-    
-    //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
-    id<DataSigner> signer = CreateRSADataSigner(privateKey);
-    NSString *signedString = [signer signString:orderSpec];
-    NSLog(@"私钥：%@",signer);
+//    Order *order = [[Order alloc] init];
+//    order.partner = partner;
+//    order.seller = seller;
+//    order.tradeNO = [self generateTradeNO]; //订单ID（由商家自行制定）
+//    order.productName = @"套餐"; //商品标题
+//    order.productDescription = @"安防服务套餐"; //商品描述
+//    order.amount = [NSString stringWithFormat:@"%.2f",2.00]; //商品价格
+//    order.notifyURL =  @"http://www.xxx.com"; //回调URL
+//    
+//    order.service = @"mobile.securitypay.pay";
+//    order.paymentType = @"1";
+//    order.inputCharset = @"utf-8";
+//    order.itBPay = @"30m";
+//    order.showUrl = @"m.alipay.com";
+//    NSString *orderSpec = [order description];
+//    
+//    //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
+//    id<DataSigner> signer = CreateRSADataSigner(privateKey);
+//    NSString *signedString = [signer signString:orderSpec];
+//    NSLog(@"私钥：%@",signer);
     
     NSString *appScheme = @"anfang";
     
-    NSString *orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
-                   orderSpec, signedString, @"RSA"];
-    [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-        
-        NSLog(@"result = %@",resultDic);
-    }];
+//    NSString *orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
+//                   orderSpec, signedString, @"RSA"];
+//    [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+//        
+//        NSLog(@"result = %@",resultDic);
+//    }];
     
 }
 
@@ -410,66 +410,66 @@
 -(void)WeiXinPay
 {
 
-    //从服务器获取支付参数，服务端自定义处理逻辑和格式
-    //订单标题
-    NSString *ORDER_NAME    = @"Ios服务器端签名支付 测试";
-    //订单金额，单位（元）
-    NSString *ORDER_PRICE   = @"0.01";
-    
-    //根据服务器端编码确定是否转码
-    NSStringEncoding enc;
-    //if UTF8编码
-    //enc = NSUTF8StringEncoding;
-    //if GBK编码
-    enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
-    NSString *urlString = [NSString stringWithFormat:@"%@?plat=ios&order_no=%@&product_name=%@&order_price=%@",
-                           SP_URL,
-                           [[NSString stringWithFormat:@"%ld",time(0)] stringByAddingPercentEscapesUsingEncoding:enc],
-                           [ORDER_NAME stringByAddingPercentEscapesUsingEncoding:enc],
-                           ORDER_PRICE];
-    
-    //解析服务端返回json数据
-    NSError *error;
-    //加载一个NSURL对象
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-    //将请求的url数据放到NSData对象中
-    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-
-    if ( response != nil) {
-        NSMutableDictionary *dict = NULL;
-        //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
-        dict = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableLeaves error:&error];
-        
-        NSLog(@"url:%@",urlString);
-        if(dict != nil){
-            NSMutableString *retcode = [dict objectForKey:@"retcode"];
-            if (retcode.intValue == 0){
-                NSMutableString *stamp  = [dict objectForKey:@"timestamp"];
-                
-                //调起微信支付
-                PayReq* req             = [[PayReq alloc] init];
-                req.openID              = [dict objectForKey:@"appid"];
-                req.partnerId           = [dict objectForKey:@"partnerid"];
-                req.prepayId            = [dict objectForKey:@"prepayid"];
-                req.nonceStr            = [dict objectForKey:@"noncestr"];
-                req.timeStamp           = stamp.intValue;
-                req.package             = [dict objectForKey:@"package"];
-                req.sign                = [dict objectForKey:@"sign"];
-                [WXApi sendReq:req];
-                //日志输出
-                NSLog(@"appid=%@\npartid=%@\nprepayid=%@\nnoncestr=%@\ntimestamp=%ld\npackage=%@\nsign=%@",req.openID,req.partnerId,req.prepayId,req.nonceStr,(long)req.timeStamp,req.package,req.sign );
-            }else{
-                
-                //[self alert:@"提示信息" msg:[dict objectForKey:@"retmsg"]];
-            }
-        }else{
-            
-            //[self alert:@"提示信息" msg:@"服务器返回错误，未获取到json对象"];
-        }
-    }else{
-        
-        //[self alert:@"提示信息" msg:@"服务器返回错误"];
-    }
+//    //从服务器获取支付参数，服务端自定义处理逻辑和格式
+//    //订单标题
+//    NSString *ORDER_NAME    = @"Ios服务器端签名支付 测试";
+//    //订单金额，单位（元）
+//    NSString *ORDER_PRICE   = @"0.01";
+//    
+//    //根据服务器端编码确定是否转码
+//    NSStringEncoding enc;
+//    //if UTF8编码
+//    //enc = NSUTF8StringEncoding;
+//    //if GBK编码
+//    enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+//    NSString *urlString = [NSString stringWithFormat:@"%@?plat=ios&order_no=%@&product_name=%@&order_price=%@",
+//                           SP_URL,
+//                           [[NSString stringWithFormat:@"%ld",time(0)] stringByAddingPercentEscapesUsingEncoding:enc],
+//                           [ORDER_NAME stringByAddingPercentEscapesUsingEncoding:enc],
+//                           ORDER_PRICE];
+//    
+//    //解析服务端返回json数据
+//    NSError *error;
+//    //加载一个NSURL对象
+//    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+//    //将请求的url数据放到NSData对象中
+//    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+//
+//    if ( response != nil) {
+//        NSMutableDictionary *dict = NULL;
+//        //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
+//        dict = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableLeaves error:&error];
+//        
+//        NSLog(@"url:%@",urlString);
+//        if(dict != nil){
+//            NSMutableString *retcode = [dict objectForKey:@"retcode"];
+//            if (retcode.intValue == 0){
+//                NSMutableString *stamp  = [dict objectForKey:@"timestamp"];
+//                
+//                //调起微信支付
+//                PayReq* req             = [[PayReq alloc] init];
+//                req.openID              = [dict objectForKey:@"appid"];
+//                req.partnerId           = [dict objectForKey:@"partnerid"];
+//                req.prepayId            = [dict objectForKey:@"prepayid"];
+//                req.nonceStr            = [dict objectForKey:@"noncestr"];
+//                req.timeStamp           = stamp.intValue;
+//                req.package             = [dict objectForKey:@"package"];
+//                req.sign                = [dict objectForKey:@"sign"];
+//                [WXApi sendReq:req];
+//                //日志输出
+//                NSLog(@"appid=%@\npartid=%@\nprepayid=%@\nnoncestr=%@\ntimestamp=%ld\npackage=%@\nsign=%@",req.openID,req.partnerId,req.prepayId,req.nonceStr,(long)req.timeStamp,req.package,req.sign );
+//            }else{
+//                
+//                //[self alert:@"提示信息" msg:[dict objectForKey:@"retmsg"]];
+//            }
+//        }else{
+//            
+//            //[self alert:@"提示信息" msg:@"服务器返回错误，未获取到json对象"];
+//        }
+//    }else{
+//        
+//        //[self alert:@"提示信息" msg:@"服务器返回错误"];
+//    }
 
 }
 

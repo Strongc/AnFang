@@ -184,8 +184,10 @@
     
     SystemMessageModel *model = [self.sysMessageArray objectAtIndex:indexPath.row];
     cell.sysMessage = model;
-    
-    [cell.checkBtn addTarget:self action:@selector(jumpToDetailView) forControlEvents:UIControlEventTouchUpInside];
+   // NSString *msgId = model.messageId;
+    [cell.checkBtn setTag:indexPath.row];
+   // [cell.checkBtn addT];
+    [cell.checkBtn addTarget:self action:@selector(jumpToDetailView:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
     
@@ -208,10 +210,16 @@
     
 }
 
--(void)jumpToDetailView
+-(void)jumpToDetailView:(id)sender
 {
+    NSInteger n = [sender tag];
+    
     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     AlarmMessageDetailViewController *detailView = [mainView instantiateViewControllerWithIdentifier:@"alarmMessageDetailId"];
+    
+    SystemMessageModel *model = [self.sysMessageArray objectAtIndex: n];
+    NSString *msgId = model.messageId;
+    detailView.messageId = msgId;
     [self.navigationController pushViewController:detailView animated:YES];
     
 }

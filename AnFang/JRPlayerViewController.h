@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "ASIHTTPRequest.h"
+//#import "ASIHTTPRequest.h"
 
 @interface JRPlayerViewController : UIViewController<AVAudioPlayerDelegate>
 {
-    ASIHTTPRequest *videoRequest;
+   // ASIHTTPRequest *videoRequest;
     unsigned long long Recordull;
     BOOL isPlay;
 

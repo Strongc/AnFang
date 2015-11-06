@@ -58,7 +58,7 @@
         [self.contentView addSubview:areaDetailInfo];
         self.devState = areaDetailInfo;
         
-        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 79, WIDTH, 1)];
+        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 79*HEIGHT/667, WIDTH, 1)];
         line.backgroundColor = [UIColor colorWithHexString:@"bababa"];
         [self.contentView addSubview:line];
         

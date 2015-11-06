@@ -9,6 +9,7 @@
 #import "AnFangTabBarViewController.h"
 #import "AnFangTabBar.h"
 #import "Common.h"
+#import "UIColor+Extensions.h"
 
 @interface AnFangTabBarViewController ()<UIScrollViewDelegate,AnFangTabBarDelegate>
 {
@@ -108,7 +109,7 @@
     
     _navTabBar.delegate = self;
     //_navTabBar.backgroundColor = _navTabBarColor
-    _navTabBar.backgroundColor = [UIColor grayColor];
+    _navTabBar.backgroundColor = [UIColor colorWithHexString:@"00bfff"];
     
     _navTabBar.lineColor = [UIColor whiteColor];
     _navTabBar.itemTitles = _titles;

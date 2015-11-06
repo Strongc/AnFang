@@ -12,7 +12,6 @@
 
 #import "SVProgressHUD.h"
 #import "SVIndefiniteAnimatedView.h"
-#import "UIColor+HexColor.h"
 #import <QuartzCore/QuartzCore.h>
 
 NSString * const SVProgressHUDDidReceiveTouchEventNotification = @"SVProgressHUDDidReceiveTouchEventNotification";
@@ -80,7 +79,7 @@ static const CGFloat SVProgressHUDUndefinedProgress = -1;
 + (SVProgressHUD*)sharedView {
     static dispatch_once_t once;
     static SVProgressHUD *sharedView;
-    dispatch_once(&once, ^ { sharedView = [[self alloc] initWithFrame:[[UIScreen mainScreen] bounds]];});
+    dispatch_once(&once, ^ { sharedView = [[self alloc] initWithFrame:[[UIScreen mainScreen] bounds]]; });
     return sharedView;
 }
 
@@ -178,13 +177,11 @@ static const CGFloat SVProgressHUDUndefinedProgress = -1;
 
 + (void)showInfoWithStatus:(NSString *)string {
     [self sharedView];
-    [self setBackgroundColor:[UIColor lightGrayColor]];
     [self showInfoWithStatus:string maskType:SVProgressHUDDefaultMaskType];
 }
 
 + (void)showInfoWithStatus:(NSString *)string maskType:(SVProgressHUDMaskType)maskType {
     [self sharedView];
-    [self setBackgroundColor:[UIColor lightGrayColor]];
     [self showImage:SVProgressHUDInfoImage status:string maskType:maskType];
 }
 
@@ -195,7 +192,6 @@ static const CGFloat SVProgressHUDUndefinedProgress = -1;
 
 + (void)showSuccessWithStatus:(NSString *)string maskType:(SVProgressHUDMaskType)maskType {
     [self sharedView];
-    [self setBackgroundColor:[UIColor lightGrayColor]];
     [self showImage:SVProgressHUDSuccessImage status:string maskType:maskType];
 }
 
@@ -206,7 +202,6 @@ static const CGFloat SVProgressHUDUndefinedProgress = -1;
 
 + (void)showErrorWithStatus:(NSString *)string maskType:(SVProgressHUDMaskType)maskType {
     [self sharedView];
-    [self setBackgroundColor:[UIColor lightGrayColor]];
     [self showImage:SVProgressHUDErrorImage status:string maskType:maskType];
 }
 

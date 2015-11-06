@@ -61,7 +61,7 @@
        // [self.contentView addSubview:lab];
         lab.backgroundColor = [UIColor whiteColor];
         
-        UIImageView *areaImage = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 50, 60)];
+        UIImageView *areaImage = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 50, 60*HEIGHT/667)];
         areaImage.image = [UIImage imageNamed:@"alarm.png"];
         [self.contentView addSubview:areaImage];
         //self.areaImage = areaImage;

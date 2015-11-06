@@ -12,18 +12,16 @@
 #import "KeyAlarmCell.h"
 #import "PhotoAlarmCell.h"
 #import "VoiceAlarmCell.h"
-#import "FSVoiceBubble.h"
-#import <CoreLocation/CoreLocation.h>
 #import "NSDateString.h"
-#import "ImagePickerViewController.h"
-//#import "AudioRecorderViewController.h"
-#import <AVFoundation/AVFoundation.h>
 #import "NSDateString.h"
+#import "SVProgressHUD.h"
 
 
+#define IS_IOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
+#define IS_IOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8)
 #define kRecordAudioFile @".caf"
 
-@interface NeedHelpViewController ()<CLLocationManagerDelegate,PickImageDelegate,FSVoiceBubbleDelegate,UIImagePickerControllerDelegate,AVAudioRecorderDelegate,AVAudioPlayerDelegate>
+@interface NeedHelpViewController ()
 {
     UITableView *helpMessage;
     CLLocationManager *locManager;
@@ -50,7 +48,7 @@
     NSString *playAudioUrl;
     UIProgressView *playProgress;//播放进度
     NSMutableArray *volumImages;
-    NSString *urlStr2;
+    //NSString *urlStr2;
 
 }
 @property (assign, nonatomic) NSInteger currentRow;
@@ -157,6 +155,14 @@
     
     [super viewDidLoad];
     
+    if (IS_IOS8) {
+        [UIApplication sharedApplication].idleTimerDisabled = TRUE;
+        locManager = [[CLLocationManager alloc] init];
+        [locManager requestAlwaysAuthorization];        //NSLocationAlwaysUsageDescription
+        [locManager requestWhenInUseAuthorization];     //NSLocationWhenInUseDescription
+        locManager.delegate = self;
+    }
+    
     [self setUpForDismissKeyboard];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tapAnywhereToDismissKeyboard:) name:@"hideKeyBoard" object:nil];
@@ -186,20 +192,6 @@
     helpMessage.separatorStyle = UITableViewCellSeparatorStyleNone;
     helpMessage.backgroundColor = [UIColor colorWithHexString:@"ededed"];
   
-    //实例化一个位置管理器
-    locManager = [[CLLocationManager alloc]init];
-    //设置代理
-    locManager.delegate = self;
-    // 设置定位精度
-    // kCLLocationAccuracyNearestTenMeters:精度10米
-    // kCLLocationAccuracyHundredMeters:精度100 米
-    // kCLLocationAccuracyKilometer:精度1000 米
-    // kCLLocationAccuracyThreeKilometers:精度3000米
-    // kCLLocationAccuracyBest:设备使用电池供电时候最高的精度
-    // kCLLocationAccuracyBestForNavigation:导航情况下最高精度，一般要有外接电源时才能使用
-    locManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [locManager startUpdatingLocation];
-    
     pickImageViewController.delegate = self;
     _photoAlarmData = [[NSMutableArray alloc] init];
     
@@ -242,34 +234,6 @@
 
 }
 
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
-    //获取最后一次位置
-    CLLocation *location = [locations lastObject];
-    //获取纬度
-    float latitude = location.coordinate.latitude;
-    //获取经度
-    float longitude = location.coordinate.longitude;
-    
-    NSString *str1 = [NSString stringWithFormat:@"%f",latitude];
-    NSString *str2 = [NSString stringWithFormat:@"%f",longitude];
-    NSString *str3 = [@"x " stringByAppendingString:str1];
-    NSString *str4 = [@"y " stringByAppendingString:str2];
-    NSString *str5 = [str3 stringByAppendingString:@" ,"];
-    coordinateInfo = [str5 stringByAppendingString:str4];
-   
-    NSDate *time = location.timestamp;
-    locationTime = [NSDateString stringFromDate:time];
-    NSLog(@"%@",locationTime);
-    
-}
-
-//-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
-//{
-//    
-//
-//
-//}
 
 -(void)ConfigControl
 {
@@ -278,7 +242,7 @@
     alarmView.backgroundColor = [UIColor colorWithHexString:@"bababa"];
     [self.view addSubview:alarmView];
     
-    UIView *voiceInfoView = [[UIView alloc]initWithFrame:CGRectMake(80*WIDTH/375, 20*HEIGHT/667
+    UIView *voiceInfoView = [[UIView alloc]initWithFrame:CGRectMake(90*WIDTH/375, 20*HEIGHT/667
      , 180*WIDTH/375, 40*HEIGHT/375)];
     [alarmView addSubview:voiceInfoView];
     
@@ -287,7 +251,7 @@
     
     voiceInfoView.backgroundColor = [UIColor whiteColor];
 
-    UIButton *alarmBtn = [[UIButton alloc]initWithFrame:CGRectMake(80*WIDTH/375, 105*HEIGHT/667, 180*WIDTH/375, 30*HEIGHT/667)];
+    UIButton *alarmBtn = [[UIButton alloc]initWithFrame:CGRectMake(90*WIDTH/375, 105*HEIGHT/667, 180*WIDTH/375, 30*HEIGHT/667)];
     alarmBtn.backgroundColor = [UIColor redColor];
     
     [alarmBtn setTitle:@"一 键 报 警" forState:UIControlStateNormal];
@@ -306,7 +270,7 @@
     [speakBtn addSubview:voiceImage];
     //[speakBtn addTarget:self action:@selector(recordVoice) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *recoderBtn = [[UIButton alloc]initWithFrame:CGRectMake(15*WIDTH/375, 90*HEIGHT/667, 40*WIDTH/375, 20*HEIGHT/667)];
+    UIButton *recoderBtn = [[UIButton alloc]initWithFrame:CGRectMake(15*WIDTH/375, 80*HEIGHT/667, 50, 25)];
     [alarmView addSubview:recoderBtn];
     [recoderBtn setBackgroundImage:[UIImage imageNamed:@"btn.png"] forState:UIControlStateNormal];
     [recoderBtn setBackgroundImage:[UIImage imageNamed:@"btn1.png"] forState:UIControlStateHighlighted];
@@ -315,14 +279,13 @@
     [recoderBtn addTarget:self action:@selector(startRecord) forControlEvents:UIControlEventTouchUpInside];
     //[recoderBtn addTarget:self action:@selector(stopRecord) forControlEvents:UIControlEventTouchUpOutside];
     
-    UIButton *cancleBtn = [[UIButton alloc]initWithFrame:CGRectMake(15*WIDTH/375, 120*HEIGHT/667, 40*WIDTH/375, 20*HEIGHT/667)];
+    UIButton *cancleBtn = [[UIButton alloc]initWithFrame:CGRectMake(15*WIDTH/375, 120*HEIGHT/667, 50, 25)];
     [alarmView addSubview:cancleBtn];
     [cancleBtn setBackgroundImage:[UIImage imageNamed:@"btn1.png"] forState:UIControlStateNormal];
     [cancleBtn setBackgroundImage:[UIImage imageNamed:@"btn.png"] forState:UIControlStateHighlighted];
     cancleBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15*WIDTH/375];
     [cancleBtn setTitle:@"停止" forState:UIControlStateNormal];
     [cancleBtn addTarget:self action:@selector(stopRecord) forControlEvents:UIControlEventTouchUpInside];
-    
     
     UIButton *addBtn = [[UIButton alloc]initWithFrame:CGRectMake(280*WIDTH/375, 35*HEIGHT/667, 50*WIDTH/375, 50*HEIGHT/667)];
     [alarmView addSubview:addBtn];
@@ -430,10 +393,6 @@
     return _audioRecorder;
 }
 
-
-
-
-
 /**
  *  录音声波状态设置
  */
@@ -453,12 +412,15 @@
  */
 - (void)recordClick {
     
-   
-    //NSString *path = [[NSBundle mainBundle] bundlePath];
+    NSString *path = [[NSBundle mainBundle] bundlePath];
+    NSLog(@"%@",path);
     NSString *fileName = [NSDateString ret32bitString];
     NSString *fileName1 = [fileName stringByAppendingString:kRecordAudioFile];
-    urlStr2 =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    
+   // NSString *imagePath = [[NSBundle mainBundle] pathForResource:fileName1 ofType:nil];
+   NSString *urlStr2 =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     urlStr = [urlStr2 stringByAppendingPathComponent:fileName1];
+   // urlStr = [[NSBundle mainBundle] pathForResource:fileName1 ofType:nil];
     [voicePathArray addObject:urlStr];
     
     NSLog(@"file path:%@",urlStr);
@@ -731,6 +693,7 @@
       
         NSURL *url=[NSURL fileURLWithPath:strUrl];
         voicecell.voiceBubble.contentURL = url;
+       // voicecell.voiceBubble.contentURL = [[NSBundle mainBundle] URLForResource:@"bb" withExtension:@"caf"];
         voicecell.timeLab.text = model.time;
        
         voicecell.voiceBubble.tag = indexPath.row;
@@ -868,39 +831,48 @@
 //一键报警按钮触发事件
 -(void)KeyAlarm
 {
-    
     NSDate *sendDate;
     NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
     [dateformatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
     sendDate = [NSDate date];
     NSString * time=[dateformatter stringFromDate:sendDate];
     OneKeyAlarmModel *model = [[OneKeyAlarmModel alloc] init];
-    model.time = time;
-    NSString *location = @"X 1345 , y 3456";
-    model.location = location;
-    //    model.state = @"发送失败";
-    [_keyAlarmData addObject:model];
-    [helpMessage reloadData];
-    
-    
-    //判断是否以创建文件
-    if ([[NSFileManager defaultManager] fileExistsAtPath:keyInfoPlistPath])
-    {
-        //此处可以自己写显示plist文件内容
-        NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-        [dict setObject:location forKey:@"message"];
-        [dict setObject:time forKey:@"time"];
-        [dict setObject:location forKey:@"location"];
-        [saveKeyInfoArray addObject:dict];
-        [saveKeyInfoArray writeToFile:keyInfoPlistPath atomically:YES];
-        //NSLog(@"文件已存在");
-    }
-    else
-    {
+    __block NSString *string;
+    if (IS_IOS8) {
         
-        [keyInfoArrayPlist writeToFile:keyInfoPlistPath atomically:YES];
-        
+        [[CCLocationManager shareLocation]getLocationCoordinate:^(CLLocationCoordinate2D locationCorrrdinate) {
+            string = [NSString stringWithFormat:@"%f %f",locationCorrrdinate.latitude,locationCorrrdinate.longitude];
+        } withAddress:^(NSString *addressString) {
+            NSLog(@"%@",addressString);
+            string = [NSString stringWithFormat:@"%@\n%@",string,addressString];
+            model.location = string;
+            model.time = time;
+            [_keyAlarmData addObject:model];
+            [helpMessage reloadData];
+            //判断是否以创建文件
+            if(string != nil){
+                if ([[NSFileManager defaultManager] fileExistsAtPath:keyInfoPlistPath])
+                {
+                    //此处可以自己写显示plist文件内容
+                    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+                    [dict setObject:string forKey:@"message"];
+                    [dict setObject:time forKey:@"time"];
+                    [dict setObject:string forKey:@"location"];
+                    [saveKeyInfoArray addObject:dict];
+                    [saveKeyInfoArray writeToFile:keyInfoPlistPath atomically:YES];
+                    //NSLog(@"文件已存在");
+                }
+                else
+                {
+                
+                    [keyInfoArrayPlist writeToFile:keyInfoPlistPath atomically:YES];
+                
+                }
+            }
+            
+        }];
     }
+
     
 }
 

@@ -16,6 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSString *str = self.messageId;
+    NSLog(@"%@",str);
     // Do any additional setup after loading the view.
 }
 

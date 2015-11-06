@@ -10,4 +10,6 @@
 
 @interface AlarmMessageDetailViewController : UIViewController
 
+@property (nonatomic,copy) NSString *messageId;
+
 @end

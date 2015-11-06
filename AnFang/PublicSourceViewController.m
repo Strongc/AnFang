@@ -240,22 +240,22 @@
     cell.videoTitle.text = [_allResorceList[indexPath.row] name];
     //cell.publicVideoImage.image = [_allResorceList[indexPath.row] ];
     cell.publicVideoImage.image = [UIImage imageNamed:volumImages[indexPath.row]];
-    CGRect originFrame = cell.frame;
-    
-    if((indexPath.item)%3 == 0){
-        
-        originFrame.origin.y -= 30;
-    }else if ((indexPath.item)%3 == 2){
-        
-        originFrame.origin.y -= 0;
-    }else if((indexPath.item)%3==1){
-        
-        originFrame.origin.y -= 50;
-    }
-    originFrame.size.height -= 0;
-    originFrame.size.width -= 0;
-    cell.frame = originFrame;
-    [cell sizeToFit];
+//    CGRect originFrame = cell.frame;
+//    
+//    if((indexPath.item)%3 == 0){
+//        
+//        originFrame.origin.y -= 30;
+//    }else if ((indexPath.item)%3 == 2){
+//        
+//        originFrame.origin.y -= 0;
+//    }else if((indexPath.item)%3==1){
+//        
+//        originFrame.origin.y -= 50;
+//    }
+//    originFrame.size.height -= 0;
+//    originFrame.size.width -= 0;
+//    cell.frame = originFrame;
+//    [cell sizeToFit];
     
     return cell;
 }

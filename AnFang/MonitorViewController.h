@@ -10,4 +10,7 @@
 
 @interface MonitorViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
+@property (nonatomic,copy) NSString *hostId;
+@property (nonatomic,copy) NSString *hostStatus;
+
 @end

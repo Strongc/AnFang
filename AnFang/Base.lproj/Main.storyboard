@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="GnI-8l-sP5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="GnI-8l-sP5">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
         <!--登录-->
@@ -17,22 +18,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="登录" id="2CQ-yE-Hbh">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="N2Q-NS-hFD">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Whu-Xr-zhH">
-                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="注册">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="ccH-I8-Ge7" kind="push" id="1rd-qa-Ihq"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="登录" id="2CQ-yE-Hbh"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -71,7 +57,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="动态" id="iE2-pU-1j4"/>
+                    <navigationItem key="navigationItem" title="商盟" id="iE2-pU-1j4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Ee-he-gwf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -248,10 +234,10 @@
             </objects>
             <point key="canvasLocation" x="1567" y="78"/>
         </scene>
-        <!--消息-->
+        <!--资讯-->
         <scene sceneID="cjC-M1-9gC">
             <objects>
-                <viewController title="消息" id="Mxk-zM-T8y" customClass="MessageViewController" sceneMemberID="viewController">
+                <viewController title="资讯" id="Mxk-zM-T8y" customClass="MessageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GgM-Cp-qh8"/>
                         <viewControllerLayoutGuide type="bottom" id="mHI-b3-uhA"/>
@@ -261,7 +247,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="消息" id="TeO-7G-qy6"/>
+                    <navigationItem key="navigationItem" title="资讯" id="TeO-7G-qy6"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dqj-mI-JiI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -271,7 +257,7 @@
         <scene sceneID="X6Y-mn-Seb">
             <objects>
                 <navigationController title="personNav" automaticallyAdjustsScrollViewInsets="NO" id="naJ-OE-xf7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="contacts" id="oxQ-xM-Toi"/>
+                    <tabBarItem key="tabBarItem" title="商盟" id="oxQ-xM-Toi"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" alpha="0.0" contentMode="scaleToFill" id="2Gc-Yd-vgl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -558,6 +544,25 @@
             </objects>
             <point key="canvasLocation" x="8327" y="2722"/>
         </scene>
+        <!--主机信息-->
+        <scene sceneID="WUM-zJ-dUX">
+            <objects>
+                <viewController storyboardIdentifier="monitorId" title="主机列表" id="uU4-xF-Ty0" userLabel="主机信息" customClass="MonitorViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9bA-9F-sZ9"/>
+                        <viewControllerLayoutGuide type="bottom" id="VE2-MT-wXR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5AX-oN-e62">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="主机信息" id="G71-7g-XKa"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Haj-Y1-Xwq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9430" y="3344"/>
+        </scene>
         <!--设备管理-->
         <scene sceneID="IEe-zH-fUx">
             <objects>
@@ -580,14 +585,14 @@
         <!--AnFangNav-->
         <scene sceneID="07k-SG-24c">
             <objects>
-                <navigationController title="AnFangNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="7tt-i0-2uM" sceneMemberID="viewController">
+                <navigationController title="AnFangNav" automaticallyAdjustsScrollViewInsets="NO" id="7tt-i0-2uM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="1" title="安防系统" id="DaC-fa-ske"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2b5-Ag-q1D">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.034768466739999997" green="0.66007412669999999" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.011216311730888995" green="0.68435116834705423" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -620,11 +625,11 @@
             </objects>
             <point key="canvasLocation" x="504" y="3090"/>
         </scene>
-        <!--消息-->
+        <!--资讯-->
         <scene sceneID="32t-a8-7i8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wwP-zW-rxF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="消息" image="message" id="ghQ-79-wNp"/>
+                    <tabBarItem key="tabBarItem" title="资讯" image="message" id="ghQ-79-wNp"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AmU-yH-FjE">
@@ -791,7 +796,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RLo-kg-CLU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1250" y="2461"/>
+            <point key="canvasLocation" x="1236" y="2531"/>
         </scene>
         <!--图片选择器-->
         <scene sceneID="26A-j5-l3V">
@@ -938,17 +943,28 @@
             </objects>
             <point key="canvasLocation" x="5033" y="3250"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="pB1-U7-MTs">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Nfn-Tg-clO" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="x1c-sn-xjH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.67769731722598259" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="uU4-xF-Ty0" kind="relationship" relationship="rootViewController" id="97f-dQ-ECK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TQ6-in-Dz4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8898" y="3344"/>
+        </scene>
     </scenes>
     <resources>
         <image name="message" width="30" height="30"/>
         <image name="setting.png" width="24" height="24"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="h1d-Yp-edG"/>
-    </inferredMetricsTieBreakers>
 </document>

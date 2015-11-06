@@ -345,26 +345,26 @@ static void * playerPlayingContext = &playerPlayingContext;
     NSString *cachePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Private Documents/Cache"];//下载完成存储目录
     NSLog(@"%@",cachePath);
     
-    ASIHTTPRequest *request=[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"]];
-        //下载完存储目录
-    [request setDownloadDestinationPath:[cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"vedio.mp4"]]];
-        //临时存储目录
-    [request setTemporaryFileDownloadPath:[webPath stringByAppendingPathComponent:[NSString stringWithFormat:@"vedio.mp4"]]];
-    [request setBytesReceivedBlock:^(unsigned long long size, unsigned long long total) {
-           // [musicBt stopSpin];
-            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            [userDefaults setDouble:total forKey:@"file_length"];
-            Recordull += size;//Recordull全局变量，记录已下载的文件的大小
-            if (!isPlay&&Recordull > 400000) {
-                isPlay = !isPlay;
-               
-            }
-    }];
-    
-    //断点续载
-    [request setAllowResumeForFileDownloads:YES];
-    [request startAsynchronous];
-    videoRequest = request;
+//    ASIHTTPRequest *request=[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"]];
+//        //下载完存储目录
+//    [request setDownloadDestinationPath:[cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"vedio.mp4"]]];
+//        //临时存储目录
+//    [request setTemporaryFileDownloadPath:[webPath stringByAppendingPathComponent:[NSString stringWithFormat:@"vedio.mp4"]]];
+//    [request setBytesReceivedBlock:^(unsigned long long size, unsigned long long total) {
+//           // [musicBt stopSpin];
+//            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//            [userDefaults setDouble:total forKey:@"file_length"];
+//            Recordull += size;//Recordull全局变量，记录已下载的文件的大小
+//            if (!isPlay&&Recordull > 400000) {
+//                isPlay = !isPlay;
+//               
+//            }
+//    }];
+//    
+//    //断点续载
+//    [request setAllowResumeForFileDownloads:YES];
+//    [request startAsynchronous];
+//    videoRequest = request;
     
     NSString *videoName = _videoName;
     NSString *url = [cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"vedio.mp4"]];

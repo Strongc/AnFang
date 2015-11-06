@@ -7,11 +7,11 @@
 //
 
 #import "AppDelegate.h"
-#import<AlipaySDK/AlipaySDK.h>
-#import "DDTTYLogger.h"
-#import "DDLog.h"
+//#import<AlipaySDK/AlipaySDK.h>
+//#import "DDTTYLogger.h"
+//#import "DDLog.h"
 #import "VideoPlaySDK.h"
-#import "WXApiManager.h"
+//#import "WXApiManager.h"
 
 @interface AppDelegate ()
 
@@ -42,7 +42,7 @@
     VP_InitSDK();
     
     //向微信注册
-    [WXApi registerApp:@"wxd930ea5d5a258f4f" withDescription:@"demo 2.0"];
+    //[WXApi registerApp:@"wxd930ea5d5a258f4f" withDescription:@"demo 2.0"];
 //    [DDLog addLogger:[DDTTYLogger sharedInstance]];
 //    
 //    httpServer = [[HTTPServer alloc]init];
@@ -96,7 +96,7 @@
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
 
-    return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+    return  YES;
 }
 
 - (BOOL)application:(UIApplication *)application
@@ -104,11 +104,11 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     
-    //跳转支付宝钱包进行支付，处理支付结果
-    [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-       // NSLog(@"result = %@",resultDic);
-    }];
-    
+//    //跳转支付宝钱包进行支付，处理支付结果
+//    [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+//       // NSLog(@"result = %@",resultDic);
+//    }];
+//    
     return YES;
 }
 

@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import  <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
+#import "ImagePickerViewController.h"
+#import "FSVoiceBubble.h"
+#import "CCLocationManager.h"
 
-@interface NeedHelpViewController : UIViewController<AVAudioRecorderDelegate,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate>
+@interface NeedHelpViewController : UIViewController<CLLocationManagerDelegate,PickImageDelegate,FSVoiceBubbleDelegate,AVAudioPlayerDelegate,AVAudioRecorderDelegate,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate>
 {
     AVAudioRecorder *recorder;
     NSURL *urlPlay;

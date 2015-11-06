@@ -33,13 +33,14 @@
     NSMutableArray *tempHostArray;
    // NSString *areaId;
     NSString *tempId;
-    NSString *hostId;
+   // NSString *hostId;
     NSString *hostStatus;
     NSString *bufangInfo;
     NSMutableArray *cameraArray;
     int pageSize;
     UIButton *chefangBtn;
     UIButton *bufangBtn;
+    UILabel *stateLab;
 
 }
 @property (nonatomic,strong) NSArray *sourceData;
@@ -111,8 +112,10 @@
     cameraArray = [[NSMutableArray alloc]init];
     tempHostArray = [[NSMutableArray alloc]init];
     pageSize = 1;
+   // [self getOrgInfo];
     [self getAreaInfo];
-    [self getUserHostInfo];
+    [self setButtonStatus];
+    //[self getUserHostInfo];
     // NSLog(@"防区ID：%@",areaId);
    // [self getCameraInfo];
     // Do any additional setup after loading the view.
@@ -121,67 +124,92 @@
 -(void)ConfigControl
 {
 
-    UIImageView *locationImage = [[UIImageView alloc]initWithFrame:CGRectMake(20*WIDTH/375, 20*HEIGHT/667, 110*WIDTH/375, 110*HEIGHT/667)];
+    UIImageView *headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 64*HEIGHT/667)];
+    [headView setImage:[UIImage imageNamed:@"header_bg.png"]];
+    
+    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20*HEIGHT/667, WIDTH, 50*HEIGHT/667)];
+    title.textAlignment = NSTextAlignmentCenter;
+    title.text = @"充值";
+    title.font = [UIFont systemFontOfSize:18];
+    title.textColor = [UIColor whiteColor];
+    [headView addSubview:title];
+    [self.view addSubview:headView];
+    
+    UIButton *backBtn = [[UIButton alloc] initWithFrame:CGRectMake(10*WIDTH/375, 30*HEIGHT/667, 60*WIDTH/375, 30*HEIGHT/667)];
+    UILabel *backTitle = [[UILabel alloc]initWithFrame:CGRectMake(18*WIDTH/375, 7*HEIGHT/667, 32, 16)];
+    backTitle.textAlignment = NSTextAlignmentCenter;
+    backTitle.text = @"返回";
+    backTitle.font = [UIFont systemFontOfSize:16];
+    backTitle.textColor = [UIColor whiteColor];
+    [backBtn addSubview:backTitle];
+    
+    UIImageView *backImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 5*HEIGHT/667, 20, 20)];
+    backImage.image = [UIImage imageNamed:@"back.png"];
+    [backBtn addSubview:backImage];
+    [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backBtn];
+
+    
+    UIImageView *locationImage = [[UIImageView alloc]initWithFrame:CGRectMake(20*WIDTH/375, 84*HEIGHT/667, 110*WIDTH/375, 110*HEIGHT/667)];
     locationImage.image = [UIImage imageNamed:@"location.png"];
     [self.view addSubview:locationImage];
     
-    UILabel *locationName = [[UILabel alloc]initWithFrame:CGRectMake(200*WIDTH/375, 10*HEIGHT/667, 120*WIDTH/375, 20*HEIGHT/667)];
+    UILabel *locationName = [[UILabel alloc]initWithFrame:CGRectMake(200*WIDTH/375, 74*HEIGHT/667, 120*WIDTH/375, 20*HEIGHT/667)];
     locationName.textColor = [UIColor blackColor];
     locationName.textAlignment = NSTextAlignmentLeft;
     locationName.text = @"华业大厦";
     locationName.font = [UIFont boldSystemFontOfSize:20*WIDTH/375];
     [self.view addSubview:locationName];
     
-    UILabel *title1 = [[UILabel alloc]initWithFrame:CGRectMake(150*WIDTH/375, 40*HEIGHT/667, 45*WIDTH/375, 15*HEIGHT/667)];
+    UILabel *title1 = [[UILabel alloc]initWithFrame:CGRectMake(150*WIDTH/375, 104*HEIGHT/667, 45*WIDTH/375, 15*HEIGHT/667)];
     title1.text = @"地址:";
     title1.textAlignment = NSTextAlignmentCenter;
     title1.textColor = [UIColor blackColor];
     title1.font = [UIFont boldSystemFontOfSize:15*WIDTH/375];
     [self.view addSubview:title1];
     
-    UILabel *locationLab = [[UILabel alloc]initWithFrame:CGRectMake(170*WIDTH/375, 65*HEIGHT/667, 180*WIDTH/375, 15*HEIGHT/667)];
+    UILabel *locationLab = [[UILabel alloc]initWithFrame:CGRectMake(170*WIDTH/375, 129*HEIGHT/667, 180*WIDTH/375, 15*HEIGHT/667)];
     locationLab.text = @"杭州市滨江区建业路511号";
     locationLab.textAlignment = NSTextAlignmentCenter;
     locationLab.textColor = [UIColor grayColor];
     locationLab.font = [UIFont boldSystemFontOfSize:13*WIDTH/375];
     [self.view addSubview:locationLab];
     
-    UILabel *title2 = [[UILabel alloc]initWithFrame:CGRectMake(150*WIDTH/375, 85*HEIGHT/667, 45*WIDTH/375, 15*HEIGHT/667)];
+    UILabel *title2 = [[UILabel alloc]initWithFrame:CGRectMake(150*WIDTH/375, 149*HEIGHT/667, 45*WIDTH/375, 15*HEIGHT/667)];
     title2.text = @"公司:";
     title2.textAlignment = NSTextAlignmentCenter;
     title2.textColor = [UIColor blackColor];
     title2.font = [UIFont boldSystemFontOfSize:15*WIDTH/375];
     [self.view addSubview:title2];
     
-    UILabel *companyLab = [[UILabel alloc]initWithFrame:CGRectMake(170*WIDTH/375, 105*HEIGHT/667, 180*WIDTH/375, 15*HEIGHT/667)];
+    UILabel *companyLab = [[UILabel alloc]initWithFrame:CGRectMake(170*WIDTH/375, 169*HEIGHT/667, 180*WIDTH/375, 15*HEIGHT/667)];
     companyLab.text = @"杭州润宇物业管理有限公司";
     companyLab.textAlignment = NSTextAlignmentCenter;
     companyLab.textColor = [UIColor grayColor];
     companyLab.font = [UIFont boldSystemFontOfSize:13*WIDTH/375];
     [self.view addSubview:companyLab];
     
-    UILabel *title3 = [[UILabel alloc]initWithFrame:CGRectMake(130*WIDTH/375, 140*HEIGHT/667, 70*WIDTH/375, 15*HEIGHT/667)];
+    UILabel *title3 = [[UILabel alloc]initWithFrame:CGRectMake(130*WIDTH/375, 204*HEIGHT/667, 70*WIDTH/375, 15*HEIGHT/667)];
     title3.text = @"主机状态:";
     title3.textAlignment = NSTextAlignmentCenter;
     title3.textColor = [UIColor blackColor];
     title3.font = [UIFont boldSystemFontOfSize:15*WIDTH/375];
     [self.view addSubview:title3];
 
-    UILabel *stateLab = [[UILabel alloc]initWithFrame:CGRectMake(215*WIDTH/375, 141*HEIGHT/667, 50*WIDTH/375, 15*HEIGHT/667)];
-    stateLab.text = @"已部防";
+    stateLab = [[UILabel alloc]initWithFrame:CGRectMake(215*WIDTH/375, 205*HEIGHT/667, 50*WIDTH/375, 15*HEIGHT/667)];
+    //stateLab.text = @"已部防";
     stateLab.textAlignment = NSTextAlignmentCenter;
-    stateLab.textColor = [UIColor greenColor];
     stateLab.font = [UIFont boldSystemFontOfSize:14*WIDTH/375];
     [self.view addSubview:stateLab];
     
-    UIButton *refreshBtn = [[UIButton alloc]initWithFrame:CGRectMake(270*WIDTH/375, 140*HEIGHT/667, 60*WIDTH/375, 15*HEIGHT/667)];
+    UIButton *refreshBtn = [[UIButton alloc]initWithFrame:CGRectMake(270*WIDTH/375, 204*HEIGHT/667, 60*WIDTH/375, 15*HEIGHT/667)];
     [self.view addSubview:refreshBtn];
     refreshBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14*WIDTH/375];
     [refreshBtn setTitle:@"刷新状态" forState:UIControlStateNormal];
     [refreshBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [refreshBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     
-    bufangBtn = [[UIButton alloc]initWithFrame:CGRectMake(40*WIDTH/375, 175*HEIGHT/667, 110*WIDTH/375, 40*HEIGHT/667)];
+    bufangBtn = [[UIButton alloc]initWithFrame:CGRectMake(40*WIDTH/375, 239*HEIGHT/667, 110*WIDTH/375, 40*HEIGHT/667)];
     [self.view addSubview:bufangBtn];
     bufangBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20*WIDTH/375];
     [bufangBtn setTitle:@"布 防" forState:UIControlStateNormal];
@@ -193,7 +221,7 @@
     bufangBtn.layer.borderWidth = 1.0;
     [bufangBtn addTarget:self action:@selector(BuFangRequestAction) forControlEvents:UIControlEventTouchUpInside];
     
-    chefangBtn = [[UIButton alloc]initWithFrame:CGRectMake(220*WIDTH/375, 175*HEIGHT/667, 110*WIDTH/375, 40*HEIGHT/667)];
+    chefangBtn = [[UIButton alloc]initWithFrame:CGRectMake(220*WIDTH/375, 239*HEIGHT/667, 110*WIDTH/375, 40*HEIGHT/667)];
     [self.view addSubview:chefangBtn];
     chefangBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20*WIDTH/375];
     [chefangBtn setTitle:@"撤 防" forState:UIControlStateNormal];
@@ -204,14 +232,14 @@
     chefangBtn.layer.borderColor = [[UIColor grayColor]CGColor];
     chefangBtn.layer.borderWidth = 1.0;
     
-    UIView *blueLine = [[UIView alloc]initWithFrame:CGRectMake(0, 225*HEIGHT/667, WIDTH, 3.0)];
+    UIView *blueLine = [[UIView alloc]initWithFrame:CGRectMake(0, 289*HEIGHT/667, WIDTH, 3.0)];
     [self.view addSubview:blueLine];
     blueLine.backgroundColor = [UIColor colorWithHexString:@"6495ED"];
     
-    UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 228*HEIGHT/667, WIDTH, 40*HEIGHT/667)];
+    UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 292*HEIGHT/667, WIDTH, 40*HEIGHT/667)];
     [self.view addSubview:titleView];
     titleView.backgroundColor = [UIColor colorWithHexString:@"ededed"];
-    UIView *grayLine = [[UIView alloc]initWithFrame:CGRectMake(0, 268*HEIGHT/667, WIDTH, 3.0)];
+    UIView *grayLine = [[UIView alloc]initWithFrame:CGRectMake(0, 332*HEIGHT/667, WIDTH, 3.0)];
     [self.view addSubview:grayLine];
     grayLine.backgroundColor = [UIColor colorWithHexString:@"bababa"];
     
@@ -221,17 +249,57 @@
     title5.textColor = [UIColor blackColor];
     title5.font = [UIFont boldSystemFontOfSize:20*WIDTH/375];
     
-    
-    monitorTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 271*HEIGHT/667, WIDTH, HEIGHT) style:UITableViewStylePlain];
+    monitorTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 335*HEIGHT/667, WIDTH, HEIGHT) style:UITableViewStylePlain];
     monitorTable.delegate = self;
     monitorTable.dataSource = self;
     monitorTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-    monitorTable.backgroundColor = [UIColor colorWithHexString:@"ededed"];
+    monitorTable.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:monitorTable];
     [self setupHeader];
     [self setupFooter];
     
 }
+
+-(void)backAction
+{
+    //NSLog(@"%@",@"ddddd");
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+//-(void)getHostInfo2
+//{
+//
+//    [WGAPI post:API_GETHOST RequestParams:nil FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+//        if(data){
+//            
+//            NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//            //NSLog(@"%@",jsonStr);
+//            NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
+//            if(infojson != nil){
+//                NSDictionary *messageInfo = [infojson objectForKey:@"data"];
+//                // NSString *messageInfoStr = [CMTool dictionaryToJson:messageInfo];
+//                // NSLog(@"%@",messageInfoStr);
+////                tempHostArray = [messageInfo objectForKey:@"datas"];
+////                if(tempHostArray.count > 0){
+////                    NSDictionary *dict = tempHostArray[0];
+////                    hostId = [dict objectForKey:@"host_id"];
+////                    hostStatus = [dict objectForKey:@"host_status"];
+////                    //[self BuFangRequestAction:@"201510231107140078"];
+////                    
+////                    
+////                }
+////                [self performSelectorOnMainThread:@selector(setButtonStatus) withObject:data waitUntilDone:YES];//刷新UI线程
+////                
+//            }
+//            
+//        }
+//        
+//    }];
+//
+//
+//
+//}
+//
 
 //获取当前用户的主机信息
 -(void)getUserHostInfo
@@ -255,8 +323,8 @@
                 // NSLog(@"%@",messageInfoStr);
                 tempHostArray = [messageInfo objectForKey:@"datas"];
                 if(tempHostArray.count > 0){
-                    NSDictionary *dict = tempHostArray[0];
-                    hostId = [dict objectForKey:@"host_id"];
+                    NSDictionary *dict = tempHostArray[1];
+                    _hostId = [dict objectForKey:@"host_id"];
                     hostStatus = [dict objectForKey:@"host_status"];
                     //[self BuFangRequestAction:@"201510231107140078"];
 
@@ -275,16 +343,20 @@
 
 -(void) setButtonStatus{
 
-    [CoreArchive setStr:hostId key:@"hostId"];
-    if([hostStatus isEqualToString:@"FALSE"]){
+    //[CoreArchive setStr:_hostId key:@"hostId"];
+    if([_hostStatus isEqualToString:@"FALSE"]){
     
         chefangBtn.userInteractionEnabled = NO;
+        stateLab.text = @"未部防";
+        stateLab.textColor = [UIColor redColor];
         [chefangBtn setBackgroundColor:[UIColor grayColor]];
         bufangBtn.userInteractionEnabled = YES;
         [bufangBtn setBackgroundColor:[UIColor greenColor]];
-    }else if ([hostStatus isEqualToString:@"TRUE"]){
+    }else if ([_hostStatus isEqualToString:@"TRUE"]){
     
         chefangBtn.userInteractionEnabled = YES;
+        stateLab.text = @"已部防";
+        stateLab.textColor = [UIColor greenColor];
         [chefangBtn setBackgroundColor:[UIColor greenColor]];
         bufangBtn.userInteractionEnabled = NO;
         [bufangBtn setBackgroundColor:[UIColor grayColor]];
@@ -297,8 +369,12 @@
 {
 
     NSString *hostIds = [CoreArchive strForKey:@"hostId"];
-    NSString *hostParam = [@"hostIds=" stringByAppendingString:hostIds];
-    
+    NSString *hostParam;
+    if(hostIds != nil){
+        
+        hostParam = [@"hostIds=" stringByAppendingString:hostIds];
+    }
+
     [WGAPI post:API_ADDLINE RequestParams:hostParam FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if(data){
         
@@ -329,6 +405,7 @@
     [chefangBtn setBackgroundColor:[UIColor greenColor]];
     [SVProgressHUD showSuccessWithStatus:@"布防成功！" maskType:SVProgressHUDMaskTypeBlack];
     bufangBtn.userInteractionEnabled = NO;
+    stateLab.text = @"已部防";
     [bufangBtn setBackgroundColor:[UIColor grayColor]];
 
 }
@@ -337,7 +414,12 @@
 {
     //NSString *hostParam = [@"hostIds=" stringByAppendingString:@"201510231107140078"];
     NSString *hostIds = [CoreArchive strForKey:@"hostId"];
-    NSString *hostParam = [@"hostIds=" stringByAppendingString:hostIds];
+    NSString *hostParam;
+    if(hostIds != nil){
+        
+        hostParam = [@"hostIds=" stringByAppendingString:hostIds];
+    }
+
     [WGAPI post:API_REMOVELINE RequestParams:hostParam FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if(data){
             
@@ -368,10 +450,35 @@
     [chefangBtn setBackgroundColor:[UIColor grayColor]];
     [SVProgressHUD showSuccessWithStatus:@"撤防成功！" maskType:SVProgressHUDMaskTypeBlack];
     bufangBtn.userInteractionEnabled = YES;
+    stateLab.text = @"未部防";
     [bufangBtn setBackgroundColor:[UIColor greenColor]];
     
 }
 
+-(void)getOrgInfo
+{
+
+    [WGAPI post:API_GETORGINFO RequestParams:nil FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if(data){
+            
+            NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
+            if(infojson != nil){
+                
+                //bufangInfo = [infojson objectForKey:@"data"];
+//                if([bufangInfo isEqualToString:@"sucess"]){
+//                    
+//                    
+//                    [self performSelectorOnMainThread:@selector(ResponseInfo2) withObject:data waitUntilDone:YES];//刷新UI线程
+//                }
+                
+            }
+            
+            
+        }
+    }];
+
+}
 
 - (void)setupHeader
 {
@@ -434,10 +541,14 @@
                // NSString *messageInfoStr = [CMTool dictionaryToJson:messageInfo];
                // NSLog(@"%@",messageInfoStr);
                 tempArray = [messageInfo objectForKey:@"datas"];
-                NSDictionary *dict = tempArray[0];
-                tempId = [dict objectForKey:@"area_id"];
+                if(tempArray.count > 0){
+                    
+                    NSDictionary *dict = tempArray[0];
+                    tempId = [dict objectForKey:@"area_id"];
+                    [self getCameraInfo:tempId];
                 
-                [self getCameraInfo:tempId];
+                }
+               
             
             }
             //[self performSelectorOnMainThread:@selector(getAreaId) withObject:data waitUntilDone:YES];
@@ -467,13 +578,15 @@
                 NSString *messageInfoStr = [CMTool dictionaryToJson:messageInfo];
                 NSLog(@"%@",messageInfoStr);
                 tempArray = [messageInfo objectForKey:@"datas"];
-                for(NSDictionary *dict in tempArray){
+                if(tempArray.count > 0){
+                    for(NSDictionary *dict in tempArray){
                 
-                    CameraModel *model = [CameraModel CameraWithDict:dict];
-                    [cameraArray addObject:model];
+                        CameraModel *model = [CameraModel CameraWithDict:dict];
+                        [cameraArray addObject:model];
+                    }
+                    [self performSelectorOnMainThread:@selector(refreshData) withObject:data waitUntilDone:YES];
                 }
-
-                 [self performSelectorOnMainThread:@selector(refreshData) withObject:data waitUntilDone:YES];
+                
             
             }
         
@@ -560,7 +673,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    return 80.0*WIDTH/375;
+    return 80.0*HEIGHT/667;
 
 }
 
@@ -568,9 +681,7 @@
 {
     
     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
     DeviceManagerViewController *devManagerView = [mainView instantiateViewControllerWithIdentifier:@"deviceManagerId"];
-    
     //monitorInfoView.hidesBottomBarWhenPushed = YES;
     devManagerView.navigationController.navigationBarHidden = NO;
     CameraModel *model = [cameraArray objectAtIndex:indexPath.row];
@@ -585,14 +696,14 @@
     //JRPlayerViewController *videoPlayer;
    // NSString *webPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Private Documents/Temp"];//临时存储目录
     
-    NSString *cachePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Private Documents/Cache"];//下载完成存储目录
-    NSLog(@"%@",cachePath);
-    
-    NSFileManager *fileManager=[NSFileManager defaultManager];
-    if(![fileManager fileExistsAtPath:cachePath])
-    {
-        [fileManager createDirectoryAtPath:cachePath withIntermediateDirectories:YES attributes:nil error:nil];
-    }
+//    NSString *cachePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Private Documents/Cache"];//下载完成存储目录
+//    NSLog(@"%@",cachePath);
+//    
+//    NSFileManager *fileManager=[NSFileManager defaultManager];
+//    if(![fileManager fileExistsAtPath:cachePath])
+//    {
+//        [fileManager createDirectoryAtPath:cachePath withIntermediateDirectories:YES attributes:nil error:nil];
+//    }
 //    else if ([fileManager fileExistsAtPath:[cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"vedio.mp4"]]]) {
 //       
 //       videoPlayer = [[mainView instantiateViewControllerWithIdentifier:@"videoPlayer"] initWithLocalMediaURL:[NSURL URLWithString:[cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"vedio.mp4"]]]];
