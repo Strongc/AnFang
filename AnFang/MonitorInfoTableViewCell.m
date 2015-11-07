@@ -24,7 +24,6 @@
     self.devName.text = cameraModel.cameraName;
     self.devState.text = cameraModel.cameraState;
     
-
 }
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

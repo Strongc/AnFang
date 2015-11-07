@@ -9,7 +9,8 @@
 #import "SecuritySystemViewController.h"
 #import "Common.h"
 #import "AnFangTabBarViewController.h"
-#import "HostListViewController.h"
+#import "MonitorViewController.h"
+//#import "HostListViewController.h"
 
 //@interface SecuritySystemViewController ()<MHTabBarControllerDelegate>
 
@@ -27,17 +28,17 @@
    
     NeedHelpViewController *needHelpView = [[NeedHelpViewController alloc]init];
     //CheBuFangViewController *cheBufangView = [[CheBuFangViewController alloc]init];
-   // MonitorViewController *monitorView = [[MonitorViewController alloc]init];
-    HostListViewController *hostListView = [[HostListViewController alloc]init];
+    MonitorViewController *monitorView = [[MonitorViewController alloc]init];
+   // HostListViewController *hostListView = [[HostListViewController alloc]init];
     
    // cheBufangView.title = @"撤部防";
     needHelpView.title = @"人";
-    hostListView.title = @"屋";
+    monitorView.title = @"屋";
     
     AnFangTabBarViewController *navTabBarController = [[AnFangTabBarViewController alloc] init];
     navTabBarController.navTabBarColor = [UIColor blueColor];
   
-    navTabBarController.subViewControllers = @[needHelpView,hostListView];
+    navTabBarController.subViewControllers = @[needHelpView,monitorView];
     [navTabBarController addParentController:self];
     
    // UIBarButtonItem *item = [[UIBarButtonItem alloc] init];

@@ -40,6 +40,35 @@
     
     //初始化视频播放库
     VP_InitSDK();
+    //创建窗口
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    /*
+     2.判断是否第一次使用这个版本
+     */
+    NSString *key = (NSString *)kCFBundleVersionKey;
+    //先去沙盒中取出上次使用的版本号
+    NSString *lastVersionCode = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    //加载info.plist文件
+    NSString *currentVersionCode = [NSBundle mainBundle].infoDictionary[key];
+    
+    if([lastVersionCode isEqualToString:currentVersionCode]){
+    
+        UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        LoginNavigationViewController *loginViewNav = [mainView instantiateViewControllerWithIdentifier:@"loginNavId"];
+        self.window.rootViewController = loginViewNav;
+    
+    }else{
+    
+        //第一次使用软件,保存当前软件版本号
+        [[NSUserDefaults standardUserDefaults] setObject:currentVersionCode forKey:key];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+         UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        
+        NewFeatureViewController *newFeatureView = [mainView instantiateViewControllerWithIdentifier:@"guidViewId"];
+        self.window.rootViewController = newFeatureView;
+    
+    }
     
     //向微信注册
     //[WXApi registerApp:@"wxd930ea5d5a258f4f" withDescription:@"demo 2.0"];
@@ -60,7 +89,7 @@
 //    [httpServer setDocumentRoot:webPath];
 //    
 //    [self startServer];
-
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

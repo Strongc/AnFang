@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "LoginNavigationViewController.h"
+#import "NewFeatureViewController.h"
 //@class HTTPServer;
 //#import "HTTPServer.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -18,6 +20,8 @@
 }
 
 @property (strong, nonatomic) UIWindow *window;
+//@property (strong, nonatomic) ViewController *loginView;
+//@property (strong, nonatomic) NewFeatureViewController *newFeatureView;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
