@@ -63,7 +63,7 @@
         [[NSUserDefaults standardUserDefaults] setObject:currentVersionCode forKey:key];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-         UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         
         NewFeatureViewController *newFeatureView = [mainView instantiateViewControllerWithIdentifier:@"guidViewId"];
         self.window.rootViewController = newFeatureView;

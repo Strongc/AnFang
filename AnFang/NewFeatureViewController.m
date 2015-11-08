@@ -41,6 +41,7 @@
     CGFloat imageW = viewSize.width;
 
     UIImageView *imgView;
+    
     for(int i=0; i< kCount; i++){
     
         imgView = [[UIImageView alloc] init];
@@ -49,15 +50,12 @@
         CGFloat imgX = i * viewSize.width;
         imgView.frame = CGRectMake(imgX, imageY, imageW, imageH);
         [self.guidScrollView addSubview:imgView];
-        //if(i == kCount - 1){
-        
-                      // [view addSubview:start];
-
-        //}
+       
         
     }
     self.guidScrollView.contentSize = CGSizeMake(kCount * imageW, 0);
     self.guidScrollView.delegate = self;
+    self.guidScrollView.showsHorizontalScrollIndicator = NO;
     self.guidScrollView.pagingEnabled = YES;
     
     //加载UIPageControl
@@ -74,10 +72,10 @@
     UIImage *image = [UIImage imageNamed:@"tiyan.png"];
     [start setBackgroundImage:image forState:UIControlStateNormal];
     start.bounds = CGRectMake(0, 0, image.size.width, image.size.height);
-    start.center = CGPointMake(viewSize.width * 0.5, viewSize.height * 0.5);
-    [start addTarget:self action:@selector(jumpToMainView) forControlEvents:UIControlEventTouchUpInside];
+    start.center = CGPointMake(viewSize.width * 0.5, viewSize.height * 0.9);
     [self.view addSubview:start];
-
+    [start addTarget:self action:@selector(jumpToMainView) forControlEvents:UIControlEventTouchUpInside];
+   
         // Do any additional setup after loading the view.
 }
 
@@ -92,6 +90,12 @@
     int page = offsetX / scrollView.frame.size.width;
     
     _pageControl.currentPage = page;
+    
+    if(_pageControl.currentPage == kCount-1){
+        
+        self.guidScrollView.scrollEnabled = NO;
+    
+    }
 
 }
 
