@@ -14,6 +14,7 @@
 #import "PublicVideoSource.h"
 #import "PlayViewController.h"
 #import "SDRefresh.h"
+#import "PublicHeaderView.h"
 
 @interface PublicSourceViewController ()
 {
@@ -26,7 +27,7 @@
     NSMutableArray *_lineList;
     int _selectedLineID;
     NSMutableArray  *volumImages ;
-
+    NSMutableArray  *publicSourceSection;
 
 }
 
@@ -131,7 +132,7 @@
     volumImages = [[NSMutableArray alloc]initWithObjects:@"丽晶宾馆基站.jpg",@"新天地大厦基站.jpg",@"磐安移动_公司大门口.jpg",
                    @"新天地大厦基站.jpg", @"武义移动_环城北路营业厅大门.jpg",@"永康移动_公司楼顶基站.jpg",@"武义移动_环城北路营业厅大门.jpg",@"兰溪移动_公司大门进出口.jpg",@"武义移动_环城北路营业厅大门.jpg",@"浦江移动_蔬菜基地1.jpg",@"浦江移动_蔬菜基地2.jpg",@"丽晶宾馆基站.jpg",@"浙江大学附属第四医院.jpg",
                    @"武义移动_环城北路营业厅大门.jpg",@"东阳移动_主营业厅.jpg",nil];
-
+    publicSourceSection = [[NSMutableArray alloc] initWithObjects:@"交通",@"气象",@"商场",nil];
     // Do any additional setup after loading the view.
 }
 
@@ -159,10 +160,16 @@
     searchBar.backgroundColor = [UIColor whiteColor];
     searchBar.searchBarStyle = UISearchBarStyleMinimal;
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    
+
     videoCollection = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 110*HEIGHT/667, WIDTH, HEIGHT-110-self.tabBarController.tabBar.bounds.size.height) collectionViewLayout:flowLayout];
     videoCollection.delegate = self;
     videoCollection.dataSource = self;
+    #pragma mark -- 头尾部大小设置
+    //设置头部并给定大小
+    [flowLayout setHeaderReferenceSize:CGSizeMake(videoCollection.frame.size.width, 40*HEIGHT/667)];
+    #pragma mark -- 注册头部视图
+    [videoCollection registerClass:[PublicHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
+    
     [self.view addSubview:videoCollection];
     videoCollection.backgroundColor = [UIColor colorWithHexString:@"ededed"];
     
@@ -182,7 +189,7 @@
     [refreshHeader addToScrollView:videoCollection];
     
     __weak SDRefreshHeaderView *weakRefreshHeader = refreshHeader;
-    __weak typeof(self) weakSelf = self;
+    //__weak typeof(self) weakSelf = self;
     refreshHeader.beginRefreshingOperation = ^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             //weakSelf.totalRowCount += 3;
@@ -216,11 +223,37 @@
 
 #pragma mark UICollectionViewDataSource
 
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+
+    return publicSourceSection.count;
+}
+
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
 
     //return self.sourceData.count;
-    return _allResorceList.count;
+    return _allResorceList.count/3;
+}
+
+-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+
+    UICollectionReusableView *reusableview = nil;
+    
+    if (kind == UICollectionElementKindSectionHeader){
+        
+        PublicHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+        
+        NSString *title = publicSourceSection[indexPath.section];
+        
+        headerView.titleLab.text = title;
+        
+        reusableview = headerView;
+        
+    }
+    
+    return reusableview;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath

@@ -1,0 +1,30 @@
+//
+//  PublicHeaderViewCollectionReusableView.m
+//  AnFang
+//
+//  Created by MyOS on 15/11/8.
+//  Copyright © 2015年 wellgood. All rights reserved.
+//
+
+#import "PublicHeaderView.h"
+#import "UIColor+Extensions.h"
+
+@implementation PublicHeaderView
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    
+    if (self) {
+        _titleLab = [[UILabel alloc]init];
+        _titleLab.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+        _titleLab.textAlignment = NSTextAlignmentCenter;
+        _titleLab.textColor = [UIColor blueColor];
+        _titleLab.backgroundColor = [UIColor colorWithHexString:@"9AC0CD"];
+        [self addSubview:_titleLab];
+        
+    }
+    return self;
+}
+
+@end

@@ -294,6 +294,7 @@
 		3E6A75921BEC690000113360 /* base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6A75911BEC690000113360 /* base64.m */; };
 		3E6A75E31BEC810600113360 /* CCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6A75E01BEC810600113360 /* CCLocationManager.m */; };
 		3E6A75E41BEC810600113360 /* CLLocation+YCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6A75E21BEC810600113360 /* CLLocation+YCLocation.m */; };
+		3E74F3F31BEF2385004E2935 /* PublicHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E74F3F21BEF2385004E2935 /* PublicHeaderView.m */; };
 		3EF006961BEB6257008CDE77 /* HostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF006951BEB6257008CDE77 /* HostCell.m */; };
 		3EF006991BEB6292008CDE77 /* HostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF006981BEB6292008CDE77 /* HostModel.m */; };
 		3EFA7F8B1BE8F1BA000D7308 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04AEFF581BB51461004634A8 /* CoreGraphics.framework */; };
@@ -859,6 +860,8 @@
 		3E6A75E01BEC810600113360 /* CCLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLocationManager.m; sourceTree = "<group>"; };
 		3E6A75E11BEC810600113360 /* CLLocation+YCLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+YCLocation.h"; sourceTree = "<group>"; };
 		3E6A75E21BEC810600113360 /* CLLocation+YCLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+YCLocation.m"; sourceTree = "<group>"; };
+		3E74F3F11BEF2385004E2935 /* PublicHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicHeaderView.h; sourceTree = "<group>"; };
+		3E74F3F21BEF2385004E2935 /* PublicHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicHeaderView.m; sourceTree = "<group>"; };
 		3EF006941BEB6257008CDE77 /* HostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostCell.h; sourceTree = "<group>"; };
 		3EF006951BEB6257008CDE77 /* HostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostCell.m; sourceTree = "<group>"; };
 		3EF006971BEB6292008CDE77 /* HostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostModel.h; sourceTree = "<group>"; };
@@ -1178,6 +1181,7 @@
 		04801E511BB3C7F600714CC9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3E74F3ED1BEF1FB9004E2935 /* PublicHeaderView */,
 				04D034371BDF935100E9E2BE /* PlayViewController.xib */,
 				04E5239C1BCF918000F3D0CC /* AnFang */,
 				04D9A5D71BB3D27B006D7B8A /* Main.storyboard */,
@@ -2071,6 +2075,15 @@
 			name = CCLocation;
 			sourceTree = "<group>";
 		};
+		3E74F3ED1BEF1FB9004E2935 /* PublicHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				3E74F3F11BEF2385004E2935 /* PublicHeaderView.h */,
+				3E74F3F21BEF2385004E2935 /* PublicHeaderView.m */,
+			);
+			name = PublicHeaderView;
+			sourceTree = "<group>";
+		};
 		CA8BE10D9498229D269DE8C1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2399,6 +2412,7 @@
 				04D9A6251BB3D8DA006D7B8A /* JRPlayerViewController.m in Sources */,
 				3E6A758E1BEC68DD00113360 /* RSADataSigner.m in Sources */,
 				042037FF1BD085D300D10004 /* VoiceAlarmCell.m in Sources */,
+				3E74F3F31BEF2385004E2935 /* PublicHeaderView.m in Sources */,
 				044FFDA01BCE237A00F74AE9 /* StringToBytes.m in Sources */,
 				04D9A62B1BB3D8DA006D7B8A /* PersonalCenterViewController.m in Sources */,
 				044AD45B1BBB9071004D17BB /* WGUserData.m in Sources */,
