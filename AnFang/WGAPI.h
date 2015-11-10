@@ -54,6 +54,11 @@
 #define API_GET_PAYACCEPT @"pay/accept"
 //求助
 #define API_ADD_HELP @"help/add"
+//文件上传
+#define API_UPLOADFILE @"upload/uploadFile"
+//获取求助信息
+#define API_GETHELPINFO @"help/page"
+
 typedef enum{
 
   WGResultTypeDictionary,

@@ -15,6 +15,9 @@
 #import "NSDateString.h"
 #import "NSDateString.h"
 #import "SVProgressHUD.h"
+#import "CMTool.h"
+#import "WGAPI.h"
+#import "JSONKit.h"
 
 
 #define IS_IOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
@@ -48,6 +51,9 @@
     NSString *playAudioUrl;
     UIProgressView *playProgress;//播放进度
     NSMutableArray *volumImages;
+    NSString *helpId;
+    NSMutableArray *tempArray;
+    NSMutableArray *keyInfoArray;
     //NSString *urlStr2;
 
 }
@@ -155,6 +161,8 @@
     
     [super viewDidLoad];
     
+    tempArray = [[NSMutableArray alloc]init];
+    keyInfoArray = [[NSMutableArray alloc] init];
     if (IS_IOS8) {
         [UIApplication sharedApplication].idleTimerDisabled = TRUE;
         locManager = [[CLLocationManager alloc] init];
@@ -594,7 +602,7 @@
 
     if(section == 0){
     
-        n = self.keyAlarmData.count;
+        n = keyInfoArray.count;
     }else if (section == 1){
     
         n = self.photoAlarmData.count;
@@ -625,7 +633,7 @@
             
         }
         
-        OneKeyAlarmModel *model = [self.keyAlarmData objectAtIndex:indexPath.row];
+        OneKeyAlarmModel *model = [keyInfoArray objectAtIndex:indexPath.row];
         keycell.oneKeyAlarm = model;
     
         NSString *content = keycell.stateLab.text;
@@ -844,35 +852,119 @@
             string = [NSString stringWithFormat:@"%f %f",locationCorrrdinate.latitude,locationCorrrdinate.longitude];
         } withAddress:^(NSString *addressString) {
             NSLog(@"%@",addressString);
-            string = [NSString stringWithFormat:@"%@\n%@",string,addressString];
-            model.location = string;
-            model.time = time;
-            [_keyAlarmData addObject:model];
-            [helpMessage reloadData];
+//            string = [NSString stringWithFormat:@"%@\n%@",string,addressString];
+//            model.location = string;
+//            model.time = time;
+//            [_keyAlarmData addObject:model];
+//            [helpMessage reloadData];
+            
             //判断是否以创建文件
             if(string != nil){
-                if ([[NSFileManager defaultManager] fileExistsAtPath:keyInfoPlistPath])
-                {
+//                if ([[NSFileManager defaultManager] fileExistsAtPath:keyInfoPlistPath])
+//                {
                     //此处可以自己写显示plist文件内容
-                    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-                    [dict setObject:string forKey:@"message"];
-                    [dict setObject:time forKey:@"time"];
-                    [dict setObject:string forKey:@"location"];
-                    [saveKeyInfoArray addObject:dict];
-                    [saveKeyInfoArray writeToFile:keyInfoPlistPath atomically:YES];
+//                    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+//                    [dict setObject:string forKey:@"message"];
+//                    [dict setObject:time forKey:@"time"];
+//                    [dict setObject:string forKey:@"location"];
+//                    [saveKeyInfoArray addObject:dict];
+                    //[saveKeyInfoArray writeToFile:keyInfoPlistPath atomically:YES];
+                    
+                    NSDictionary *params = @{@"type":@"0",@"title":@"一键报警",@"content":string};
+                    NSString *paramsStr = [CMTool dictionaryToJson:params];
+                    NSString *str = @"help=";
+                    paramsStr = [str stringByAppendingString:paramsStr];
+                    [SVProgressHUD showWithStatus:@"发送中..."];
+                    [WGAPI post:API_ADD_HELP RequestParams:paramsStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                        
+                        if(data){
+                            
+                            NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                            NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:json];
+                            if(infojson != nil){
+                            
+                                NSDictionary *messageJson = [infojson objectForKey:@"data"];
+                                helpId = [messageJson objectForKey:@"help_id"];
+                                if(helpId != nil){
+                                
+                                    [self performSelectorOnMainThread:@selector(responseOfKeyAlarm) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
+
+                                
+                                }
+                            
+                            }
+                        
+                        
+                        }
+                    }];
+                    
                     //NSLog(@"文件已存在");
                 }
-                else
-                {
-                
-                    [keyInfoArrayPlist writeToFile:keyInfoPlistPath atomically:YES];
-                
-                }
-            }
-            
+//                else
+//                {
+//                
+//                    [keyInfoArrayPlist writeToFile:keyInfoPlistPath atomically:YES];
+//                
+//                }
+           // }
         }];
     }
 
+    
+}
+
+
+-(void)getHelpMessage
+{
+    NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"100"};
+    NSDictionary *pageInfo = @{@"page":page};
+    NSString *pageStr = [pageInfo JSONString];
+    NSString *helpInfoData = [@"help=" stringByAppendingString:pageStr];
+
+    [WGAPI post:API_GETHELPINFO RequestParams:helpInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if(data){
+            
+            NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"%@",jsonStr);
+            NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
+            
+            if(infojson != nil){
+                
+               tempArray = [infojson objectForKey:@"datas"];
+                for(NSDictionary *dict in tempArray){
+                    NSString *type = [dict objectForKey:@"type"];
+                    
+                    if ([type isEqualToString:@"0"]) {
+                        
+                        OneKeyAlarmModel *model = [OneKeyAlarmModel OneKeyAlarmModelWithDict:dict];
+                        [keyInfoArray addObject:model];
+                    }
+                    
+                }
+                   
+                [self performSelectorOnMainThread:@selector(refreshData) withObject:data waitUntilDone:YES];
+                
+            }
+
+        
+        }
+    }];
+
+}
+
+-(void)responseOfKeyAlarm
+{
+    
+    [SVProgressHUD showSuccessWithStatus:@"发送成功！" maskType:SVProgressHUDMaskTypeBlack];
+    [self getHelpMessage];
+    //[helpMessage reloadData];
+    
+}
+
+
+-(void)refreshData
+{
+    [helpMessage reloadData];
     
 }
 

@@ -164,7 +164,7 @@ static void *_vpHandle = NULL;
     [backView addSubview:title];
     title.text = @"云台控制";
     title.textAlignment = NSTextAlignmentCenter;
-    title.font = [UIFont systemFontOfSize:14*WIDTH/375];
+    title.font = [UIFont systemFontOfSize:20];
     
     UIButton *upBtn = [[UIButton alloc]initWithFrame:CGRectMake(38*WIDTH/375, 20*HEIGHT/667, 50*WIDTH/375, 50*HEIGHT/667)];
     upBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15*WIDTH/375];
@@ -206,7 +206,7 @@ static void *_vpHandle = NULL;
     [downBtn addTarget:self action:@selector(ptzAction:) forControlEvents:UIControlEventTouchUpInside];
     [backView addSubview:downBtn];
     
-    UIButton *stopContolBtn = [[UIButton alloc] initWithFrame:CGRectMake(130*WIDTH/375, 30*HEIGHT/667, 50*WIDTH/375, 30*HEIGHT/667)];
+    UIButton *stopContolBtn = [[UIButton alloc] initWithFrame:CGRectMake(130*WIDTH/375, 55*HEIGHT/667, 50*WIDTH/375, 30*HEIGHT/667)];
     [stopContolBtn setTitle:@"停" forState:UIControlStateNormal];
     stopContolBtn.titleLabel.font = [UIFont systemFontOfSize:20];
     [stopContolBtn setTitleColor:[UIColor colorWithHexString:@"4682b4"] forState:UIControlStateNormal];

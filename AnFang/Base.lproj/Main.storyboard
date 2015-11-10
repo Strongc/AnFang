@@ -43,10 +43,10 @@
             </objects>
             <point key="canvasLocation" x="2915" y="1679"/>
         </scene>
-        <!--动态-->
+        <!--商盟-->
         <scene sceneID="mEQ-lu-HJT">
             <objects>
-                <viewController title="动态" id="Z6u-zF-NO4" customClass="PersonalCenterViewController" sceneMemberID="viewController">
+                <viewController title="商盟" id="Z6u-zF-NO4" customClass="ShangMengViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bzv-u1-w2f"/>
                         <viewControllerLayoutGuide type="bottom" id="gem-wa-5N9"/>
@@ -54,9 +54,24 @@
                     <view key="view" contentMode="scaleToFill" id="g9z-Jr-4Vu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VPt-Zl-qC7">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gem-wa-5N9" firstAttribute="top" secondItem="VPt-Zl-qC7" secondAttribute="bottom" id="DI3-5q-q1H"/>
+                            <constraint firstItem="VPt-Zl-qC7" firstAttribute="leading" secondItem="g9z-Jr-4Vu" secondAttribute="leading" id="fLo-A1-1Gz"/>
+                            <constraint firstItem="VPt-Zl-qC7" firstAttribute="top" secondItem="bzv-u1-w2f" secondAttribute="bottom" id="iIq-ie-o2H"/>
+                            <constraint firstAttribute="trailing" secondItem="VPt-Zl-qC7" secondAttribute="trailing" id="knR-n1-a7H"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="商盟" id="iE2-pU-1j4"/>
+                    <connections>
+                        <outlet property="webView" destination="VPt-Zl-qC7" id="ork-8k-cI3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Ee-he-gwf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

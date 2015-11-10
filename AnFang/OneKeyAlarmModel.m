@@ -15,9 +15,9 @@
 
     if(self = [super init]){
         
-        self.time = dict[@"time"];
-        self.location = dict[@"location"];
-        self.state = dict[@"state"];
+        self.time = dict[@"createDate"];
+        self.location = dict[@"content"];
+        self.state = dict[@"is_access"];
         
     }
     return self;

@@ -135,7 +135,6 @@
 		04D9A5F61BB3D82E006D7B8A /* AlarmMessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9A5F31BB3D82E006D7B8A /* AlarmMessageDetailViewController.m */; };
 		04D9A5F71BB3D82E006D7B8A /* AlarmMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9A5F51BB3D82E006D7B8A /* AlarmMessageViewController.m */; };
 		04D9A6201BB3D8DA006D7B8A /* BusinessMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9A5F91BB3D8DA006D7B8A /* BusinessMessageViewController.m */; };
-		04D9A6211BB3D8DA006D7B8A /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9A5FB1BB3D8DA006D7B8A /* ContactsViewController.m */; };
 		04D9A6221BB3D8DA006D7B8A /* DefenceAreaDevListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9A5FD1BB3D8DA006D7B8A /* DefenceAreaDevListViewController.m */; };
 		04D9A6231BB3D8DA006D7B8A /* DefenceAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9A5FF1BB3D8DA006D7B8A /* DefenceAreaViewController.m */; };
 		04D9A6241BB3D8DA006D7B8A /* DeviceManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9A6011BB3D8DA006D7B8A /* DeviceManagerViewController.m */; };
@@ -258,6 +257,7 @@
 		3EFA7FA11BE8F26F000D7308 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFA7FA01BE8F26F000D7308 /* libc++.tbd */; };
 		3EFA7FA31BE8F280000D7308 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFA7FA21BE8F280000D7308 /* libstdc++.tbd */; };
 		3EFA7FA51BE8F2A3000D7308 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFA7FA41BE8F2A3000D7308 /* libsqlite3.tbd */; };
+		3EFCB3241BF1F322001B1729 /* ShangMengViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFCB3231BF1F322001B1729 /* ShangMengViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -521,8 +521,6 @@
 		04D9A5F51BB3D82E006D7B8A /* AlarmMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmMessageViewController.m; sourceTree = "<group>"; };
 		04D9A5F81BB3D8DA006D7B8A /* BusinessMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessMessageViewController.h; sourceTree = "<group>"; };
 		04D9A5F91BB3D8DA006D7B8A /* BusinessMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessMessageViewController.m; sourceTree = "<group>"; };
-		04D9A5FA1BB3D8DA006D7B8A /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
-		04D9A5FB1BB3D8DA006D7B8A /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
 		04D9A5FC1BB3D8DA006D7B8A /* DefenceAreaDevListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefenceAreaDevListViewController.h; sourceTree = "<group>"; };
 		04D9A5FD1BB3D8DA006D7B8A /* DefenceAreaDevListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefenceAreaDevListViewController.m; sourceTree = "<group>"; };
 		04D9A5FE1BB3D8DA006D7B8A /* DefenceAreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefenceAreaViewController.h; sourceTree = "<group>"; };
@@ -756,6 +754,8 @@
 		3EFA7FA01BE8F26F000D7308 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		3EFA7FA21BE8F280000D7308 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		3EFA7FA41BE8F2A3000D7308 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		3EFCB3221BF1F322001B1729 /* ShangMengViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShangMengViewController.h; sourceTree = "<group>"; };
+		3EFCB3231BF1F322001B1729 /* ShangMengViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShangMengViewController.m; sourceTree = "<group>"; };
 		6563E09E4651676361820012 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		815A5FE989008A8FD1FBBB82 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F3C40336A7B22936EFB1F1AE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1623,8 +1623,8 @@
 		04D9A6481BB3DEAE006D7B8A /* ShangMeng */ = {
 			isa = PBXGroup;
 			children = (
-				04D9A5FA1BB3D8DA006D7B8A /* ContactsViewController.h */,
-				04D9A5FB1BB3D8DA006D7B8A /* ContactsViewController.m */,
+				3EFCB3221BF1F322001B1729 /* ShangMengViewController.h */,
+				3EFCB3231BF1F322001B1729 /* ShangMengViewController.m */,
 			);
 			name = ShangMeng;
 			sourceTree = "<group>";
@@ -2177,6 +2177,7 @@
 				3E6A758E1BEC68DD00113360 /* RSADataSigner.m in Sources */,
 				042037FF1BD085D300D10004 /* VoiceAlarmCell.m in Sources */,
 				3E74F3F31BEF2385004E2935 /* PublicHeaderView.m in Sources */,
+				3EFCB3241BF1F322001B1729 /* ShangMengViewController.m in Sources */,
 				044FFDA01BCE237A00F74AE9 /* StringToBytes.m in Sources */,
 				04D9A62B1BB3D8DA006D7B8A /* PersonalCenterViewController.m in Sources */,
 				044AD45B1BBB9071004D17BB /* WGUserData.m in Sources */,
@@ -2185,7 +2186,6 @@
 				04D9A6311BB3D8DA006D7B8A /* SystemMessageViewController.m in Sources */,
 				04D9A62E1BB3D8DA006D7B8A /* RegisterViewController.m in Sources */,
 				04801E951BB3CC3600714CC9 /* MHTabBarController.m in Sources */,
-				04D9A6211BB3D8DA006D7B8A /* ContactsViewController.m in Sources */,
 				04D9A6321BB3D8DA006D7B8A /* UserMessageViewController.m in Sources */,
 				044FFDA31BCE476C00F74AE9 /* RsaFactory.m in Sources */,
 				04801E641BB3C9FE00714CC9 /* PayStyle.m in Sources */,
