@@ -12,7 +12,7 @@
 
 @property (nonatomic,copy) NSString *time;
 @property (nonatomic,copy) NSString *location;
-@property (nonatomic,copy) NSString *state;
+//@property (nonatomic,copy) NSString *state;
 
 -(instancetype ) initWithDict:(NSDictionary *)dict;
 +(instancetype ) OneKeyAlarmModelWithDict:(NSDictionary *)dict;

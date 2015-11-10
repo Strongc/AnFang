@@ -932,13 +932,13 @@
                 
                tempArray = [infojson objectForKey:@"datas"];
                 for(NSDictionary *dict in tempArray){
-                    NSString *type = [dict objectForKey:@"type"];
+                    //NSString *type = (NSString *)[dict objectForKey:@"type"];
                     
-                    if ([type isEqualToString:@"0"]) {
+                    //if ([type isEqualToString:@"0"]) {
                         
                         OneKeyAlarmModel *model = [OneKeyAlarmModel OneKeyAlarmModelWithDict:dict];
                         [keyInfoArray addObject:model];
-                    }
+                   // }
                     
                 }
                    

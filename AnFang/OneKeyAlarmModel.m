@@ -17,7 +17,7 @@
         
         self.time = dict[@"createDate"];
         self.location = dict[@"content"];
-        self.state = dict[@"is_access"];
+        //self.state = dict[@"is_access"];
         
     }
     return self;

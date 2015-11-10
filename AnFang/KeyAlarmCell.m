@@ -22,7 +22,7 @@
     _oneKeyAlarm = oneKeyAlarm;
     self.timeLab.text = oneKeyAlarm.time;
     self.locationLab.text = oneKeyAlarm.location;
-    self.stateLab.text = oneKeyAlarm.state;
+    //self.stateLab.text = oneKeyAlarm.state;
 
 }
 
