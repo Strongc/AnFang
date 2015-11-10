@@ -48,7 +48,12 @@
 #define API_GETORGINFO @"user/getOrg"
 //获取用户主机ID
 #define API_GETHOST @"user/getHost"
-
+//获取商品订单
+#define API_GET_PAYINFO @"pay/getPayInfo"
+//支付成功后返回给后台
+#define API_GET_PAYACCEPT @"pay/accept"
+//求助
+#define API_ADD_HELP @"help/add"
 typedef enum{
 
   WGResultTypeDictionary,

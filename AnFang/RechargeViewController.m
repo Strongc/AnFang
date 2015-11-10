@@ -12,9 +12,11 @@
 #import "UIColor+Extensions.h"
 #import "PayStyle.h"
 #import "PayStyleCollectionViewCell.h"
-//#import <AlipaySDK/AlipaySDK.h>
-//#import "Order.h"
-//#import "DataSigner.h"
+#import <AlipaySDK/AlipaySDK.h>
+#import "Order.h"
+#import "DataSigner.h"
+#import "WGAPI.h"
+#import "CMTool.h"
 //#import "payRequsestHandler.h"
 //#import "WXApiObject.h"
 //#import "WXApi.h"
@@ -363,46 +365,52 @@
 #pragma mark - 支付宝
 - (void)doAliPay {
     
+//    NSString *goodsName = @"账户充值";
+//    NSString *price = [NSString stringWithFormat:@"%.2f",1.00];
+//    NSString *goodsDetail = @"给自己的安防服务账号充值";
+//    
+//    NSDictionary *payInfoDict = @{@"goodsName":goodsName,@"goodsDetail":goodsDetail,@"price":price};
+    
     NSString *partner = @"2088021410775742";
     NSString *seller = @"3266924131@qq.com";
     
-    NSString *str1 = @"-----BEGIN RSA PRIVATE KEY-----";
-    NSString *str3 = @"-----END RSA PRIVATE KEY-----";
+   // NSString *str1 = @"-----BEGIN RSA PRIVATE KEY-----";
+    //NSString *str3 = @"-----END RSA PRIVATE KEY-----";
     
-    NSString *privateKeyTemp = @"MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAMqzsWdaz4/iaGvdZEsDYr+VAU5AF/ysnc3Ftj4YAnu1cx9L+fUNKexwBqaeQrVhQ3GSqlAwRADKPJxsMh4wt3F5qdF78nf/V2ONLFE11RHHOwtvIfeUHFuStYldsFg6HjVKpfYkEF4IqKje6ycK9sWhGcfob8PrjvCqigVa8ni9AgMBAAECgYEAgyGeacuArYd9oBI4WKLXFjNyBcpG+ko9SCpYjHEB4j/vOtbu3E3oyjFqzA1kAGzssaN9FKU0yQIMFfGUtp0zfknHMTFyyLouUJbMSxnpDzIqoJZffD9D3fCCjJOOmsBiF26eaprHnjqh4xQLMbE4uFi2pDoh+8DjEDq5IV4E1CECQQDj6as3klBIiz+8yvEUI4but9zmvdyG3fcJgBs2e+8BA5euAoyLyleqUl9cfGsWpLu8ASIldyJ0dXLJAHimneKVAkEA466oN3EmyM2PbOoXmyNccOw6q2NGUp2QpHlfBVd0ZMwMV2llfmSC8kV3cTXHHc5imVRY4QixY36pEsIbyjSbiQJBAM/tSIVEePYWBCorQ9HJr7puB5yDLoPkURJby3fjjWLxchoQvURzb5M130YzREe+NoAI0Kw5ijeRRw1V3ryzYhkCQQDOeQ1DefFaGFAAzSkrHx4tqYxq8FRNh2YsQYTSK0T6Q7DNdF7+B9hYLHbsy4AOn6L6uWsAaAm12J8qy6y36o1BAkB3pLndLIMNNG26MDAHmukP4qRZJ0ho8ECRgP4HWyYsBxhN2DuR76lIHAtHgKuIZ9MK2A6YbyNSu/Sgavsvpaln";
+    NSString *privateKey = @"MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAM38Wgp204oqfBwdYaFZ1/kybzAkvWCCmncCtclDj0ldSIAZwsLY6W9TofjyZyVdGb/SZ/90ij1pg/uXv74Y4WMxJH3vH00KzFH8yo7mFWZounKdEiH1sHFd/J9gycxkqQPS2Eilo/7OL9NrnWy1hg0IJeDuIzaqIe5jD0TTi9PxAgMBAAECgYEAxzP7k9EUhLLPcZUMfLDZR5p5otJ0/mdvoBZT3T7jzCxVV+URz8NcBRiZNJqgG6csprCBeK+onPl09RPtD5caJ0m402ov5Mmmci1sgBJQNPKE32TEJ7B4Mp0bT+48gZZNmzGOxPXdfmjG3SYpgfVhuGU7fH4CeMonPoC/uNPa/tECQQDu1lctVybvb6WEZRkBrhwRm5/zNM9YcYnPseq8Z0xC7hoBKCHWHnxeaN65YcQ1Gdua9OimuDYFOx4/Jr5wOer9AkEA3MmsY7pc+iSKr+A97Qeyoy3bbQ5q0Y/SQo2fbyR0hyZBxqEBrxCU9IpQ1IHJQ5TheZWBp2ngWzoCexK7cMBBBQJAG02dga1o4g5dWZlFFpAU3V5xFph+65lvK7MnJoqYiT428tLnq1ao2RIcBA1NJNTj6f79abG9WzO67XU8aA/28QJAeA+bFOgk40m3uQgh5KFI/P9U0SsD301sMxC8YD3cuBmPrymitsY3mfsVFVo2Te/J5MnuJVGn1TPoYXDASQHi2QJBAOXR54CDUCyfmGE8F77H4bOwYGBTBdAAOQe1Cf+w7LcsYgF51OCgOL71bI/VVX2nvUU6ZM6nE00E8ad1MiZn68w=";
     
-    NSString *str2 = [str1 stringByAppendingString:privateKeyTemp];
-    NSString *privateKey = [str2 stringByAppendingString:str3];
+    //NSString *str2 = [str1 stringByAppendingString:privateKeyTemp];
+   // NSString *privateKey = privateKeyTemp;
     
-//    Order *order = [[Order alloc] init];
-//    order.partner = partner;
-//    order.seller = seller;
-//    order.tradeNO = [self generateTradeNO]; //订单ID（由商家自行制定）
-//    order.productName = @"套餐"; //商品标题
-//    order.productDescription = @"安防服务套餐"; //商品描述
-//    order.amount = [NSString stringWithFormat:@"%.2f",2.00]; //商品价格
-//    order.notifyURL =  @"http://www.xxx.com"; //回调URL
-//    
-//    order.service = @"mobile.securitypay.pay";
-//    order.paymentType = @"1";
-//    order.inputCharset = @"utf-8";
-//    order.itBPay = @"30m";
-//    order.showUrl = @"m.alipay.com";
-//    NSString *orderSpec = [order description];
-//    
-//    //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
-//    id<DataSigner> signer = CreateRSADataSigner(privateKey);
-//    NSString *signedString = [signer signString:orderSpec];
-//    NSLog(@"私钥：%@",signer);
+    Order *order = [[Order alloc] init];
+    order.partner = partner;
+    order.seller = seller;
+    order.tradeNO = [self generateTradeNO]; //订单ID（由商家自行制定）
+    order.productName = @"套餐"; //商品标题
+    order.productDescription = @"安防服务套餐"; //商品描述
+    order.amount = [NSString stringWithFormat:@"%.3f",0.001]; //商品价格
+    order.notifyURL =  @"http://122.233.181.221:8181/weigu/pay/accept"; //回调URL
+    
+    order.service = @"mobile.securitypay.pay";
+    order.paymentType = @"1";
+    order.inputCharset = @"utf-8";
+    order.itBPay = @"30m";
+    order.showUrl = @"m.alipay.com";
+    NSString *orderSpec = [order description];
+
+    //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
+    id<DataSigner> signer = CreateRSADataSigner(privateKey);
+    NSString *signedString = [signer signString:orderSpec];
+    NSLog(@"私钥：%@",signer);
     
     NSString *appScheme = @"anfang";
     
-//    NSString *orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
-//                   orderSpec, signedString, @"RSA"];
-//    [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-//        
-//        NSLog(@"result = %@",resultDic);
-//    }];
+    NSString *orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
+                   orderSpec, signedString, @"RSA"];
+    [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+        
+        NSLog(@"result = %@",resultDic);
+    }];
     
 }
 

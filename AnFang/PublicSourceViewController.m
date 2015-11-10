@@ -115,7 +115,7 @@
         return;
     }
     
-    BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"test" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
+    BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"dbwl" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
     if (NO == result1) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
                                                             message:@"登录失败"
@@ -151,7 +151,7 @@
     [self.view addSubview:headView];
 
     UIView *searchBarView = [[UIView alloc]initWithFrame:CGRectMake(0, 64*HEIGHT/667, WIDTH, 40*HEIGHT/667)];
-    [self.view addSubview:searchBarView];
+    //[self.view addSubview:searchBarView];
     searchBarView.backgroundColor = [UIColor colorWithHexString:@"bababa"];
     
     UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(240*WIDTH/375, 5*HEIGHT/667, 120*WIDTH/375, 30*HEIGHT/667)];
@@ -161,7 +161,7 @@
     searchBar.searchBarStyle = UISearchBarStyleMinimal;
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
 
-    videoCollection = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 110*HEIGHT/667, WIDTH, HEIGHT-110-self.tabBarController.tabBar.bounds.size.height) collectionViewLayout:flowLayout];
+    videoCollection = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 80*HEIGHT/667, WIDTH, HEIGHT-110-self.tabBarController.tabBar.bounds.size.height) collectionViewLayout:flowLayout];
     videoCollection.delegate = self;
     videoCollection.dataSource = self;
     #pragma mark -- 头尾部大小设置

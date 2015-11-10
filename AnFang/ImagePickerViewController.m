@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIImageView *headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 64*HEIGHT/667)];
+    UIImageView *headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
     [headView setImage:[UIImage imageNamed:@"header_bg.png"]];
     
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20*HEIGHT/667, WIDTH, 50*HEIGHT/667)];
@@ -48,7 +48,7 @@
     [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backBtn];
     
-    typeTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 64*HEIGHT/667, WIDTH, 100*HEIGHT/667) style:UITableViewStylePlain];
+    typeTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, 100*HEIGHT/667) style:UITableViewStylePlain];
     typeTable.delegate = self;
     typeTable.dataSource = self;
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 100*HEIGHT/667, WIDTH, 1)];
@@ -172,7 +172,7 @@
        
     }
 
-    UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(20*WIDTH/375, 5*HEIGHT/667, 100*WIDTH/375, 35*HEIGHT/667)];
+    UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(20*WIDTH/375, 5*HEIGHT/667, 200*WIDTH/375, 35*HEIGHT/667)];
     titleLab.textAlignment = NSTextAlignmentLeft;
     titleLab.textColor = [UIColor blackColor];
     titleLab.font = [UIFont systemFontOfSize:15];
@@ -197,7 +197,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    return 50*HEIGHT/667;
+    return 50;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

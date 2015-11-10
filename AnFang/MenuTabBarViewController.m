@@ -31,6 +31,11 @@
     UITabBarItem *itemPublic = [self.tabBar.items objectAtIndex:0];
     itemPublic.image = [[UIImage imageNamed:@"tab_me_nor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     itemPublic.selectedImage = [[UIImage imageNamed:@"tab_me_press"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    UITabBarItem *itemShangMeng = [self.tabBar.items objectAtIndex:1];
+    itemShangMeng.image = [[UIImage imageNamed:@"tab_buddy_nor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    itemShangMeng.selectedImage = [[UIImage imageNamed:@"tab_buddy_press"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+
    
     // Do any additional setup after loading the view.
 }

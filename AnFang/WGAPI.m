@@ -19,7 +19,9 @@
 
 //NSString *const CMAPIBaseURL=@"http://192.168.0.42:8080/wellgood/base";
 //NSString *const CMAPIBaseURL = @"http://wellgood.tpddns.cn:8080/";
-NSString *const CMAPIBaseURL = @"http://192.168.0.40:8080/";
+NSString *const CMAPIBaseURL = @"http://192.168.0.42:8080/platform/";
+//NSString *const CMAPIBaseURL = @"http://122.233.181.221:8181/weigu/";
+
 #else
 //NSString *const CMAPIBaseURL=@"http://guanwu.puyuntech.com/yht_api/";
 NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
