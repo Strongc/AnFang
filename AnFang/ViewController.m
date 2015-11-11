@@ -41,11 +41,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //infoData= [[NSMutableData alloc] init];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithHexString:@"1e90ff"]];
-    [self.navigationController.navigationBar setFrame:CGRectMake(0, 0, WIDTH, 35)];
+//    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithHexString:@"1e90ff"]];
+//    [self.navigationController.navigationBar setFrame:CGRectMake(0, 0, WIDTH, 35)];
    
-    UIImageView *headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 60*HEIGHT/667)];
-    [headView setImage:[UIImage imageNamed:@"header_bg.png"]];
+   // UIImageView *headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
+    //[headView setImage:[UIImage imageNamed:@"header_bg.png"]];
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
+    
     
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, WIDTH, 50*HEIGHT/667)];
     title.textAlignment = NSTextAlignmentCenter;

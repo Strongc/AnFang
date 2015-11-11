@@ -28,8 +28,8 @@
 {
     UITableView *helpMessage;
     CLLocationManager *locManager;
-    NSString *locationTime;
-    NSString *coordinateInfo;
+   // NSString *locationTime;
+   // NSString *coordinateInfo;
     ImagePickerViewController* pickImageViewController;
     UITextView *infoText;
     NSMutableArray *arrayPlist;
@@ -38,8 +38,8 @@
     UIImage *photoImage;
     
     NSString *keyInfoPlistPath;
-    NSMutableArray *keyInfoArrayPlist;
-    NSMutableArray *saveKeyInfoArray;
+   // NSMutableArray *keyInfoArrayPlist;
+    //NSMutableArray *saveKeyInfoArray;
     AVAudioRecorder *MyAudioRecorder;
     UIImageView *voiceImage;
    
@@ -54,12 +54,15 @@
     NSString *helpId;
     NSMutableArray *tempArray;
     NSMutableArray *keyInfoArray;
-    //NSString *urlStr2;
+    NSMutableArray *temp2Array;
+    NSMutableArray *photoAlarmArray;
+    NSMutableArray *temp3Array;
+    NSMutableArray *voiceArray;
 
 }
 @property (assign, nonatomic) NSInteger currentRow;
-@property (nonatomic,strong) NSMutableArray *keyAlarmData;
-@property (nonatomic,strong) NSMutableArray *photoAlarmData;
+//@property (nonatomic,strong) NSMutableArray *keyAlarmData;
+//@property (nonatomic,strong) NSMutableArray *photoAlarmData;
 @property (nonatomic,strong) NSMutableArray *voiceAlarmData;
 @property (nonatomic,strong) AVAudioRecorder *audioRecorder;//音频录音机
 @property (nonatomic,strong) AVAudioPlayer *audioPlayer;//音频播放器，用于播放录音文件
@@ -72,90 +75,90 @@
 @implementation NeedHelpViewController
 @synthesize avPalyer;
 
--(NSMutableArray *)keyAlarmData
-{
-    if(_keyAlarmData == nil){
-        
-        //1.获取PayStyleIcon.plist文件的路径
-        //NSString *path = [[NSBundle mainBundle] pathForResource:@"keyInfo.plist" ofType:nil];
-        //2.根据路径加载数据
-        NSArray *arrayDict = [NSArray arrayWithContentsOfFile:keyInfoPlistPath];
-        
-        //3.创建一个可变数组来保存一个一个对象
-        NSMutableArray *arrayModels = [NSMutableArray array];
-        
-        //4.循环字典数组，把每个字典对象转化成一个模型对象
-        for(NSDictionary *dict in arrayDict){
-            
-            OneKeyAlarmModel *model = [OneKeyAlarmModel OneKeyAlarmModelWithDict:dict];
-            
-            [arrayModels addObject:model];
-        }
-        
-        _keyAlarmData = arrayModels;
-        
-    }
-    
-    return _keyAlarmData;
-}
-
--(NSMutableArray *)voiceAlarmData
-{
-
-    if(_voiceAlarmData == nil){
-        
-        //1.获取PayStyleIcon.plist文件的路径
-        //NSString *path = [[NSBundle mainBundle] pathForResource:@"VoiceAlarm.plist" ofType:nil];
-        //2.根据路径加载数据
-        NSArray *arrayDict = [NSArray arrayWithContentsOfFile:voicePlistPath];
-        
-        //3.创建一个可变数组来保存一个一个对象
-        NSMutableArray *arrayModels = [NSMutableArray array];
-        
-        //4.循环字典数组，把每个字典对象转化成一个模型对象
-        for(NSDictionary *dict in arrayDict){
-            
-            VoiceAlarmModel *model = [VoiceAlarmModel VoiceAlarmModelWithDict:dict];
-            
-            [arrayModels addObject:model];
-        }
-        
-        _voiceAlarmData = arrayModels;
-        
-    }
-    
-    return _voiceAlarmData;
-
-}
-
--(NSMutableArray *)photoAlarmData
-{
-
-    if(_photoAlarmData == nil){
-        
-        //1.获取PayStyleIcon.plist文件的路径
-        //NSString *path = [[NSBundle mainBundle] pathForResource:@"TextAndPhotoAlarm.plist" ofType:nil];
-        //2.根据路径加载数据
-        NSArray *arrayDict = [NSArray arrayWithContentsOfFile:plistPath];
-        
-        //3.创建一个可变数组来保存一个一个对象
-        NSMutableArray *arrayModels = [NSMutableArray array];
-        
-        //4.循环字典数组，把每个字典对象转化成一个模型对象
-        for(NSDictionary *dict in arrayDict){
-            
-            TextPhotoAlarmModel *model = [TextPhotoAlarmModel TextPhotoAlarmModelWithDict:dict];
-            
-            [arrayModels addObject:model];
-        }
-        
-        _photoAlarmData = arrayModels;
-        
-    }
-    
-    return _photoAlarmData;
-
-}
+//-(NSMutableArray *)keyAlarmData
+//{
+//    if(_keyAlarmData == nil){
+//        
+//        //1.获取PayStyleIcon.plist文件的路径
+//        //NSString *path = [[NSBundle mainBundle] pathForResource:@"keyInfo.plist" ofType:nil];
+//        //2.根据路径加载数据
+//        NSArray *arrayDict = [NSArray arrayWithContentsOfFile:keyInfoPlistPath];
+//        
+//        //3.创建一个可变数组来保存一个一个对象
+//        NSMutableArray *arrayModels = [NSMutableArray array];
+//        
+//        //4.循环字典数组，把每个字典对象转化成一个模型对象
+//        for(NSDictionary *dict in arrayDict){
+//            
+//            OneKeyAlarmModel *model = [OneKeyAlarmModel OneKeyAlarmModelWithDict:dict];
+//            
+//            [arrayModels addObject:model];
+//        }
+//        
+//        _keyAlarmData = arrayModels;
+//        
+//    }
+//    
+//    return _keyAlarmData;
+//}
+//
+//-(NSMutableArray *)voiceAlarmData
+//{
+//
+//    if(_voiceAlarmData == nil){
+//        
+//        //1.获取PayStyleIcon.plist文件的路径
+//        //NSString *path = [[NSBundle mainBundle] pathForResource:@"VoiceAlarm.plist" ofType:nil];
+//        //2.根据路径加载数据
+//        NSArray *arrayDict = [NSArray arrayWithContentsOfFile:voicePlistPath];
+//        
+//        //3.创建一个可变数组来保存一个一个对象
+//        NSMutableArray *arrayModels = [NSMutableArray array];
+//        
+//        //4.循环字典数组，把每个字典对象转化成一个模型对象
+//        for(NSDictionary *dict in arrayDict){
+//            
+//            VoiceAlarmModel *model = [VoiceAlarmModel VoiceAlarmModelWithDict:dict];
+//            
+//            [arrayModels addObject:model];
+//        }
+//        
+//        _voiceAlarmData = arrayModels;
+//        
+//    }
+//    
+//    return _voiceAlarmData;
+//
+//}
+//
+//-(NSMutableArray *)photoAlarmData
+//{
+//
+//    if(_photoAlarmData == nil){
+//        
+//        //1.获取PayStyleIcon.plist文件的路径
+//        //NSString *path = [[NSBundle mainBundle] pathForResource:@"TextAndPhotoAlarm.plist" ofType:nil];
+//        //2.根据路径加载数据
+//        NSArray *arrayDict = [NSArray arrayWithContentsOfFile:plistPath];
+//        
+//        //3.创建一个可变数组来保存一个一个对象
+//        NSMutableArray *arrayModels = [NSMutableArray array];
+//        
+//        //4.循环字典数组，把每个字典对象转化成一个模型对象
+//        for(NSDictionary *dict in arrayDict){
+//            
+//            TextPhotoAlarmModel *model = [TextPhotoAlarmModel TextPhotoAlarmModelWithDict:dict];
+//            
+//            [arrayModels addObject:model];
+//        }
+//        
+//        _photoAlarmData = arrayModels;
+//        
+//    }
+//    
+//    return _photoAlarmData;
+//
+//}
 
 - (void)viewDidLoad {
     
@@ -163,6 +166,11 @@
     
     tempArray = [[NSMutableArray alloc]init];
     keyInfoArray = [[NSMutableArray alloc] init];
+    temp2Array = [[NSMutableArray alloc] init];
+    photoAlarmArray = [[NSMutableArray alloc] init];
+    temp3Array = [[NSMutableArray alloc] init];
+    voiceArray = [[NSMutableArray alloc] init];
+    _voiceAlarmData = [[NSMutableArray alloc] init];
     if (IS_IOS8) {
         [UIApplication sharedApplication].idleTimerDisabled = TRUE;
         locManager = [[CLLocationManager alloc] init];
@@ -174,15 +182,15 @@
     [self setUpForDismissKeyboard];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tapAnywhereToDismissKeyboard:) name:@"hideKeyBoard" object:nil];
-    NSFileManager *manager=[NSFileManager defaultManager];
-    //文件路径
-    NSString *filepath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"voice.plist"];
-    if(![filepath isEqualToString:@""]){
-        if ([manager removeItemAtPath:filepath error:nil]) {
-            NSLog(@"文件删除成功");
-        }
-
-    }
+//    NSFileManager *manager=[NSFileManager defaultManager];
+//    //文件路径
+//    NSString *filepath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"voice.plist"];
+//    if(![filepath isEqualToString:@""]){
+//        if ([manager removeItemAtPath:filepath error:nil]) {
+//            NSLog(@"文件删除成功");
+//        }
+//
+//    }
     
     volumImages = [[NSMutableArray alloc]initWithObjects:@"丽晶宾馆基站.jpg",@"新天地大厦基站.jpg",@"磐安移动_公司大门口.jpg",
                    @"新天地大厦基站.jpg", @"武义移动_环城北路营业厅大门.jpg",@"永康移动_公司楼顶基站.jpg",@"武义移动_环城北路营业厅大门.jpg",@"兰溪移动_公司大门进出口.jpg",@"武义移动_环城北路营业厅大门.jpg",@"浦江移动_蔬菜基地1.jpg",@"浦江移动_蔬菜基地2.jpg",@"",@"浙江大学附属第四医院.jpg",
@@ -201,32 +209,35 @@
     helpMessage.backgroundColor = [UIColor colorWithHexString:@"ededed"];
   
     pickImageViewController.delegate = self;
-    _photoAlarmData = [[NSMutableArray alloc] init];
+    //_photoAlarmData = [[NSMutableArray alloc] init];
     
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     
     [center addObserver:self selector:@selector(keyBoardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    //获取完整路径
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    plistPath = [documentsDirectory stringByAppendingPathComponent:@"test.plist"];
-    arrayPlist = [[NSMutableArray alloc]init];
-    saveArray = [NSMutableArray arrayWithContentsOfFile:plistPath];
-    _photoAlarmData = nil;
-    
-    keyInfoPlistPath = [documentsDirectory stringByAppendingPathComponent:@"keyInfo.plist"];
-    keyInfoArrayPlist = [[NSMutableArray alloc]init];
-    saveKeyInfoArray = [NSMutableArray arrayWithContentsOfFile:keyInfoPlistPath];
-    _keyAlarmData = nil;
-    
-    voicePlistPath = [documentsDirectory stringByAppendingPathComponent:@"voice.plist"];
-    saveVoiceInfoArray = [NSMutableArray arrayWithContentsOfFile:voicePlistPath];
-    voiceInfoArrayPlist = [[NSMutableArray alloc]init];
-    _voiceAlarmData = nil;
-    NSLog(@"%@",voicePlistPath);
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    //获取完整路径
+//    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    plistPath = [documentsDirectory stringByAppendingPathComponent:@"test.plist"];
+//    arrayPlist = [[NSMutableArray alloc]init];
+//    saveArray = [NSMutableArray arrayWithContentsOfFile:plistPath];
+//    //_photoAlarmData = nil;
+//    
+//    keyInfoPlistPath = [documentsDirectory stringByAppendingPathComponent:@"keyInfo.plist"];
+//    keyInfoArrayPlist = [[NSMutableArray alloc]init];
+//    saveKeyInfoArray = [NSMutableArray arrayWithContentsOfFile:keyInfoPlistPath];
+//   // _keyAlarmData = nil;
+//    
+//    voicePlistPath = [documentsDirectory stringByAppendingPathComponent:@"voice.plist"];
+//    saveVoiceInfoArray = [NSMutableArray arrayWithContentsOfFile:voicePlistPath];
+//    voiceInfoArrayPlist = [[NSMutableArray alloc]init];
+//   // _voiceAlarmData = nil;
+//    NSLog(@"%@",voicePlistPath);
     [self ConfigControl];
     [self setAudioSession];
+    [self getHelpMessage];
+   
+    
 
     // Do any additional setup after loading the view.
 }
@@ -250,7 +261,7 @@
     alarmView.backgroundColor = [UIColor colorWithHexString:@"bababa"];
     [self.view addSubview:alarmView];
     
-    UIView *voiceInfoView = [[UIView alloc]initWithFrame:CGRectMake(90*WIDTH/375, 20*HEIGHT/667
+    UIView *voiceInfoView = [[UIView alloc]initWithFrame:CGRectMake(90*WIDTH/375, 70*HEIGHT/667
      , 180*WIDTH/375, 40*HEIGHT/375)];
     [alarmView addSubview:voiceInfoView];
     
@@ -259,9 +270,8 @@
     
     voiceInfoView.backgroundColor = [UIColor whiteColor];
 
-    UIButton *alarmBtn = [[UIButton alloc]initWithFrame:CGRectMake(90*WIDTH/375, 105*HEIGHT/667, 180*WIDTH/375, 30*HEIGHT/667)];
+    UIButton *alarmBtn = [[UIButton alloc]initWithFrame:CGRectMake(110*WIDTH/375, 15*HEIGHT/667, 150*WIDTH/375, 40*HEIGHT/667)];
     alarmBtn.backgroundColor = [UIColor redColor];
-    
     [alarmBtn setTitle:@"一 键 报 警" forState:UIControlStateNormal];
     [alarmBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [alarmBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
@@ -270,32 +280,25 @@
     //[alarmBtn setTitleColor:[UIColor grayColor] forState:UIControlStateSelected];
     [alarmView addSubview:alarmBtn];
     
-    UIButton *speakBtn = [[UIButton alloc]initWithFrame:CGRectMake(10*WIDTH/375, 20*HEIGHT/667, 50*WIDTH/375, 50*HEIGHT/667)];
-    [alarmView addSubview:speakBtn];
-    
-    voiceImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 50*WIDTH/375, 50*HEIGHT/667)];
+   
+    voiceImage = [[UIImageView alloc] init];
+    voiceImage.bounds = CGRectMake(0, 0, self.view.frame.size.width/3, self.view.frame.size.height/3);
+    voiceImage.center = CGPointMake(self.view.frame.size.width * 0.5, self.view.frame.size.height * 0.5);
     voiceImage.image = [UIImage imageNamed:@"mic_normal_358x358@2x.png"];
-    [speakBtn addSubview:voiceImage];
+    [self.view addSubview:voiceImage];
+    voiceImage.hidden = YES;
     //[speakBtn addTarget:self action:@selector(recordVoice) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *recoderBtn = [[UIButton alloc]initWithFrame:CGRectMake(15*WIDTH/375, 80*HEIGHT/667, 50, 25)];
+    UIButton *recoderBtn = [[UIButton alloc]initWithFrame:CGRectMake(15*WIDTH/375, 10*HEIGHT/667, 50, 40)];
     [alarmView addSubview:recoderBtn];
     [recoderBtn setBackgroundImage:[UIImage imageNamed:@"btn.png"] forState:UIControlStateNormal];
     [recoderBtn setBackgroundImage:[UIImage imageNamed:@"btn1.png"] forState:UIControlStateHighlighted];
     recoderBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15*WIDTH/375];
     [recoderBtn setTitle:@"录音" forState:UIControlStateNormal];
-    [recoderBtn addTarget:self action:@selector(startRecord) forControlEvents:UIControlEventTouchUpInside];
-    //[recoderBtn addTarget:self action:@selector(stopRecord) forControlEvents:UIControlEventTouchUpOutside];
+    [recoderBtn addTarget:self action:@selector(startRecord) forControlEvents:UIControlEventTouchDown];
+    [recoderBtn addTarget:self action:@selector(stopRecord) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *cancleBtn = [[UIButton alloc]initWithFrame:CGRectMake(15*WIDTH/375, 120*HEIGHT/667, 50, 25)];
-    [alarmView addSubview:cancleBtn];
-    [cancleBtn setBackgroundImage:[UIImage imageNamed:@"btn1.png"] forState:UIControlStateNormal];
-    [cancleBtn setBackgroundImage:[UIImage imageNamed:@"btn.png"] forState:UIControlStateHighlighted];
-    cancleBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15*WIDTH/375];
-    [cancleBtn setTitle:@"停止" forState:UIControlStateNormal];
-    [cancleBtn addTarget:self action:@selector(stopRecord) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton *addBtn = [[UIButton alloc]initWithFrame:CGRectMake(280*WIDTH/375, 35*HEIGHT/667, 50*WIDTH/375, 50*HEIGHT/667)];
+    UIButton *addBtn = [[UIButton alloc]initWithFrame:CGRectMake(280*WIDTH/375, 10*HEIGHT/667, 50*WIDTH/375, 50*HEIGHT/667)];
     [alarmView addSubview:addBtn];
     
     UIImageView *addImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 50*WIDTH/375, 50*HEIGHT/667)];
@@ -307,7 +310,7 @@
     playProgress.backgroundColor = [UIColor redColor];
     [playProgress setProgressViewStyle:UIProgressViewStyleDefault];
    // playProgress.hidden = YES;
-    [self.view addSubview:playProgress];
+   // [self.view addSubview:playProgress];
     
 }
 
@@ -564,6 +567,7 @@
 {
     
     voiceImage.image = [UIImage imageNamed:@"mic_talk_358x358@2x.png"];
+    voiceImage.hidden = NO;
     [self recordClick];
     
 }
@@ -571,6 +575,7 @@
 -(void)stopRecord
 {
     voiceImage.image = [UIImage imageNamed:@"mic_normal_358x358@2x.png"];
+    voiceImage.hidden = YES;
     [self stopClick];
     [self flushRecoder];
     
@@ -605,10 +610,10 @@
         n = keyInfoArray.count;
     }else if (section == 1){
     
-        n = self.photoAlarmData.count;
+        n = photoAlarmArray.count;
     }else if (section == 2){
     
-        n = self.voiceAlarmData.count;
+        n = _voiceAlarmData.count;
     }
     
     return n;
@@ -663,7 +668,7 @@
             
         }
         
-        TextPhotoAlarmModel *model = [self.photoAlarmData objectAtIndex:indexPath.row];
+        TextPhotoAlarmModel *model = [photoAlarmArray objectAtIndex:indexPath.row];
         photocell.photoKeyAlarm = model;
         
         NSString *content = photocell.stateLab.text;
@@ -693,8 +698,7 @@
             
         }
         
-        
-        VoiceAlarmModel *model = [self.voiceAlarmData objectAtIndex:indexPath.row];
+        VoiceAlarmModel *model = [_voiceAlarmData objectAtIndex:indexPath.row];
         voicecell.voiceModel = model;
         NSString *strUrl = model.url;
         NSLog(@"%@",strUrl);
@@ -790,7 +794,7 @@
         model.image = image;
         model.time = locationString;
         model.message = infoText.text;
-        [_photoAlarmData addObject:model];
+        //[_photoAlarmData addObject:model];
         
         
     }
@@ -799,7 +803,7 @@
     
     infoText.text = nil;
    // [self.view endEditing:YES];
-    [helpMessage reloadData];
+    //[helpMessage reloadData];
     
 }
 
@@ -807,74 +811,84 @@
 //保存图文报警信息
 -(void)savePhotoAlarmInfo
 {
-   
-    NSDate *sendDate;
-    sendDate = [NSDate date];
-    NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
-    [dateformatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
-    NSString *time=[dateformatter stringFromDate:sendDate];
+    
+    NSDictionary *params = @{@"type":@"1",@"title":@"图文报警",@"content":infoText.text};
+    NSString *paramsStr = [CMTool dictionaryToJson:params];
+    NSString *str = @"help=";
+    paramsStr = [str stringByAppendingString:paramsStr];
+    
+    [WGAPI post:API_ADD_HELP RequestParams:paramsStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        if(data){
+            
+            NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:json];
+            if(infojson != nil){
+                
+                NSDictionary *messageJson = [infojson objectForKey:@"data"];
+                helpId = [messageJson objectForKey:@"help_id"];
+                if(helpId != nil){
+                    
+                    [self performSelectorOnMainThread:@selector(responseOfKeyAlarm) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
+                    
+                    
+                }
+                
+            }
+            
+        }
+    }];
+
+    
+//    NSDate *sendDate;
+//    sendDate = [NSDate date];
+//    NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+//    [dateformatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+//    NSString *time=[dateformatter stringFromDate:sendDate];
     
    
-    //判断是否以创建文件
-    if ([[NSFileManager defaultManager] fileExistsAtPath:plistPath])
-    {
-        //此处可以自己写显示plist文件内容
-        NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-        [dict setObject:infoText.text forKey:@"message"];
-        [dict setObject:time forKey:@"time"];
-        //[dict setObject:photoImage forKey:@"icon"];
-        [saveArray addObject:dict];
-        [saveArray writeToFile:plistPath atomically:YES];
-        //NSLog(@"文件已存在");
-    }
-    else
-    {
-        
-        [arrayPlist writeToFile:plistPath atomically:YES];
-        
-    }
+//    //判断是否以创建文件
+//    if ([[NSFileManager defaultManager] fileExistsAtPath:plistPath])
+//    {
+//        //此处可以自己写显示plist文件内容
+//        NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+//        [dict setObject:infoText.text forKey:@"message"];
+//        [dict setObject:time forKey:@"time"];
+//        //[dict setObject:photoImage forKey:@"icon"];
+//        [saveArray addObject:dict];
+//        [saveArray writeToFile:plistPath atomically:YES];
+//        //NSLog(@"文件已存在");
+//    }
+//    else
+//    {
+//        
+//        [arrayPlist writeToFile:plistPath atomically:YES];
+//        
+//    }
 
 }
 
 //一键报警按钮触发事件
 -(void)KeyAlarm
 {
-    NSDate *sendDate;
-    NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
-    [dateformatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
-    sendDate = [NSDate date];
-    NSString * time=[dateformatter stringFromDate:sendDate];
-    OneKeyAlarmModel *model = [[OneKeyAlarmModel alloc] init];
+
     __block NSString *string;
     if (IS_IOS8) {
         
         [[CCLocationManager shareLocation]getLocationCoordinate:^(CLLocationCoordinate2D locationCorrrdinate) {
+            
             string = [NSString stringWithFormat:@"%f %f",locationCorrrdinate.latitude,locationCorrrdinate.longitude];
         } withAddress:^(NSString *addressString) {
             NSLog(@"%@",addressString);
-//            string = [NSString stringWithFormat:@"%@\n%@",string,addressString];
-//            model.location = string;
-//            model.time = time;
-//            [_keyAlarmData addObject:model];
-//            [helpMessage reloadData];
-            
-            //判断是否以创建文件
+            string = [NSString stringWithFormat:@"%@\n%@",string,addressString];
+            [SVProgressHUD showWithStatus:@"发送中..."];
             if(string != nil){
-//                if ([[NSFileManager defaultManager] fileExistsAtPath:keyInfoPlistPath])
-//                {
-                    //此处可以自己写显示plist文件内容
-//                    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-//                    [dict setObject:string forKey:@"message"];
-//                    [dict setObject:time forKey:@"time"];
-//                    [dict setObject:string forKey:@"location"];
-//                    [saveKeyInfoArray addObject:dict];
-                    //[saveKeyInfoArray writeToFile:keyInfoPlistPath atomically:YES];
-                    
+                
                     NSDictionary *params = @{@"type":@"0",@"title":@"一键报警",@"content":string};
                     NSString *paramsStr = [CMTool dictionaryToJson:params];
                     NSString *str = @"help=";
                     paramsStr = [str stringByAppendingString:paramsStr];
-                    [SVProgressHUD showWithStatus:@"发送中..."];
+                
                     [WGAPI post:API_ADD_HELP RequestParams:paramsStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                         
                         if(data){
@@ -894,19 +908,16 @@
                             
                             }
                         
-                        
                         }
                     }];
                     
-                    //NSLog(@"文件已存在");
-                }
-//                else
-//                {
-//                
-//                    [keyInfoArrayPlist writeToFile:keyInfoPlistPath atomically:YES];
-//                
-//                }
-           // }
+                
+            }else{
+            
+                [SVProgressHUD showWithStatus:@"获取位置信息失败！"];
+            
+            }
+            
         }];
     }
 
@@ -921,6 +932,7 @@
     NSString *pageStr = [pageInfo JSONString];
     NSString *helpInfoData = [@"help=" stringByAppendingString:pageStr];
 
+    [SVProgressHUD showWithStatus:@"加载中..."];
     [WGAPI post:API_GETHELPINFO RequestParams:helpInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if(data){
             
@@ -932,21 +944,28 @@
                 
                tempArray = [infojson objectForKey:@"datas"];
                 for(NSDictionary *dict in tempArray){
-                    //NSString *type = (NSString *)[dict objectForKey:@"type"];
-                    
-                    //if ([type isEqualToString:@"0"]) {
+                    NSString *type = [NSString stringWithFormat:@"%@",[dict objectForKey:@"type"]];
+                   
+                    if ([type isEqualToString:@"0"]) {
                         
                         OneKeyAlarmModel *model = [OneKeyAlarmModel OneKeyAlarmModelWithDict:dict];
                         [keyInfoArray addObject:model];
-                   // }
+                    }else if ([type isEqualToString:@"1"]){
+                    
+                        TextPhotoAlarmModel *model = [TextPhotoAlarmModel TextPhotoAlarmModelWithDict:dict];
+                        [photoAlarmArray addObject:model];
+                    }else if ([type isEqualToString:@"2"]){
+                    
+                        VoiceAlarmModel *model = [VoiceAlarmModel VoiceAlarmModelWithDict:dict];
+                        [voiceArray addObject:model];
+                    
+                    }
                     
                 }
-                   
-                [self performSelectorOnMainThread:@selector(refreshData) withObject:data waitUntilDone:YES];
                 
             }
 
-        
+             [self performSelectorOnMainThread:@selector(refreshData) withObject:data waitUntilDone:YES];
         }
     }];
 
@@ -956,14 +975,16 @@
 {
     
     [SVProgressHUD showSuccessWithStatus:@"发送成功！" maskType:SVProgressHUDMaskTypeBlack];
+    [keyInfoArray removeAllObjects];
+    [photoAlarmArray removeAllObjects];
     [self getHelpMessage];
-    //[helpMessage reloadData];
     
 }
 
 
 -(void)refreshData
 {
+    [SVProgressHUD showSuccessWithStatus:@"加载完成！" maskType:SVProgressHUDMaskTypeBlack];
     [helpMessage reloadData];
     
 }

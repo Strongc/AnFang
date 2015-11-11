@@ -115,8 +115,11 @@
 -(void)ConfigControl
 {
 
-    UIImageView *headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 64*HEIGHT/667)];
-    [headView setImage:[UIImage imageNamed:@"header_bg.png"]];
+   // UIImageView *headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
+   // [headView setImage:[UIImage imageNamed:@"header_bg.png"]];
+    
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
+    headView.backgroundColor = [UIColor colorWithHexString:@"ffd700"];
     
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20*HEIGHT/667, WIDTH, 50*HEIGHT/667)];
     title.textAlignment = NSTextAlignmentCenter;
@@ -125,7 +128,7 @@
     [headView addSubview:title];
     [self.view addSubview:headView];
     
-    UIImageView *backgroundImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64*HEIGHT/667, WIDTH, 80*HEIGHT/667)];
+    UIImageView *backgroundImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, WIDTH, 80*HEIGHT/667)];
     backgroundImage.image = [UIImage imageNamed:@"bg.png"];
     [self.view addSubview:backgroundImage];
     

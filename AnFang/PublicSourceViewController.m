@@ -140,13 +140,12 @@
 {
     self.view.backgroundColor = [UIColor colorWithHexString:@"ededed"];
     
-    UIImageView *headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 64*HEIGHT/667)];
-    [headView setImage:[UIImage imageNamed:@"header_bg.png"]];
-    
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
+    headView.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20*HEIGHT/667, WIDTH, 50*HEIGHT/667)];
     title.textAlignment = NSTextAlignmentCenter;
     title.text = @"公共信息";
-    title.textColor = [UIColor whiteColor];
+    title.textColor = [UIColor orangeColor];
     [headView addSubview:title];
     [self.view addSubview:headView];
 
@@ -244,7 +243,6 @@
     if (kind == UICollectionElementKindSectionHeader){
         
         PublicHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
-        
         NSString *title = publicSourceSection[indexPath.section];
         
         headerView.titleLab.text = title;
@@ -299,7 +297,7 @@
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    return CGSizeMake((WIDTH-30)/3, 130*HEIGHT/667);
+    return CGSizeMake((WIDTH-30)/2, 150*HEIGHT/667);
 }
 
 //设置每组cell的边界

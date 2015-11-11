@@ -29,11 +29,11 @@
     if(self){
         
         self.contentView.backgroundColor = [UIColor whiteColor];
-        UIImageView *publicVideoImage = [[UIImageView alloc]initWithFrame:CGRectMake(10*WIDTH/375, 10*HEIGHT/667, 80*WIDTH/375, 80*HEIGHT/667)];
+        UIImageView *publicVideoImage = [[UIImageView alloc]initWithFrame:CGRectMake(10*WIDTH/375, 10*HEIGHT/667, 150*WIDTH/375, 110*HEIGHT/667)];
         [self.contentView addSubview:publicVideoImage];
         self.publicVideoImage = publicVideoImage;
         
-        UILabel *videoTitle = [[UILabel alloc]initWithFrame:CGRectMake(10*WIDTH/375, 95*HEIGHT/667, 90*WIDTH/375, 40*HEIGHT/667)];
+        UILabel *videoTitle = [[UILabel alloc]initWithFrame:CGRectMake(10*WIDTH/375, 115*HEIGHT/667, 150*WIDTH/375, 40*HEIGHT/667)];
         videoTitle.numberOfLines = 0;
         videoTitle.font = [UIFont systemFontOfSize:10*WIDTH/375];
         videoTitle.textColor = [UIColor blackColor];

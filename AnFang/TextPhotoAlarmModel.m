@@ -16,9 +16,9 @@
     if(self = [super init]){
         
 //        self.icon = dict[@"icon"];
-        self.message = dict[@"message"];
+        self.message = dict[@"content"];
 //        self.state = dict[@"state"];
-        self.time = dict[@"time"];
+        self.time = dict[@"createDate"];
         
     }
     return self;

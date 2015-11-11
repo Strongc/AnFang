@@ -7,16 +7,20 @@
 //
 
 #import "ShangMengViewController.h"
+#import "Common.h"
 
 @interface ShangMengViewController ()
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
+@property (nonatomic,strong) UIWebView *webView;
 @end
 
 @implementation ShangMengViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
+    [self.view addSubview:self.webView];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://dongyang.dfsh88.com/?did=10070"]];
     [self.webView loadRequest:request];

@@ -20,7 +20,7 @@
         _titleLab.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
         _titleLab.textAlignment = NSTextAlignmentCenter;
         _titleLab.textColor = [UIColor blueColor];
-        _titleLab.backgroundColor = [UIColor colorWithHexString:@"9AC0CD"];
+        _titleLab.backgroundColor = [UIColor colorWithHexString:@"ffd700"];
         [self addSubview:_titleLab];
         
     }

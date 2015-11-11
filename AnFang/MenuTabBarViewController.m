@@ -7,6 +7,7 @@
 //
 
 #import "MenuTabBarViewController.h"
+#import "UIColor+Extensions.h"
 
 @interface MenuTabBarViewController ()
 
@@ -18,25 +19,29 @@
     
     [super viewDidLoad];
     UITabBarItem *itemMessage = [self.tabBar.items objectAtIndex:3];
-    UIImage *imageUnSelect = [UIImage imageNamed:@"message.png"];
-    UIImage *imageSelected = [UIImage imageNamed:@"messagePress.png"];
+    UIImage *imageUnSelect = [UIImage imageNamed:@"4"];
+    UIImage *imageSelected = [UIImage imageNamed:@"44"];
     
     itemMessage.image = [imageUnSelect imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     itemMessage.selectedImage = [imageSelected imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     UITabBarItem *itemAnFang = [self.tabBar.items objectAtIndex:2];
-    itemAnFang.image = [[UIImage imageNamed:@"tab"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    itemAnFang.selectedImage = [[UIImage imageNamed:@"tab_press"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    itemAnFang.image = [[UIImage imageNamed:@"1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    itemAnFang.selectedImage = [[UIImage imageNamed:@"11"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     UITabBarItem *itemPublic = [self.tabBar.items objectAtIndex:0];
-    itemPublic.image = [[UIImage imageNamed:@"tab_me_nor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    itemPublic.selectedImage = [[UIImage imageNamed:@"tab_me_press"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    itemPublic.image = [[UIImage imageNamed:@"3"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    itemPublic.selectedImage = [[UIImage imageNamed:@"33"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     UITabBarItem *itemShangMeng = [self.tabBar.items objectAtIndex:1];
-    itemShangMeng.image = [[UIImage imageNamed:@"tab_buddy_nor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    itemShangMeng.selectedImage = [[UIImage imageNamed:@"tab_buddy_press"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    itemShangMeng.image = [[UIImage imageNamed:@"2"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    itemShangMeng.selectedImage = [[UIImage imageNamed:@"22"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
-   
+    UITabBarItem *itemSet = [self.tabBar.items objectAtIndex:4];
+    itemSet.image = [[UIImage imageNamed:@"5"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    itemSet.selectedImage = [[UIImage imageNamed:@"55"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithHexString:@"ffb90f"],NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
+
     // Do any additional setup after loading the view.
 }
 

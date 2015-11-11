@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VideoListViewController : UIViewController
+@interface VideoListViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
 //@property (nonatomic) MHTabBarController *mhtTabBarController;
 

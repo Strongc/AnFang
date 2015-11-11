@@ -54,24 +54,9 @@
                     <view key="view" contentMode="scaleToFill" id="g9z-Jr-4Vu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VPt-Zl-qC7">
-                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
-                            </webView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="gem-wa-5N9" firstAttribute="top" secondItem="VPt-Zl-qC7" secondAttribute="bottom" id="DI3-5q-q1H"/>
-                            <constraint firstItem="VPt-Zl-qC7" firstAttribute="leading" secondItem="g9z-Jr-4Vu" secondAttribute="leading" id="fLo-A1-1Gz"/>
-                            <constraint firstItem="VPt-Zl-qC7" firstAttribute="top" secondItem="bzv-u1-w2f" secondAttribute="bottom" id="iIq-ie-o2H"/>
-                            <constraint firstAttribute="trailing" secondItem="VPt-Zl-qC7" secondAttribute="trailing" id="knR-n1-a7H"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="商盟" id="iE2-pU-1j4"/>
-                    <connections>
-                        <outlet property="webView" destination="VPt-Zl-qC7" id="ork-8k-cI3"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Ee-he-gwf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -82,10 +67,13 @@
             <objects>
                 <tabBarController storyboardIdentifier="menuTabBar" id="Qde-mw-e6t" customClass="MenuTabBarViewController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="VSF-qv-mkX">
+                    <tabBar key="tabBar" contentMode="scaleToFill" itemPositioning="fill" id="VSF-qv-mkX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.96072048611111116" green="0.96072048611111116" blue="0.96072048611111116" alpha="0.0" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="1" green="0.93231300500000003" blue="0.27364313750000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="1" green="0.93231300500000003" blue="0.27364313750000002" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <outlet property="mainTabBar" destination="VSF-qv-mkX" id="QBH-yk-OQJ"/>
@@ -152,7 +140,7 @@
         <!--视频列表-->
         <scene sceneID="Qt0-2W-DLJ">
             <objects>
-                <viewController storyboardIdentifier="videoList" title="视频列表" id="6xx-sF-nTl" customClass="VideoListViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="videoListId" title="视频列表" id="6xx-sF-nTl" customClass="VideoListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2kH-Iv-rTe"/>
                         <viewControllerLayoutGuide type="bottom" id="RQS-ou-lhT"/>
@@ -212,13 +200,17 @@
         <scene sceneID="HG6-Rq-hQ2">
             <objects>
                 <navigationController storyboardIdentifier="loginNav" title="ContactNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="dUt-Dc-VgW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="公共" id="f6F-6V-4N7"/>
+                    <tabBarItem key="tabBarItem" title="公共" image="3" id="f6F-6V-4N7">
+                        <inset key="imageInsets" minX="3" minY="2" maxX="0.0" maxY="3"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6DW-aX-5cX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="0.93231300500000003" blue="0.27364313750000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.67769731720000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -271,12 +263,15 @@
         <scene sceneID="X6Y-mn-Seb">
             <objects>
                 <navigationController title="personNav" automaticallyAdjustsScrollViewInsets="NO" id="naJ-OE-xf7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="商盟" image="tab_buddy_nor" id="oxQ-xM-Toi"/>
+                    <tabBarItem key="tabBarItem" title="商盟" image="2" selectedImage="22" id="oxQ-xM-Toi">
+                        <inset key="imageInsets" minX="1" minY="4" maxX="1" maxY="1"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" alpha="0.0" contentMode="scaleToFill" id="2Gc-Yd-vgl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.034768466735335839" green="0.66007412666429" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="1" green="0.93231300500000003" blue="0.27364313750000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="1" green="0.86469446809999995" blue="0.31933228870000002" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -338,6 +333,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pb6-iS-5uX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="0.93231300500000003" blue="0.27364313750000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="1" green="0.86469446809637096" blue="0.31933228868848129" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -428,12 +425,12 @@
         <!--videoListNav-->
         <scene sceneID="9yM-J9-1by">
             <objects>
-                <navigationController title="videoListNav" automaticallyAdjustsScrollViewInsets="NO" id="QTM-Ph-3zY" customClass="VideoListNavViewController" sceneMemberID="viewController">
+                <navigationController title="videoListNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="QTM-Ph-3zY" customClass="VideoListNavViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zfZ-hm-YG6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.0039602332880000002" green="0.51862013110000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="1" green="0.86469446809999995" blue="0.31933228870000002" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -466,7 +463,9 @@
         <scene sceneID="Jnx-T6-NcW">
             <objects>
                 <navigationController title="SettingNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="fD4-Xl-cFY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="设置" image="setting.png" id="ch0-we-1Ok"/>
+                    <tabBarItem key="tabBarItem" title="设置" image="5" selectedImage="55" id="ch0-we-1Ok">
+                        <inset key="imageInsets" minX="3" minY="4" maxX="2" maxY="2"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6A3-zw-AbW">
@@ -600,7 +599,9 @@
         <scene sceneID="07k-SG-24c">
             <objects>
                 <navigationController title="AnFangNav" automaticallyAdjustsScrollViewInsets="NO" id="7tt-i0-2uM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="安防系统" id="DaC-fa-ske"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="安防系统" image="1" selectedImage="11" id="DaC-fa-ske">
+                        <inset key="imageInsets" minX="1" minY="4" maxX="1" maxY="2"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2b5-Ag-q1D">
@@ -643,13 +644,15 @@
         <scene sceneID="32t-a8-7i8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wwP-zW-rxF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="资讯" image="message" id="ghQ-79-wNp"/>
+                    <tabBarItem key="tabBarItem" title="资讯" image="4" selectedImage="44" id="ghQ-79-wNp">
+                        <inset key="imageInsets" minX="1" minY="2" maxX="1" maxY="0.0"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AmU-yH-FjE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.034768466739999997" green="0.66007412669999999" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="1" green="0.86469446809999995" blue="0.31933228870000002" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -1029,8 +1032,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="message" width="30" height="30"/>
-        <image name="setting.png" width="24" height="24"/>
-        <image name="tab_buddy_nor" width="30" height="30"/>
+        <image name="1" width="40" height="40"/>
+        <image name="11" width="40" height="40"/>
+        <image name="2" width="40" height="40"/>
+        <image name="22" width="40" height="40"/>
+        <image name="3" width="40" height="40"/>
+        <image name="4" width="40" height="40"/>
+        <image name="44" width="40" height="40"/>
+        <image name="5" width="40" height="40"/>
+        <image name="55" width="40" height="40"/>
     </resources>
 </document>
