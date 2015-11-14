@@ -17,8 +17,8 @@
 {
     
     _voiceModel = voiceModel;
-    self.timeLab.text = voiceModel.time;
-    self.stateLab.text = voiceModel.state;
+    self.timeLab.text = voiceModel.strVoiceTime;
+    
 
 }
 

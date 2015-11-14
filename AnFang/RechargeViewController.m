@@ -374,22 +374,16 @@
     NSString *partner = @"2088021410775742";
     NSString *seller = @"3266924131@qq.com";
     
-   // NSString *str1 = @"-----BEGIN RSA PRIVATE KEY-----";
-    //NSString *str3 = @"-----END RSA PRIVATE KEY-----";
-    
-    NSString *privateKey = @"MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAM38Wgp204oqfBwdYaFZ1/kybzAkvWCCmncCtclDj0ldSIAZwsLY6W9TofjyZyVdGb/SZ/90ij1pg/uXv74Y4WMxJH3vH00KzFH8yo7mFWZounKdEiH1sHFd/J9gycxkqQPS2Eilo/7OL9NrnWy1hg0IJeDuIzaqIe5jD0TTi9PxAgMBAAECgYEAxzP7k9EUhLLPcZUMfLDZR5p5otJ0/mdvoBZT3T7jzCxVV+URz8NcBRiZNJqgG6csprCBeK+onPl09RPtD5caJ0m402ov5Mmmci1sgBJQNPKE32TEJ7B4Mp0bT+48gZZNmzGOxPXdfmjG3SYpgfVhuGU7fH4CeMonPoC/uNPa/tECQQDu1lctVybvb6WEZRkBrhwRm5/zNM9YcYnPseq8Z0xC7hoBKCHWHnxeaN65YcQ1Gdua9OimuDYFOx4/Jr5wOer9AkEA3MmsY7pc+iSKr+A97Qeyoy3bbQ5q0Y/SQo2fbyR0hyZBxqEBrxCU9IpQ1IHJQ5TheZWBp2ngWzoCexK7cMBBBQJAG02dga1o4g5dWZlFFpAU3V5xFph+65lvK7MnJoqYiT428tLnq1ao2RIcBA1NJNTj6f79abG9WzO67XU8aA/28QJAeA+bFOgk40m3uQgh5KFI/P9U0SsD301sMxC8YD3cuBmPrymitsY3mfsVFVo2Te/J5MnuJVGn1TPoYXDASQHi2QJBAOXR54CDUCyfmGE8F77H4bOwYGBTBdAAOQe1Cf+w7LcsYgF51OCgOL71bI/VVX2nvUU6ZM6nE00E8ad1MiZn68w=";
-    
-    //NSString *str2 = [str1 stringByAppendingString:privateKeyTemp];
-   // NSString *privateKey = privateKeyTemp;
+    NSString *privateKey = @"MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBANsc9OxxK1Ava5InFWG9TaHwLUgD6P/fhk/8Y+87LtE5yi+pEkOWKe2tlzoNYOsvwV/KzwGpqUk/0aPldtcnfrwLwKxAhE4ng93Vo6NmvPwGjy5qpuMvd7s3ueJ4Rlaxe3WwJtvUkiwCCRpJKzeNisKdXTfRAebg3XeOKUi9URVjAgMBAAECgYEAlWGAeVIOPXSW2eVbZm8w5h5gQKCp0QgLAa0IVKj8mhfUB/o0QW+21htq5mEImk7Mfwo9ZtzMVOv1eM+P3c9HTpmHpDIJRIXuuU5+ZAYetaFoeE3Fr47Yuu/8d//g7hVmWD1tAPHgKpzQ7Kf9yV8l3ucwF4v10E/G5pdxJy+cI4ECQQDzNvpDNU57VfOkGLEfMhaUR04pRzOUl9WAX7aFM06FZV7+lILICuLAoL6bKQmJia0edv5EHmiw/CdQFEwkwwVbAkEA5qGin9yBiJdYLC56hvckVY1DdPO1ia8d0RH6d2aPCM/s9da+/zq2aSyIRiCzDWe5bQdTkAVL025oxltmeaRGmQJAVvGcXVI9EBIV2t+I0eIR+EfVRSRS6BevFwkgMlW5CC7I2rE0X1ak4L+V49mzsxsoa++VzbwhKMO7OgFHhwzAaQJBAN61u0rQLq3uKBESGPP3+Dg9H6TyKp34YryftdRTT1BdKSAE7Y+d7MQHYtkFfqI1RZQJfSIYWy6i8b6KSJyyjBECQE1d72BQ3n/vJmmfeTkU+QKR3Zc4vvHyX7LpvCaCg4Tfzg7opFUhgER0fyDYxVyuPiqHDdnpbKkwFlPjgX5EGX0=";
     
     Order *order = [[Order alloc] init];
     order.partner = partner;
     order.seller = seller;
     order.tradeNO = [self generateTradeNO]; //订单ID（由商家自行制定）
-    order.productName = @"套餐"; //商品标题
-    order.productDescription = @"安防服务套餐"; //商品描述
-    order.amount = [NSString stringWithFormat:@"%.3f",0.001]; //商品价格
-    order.notifyURL =  @"http://122.233.181.221:8181/weigu/pay/accept"; //回调URL
+    order.productName = @"充值金额"; //商品标题
+    order.productDescription = @"安防服务续费"; //商品描述
+    order.amount = [NSString stringWithFormat:@"%.2f",0.01]; //商品价格
+    order.notifyURL = @"http://www.xxx.com"; //回调URL
     
     order.service = @"mobile.securitypay.pay";
     order.paymentType = @"1";
@@ -401,7 +395,7 @@
     //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
     id<DataSigner> signer = CreateRSADataSigner(privateKey);
     NSString *signedString = [signer signString:orderSpec];
-    NSLog(@"私钥：%@",signer);
+    NSLog(@"私钥：%@",signedString);
     
     NSString *appScheme = @"anfang";
     

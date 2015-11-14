@@ -1,6 +1,20 @@
 PODS:
+  - ASIHTTPRequest (1.8.2):
+    - ASIHTTPRequest/ASIWebPageRequest (= 1.8.2)
+    - ASIHTTPRequest/CloudFiles (= 1.8.2)
+    - ASIHTTPRequest/Core (= 1.8.2)
+    - ASIHTTPRequest/S3 (= 1.8.2)
+  - ASIHTTPRequest/ASIWebPageRequest (1.8.2):
+    - ASIHTTPRequest/Core
+  - ASIHTTPRequest/CloudFiles (1.8.2):
+    - ASIHTTPRequest/Core
+  - ASIHTTPRequest/Core (1.8.2):
+    - Reachability
+  - ASIHTTPRequest/S3 (1.8.2):
+    - ASIHTTPRequest/Core
   - CTAssetsPickerController (2.6.0)
   - NSDate+TimeAgo (1.0.3)
+  - Reachability (3.2)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
@@ -8,6 +22,7 @@ PODS:
   - URBMediaFocusViewController (0.5.8)
 
 DEPENDENCIES:
+  - ASIHTTPRequest (~> 1.8.2)
   - CTAssetsPickerController (~> 2.6.0)
   - NSDate+TimeAgo (~> 1.0.2)
   - SDWebImage (~> 3.5)
@@ -15,8 +30,10 @@ DEPENDENCIES:
   - URBMediaFocusViewController (~> 0.5.7)
 
 SPEC CHECKSUMS:
+  ASIHTTPRequest: ec013992946676b7978dcbde6396d57312d21db4
   CTAssetsPickerController: 1ca60a0ee73c76101a82a8e1e845f4b8a24731cf
   NSDate+TimeAgo: 416f55d2696d3744c313091c5a9280d47f8238fe
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
   URBMediaFocusViewController: 21618bda6290f74b2767059e983f3a7f4f3e8cd1

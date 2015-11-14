@@ -16,8 +16,8 @@
     if(self = [super init]){
         
         self.time = dict[@"createDate"];
-        self.content = dict[@"alrm_info"];
-        self.messageId = dict[@"alrm_id"];
+        self.content = dict[@"msg_content"];
+        self.messageId = dict[@"msg_id"];
         
     }
     return self;

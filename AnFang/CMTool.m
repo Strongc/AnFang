@@ -45,8 +45,6 @@
         
     }
     
-    
-    
     NSData *jsonData = [JSONString dataUsingEncoding:NSUTF8StringEncoding];
     
     NSError *err;
@@ -72,5 +70,16 @@
 //    NSDictionary *responseJSON = [NSJSONSerialization JSONObjectWithData:JSONData options:NSJSONReadingMutableLeaves error:nil];
 //    return responseJSON;
 }
+
++ (NSDictionary*) strDic:(NSString*) str
+{
+    if (!str||[@"" isEqualToString:str]) {
+        return nil;
+    }
+    NSData* resultData = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary* resultDic = [NSJSONSerialization JSONObjectWithData:resultData options:NSJSONReadingMutableContainers error:nil];
+    return  resultDic;
+}
+
 
 @end

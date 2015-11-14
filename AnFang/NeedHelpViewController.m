@@ -18,6 +18,7 @@
 #import "CMTool.h"
 #import "WGAPI.h"
 #import "JSONKit.h"
+#import "ChatModel.h"
 
 
 #define IS_IOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
@@ -48,8 +49,6 @@
     NSString *voicePlistPath;
     NSMutableArray *saveVoiceInfoArray;
     NSMutableArray *voiceInfoArrayPlist;
-    NSString *playAudioUrl;
-    UIProgressView *playProgress;//播放进度
     NSMutableArray *volumImages;
     NSString *helpId;
     NSMutableArray *tempArray;
@@ -58,22 +57,20 @@
     NSMutableArray *photoAlarmArray;
     NSMutableArray *temp3Array;
     NSMutableArray *voiceArray;
+    UUInputFunctionView *IFView;
+    NSMutableArray *audioArray;
 
 }
 @property (assign, nonatomic) NSInteger currentRow;
 //@property (nonatomic,strong) NSMutableArray *keyAlarmData;
 //@property (nonatomic,strong) NSMutableArray *photoAlarmData;
 @property (nonatomic,strong) NSMutableArray *voiceAlarmData;
-@property (nonatomic,strong) AVAudioRecorder *audioRecorder;//音频录音机
-@property (nonatomic,strong) AVAudioPlayer *audioPlayer;//音频播放器，用于播放录音文件
-@property (nonatomic,strong) NSTimer *timer;//录音声波监控（注意这里暂时不对播放进行监控）
-@property (nonatomic,strong) NSTimer *playTimer;
-@property (strong, nonatomic) UIProgressView *audioPower;//音频波动
+@property (strong, nonatomic) ChatModel *chatModel;
 
 @end
 
 @implementation NeedHelpViewController
-@synthesize avPalyer;
+
 
 //-(NSMutableArray *)keyAlarmData
 //{
@@ -234,10 +231,10 @@
 //   // _voiceAlarmData = nil;
 //    NSLog(@"%@",voicePlistPath);
     [self ConfigControl];
-    [self setAudioSession];
     [self getHelpMessage];
-   
-    
+    self.chatModel = [[ChatModel alloc]init];
+    self.chatModel.dataSource = [[NSMutableArray alloc] init];
+    audioArray = [[NSMutableArray alloc] init];
 
     // Do any additional setup after loading the view.
 }
@@ -253,13 +250,17 @@
 
 }
 
-
+//布局界面的控件
 -(void)ConfigControl
 {
     
+    IFView = [[UUInputFunctionView alloc]initWithSuperVC:self];
+    IFView.delegate = self;
+    [self.view addSubview:IFView];
+
     UIView *alarmView = [[UIView alloc]initWithFrame:CGRectMake(15*WIDTH/375, 380*HEIGHT/667, WIDTH-30*WIDTH/375, 150*HEIGHT/667)];
     alarmView.backgroundColor = [UIColor colorWithHexString:@"bababa"];
-    [self.view addSubview:alarmView];
+   // [self.view addSubview:alarmView];
     
     UIView *voiceInfoView = [[UIView alloc]initWithFrame:CGRectMake(90*WIDTH/375, 70*HEIGHT/667
      , 180*WIDTH/375, 40*HEIGHT/375)];
@@ -270,46 +271,24 @@
     
     voiceInfoView.backgroundColor = [UIColor whiteColor];
 
-    UIButton *alarmBtn = [[UIButton alloc]initWithFrame:CGRectMake(110*WIDTH/375, 15*HEIGHT/667, 150*WIDTH/375, 40*HEIGHT/667)];
+    UIButton *alarmBtn = [[UIButton alloc]initWithFrame:CGRectMake(110*WIDTH/375,IFView.frame.origin.y + 10, 150*WIDTH/375, 40*HEIGHT/667)];
     alarmBtn.backgroundColor = [UIColor redColor];
     [alarmBtn setTitle:@"一 键 报 警" forState:UIControlStateNormal];
     [alarmBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [alarmBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     alarmBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20*WIDTH/375];
     [alarmBtn addTarget:self action:@selector(KeyAlarm) forControlEvents:UIControlEventTouchUpInside];
-    //[alarmBtn setTitleColor:[UIColor grayColor] forState:UIControlStateSelected];
-    [alarmView addSubview:alarmBtn];
+    [self.view addSubview:alarmBtn];
     
-   
-    voiceImage = [[UIImageView alloc] init];
-    voiceImage.bounds = CGRectMake(0, 0, self.view.frame.size.width/3, self.view.frame.size.height/3);
-    voiceImage.center = CGPointMake(self.view.frame.size.width * 0.5, self.view.frame.size.height * 0.5);
-    voiceImage.image = [UIImage imageNamed:@"mic_normal_358x358@2x.png"];
-    [self.view addSubview:voiceImage];
-    voiceImage.hidden = YES;
-    //[speakBtn addTarget:self action:@selector(recordVoice) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton *recoderBtn = [[UIButton alloc]initWithFrame:CGRectMake(15*WIDTH/375, 10*HEIGHT/667, 50, 40)];
-    [alarmView addSubview:recoderBtn];
-    [recoderBtn setBackgroundImage:[UIImage imageNamed:@"btn.png"] forState:UIControlStateNormal];
-    [recoderBtn setBackgroundImage:[UIImage imageNamed:@"btn1.png"] forState:UIControlStateHighlighted];
-    recoderBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15*WIDTH/375];
-    [recoderBtn setTitle:@"录音" forState:UIControlStateNormal];
-    [recoderBtn addTarget:self action:@selector(startRecord) forControlEvents:UIControlEventTouchDown];
-    [recoderBtn addTarget:self action:@selector(stopRecord) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton *addBtn = [[UIButton alloc]initWithFrame:CGRectMake(280*WIDTH/375, 10*HEIGHT/667, 50*WIDTH/375, 50*HEIGHT/667)];
-    [alarmView addSubview:addBtn];
-    
+    UIButton *addBtn = [[UIButton alloc]initWithFrame:CGRectMake(300*WIDTH/375, 380*HEIGHT/667, 50*WIDTH/375, 50*HEIGHT/667)];
     UIImageView *addImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 50*WIDTH/375, 50*HEIGHT/667)];
-    addImage.image = [UIImage imageNamed:@"plus19.png"];
+   // addBtn.backgroundColor = [UIColor blueColor];
+    addImage.image = [UIImage imageNamed:@"Chat_take_picture.png"];
     [addBtn addSubview:addImage];
     [addBtn addTarget:self action:@selector(AddPhotoImage) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:addBtn];
     
-    playProgress = [[UIProgressView alloc] initWithFrame:CGRectMake(20, 400*HEIGHT/667, WIDTH-40, 10)];
-    playProgress.backgroundColor = [UIColor redColor];
-    [playProgress setProgressViewStyle:UIProgressViewStyleDefault];
-   // playProgress.hidden = YES;
+      // playProgress.hidden = YES;
    // [self.view addSubview:playProgress];
     
 }
@@ -340,245 +319,21 @@
     [self.view endEditing:YES];
 }
 
-/**
- *  设置音频会话
- */
--(void)setAudioSession{
-    AVAudioSession *audioSession=[AVAudioSession sharedInstance];
-    //设置为播放和录音状态，以便可以在录制完之后播放录音
-    //[audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-    [audioSession setActive:YES error:nil];
-}
 
-/**
- *  取得录音文件设置
- *
- *  @return 录音设置
- */
--(NSDictionary *)getAudioSetting{
-    NSMutableDictionary *dicM=[NSMutableDictionary dictionary];
-    //设置录音格式
-    [dicM setObject:@(kAudioFormatLinearPCM) forKey:AVFormatIDKey];
-    //设置录音采样率，8000是电话采样率，对于一般录音已经够了
-    [dicM setObject:@(8000) forKey:AVSampleRateKey];
-    //设置通道
-    [dicM setObject:@(1) forKey:AVNumberOfChannelsKey];
-    //每个采样点位数,分为8、16、24、32
-    [dicM setObject:@(8) forKey:AVLinearPCMBitDepthKey];
-    //是否使用浮点数采样
-    [dicM setObject:@(YES) forKey:AVLinearPCMIsFloatKey];
-    //....其他设置等
-    return dicM;
-}
-
-/**
- *  获得录音机对象
- *
- *  @return 录音机对象
- */
--(AVAudioRecorder *)audioRecorder{
-    
-    if (!_audioRecorder) {
-        //创建录音文件保存路径
-        NSURL *url=[NSURL fileURLWithPath:urlStr];
-        NSLog(@"%@",urlStr);
-        //创建录音格式设置
-        NSDictionary *setting=[self getAudioSetting];
-        //创建录音机
-        NSError *error=nil;
-        AVAudioRecorder *audioRecorderTemp=[[AVAudioRecorder alloc]initWithURL:url settings:setting error:&error];
-        audioRecorderTemp.delegate=self;
-        audioRecorderTemp.meteringEnabled=YES;//如果要监控声波则必须设置为YES
-        if (error) {
-            NSLog(@"创建录音机对象时发生错误，错误信息：%@",error.localizedDescription);
-            return nil;
-        }
-    
-        _audioRecorder.meteringEnabled = YES;
-        _audioRecorder = audioRecorderTemp;
-    }
-    
-    
-    //NSLog(@"dddddd");
-
-    return _audioRecorder;
-}
-
-/**
- *  录音声波状态设置
- */
--(void)audioPowerChange{
-    [self.audioRecorder updateMeters];//更新测量值
-    float power= [self.audioRecorder averagePowerForChannel:0];//取得第一个通道的音频，注意音频强度范围时-160到0
-    CGFloat progress=(1.0/160.0)*(power+160.0);
-    [self.audioPower setProgress:progress];
-}
-
-
-#pragma mark - UI事件
-/**
- *  点击录音按钮
- *
- *  @param sender 录音按钮
- */
-- (void)recordClick {
-    
-    NSString *path = [[NSBundle mainBundle] bundlePath];
-    NSLog(@"%@",path);
-    NSString *fileName = [NSDateString ret32bitString];
-    NSString *fileName1 = [fileName stringByAppendingString:kRecordAudioFile];
-    
-   // NSString *imagePath = [[NSBundle mainBundle] pathForResource:fileName1 ofType:nil];
-   NSString *urlStr2 =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    urlStr = [urlStr2 stringByAppendingPathComponent:fileName1];
-   // urlStr = [[NSBundle mainBundle] pathForResource:fileName1 ofType:nil];
-    [voicePathArray addObject:urlStr];
-    
-    NSLog(@"file path:%@",urlStr);
-    if (![self.audioRecorder isRecording]) {
-        [self.audioRecorder record];//首次使用应用时如果调用record方法会询问用户是否允许使用麦克风
-        self.timer.fireDate=[NSDate distantPast];
-    }
-}
-
-/**
- *  录音声波监控定制器
- *
- *  @return 定时器
- */
--(NSTimer *)timer{
-    if (!_timer) {
-        _timer=[NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(detectionVoice) userInfo:nil repeats:YES];
-    }
-    return _timer;
-}
-
-
-- (void)detectionVoice
+- (void)UUInputFunctionView:(UUInputFunctionView *)funcView sendVoice:(NSData *)voice time:(NSInteger)second
 {
-    [recorder updateMeters];//刷新音量数据
-    //获取音量的平均值  [recorder averagePowerForChannel:0];
-    //音量的最大值  [recorder peakPowerForChannel:0];
-    
-    double lowPassResults = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
-    NSLog(@"%lf",lowPassResults);
-    //最大50  0
-    //图片 小-》大
-    if (0<lowPassResults<=0.6) {
-        [voiceImage setImage:[UIImage imageNamed:@"record_animate_01.png"]];
-        
-    }else if (0.6<lowPassResults<=1.3) {
-        [voiceImage setImage:[UIImage imageNamed:@"record_animate_02.png"]];
-        
-    }else if (1.3<lowPassResults<=2.0) {
-        [voiceImage setImage:[UIImage imageNamed:@"record_animate_03.png"]];
-        
-    }else if (2.00<lowPassResults<=2.7) {
-        [voiceImage setImage:[UIImage imageNamed:@"record_animate_04.png"]];
-        
-    }else if (2.7<lowPassResults<=3.4) {
-        [voiceImage setImage:[UIImage imageNamed:@"record_animate_05.png"]];
-        
-    }else if (3.4<lowPassResults<=4.1) {
-        [voiceImage setImage:[UIImage imageNamed:@"record_animate_06.png"]];
-        
-    }else if (4.1<lowPassResults<=4.8) {
-        [voiceImage setImage:[UIImage imageNamed:@"record_animate_07.png"]];
-        
-    }else if (4.8<lowPassResults<=5.5) {
-        [voiceImage setImage:[UIImage imageNamed:@"record_animate_08.png"]];
-        
-    }else if (5.5<lowPassResults<=6.2) {
-        [voiceImage setImage:[UIImage imageNamed:@"record_animate_09.png"]];
-        
-    }else if (6.2<lowPassResults<=6.9) {
-        [voiceImage setImage:[UIImage imageNamed:@"record_animate_10.png"]];
-        
-    }else if (6.9<lowPassResults<=7.6) {
-        [voiceImage setImage:[UIImage imageNamed:@"record_animate_11.png"]];
-        
-    }else if (7.6<lowPassResults<=8.3) {
-        [voiceImage setImage:[UIImage imageNamed:@"record_animate_12.png"]];
-        
-    }else if (8.3<lowPassResults<=9.0) {
-        [voiceImage setImage:[UIImage imageNamed:@"record_animate_13.png"]];
-        
-    }else {
-        [voiceImage setImage:[UIImage imageNamed:@"record_animate_14.png"]];
-    }
-}
+    NSDate *sendDate;
+    NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];
+    [dateformatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+    sendDate = [NSDate date];
+    NSString *sendTime=[dateformatter stringFromDate:sendDate];
 
-
-///**
-// *  点击暂定按钮
-// *
-// *  @param sender 暂停按钮
-// */
-//- (void)pauseClick:(UIButton *)sender {
-//    if ([self.audioRecorder isRecording]) {
-//        [self.audioRecorder pause];
-//        self.timer.fireDate=[NSDate distantFuture];
-//    }
-//}
-
-///**
-// *  点击恢复按钮
-// *  恢复录音只需要再次调用record，AVAudioSession会帮助你记录上次录音位置并追加录音
-// *
-// *  @param sender 恢复按钮
-// */
-//- (void)resumeClick:(UIButton *)sender {
-//    [self recordClick];
-//}
-//
-/**
- *  点击停止按钮
- *
- *  @param sender 停止按钮
- */
-- (void)stopClick {
-    [self.audioRecorder stop];
-   // NSLog(@"ffffff");
-    self.timer.fireDate=[NSDate distantFuture];
-    self.audioPower.progress=0.0;
+    NSDictionary *dic = @{@"voice": voice,
+                          @"strVoiceTime": [NSString stringWithFormat:@"%d",(int)second],@"time":sendTime};
     
-}
-
-#pragma mark - 录音机代理方法
-/**
- *  录音完成，录音完成后播放录音
- *
- *  @param recorder 录音机对象
- *  @param flag     是否成功
- */
--(void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag{
-    
-    //    if (![self.audioPlayer isPlaying]) {
-    //        [self.audioPlayer play];
-    //    }
-    //[self.delegate flushRecoder:(NSMutableArray *)];
-    
-   // [self backAction];
-    self.audioRecorder = nil;
-    NSLog(@"录音完成!");
-}
-
--(void)startRecord
-{
-    
-    voiceImage.image = [UIImage imageNamed:@"mic_talk_358x358@2x.png"];
-    voiceImage.hidden = NO;
-    [self recordClick];
-    
-}
-
--(void)stopRecord
-{
-    voiceImage.image = [UIImage imageNamed:@"mic_normal_358x358@2x.png"];
-    voiceImage.hidden = YES;
-    [self stopClick];
-    [self flushRecoder];
-    
+    UUMessage *message = [UUMessage UUMessageModelWithDict:dic];
+    [audioArray addObject:message];
+    [helpMessage reloadData];
 }
 
 //添加图片
@@ -613,7 +368,7 @@
         n = photoAlarmArray.count;
     }else if (section == 2){
     
-        n = _voiceAlarmData.count;
+        n = audioArray.count;
     }
     
     return n;
@@ -684,63 +439,25 @@
         cell = photocell;
 
     }else if (indexPath.section == 2){
-    
-        static NSString *reuseIdentify = @"cell3";
-        VoiceAlarmCell *voicecell = (VoiceAlarmCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentify];
         
-        if(voicecell == nil){
+        UUMessageCell *voicecell = [tableView dequeueReusableCellWithIdentifier:@"CellID"];
+        if (voicecell == nil) {
             
-            voicecell = [[VoiceAlarmCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentify];
-            
+            voicecell = [[UUMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellID"];
             voicecell.accessoryType = UITableViewCellAccessoryNone;
             voicecell.backgroundColor = [UIColor colorWithHexString:@"ededed"];
             voicecell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-        }
-        
-        VoiceAlarmModel *model = [_voiceAlarmData objectAtIndex:indexPath.row];
-        voicecell.voiceModel = model;
-        NSString *strUrl = model.url;
-        NSLog(@"%@",strUrl);
-      
-        NSURL *url=[NSURL fileURLWithPath:strUrl];
-        voicecell.voiceBubble.contentURL = url;
-       // voicecell.voiceBubble.contentURL = [[NSBundle mainBundle] URLForResource:@"bb" withExtension:@"caf"];
-        voicecell.timeLab.text = model.time;
-       
-        voicecell.voiceBubble.tag = indexPath.row;
-        if (indexPath.row == _currentRow ) {
-            
-            [voicecell.voiceBubble startAnimating];
-        } else {
-            
-            [voicecell.voiceBubble stopAnimating];
+            voicecell.delegate = self;
         }
 
-        //[voicecell.playBtn addTarget:self action:@selector(playAudio) forControlEvents:UIControlEventTouchUpInside];
-        
-        NSString *content = voicecell.stateLab.text;
-        if([content isEqualToString:@"已发送"]){
-            
-            voicecell.stateLab.textColor = [UIColor greenColor];
-        }else{
-            
-            voicecell.stateLab.textColor = [UIColor redColor];
-            
-        }
-
+        UUMessage *message = [audioArray objectAtIndex:indexPath.row];
+        voicecell.message = message;
         cell = voicecell;
 
     }
     
     return cell;
 
-}
-
-- (void)voiceBubbleDidStartPlaying:(FSVoiceBubble *)voiceBubble
-{
-    NSLog(@"ddddd");
-    _currentRow = voiceBubble.tag;
 }
 
 
@@ -767,11 +484,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-//    NSInteger row = indexPath.row;
-//    NSLog(@"%ld",(long)row);
-////    playAudioUrl = [saveVoiceInfoArray[indexPath.row] objectForKey:@"url"];
-////   // [self playAudio];
-//    NSLog(@"%@",playAudioUrl);
 
 }
 
@@ -793,20 +505,40 @@
         photoImage = image;
         model.image = image;
         model.time = locationString;
-        model.message = infoText.text;
-        //[_photoAlarmData addObject:model];
-        
+        model.message = IFView.TextViewInput.text;
+        [photoAlarmArray addObject:model];
         
     }
     
+    [helpMessage reloadData];
     [self savePhotoAlarmInfo];
+    [self upLoadImage:arrayMutable];
     
-    infoText.text = nil;
-   // [self.view endEditing:YES];
-    //[helpMessage reloadData];
+    IFView.TextViewInput.text = nil;
     
 }
 
+//上传图片
+-(void)upLoadImage:(NSMutableArray *)imageArray
+{
+    
+//    NSMutableArray* arrayMutable = [NSMutableArray arrayWithCapacity:photoAlarmArray.count];
+//    for (TextPhotoAlarmModel* model in photoAlarmArray) {
+//        
+//        [arrayMutable addObject:model.image];
+//    }
+
+    [WGAPI post:API_UPLOADFILE params:nil ImageDatas:[imageArray copy] Key:@"image" success:^(id responseObj) {
+        
+        NSLog(@"%@",responseObj);
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+    }];
+
+
+
+}
 
 //保存图文报警信息
 -(void)savePhotoAlarmInfo
@@ -879,7 +611,7 @@
             
             string = [NSString stringWithFormat:@"%f %f",locationCorrrdinate.latitude,locationCorrrdinate.longitude];
         } withAddress:^(NSString *addressString) {
-            NSLog(@"%@",addressString);
+           // NSLog(@"%@",addressString);
             string = [NSString stringWithFormat:@"%@\n%@",string,addressString];
             [SVProgressHUD showWithStatus:@"发送中..."];
             if(string != nil){
@@ -903,27 +635,30 @@
                                 
                                     [self performSelectorOnMainThread:@selector(responseOfKeyAlarm) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
 
-                                
                                 }
                             
                             }
                         
                         }
                     }];
-                    
                 
             }else{
             
-                [SVProgressHUD showWithStatus:@"获取位置信息失败！"];
+                 [self performSelectorOnMainThread:@selector(showLocationError) withObject:addressString waitUntilDone:YES];//通知主线程刷新(UI)
             
             }
             
         }];
     }
 
-    
 }
 
+-(void)showLocationError
+{
+
+     [SVProgressHUD showWithStatus:@"获取位置信息失败！"];
+
+}
 
 -(void)getHelpMessage
 {
@@ -975,9 +710,9 @@
 {
     
     [SVProgressHUD showSuccessWithStatus:@"发送成功！" maskType:SVProgressHUDMaskTypeBlack];
-    [keyInfoArray removeAllObjects];
-    [photoAlarmArray removeAllObjects];
-    [self getHelpMessage];
+   // [keyInfoArray removeAllObjects];
+   // [photoAlarmArray removeAllObjects];
+    //[self getHelpMessage];
     
 }
 
@@ -989,126 +724,45 @@
     
 }
 
-//刷新录音列表
--(void)flushRecoder
-{
-    
-        VoiceAlarmModel *model;
-        NSDate *sendDate;
-        NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
-        [dateformatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
-    
-        sendDate = [NSDate date];
-        NSString *recordTime = [dateformatter stringFromDate:sendDate];
-        model = [[VoiceAlarmModel alloc]init];
-        model.time = recordTime;
-        model.url = urlStr;
-        [_voiceAlarmData addObject:model];
-    
-        [helpMessage reloadData];
-    
-    //判断是否以创建文件
-    if ([[NSFileManager defaultManager] fileExistsAtPath:voicePlistPath])
-    {
-        //此处可以自己写显示plist文件内容
-        NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-        [dict setObject:urlStr forKey:@"url"];
-        [dict setObject:recordTime forKey:@"time"];
-        //[dict setObject:location forKey:@"state"];
-        [saveVoiceInfoArray addObject:dict];
-        [saveVoiceInfoArray writeToFile:voicePlistPath atomically:YES];
-        NSLog(@"文件已存在");
-    }
-    else
-    {
-        
-        [voiceInfoArrayPlist writeToFile:voicePlistPath atomically:YES];
-        
-    }
-
-}
-
-/**
- *  录音声波监控定制器
- *
- *  @return 定时器
- */
-//-(NSTimer *)playTimer{
-//    if (!_playTimer) {
-//        _playTimer=[NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(updateProgress) userInfo:nil repeats:YES];
-//    }
-//    return _playTimer;
-//}
-
-
-/**
- *  创建播放器
- *
- *  @return 播放器
- */
-//-(AVAudioPlayer *)audioPlayer{
-//    
-//    
-//    // NSString *string = [[NSBundle mainBundle] pathForResource:@"NLOmyRecord.caf" ofType:nil];
-//    if (!_audioPlayer) {
-//        NSURL *url=[NSURL fileURLWithPath:playAudioUrl];
-//        //NSLog(@"%@",url);
-//        NSError *error=nil;
-//        _audioPlayer=[[AVAudioPlayer alloc]initWithContentsOfURL:url error:&error];
-//        _audioPlayer.numberOfLoops=0;
-//        _audioPlayer.delegate=self;
-//        [_audioPlayer prepareToPlay];
-//        if (error) {
-//            NSLog(@"创建播放器过程中发生错误，错误信息：%@",error.localizedDescription);
-//            return nil;
-//        }
-//    }
-//    return _audioPlayer;
-//}
-
-
-
-//-(void)playAudio
+////刷新录音列表
+//-(void)flushRecoder
 //{
-//    NSURL *url=[[NSBundle mainBundle] URLForResource:@"aa" withExtension:@"mp3"];
-//    //NSLog(@"%@",url);
-//    NSError *error=nil;
-//   AVAudioPlayer *audioPlayer=[[AVAudioPlayer alloc]initWithContentsOfURL:url error:&error];
-//    audioPlayer.numberOfLoops=0;
-//    audioPlayer.delegate=self;
-//    [audioPlayer prepareToPlay];
 //    
-//    playProgress.hidden = NO;
-//    if (![audioPlayer isPlaying]) {
-//        [audioPlayer play];
-//        self.playTimer.fireDate = [NSDate distantPast];//恢复定时器
+//        VoiceAlarmModel *model;
+//        NSDate *sendDate;
+//        NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+//        [dateformatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+//    
+//        sendDate = [NSDate date];
+//        NSString *recordTime = [dateformatter stringFromDate:sendDate];
+//        model = [[VoiceAlarmModel alloc]init];
+//        model.time = recordTime;
+//        model.url = urlStr;
+//        [_voiceAlarmData addObject:model];
+//    
+//        [helpMessage reloadData];
+//    
+//    //判断是否以创建文件
+//    if ([[NSFileManager defaultManager] fileExistsAtPath:voicePlistPath])
+//    {
+//        //此处可以自己写显示plist文件内容
+//        NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+//        [dict setObject:urlStr forKey:@"url"];
+//        [dict setObject:recordTime forKey:@"time"];
+//        //[dict setObject:location forKey:@"state"];
+//        [saveVoiceInfoArray addObject:dict];
+//        [saveVoiceInfoArray writeToFile:voicePlistPath atomically:YES];
+//        NSLog(@"文件已存在");
 //    }
-//    self.audioPlayer = audioPlayer;
+//    else
+//    {
+//        
+//        [voiceInfoArrayPlist writeToFile:voicePlistPath atomically:YES];
+//        
+//    }
 //
 //}
 
-///**
-// *  更新播放进度
-// */
-//-(void)updateProgress{
-//    float progress= self.audioPlayer.currentTime /self.audioPlayer.duration;
-//    [playProgress setProgress:progress animated:true];
-//    if(progress ==1.0){
-//    
-//        [self.audioPlayer stop];
-//         playProgress.progress = 0.0;
-//    }
-//}
-//
-//#pragma mark - 播放器代理方法
-//-(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
-//    
-//    playProgress.hidden = YES;
-//    playProgress.progress = 0.0;
-//    _audioPlayer = nil;
-//    [_playTimer invalidate];
-//    NSLog(@"音乐播放完成...");
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

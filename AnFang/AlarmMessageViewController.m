@@ -24,7 +24,7 @@
      NSMutableArray *messageTitle;
      NSMutableArray *messageArray;
      //NSDictionary *messageInfo;
-     NSMutableArray *tempArray;
+     NSArray *tempArray;
      UILabel *alertLab;
     int pageSize;
     // LoadMoreTableFooterView *loadMoreTableFooterView;
@@ -43,7 +43,7 @@
     
     // messageInfo = [[NSDictionary alloc] init];
     messageArray = [[NSMutableArray alloc]init];
-    tempArray = [[NSMutableArray alloc]init];
+    tempArray = [[NSArray alloc]init];
     //self.view.backgroundColor = [UIColor blackColor];
     
     messageTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT) style:UITableViewStylePlain];
@@ -119,25 +119,23 @@
         NSString *pageStr = [pageInfo JSONString];
         NSString *userInfoData = [@"alarm=" stringByAppendingString:pageStr];
     
-        [WGAPI post:API_GET_ALARMINFO RequestParams:userInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        [WGAPI post:API_GET_ALARMINFO RequestParams:nil FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
             if(data){
         
                 NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                
                 NSLog(@"%@",jsonStr);
-                NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
+                NSDictionary *infojson = [CMTool strDic:jsonStr];
                 if(infojson != nil){
-//                NSDictionary *messageInfo = [infojson objectForKey:@"datas"];
-//                NSString *messageInfoStr = [CMTool dictionaryToJson:messageInfo];
-//                NSLog(@"%@",messageInfoStr);
-                    tempArray = [infojson objectForKey:@"datas"];
+                    
+                    tempArray = [infojson objectForKey:@"data"];
                     for(NSDictionary *dict in tempArray){
                     
                         AlarmMessageModel *model = [AlarmMessageModel AlarmMessageModelWithDict:dict];
                         [messageArray addObject:model];
                     }
 
-            
                 }
                 [self performSelectorOnMainThread:@selector(refreshData) withObject:data waitUntilDone:YES];
             

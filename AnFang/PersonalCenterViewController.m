@@ -108,7 +108,6 @@
 -(void)refreshUIControl
 {
     
-    
     //[CoreArchive setStr:userId key:@"userId"];
 }
 

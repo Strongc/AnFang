@@ -20,5 +20,5 @@
 
 + (NSString*)dictionaryToJson:(NSDictionary *)dic;
 + (NSDictionary *)parseJSONStringToNSDictionary:(NSString *)JSONString;
-
++ (NSDictionary*) strDic:(NSString*) str;
 @end

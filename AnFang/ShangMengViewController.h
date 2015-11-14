@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShangMengViewController : UIViewController
+@interface ShangMengViewController : UIViewController<UIWebViewDelegate>
 
 @end

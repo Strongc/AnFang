@@ -36,6 +36,7 @@
     NSString *tempId;
    // NSString *hostId;
     NSString *hostStatus;
+    NSString *onLineStatus;
     NSString *bufangInfo;
     NSMutableArray *cameraArray;
     int pageSize;
@@ -44,8 +45,9 @@
     UILabel *stateLab;
     UILabel *onlineLab;
     UIImageView *stateImageView;
-   
-
+    UIButton *stateBtn;
+    NSTimer *timer;
+    
 }
 @property (nonatomic,strong) NSArray *sourceData;
 @property (nonatomic,weak) SDRefreshHeaderView *refreshHeader;
@@ -127,7 +129,7 @@
 
 -(void)ConfigControl
 {
-    UIView *blueLine = [[UIView alloc]initWithFrame:CGRectMake(0, 450*HEIGHT/667, WIDTH, 3.0)];
+    UIView *blueLine = [[UIView alloc]initWithFrame:CGRectMake(0, 430*HEIGHT/667, WIDTH, 3.0)];
     [self.view addSubview:blueLine];
     blueLine.backgroundColor = [UIColor colorWithHexString:@"6495ed"];
 
@@ -136,33 +138,37 @@
     backGroundView.backgroundColor = [UIColor colorWithHexString:@"ffffe0"];
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"yh.png" ofType:nil];
-    stateImageView = [[UIImageView alloc] initWithFrame:CGRectMake(40, 30, WIDTH-80, 300)];
-    [backGroundView addSubview:stateImageView];
-    stateImageView.image = [UIImage imageWithContentsOfFile:path];
+    NSString *pathSelected = [[NSBundle mainBundle] pathForResource:@"yh_select.png" ofType:nil];
+    stateImageView = [[UIImageView alloc] initWithFrame:CGRectMake(40, 30, WIDTH-80, 300*HEIGHT/667)];
+    stateBtn = [[UIButton alloc] initWithFrame:CGRectMake(40, 30, WIDTH - 80, 300*HEIGHT/667)];
+    [backGroundView addSubview:stateBtn];
+    //stateImageView.image = [UIImage imageWithContentsOfFile:path];
+    [stateBtn setBackgroundImage:[UIImage imageWithContentsOfFile:path] forState:UIControlStateNormal];
+    [stateBtn setBackgroundImage:[UIImage imageWithContentsOfFile:pathSelected] forState:UIControlStateHighlighted];
 
     stateLab = [[UILabel alloc]initWithFrame:CGRectMake(150*WIDTH/375, 140*HEIGHT/667, 60*WIDTH/375, 20*HEIGHT/667)];
     stateLab.text = @"已部防";
     stateLab.textColor = [UIColor greenColor];
     stateLab.textAlignment = NSTextAlignmentCenter;
     stateLab.font = [UIFont boldSystemFontOfSize:18*WIDTH/375];
-    [stateImageView addSubview:stateLab];
+    [stateBtn addSubview:stateLab];
     
     onlineLab = [[UILabel alloc]initWithFrame:CGRectMake(70*WIDTH/375, 140*HEIGHT/667, 60*WIDTH/375, 20*HEIGHT/667)];
     onlineLab.text = @"在线";
     onlineLab.textColor = [UIColor greenColor];
     onlineLab.textAlignment = NSTextAlignmentCenter;
     onlineLab.font = [UIFont boldSystemFontOfSize:18*WIDTH/375];
-    [stateImageView addSubview:onlineLab];
+    [stateBtn addSubview:onlineLab];
     
     NSString *path1 = [[NSBundle mainBundle] pathForResource:@"bufang_nor.png" ofType:nil];
     NSString *path2 = [[NSBundle mainBundle] pathForResource:@"bufang_select.png" ofType:nil];
-    bufangBtn = [[UIButton alloc]initWithFrame:CGRectMake(80*WIDTH/375, 480*HEIGHT/667, 60*WIDTH/375, 60*HEIGHT/667)];
+    bufangBtn = [[UIButton alloc]initWithFrame:CGRectMake(80*WIDTH/375, 460*HEIGHT/667, 60*WIDTH/375, 60*HEIGHT/667)];
     [bufangBtn setBackgroundImage:[UIImage imageWithContentsOfFile:path1] forState:UIControlStateNormal];
     [bufangBtn setBackgroundImage:[UIImage imageWithContentsOfFile:path2] forState:UIControlStateHighlighted];
     [bufangBtn addTarget:self action:@selector(BuFangRequestAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bufangBtn];
     
-    chefangBtn = [[UIButton alloc]initWithFrame:CGRectMake(80*WIDTH/375, 480*HEIGHT/667, 60*WIDTH/375, 60*HEIGHT/667)];
+    chefangBtn = [[UIButton alloc]initWithFrame:CGRectMake(80*WIDTH/375, 460*HEIGHT/667, 60*WIDTH/375, 60*HEIGHT/667)];
     [self.view addSubview:chefangBtn];
     NSString *path5 = [[NSBundle mainBundle] pathForResource:@"chefang_nor.png" ofType:nil];
     NSString *path6 = [[NSBundle mainBundle] pathForResource:@"chefang_select.png" ofType:nil];
@@ -170,8 +176,7 @@
     [chefangBtn setBackgroundImage:[UIImage imageWithContentsOfFile:path6] forState:UIControlStateHighlighted];
     [chefangBtn addTarget:self action:@selector(CheFangAction) forControlEvents:UIControlEventTouchUpInside];
 
-    
-    UIButton *cameraBtn = [[UIButton alloc] initWithFrame:CGRectMake(230*WIDTH/375, 485*HEIGHT/667, 60*WIDTH/375, 55*HEIGHT/667)];
+    UIButton *cameraBtn = [[UIButton alloc] initWithFrame:CGRectMake(230*WIDTH/375, 465*HEIGHT/667, 60*WIDTH/375, 55*HEIGHT/667)];
     [self.view addSubview:cameraBtn];
 
     NSString *path3 = [[NSBundle mainBundle] pathForResource:@"camera_nor.png" ofType:nil];
@@ -226,18 +231,6 @@
 //    title3.font = [UIFont boldSystemFontOfSize:15*WIDTH/375];
 //    [self.view addSubview:title3];
 
-    UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 452*HEIGHT/667, WIDTH, 40*HEIGHT/667)];
-    //[self.view addSubview:titleView];
-    titleView.backgroundColor = [UIColor colorWithHexString:@"ededed"];
-    UIView *grayLine = [[UIView alloc]initWithFrame:CGRectMake(0, 492*HEIGHT/667, WIDTH, 3.0)];
-   // [self.view addSubview:grayLine];
-    grayLine.backgroundColor = [UIColor colorWithHexString:@"bababa"];
-    
-    UILabel *title5 = [[UILabel alloc]initWithFrame:CGRectMake(15*WIDTH/375, 10*HEIGHT/667, 80*WIDTH/375, 20*HEIGHT/667)];
-    [titleView addSubview:title5];
-    title5.text = @"监控列表";
-    title5.textColor = [UIColor blackColor];
-    title5.font = [UIFont boldSystemFontOfSize:20*WIDTH/375];
     
     
 }
@@ -288,8 +281,7 @@
 //获取当前用户的主机信息
 -(void)getUserHostInfo
 {
-
-    //chefangBtn.userInteractionEnabled = NO;
+    
     NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"2"};
     NSDictionary *pageInfo = @{@"page":page};
     NSString *pageStr = [pageInfo JSONString];
@@ -303,13 +295,14 @@
             NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
             if(infojson != nil){
                 NSDictionary *messageInfo = [infojson objectForKey:@"data"];
-                // NSString *messageInfoStr = [CMTool dictionaryToJson:messageInfo];
-                // NSLog(@"%@",messageInfoStr);
+                 NSString *messageInfoStr = [CMTool dictionaryToJson:messageInfo];
+                 NSLog(@"主机信息：%@",messageInfoStr);
                 tempHostArray = [messageInfo objectForKey:@"datas"];
                 if(tempHostArray.count > 0){
                     NSDictionary *dict = tempHostArray[1];
                     _hostId = [dict objectForKey:@"host_id"];
-                    hostStatus = [dict objectForKey:@"host_status"];
+                    onLineStatus = [dict objectForKey:@"host_status"];
+                    hostStatus = [dict objectForKey:@"rCStatus"];
                     //[self BuFangRequestAction:@"201510231107140078"];
 
                 
@@ -325,21 +318,20 @@
 
 }
 
+//设置撤部防按钮状态
 -(void) setButtonStatus{
 
     [CoreArchive setStr:_hostId key:@"hostId"];
-    if([hostStatus isEqualToString:@"FALSE"]){
+    if([onLineStatus isEqualToString:@"FALSE"]){
     
         stateLab.text = @"未部防";
         stateLab.textColor = [UIColor redColor];
         chefangBtn.hidden = YES;
-    }else if ([hostStatus isEqualToString:@"TRUE"]){
+    }else if ([onLineStatus isEqualToString:@"TRUE"]){
     
         stateLab.text = @"已部防";
         stateLab.textColor = [UIColor greenColor];
         bufangBtn.hidden = YES;
-       
-      
     }
 
 }
@@ -385,10 +377,13 @@
     bufangBtn.hidden = YES;
     chefangBtn.hidden = NO;
     
+    timer = [NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(getUserHostInfo) userInfo:nil repeats:YES];
+
 }
 
 -(void)CheFangRequest
 {
+    [timer invalidate];
     //NSString *hostParam = [@"hostIds=" stringByAppendingString:@"201510231107140078"];
     NSString *hostIds = [CoreArchive strForKey:@"hostId"];
     NSString *hostParam;
@@ -406,7 +401,6 @@
                 
                 bufangInfo = [infojson objectForKey:@"data"];
                 if([bufangInfo isEqualToString:@"sucess"]){
-                    
                     
                     [self performSelectorOnMainThread:@selector(ResponseInfo2) withObject:data waitUntilDone:YES];//刷新UI线程
                 }
@@ -428,7 +422,8 @@
     stateLab.textColor = [UIColor redColor];
     bufangBtn.hidden = NO;
     chefangBtn.hidden = YES;
-    
+    timer = [NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(getUserHostInfo) userInfo:nil repeats:YES];
+
 }
 
 -(void)getOrgInfo

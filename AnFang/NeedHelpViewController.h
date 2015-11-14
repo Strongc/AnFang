@@ -12,15 +12,14 @@
 #import "ImagePickerViewController.h"
 #import "FSVoiceBubble.h"
 #import "CCLocationManager.h"
+#import "UUInputFunctionView.h"
+#import "UUMessageCell.h"
 
-@interface NeedHelpViewController : UIViewController<CLLocationManagerDelegate,PickImageDelegate,FSVoiceBubbleDelegate,AVAudioPlayerDelegate,AVAudioRecorderDelegate,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate>
+@interface NeedHelpViewController : UIViewController<CLLocationManagerDelegate,PickImageDelegate,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UUInputFunctionViewDelegate,UUMessageCellDelegate>
 {
     AVAudioRecorder *recorder;
     NSURL *urlPlay;
-    NSTimer *timer;
-
 }
-@property(strong,nonatomic) AVAudioPlayer *avPalyer;
 
 
 @end

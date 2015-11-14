@@ -12,20 +12,48 @@
 @interface ShangMengViewController ()
 
 @property (nonatomic,strong) UIWebView *webView;
+@property (nonatomic,strong) UIActivityIndicatorView *activityView;
 @end
 
 @implementation ShangMengViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     
+    [super viewDidLoad];
     self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
     [self.view addSubview:self.webView];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://dongyang.dfsh88.com/?did=10070"]];
-    [self.webView loadRequest:request];
+    self.webView.delegate = self;
+    self.activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake((WIDTH-50)/2, (HEIGHT-64-50)/2, 50, 50)];
+    [self.view addSubview:self.activityView];
     
     // Do any additional setup after loading the view.
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    
+    [super viewDidAppear:animated];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://dongyang.dfsh88.com/?did=10070"]];
+    [self.webView loadRequest:request];
+
+}
+
+-(void)webViewDidStartLoad:(UIWebView *)webView
+{
+
+    [self.activityView startAnimating];
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
+
+    [self.activityView stopAnimating];
+}
+
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [self.activityView stopAnimating];
+
 }
 
 - (void)didReceiveMemoryWarning {

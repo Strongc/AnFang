@@ -15,9 +15,8 @@
     
     if(self = [super init]){
         
-        self.url = dict[@"url"];
-        self.state = dict[@"state"];
-        self.time = dict[@"time"];
+        self.voice = dict[@"voice"];
+        self.strVoiceTime = dict[@"time"];
         
     }
     return self;

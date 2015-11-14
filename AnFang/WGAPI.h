@@ -17,12 +17,13 @@
 //获取用户信息
 #define API_GET_USEDATA  @"user/getUser"
 //获取报警数据
-#define API_GET_ALARMINFO @"alarm/page"
+#define API_GET_ALARMINFO @"user/getMessage"
 //获取防区数据
 #define API_GET_AREAINFO @"area/page"
 //获取摄像头数据
 #define API_GET_CAMERAINFO @"camera/page"
 //获取主机数据
+//#define API_GET_HOSTINFO @"host/getHostStatus"
 #define API_GET_HOSTINFO @"host/page"
 //获取消息数据
 #define API_GET_MESSAGEINFO @"message/page"
@@ -58,6 +59,8 @@
 #define API_UPLOADFILE @"upload/uploadFile"
 //获取求助信息
 #define API_GETHELPINFO @"help/page"
+//获取资讯
+
 
 typedef enum{
 
@@ -119,6 +122,9 @@ typedef enum{
 //+(void)postUrl:(NSString*)url Param:(NSDictionary *)param ImageDatas:(NSArray*)imageDatas Settings:(id)settings completion:(void (^)(BOOL, NSDictionary *, NSError *))completion;
 
 + (void)post:(NSString *)URL RequestParams:(NSString *)params FinishBlock:(void (^)(NSURLResponse *response, NSData *data, NSError *connectionError)) block;
+
++(void)post:(NSString*)strUrl params:(NSDictionary *)params ImageDatas:(NSArray*)imageDatas Key:(NSString*)key success:(void(^)(id responseObj))success failure:(void(^)(NSError *))failure;
+
 
 //+ (NSString *)parseParams:(NSDictionary *)params;
 

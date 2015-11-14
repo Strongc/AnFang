@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MonitorViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface MonitorViewController : UIViewController
 
 @property (nonatomic,copy) NSString *hostId;
-@property (nonatomic,copy) NSString *hostStatus;
+//@property (nonatomic,copy) NSString *hostStatus;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "WGAPI.h"
 #import "CMTool.h"
+#import "ASIFormDataRequest.h"
 //#import "HttpRequest.h"
 //#import "AFURLRequestSerialization.h"
 #import "WGData.h"
@@ -19,8 +20,8 @@
 
 //NSString *const CMAPIBaseURL=@"http://192.168.0.42:8080/wellgood/base";
 //NSString *const CMAPIBaseURL = @"http://wellgood.tpddns.cn:8080/";
-NSString *const CMAPIBaseURL = @"http://192.168.0.40:8080/";
-//NSString *const CMAPIBaseURL = @"http://122.233.181.221:8181/weigu/";
+//NSString *const CMAPIBaseURL = @"http://192.168.0.41:8080/";
+NSString *const CMAPIBaseURL = @"http://192.168.0.131:8080/";
 
 #else
 //NSString *const CMAPIBaseURL=@"http://guanwu.puyuntech.com/yht_api/";
@@ -298,6 +299,54 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
                                        queue:queue
                            completionHandler:block];
     //    return result;
+}
+
+//上传图片
++(void)post:(NSString *)strUrl params:(NSDictionary *)params ImageDatas:(NSArray *)imageDatas Key:(NSString *)key success:(void (^)(id))success failure:(void (^)(NSError *))failure
+{
+     NSString *urlStr = [CMAPIBaseURL stringByAppendingString:strUrl];
+     NSURL *url = [NSURL URLWithString:urlStr];
+     ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:url];
+    [request setDelegate:self];
+    [request setTimeOutSeconds:20];
+    request.showAccurateProgress = YES;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+    [request setShouldContinueWhenAppEntersBackground:YES];
+#endif
+    
+    NSEnumerator* keyEnumerator = params.keyEnumerator;
+    id thing;
+    while (thing = [keyEnumerator nextObject]) {
+        [request addPostValue:[params valueForKey:thing] forKey:thing];
+    }
+    
+    //    [request setDidFinishSelector:@selector(requestDidSuccess:)];
+    //    [request setDidFailSelector:@selector(requestDidFailed:)];
+    
+    if ([imageDatas count] > 0)
+    {
+        
+        [request setPostFormat:ASIMultipartFormDataPostFormat];
+        for (NSData* data in imageDatas) {
+            [request addData:data withFileName:[NSString stringWithFormat:@"image%ld.png",[imageDatas indexOfObject:data]] andContentType:@"image/png" forKey:key];
+        }
+        
+        [request startSynchronous];
+        NSError* error = request.error;
+        if(error)
+        {
+            failure(error);
+        }
+        else
+        {
+            NSString* responseString = request.responseString;
+            success([CMTool parseJSONStringToNSDictionary:responseString]);
+        }
+        //关闭网络
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    }
+
+
 }
 
 //post请求
