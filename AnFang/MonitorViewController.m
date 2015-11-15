@@ -299,13 +299,12 @@
                  NSLog(@"主机信息：%@",messageInfoStr);
                 tempHostArray = [messageInfo objectForKey:@"datas"];
                 if(tempHostArray.count > 0){
-                    NSDictionary *dict = tempHostArray[1];
+                    NSDictionary *dict = tempHostArray[0];
                     _hostId = [dict objectForKey:@"host_id"];
                     onLineStatus = [dict objectForKey:@"host_status"];
                     hostStatus = [dict objectForKey:@"rCStatus"];
                     //[self BuFangRequestAction:@"201510231107140078"];
 
-                
                 }
                 [self performSelectorOnMainThread:@selector(setButtonStatus) withObject:data waitUntilDone:YES];//刷新UI线程
 

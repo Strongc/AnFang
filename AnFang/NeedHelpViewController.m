@@ -19,6 +19,7 @@
 #import "WGAPI.h"
 #import "JSONKit.h"
 #import "ChatModel.h"
+#import "ASIFormDataRequest.h"
 
 
 #define IS_IOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
@@ -487,6 +488,27 @@
 
 }
 
+//将图片保存到document
+-(NSString *)saveImage:(UIImage *)tempImage
+{
+    NSString *fileNameHead = [NSDateString ret32bitString];
+    NSString *imageName = [fileNameHead stringByAppendingString:@".png"];
+    NSData *imageData = UIImagePNGRepresentation(tempImage);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString* fullPathToFile = [documentsDirectory stringByAppendingPathComponent:imageName];
+    NSLog(@"%@",fullPathToFile);
+    // and then we write it out
+    [imageData writeToFile:fullPathToFile atomically:NO];
+    //[self upLoadImage:fullPathToFile];
+    return fullPathToFile;
+}
+
+-(NSString *)documentFolderPath
+{
+    
+    return [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+}
 
 -(void)flushImageViews:(NSMutableArray *)arrayMutable
 {
@@ -507,40 +529,36 @@
         model.time = locationString;
         model.message = IFView.TextViewInput.text;
         [photoAlarmArray addObject:model];
+        //[self upLoadImage:image];
+        NSString *fileName = [self saveImage:image];
+        [self upLoadImage:image withFileName:fileName];
         
     }
     
     [helpMessage reloadData];
     [self savePhotoAlarmInfo];
-    [self upLoadImage:arrayMutable];
+    //[self upLoadImage:arrayMutable];
     
     IFView.TextViewInput.text = nil;
     
 }
 
 //上传图片
--(void)upLoadImage:(NSMutableArray *)imageArray
+-(void)upLoadImage:(UIImage *)image withFileName:(NSString *)imageName
 {
-    
-//    NSMutableArray* arrayMutable = [NSMutableArray arrayWithCapacity:photoAlarmArray.count];
-//    for (TextPhotoAlarmModel* model in photoAlarmArray) {
-//        
-//        [arrayMutable addObject:model.image];
-//    }
-
-    [WGAPI post:API_UPLOADFILE params:nil ImageDatas:[imageArray copy] Key:@"image" success:^(id responseObj) {
+    [WGAPI post:API_UPLOADFILE RequsetParam:image withFileName:imageName FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
-        NSLog(@"%@",responseObj);
-    } failure:^(NSError *error) {
+        if(data){
+            NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         
-        NSLog(@"%@",error);
+            NSLog(@"图片路径：%@",json);
+        }
     }];
-
-
-
+    
+    
 }
 
-//保存图文报警信息
+//保存图文报警信息
 -(void)savePhotoAlarmInfo
 {
     

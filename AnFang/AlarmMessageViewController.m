@@ -124,11 +124,10 @@
             if(data){
         
                 NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                
                 NSLog(@"%@",jsonStr);
                 NSDictionary *infojson = [CMTool strDic:jsonStr];
                 if(infojson != nil){
-                    
+                   // NSDictionary *messageInfo = [infojson objectForKey:@"data"];
                     tempArray = [infojson objectForKey:@"data"];
                     for(NSDictionary *dict in tempArray){
                     
@@ -141,9 +140,7 @@
             
             }
       
-    
         }];
-
 
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 //#import "AFNetworking.h"
 
 #define RESULT @"result"
@@ -123,7 +124,7 @@ typedef enum{
 
 + (void)post:(NSString *)URL RequestParams:(NSString *)params FinishBlock:(void (^)(NSURLResponse *response, NSData *data, NSError *connectionError)) block;
 
-+(void)post:(NSString*)strUrl params:(NSDictionary *)params ImageDatas:(NSArray*)imageDatas Key:(NSString*)key success:(void(^)(id responseObj))success failure:(void(^)(NSError *))failure;
++(void)post:(NSString*)strUrl RequsetParam:(UIImage *)image withFileName:(NSString *)fileName FinishBlock:(void (^)(NSURLResponse *response, NSData *data, NSError *connectionError)) block;
 
 
 //+ (NSString *)parseParams:(NSDictionary *)params;
