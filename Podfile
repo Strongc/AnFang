@@ -1,6 +1,6 @@
 platform :ios, '7.0'
 pod 'NSDate+TimeAgo', '~> 1.0.2'
-pod 'SDWebImage', '~> 3.5'
+pod 'SDWebImage', '~> 3.7.3'
 #pod 'CocoaLumberjack', '2.0.0-rc'
 pod 'SVProgressHUD', '~> 1.1.2'
 #pod 'EGODatabase', '~> 2.0'

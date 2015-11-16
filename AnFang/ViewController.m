@@ -21,6 +21,7 @@
 #import "CoreArchive.h"
 #import "WGAPI.h"
 #import "SVProgressHUD.h"
+#import "UIImageView+WebCache.h"
 
 
 @interface ViewController ()
@@ -108,7 +109,10 @@
     self.navigationItem.backBarButtonItem = item;
     userInfoArray = [[NSMutableArray alloc]init];
    
-
+    //UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(60, 200, WIDTH-120, 120)];
+    //[self.view addSubview:imageView];
+    // NSURL *url = [NSURL URLWithString:@"http://192.168.0.40:8080/static/upload/image/201511160935427843.png"];
+    //[imageView setImageWithURL:url];
     // Do any additional setup after loading the view, typically from a nib.
 }
 

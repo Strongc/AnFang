@@ -303,37 +303,7 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
 
 +(void)post:(NSString *)strUrl RequsetParam:(id)image withFileName:(NSString *)fileName FinishBlock:(void (^)(NSURLResponse *, NSData *, NSError *))block
 {
-//    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
-//    //传送路径
-//    NSString *url = [CMAPIBaseURL stringByAppendingString:strUrl];
-//    //建立请求对象
-//    NSMutableURLRequest * request = [[NSMutableURLRequest alloc] init];
-//    //设置请求路径
-//    [request setURL:[NSURL URLWithString:url]];
-//    //请求方式
-//    [request setHTTPMethod:@"POST"];
-//    NSString *boundary = @"---------------------------14737809831466499882746641449";
-//    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
-//    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
-//    //设置Content-Length
-//    [request setValue:[NSString stringWithFormat:@"%d", (int)[myRequestData length]] forHTTPHeaderField:@"Content-Length"]
-//    //[request setValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
-//    NSMutableData *body = [NSMutableData data];
-//    [body appendData:[NSData dataWithData:imageData]];
-//    
-//    //[body appendFormat:@"Content-Disposition: form-data; name=\"pic\"; filename=\"boris.png\"\r\n"];
-//    NSString *disposition = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\";filename=\"%@\"\r\n",@"file",fileName];
-//    [body appendData:[disposition dataUsingEncoding:NSUTF8StringEncoding]];
-//    [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-//    [request setHTTPBody:body];
-//
-//    //创建一个新的队列（开启新线程）
-//    NSOperationQueue *queue = [NSOperationQueue new];
-//    //发送异步请求，请求完以后返回的数据，通过completionHandler参数来调用
-//    //[NSURLConnection sendSynchronousRequest:request returningResponse:response error:nil];
-//    [NSURLConnection sendAsynchronousRequest:request
-//                                       queue:queue
-//                           completionHandler:block];
+    
     NSString *url = [CMAPIBaseURL stringByAppendingString:strUrl];
     //分界线的标识符
     NSString *TWITTERFON_FORM_BOUNDARY = @"---------------------------JHMLY622510";
@@ -352,7 +322,7 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
     //   //要上传的图片
     //   UIImage *image=[params objectForKey:@"pic"];
     //得到图片的data
-    NSData *data = UIImageJPEGRepresentation(image, 1.0);;
+    NSData *data = UIImageJPEGRepresentation(image, 1.0);
     //http body的字符串
     NSMutableString *body=[[NSMutableString alloc]init];
     //NSMutableData *body = [NSMutableData data];
@@ -395,6 +365,75 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
     [NSURLConnection sendAsynchronousRequest:request
                                            queue:queue
                                completionHandler:block];
+
+
+
+}
+
++(void)post:(NSString *)strUrl RequestParam:(NSData *)data withFileName:(NSString *)fileName FinishBlock:(void (^)(NSURLResponse *, NSData *, NSError *))block
+{
+
+    NSString *url = [CMAPIBaseURL stringByAppendingString:strUrl];
+    //分界线的标识符
+    NSString *TWITTERFON_FORM_BOUNDARY = @"---------------------------JHMLY622510";
+    
+    //根据url初始化request
+    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
+                                                            cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                                        timeoutInterval:10];
+    
+    
+    //分界线
+    NSString *MPboundary=[[NSString alloc]initWithFormat:@"--%@",TWITTERFON_FORM_BOUNDARY];
+    
+    //结束符
+    NSString *endMPboundary=[[NSString alloc]initWithFormat:@"%@--",MPboundary];
+    //   //要上传的图片
+    //   UIImage *image=[params objectForKey:@"pic"];
+    //得到图片的data
+    //http body的字符串
+    NSMutableString *body=[[NSMutableString alloc]init];
+    //NSMutableData *body = [NSMutableData data];
+    ////添加分界线，换行
+    [body appendFormat:@"%@\r\n",MPboundary];
+    //声明pic字段，文件名为boris.png
+    // NSString *disposition = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\";filename=\"%@\"\r\n",@"file",fileName];
+    //[body appendData:[disposition dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n",fileName];
+    //[body appendFormat:disposition];
+    //声明上传文件的格式
+    [body appendFormat:@"Content-Type: audio/mp3.caf\r\n\r\n"];
+    //声明结束符：--AaB03x--
+    NSString *end=[[NSString alloc]initWithFormat:@"\r\n%@",endMPboundary];
+    //声明myRequestData，用来放入http body
+    NSMutableData *myRequestData=[NSMutableData data];
+    //NSString *disposition = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\";filename=\"%@\"\r\n",@"file",fileName];
+    //[myRequestData appendData:[disposition dataUsingEncoding:NSUTF8StringEncoding]];
+    //将body字符串转化为UTF8格式的二进制
+    [myRequestData appendData:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    //将image的data加入
+    [myRequestData appendData:data];
+    //加入结束符--
+    [myRequestData appendData:[end dataUsingEncoding:NSUTF8StringEncoding]];
+    //设置HTTPHeader中Content-Type的值
+    NSString *content=[[NSString alloc]initWithFormat:@"multipart/form-data; boundary=%@",TWITTERFON_FORM_BOUNDARY];
+    //设置HTTPHeader
+    [request setValue:content forHTTPHeaderField:@"Content-Type"];
+    //设置Content-Length
+    [request setValue:[NSString stringWithFormat:@"%d", (int)[myRequestData length]] forHTTPHeaderField:@"Content-Length"];
+    //设置http body
+    [request setHTTPBody:myRequestData];
+    //http method
+    [request setHTTPMethod:@"POST"];
+    
+    //创建一个新的队列（开启新线程）
+    NSOperationQueue *queue = [NSOperationQueue new];
+    //发送异步请求，请求完以后返回的数据，通过completionHandler参数来调用
+    //[NSURLConnection sendSynchronousRequest:request returningResponse:response error:nil];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:queue
+                           completionHandler:block];
+
 
 
 

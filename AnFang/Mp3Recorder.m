@@ -9,11 +9,14 @@
 #import "Mp3Recorder.h"
 #import "lame.h"
 #import <AVFoundation/AVFoundation.h>
+#import "CoreArchive.h"
+#import "NSDateString.h"
 
 @interface Mp3Recorder()<AVAudioRecorderDelegate>
 @property (nonatomic, strong) AVAudioSession *session;
 @property (nonatomic, strong) AVAudioRecorder *recorder;
 @property (nonatomic, strong) NSString *path;
+@property (nonatomic, strong) NSString *fileHead;
 @end
 
 @implementation Mp3Recorder
@@ -77,6 +80,7 @@
     [self setSesstion];
     [self setRecorder];
     [_recorder record];
+    self.fileHead = [NSDateString ret32bitString];
 }
 
 
@@ -185,13 +189,20 @@
 #pragma mark - Path Utils
 - (NSString *)cafPath
 {
-    NSString *cafPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"tmp.caf"];
+    
+    NSString *path = @"tmp.caf";
+    NSString *cafPath = [NSTemporaryDirectory() stringByAppendingPathComponent:path];
     return cafPath;
 }
 
 - (NSString *)mp3Path
 {
-    NSString *mp3Path = [NSTemporaryDirectory() stringByAppendingPathComponent:@"mp3.caf"];
+
+    NSString *filePath = @"mp3.caf";
+    NSString *mp3Path = [NSTemporaryDirectory() stringByAppendingPathComponent:filePath];
+    NSLog(@"录音文件路径：%@",mp3Path);
+    
+    [CoreArchive setStr:mp3Path key:@"path"];
     return mp3Path;
 }
 

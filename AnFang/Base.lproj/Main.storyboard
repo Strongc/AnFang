@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="GnI-8l-sP5">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
@@ -200,7 +201,7 @@
         <scene sceneID="HG6-Rq-hQ2">
             <objects>
                 <navigationController storyboardIdentifier="loginNav" title="ContactNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="dUt-Dc-VgW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="公共" image="3" id="f6F-6V-4N7">
+                    <tabBarItem key="tabBarItem" title="公共" image="publicnor" id="f6F-6V-4N7">
                         <inset key="imageInsets" minX="3" minY="2" maxX="0.0" maxY="3"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -263,7 +264,7 @@
         <scene sceneID="X6Y-mn-Seb">
             <objects>
                 <navigationController title="personNav" automaticallyAdjustsScrollViewInsets="NO" id="naJ-OE-xf7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="商盟" image="2" selectedImage="22" id="oxQ-xM-Toi">
+                    <tabBarItem key="tabBarItem" title="商盟" image="businessnor" selectedImage="22" id="oxQ-xM-Toi">
                         <inset key="imageInsets" minX="1" minY="4" maxX="1" maxY="1"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -463,7 +464,7 @@
         <scene sceneID="Jnx-T6-NcW">
             <objects>
                 <navigationController title="SettingNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="fD4-Xl-cFY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="设置" image="5" selectedImage="55" id="ch0-we-1Ok">
+                    <tabBarItem key="tabBarItem" title="设置" image="setnor" selectedImage="55" id="ch0-we-1Ok">
                         <inset key="imageInsets" minX="3" minY="4" maxX="2" maxY="2"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -599,7 +600,7 @@
         <scene sceneID="07k-SG-24c">
             <objects>
                 <navigationController title="AnFangNav" automaticallyAdjustsScrollViewInsets="NO" id="7tt-i0-2uM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="安防系统" image="1" selectedImage="11" id="DaC-fa-ske">
+                    <tabBarItem key="tabBarItem" tag="1" title="安防系统" image="anfangnor" selectedImage="11" id="DaC-fa-ske">
                         <inset key="imageInsets" minX="1" minY="4" maxX="1" maxY="2"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -644,7 +645,7 @@
         <scene sceneID="32t-a8-7i8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wwP-zW-rxF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="资讯" image="4" selectedImage="44" id="ghQ-79-wNp">
+                    <tabBarItem key="tabBarItem" title="资讯" image="messagenor" selectedImage="44" id="ghQ-79-wNp">
                         <inset key="imageInsets" minX="1" minY="2" maxX="1" maxY="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -1032,14 +1033,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1" width="40" height="40"/>
         <image name="11" width="40" height="40"/>
-        <image name="2" width="40" height="40"/>
         <image name="22" width="40" height="40"/>
-        <image name="3" width="40" height="40"/>
-        <image name="4" width="40" height="40"/>
         <image name="44" width="40" height="40"/>
-        <image name="5" width="40" height="40"/>
         <image name="55" width="40" height="40"/>
+        <image name="anfangnor" width="24" height="30"/>
+        <image name="businessnor" width="20" height="30"/>
+        <image name="messagenor" width="30" height="27"/>
+        <image name="publicnor" width="30" height="26"/>
+        <image name="setnor" width="30" height="30"/>
     </resources>
 </document>

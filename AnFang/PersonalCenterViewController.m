@@ -50,8 +50,8 @@
     optionTitle1 = [[NSMutableArray alloc]initWithObjects:@"我的行业", @"收藏夹",@"账户中心",nil];
     optionTitle2 = [[NSMutableArray alloc]initWithObjects:@"系统设置",@"意见反馈",nil];
     
-    optionImage1 = [[NSMutableArray alloc]initWithObjects:@"dev.png",@"voice.png",@"alarm.png",nil];
-    optionImage2 = [[NSMutableArray alloc]initWithObjects:@"setting.png",@"cut.png",nil];
+    optionImage1 = [[NSMutableArray alloc]initWithObjects:@"我的行业.png",@"收藏夹.png",@"账户中心.png",nil];
+    optionImage2 = [[NSMutableArray alloc]initWithObjects:@"系统设置.png",@"意见反馈.png",nil];
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] init];
     item.title = @"返回";

@@ -16,6 +16,7 @@
 //@property (nonatomic, strong) UIImage  *picture;
 @property (nonatomic, copy) NSData   *voice;
 @property (nonatomic, copy) NSString *strVoiceTime;
+@property (nonatomic, copy) NSString *voiceUrl;
 
 @property (nonatomic, assign) BOOL showDateLabel;
 

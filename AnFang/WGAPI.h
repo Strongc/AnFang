@@ -28,6 +28,8 @@
 #define API_GET_HOSTINFO @"host/page"
 //获取消息数据
 #define API_GET_MESSAGEINFO @"message/page"
+//根据ID获取信息详情
+#define API_GETMESSAGEBYID @"message/get"
 //获取单位数据
 #define API_GET_ORGANIZATIONINFO @"organization/page"
 //获取传感器数据
@@ -124,8 +126,9 @@ typedef enum{
 
 + (void)post:(NSString *)URL RequestParams:(NSString *)params FinishBlock:(void (^)(NSURLResponse *response, NSData *data, NSError *connectionError)) block;
 
-+(void)post:(NSString*)strUrl RequsetParam:(UIImage *)image withFileName:(NSString *)fileName FinishBlock:(void (^)(NSURLResponse *response, NSData *data, NSError *connectionError)) block;
++(void)post:(NSString *)strUrl RequsetParam:(UIImage *)image withFileName:(NSString *)fileName FinishBlock:(void (^)(NSURLResponse *response, NSData *data, NSError *connectionError)) block;
 
++(void)post:(NSString *)strUrl RequestParam:(NSData *)data withFileName:(NSString *)fileName FinishBlock:(void (^)(NSURLResponse *response, NSData *data, NSError *connectionError)) block;
 
 //+ (NSString *)parseParams:(NSDictionary *)params;
 

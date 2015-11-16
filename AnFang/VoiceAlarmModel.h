@@ -12,6 +12,7 @@
 
 @property (nonatomic,copy) NSData *voice;
 @property (nonatomic,copy) NSString *strVoiceTime;
+@property (nonatomic,copy) NSString *voiceStr;
 
 -(instancetype ) initWithDict:(NSDictionary *)dict;
 +(instancetype ) VoiceAlarmModelWithDict:(NSDictionary *)dict;

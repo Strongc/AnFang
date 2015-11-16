@@ -17,6 +17,7 @@
         
         self.voice = dict[@"voice"];
         self.strVoiceTime = dict[@"time"];
+        self.voiceStr = dict[@"voice_url"];
         
     }
     return self;

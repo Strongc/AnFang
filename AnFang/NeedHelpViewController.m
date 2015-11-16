@@ -13,13 +13,14 @@
 #import "PhotoAlarmCell.h"
 #import "VoiceAlarmCell.h"
 #import "NSDateString.h"
-#import "NSDateString.h"
 #import "SVProgressHUD.h"
 #import "CMTool.h"
 #import "WGAPI.h"
 #import "JSONKit.h"
 #import "ChatModel.h"
 #import "ASIFormDataRequest.h"
+#import "CoreArchive.h"
+#import "UIView+KGViewExtend.h"
 
 
 #define IS_IOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
@@ -60,6 +61,8 @@
     NSMutableArray *voiceArray;
     UUInputFunctionView *IFView;
     NSMutableArray *audioArray;
+    NSString *imagePath;
+    NSString *voicePath;
 
 }
 @property (assign, nonatomic) NSInteger currentRow;
@@ -67,6 +70,7 @@
 //@property (nonatomic,strong) NSMutableArray *photoAlarmData;
 @property (nonatomic,strong) NSMutableArray *voiceAlarmData;
 @property (strong, nonatomic) ChatModel *chatModel;
+
 
 @end
 
@@ -323,6 +327,8 @@
 
 - (void)UUInputFunctionView:(UUInputFunctionView *)funcView sendVoice:(NSData *)voice time:(NSInteger)second
 {
+    
+    //NSData *voiceData = [NSData dataWithContentsOfFile:[self mp3Path]];
     NSDate *sendDate;
     NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];
     [dateformatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
@@ -334,7 +340,38 @@
     
     UUMessage *message = [UUMessage UUMessageModelWithDict:dic];
     [audioArray addObject:message];
+    NSString *mp3Path = [CoreArchive strForKey:@"path"];
+    NSLog(@"-----%@",mp3Path);
+    [WGAPI post:API_UPLOADFILE RequestParam:voice withFileName:mp3Path FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if(data){
+        
+            NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSDictionary *infoJson = [CMTool parseJSONStringToNSDictionary:json];
+            if(infoJson != nil){
+                
+                NSDictionary *pathJson = [infoJson objectForKey:@"data"];
+                voicePath = [pathJson objectForKey:@"path_0"];
+                NSLog(@"%@",voicePath);
+                
+                 [self performSelectorOnMainThread:@selector(saveVoicePath) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
+            }
+        
+        }
+        
+    }];
+    
+    
+    
     [helpMessage reloadData];
+}
+
+-(void)saveVoicePath
+{
+
+    NSString *path = voicePath;
+    [CoreArchive setStr:path key:@"voicePath"];
+    [self VoiceAlarm];
+
 }
 
 //添加图片
@@ -378,6 +415,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
+   
     
     if(indexPath.section == 0){
     
@@ -436,7 +474,9 @@
             photocell.stateLab.textColor = [UIColor redColor];
             
         }
-
+        //NSString *imageUrl = [CMAPIBaseURL stringByAppendingString:model.imageUrl];
+       // NSURL *url = [NSURL URLWithString:imageUrl];
+        //[photocell.locationImage setImageWithURL:url];
         cell = photocell;
 
     }else if (indexPath.section == 2){
@@ -521,7 +561,7 @@
     for (UIImage* image in arrayMutable) {
         
         sendDate = [NSDate date];
-        NSString *  locationString=[dateformatter stringFromDate:sendDate];
+        NSString *locationString=[dateformatter stringFromDate:sendDate];
         model = [[TextPhotoAlarmModel alloc]init];
         
         photoImage = image;
@@ -537,7 +577,6 @@
     
     [helpMessage reloadData];
     [self savePhotoAlarmInfo];
-    //[self upLoadImage:arrayMutable];
     
     IFView.TextViewInput.text = nil;
     
@@ -550,19 +589,37 @@
         
         if(data){
             NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        
-            NSLog(@"图片路径：%@",json);
+            NSDictionary *infoJson = [CMTool parseJSONStringToNSDictionary:json];
+            if(infoJson != nil){
+            
+                NSDictionary *pathJson = [infoJson objectForKey:@"data"];
+                imagePath = [pathJson objectForKey:@"path_0"];
+                NSLog(@"图片路径%@",imagePath);
+                [self performSelectorOnMainThread:@selector(saveImageData) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
+            }
+            
+            //[CoreArchive setStr:imagePath key:@"imagePath"];
+            
+            
         }
     }];
     
     
 }
 
+-(void)saveImageData
+{
+    NSString *path = imagePath;
+    [CoreArchive setStr:path key:@"imagePath"];
+
+}
+
 //保存图文报警信息
 -(void)savePhotoAlarmInfo
 {
     
-    NSDictionary *params = @{@"type":@"1",@"title":@"图文报警",@"content":infoText.text};
+    NSString *path = [CoreArchive strForKey:@"imagePath"];
+    NSDictionary *params = @{@"type":@"1",@"title":@"图文报警",@"content":infoText.text,@"image_url":path};
     NSString *paramsStr = [CMTool dictionaryToJson:params];
     NSString *str = @"help=";
     paramsStr = [str stringByAppendingString:paramsStr];
@@ -615,6 +672,39 @@
 //        [arrayPlist writeToFile:plistPath atomically:YES];
 //        
 //    }
+
+}
+
+-(void)VoiceAlarm
+{
+    NSString *path = [CoreArchive strForKey:@"voicePath"];
+    NSDictionary *params = @{@"type":@"2",@"title":@"语音报警",@"voice_url":path};
+    NSString *paramsStr = [CMTool dictionaryToJson:params];
+    NSString *str = @"help=";
+    paramsStr = [str stringByAppendingString:paramsStr];
+    
+    [WGAPI post:API_ADD_HELP RequestParams:paramsStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        if(data){
+            
+            NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:json];
+            if(infojson != nil){
+                
+                NSDictionary *messageJson = [infojson objectForKey:@"data"];
+                helpId = [messageJson objectForKey:@"help_id"];
+                if(helpId != nil){
+                    
+                    //[self performSelectorOnMainThread:@selector(responseOfKeyAlarm) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
+                    
+                    
+                }
+                
+            }
+            
+        }
+        
+    }];
 
 }
 
@@ -709,8 +799,8 @@
                         [photoAlarmArray addObject:model];
                     }else if ([type isEqualToString:@"2"]){
                     
-                        VoiceAlarmModel *model = [VoiceAlarmModel VoiceAlarmModelWithDict:dict];
-                        [voiceArray addObject:model];
+                        UUMessage *model = [UUMessage UUMessageModelWithDict:dict];
+                        [audioArray addObject:model];
                     
                     }
                     
@@ -728,9 +818,9 @@
 {
     
     [SVProgressHUD showSuccessWithStatus:@"发送成功！" maskType:SVProgressHUDMaskTypeBlack];
-   // [keyInfoArray removeAllObjects];
-   // [photoAlarmArray removeAllObjects];
-    //[self getHelpMessage];
+    [keyInfoArray removeAllObjects];
+    [photoAlarmArray removeAllObjects];
+    [self getHelpMessage];
     
 }
 

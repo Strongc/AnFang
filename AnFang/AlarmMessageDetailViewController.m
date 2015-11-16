@@ -7,9 +7,14 @@
 //
 
 #import "AlarmMessageDetailViewController.h"
+#import "Common.h"
+#import "WGAPI.h"
+#import "CMTool.h"
+#import "SVProgressHUD.h"
 
 @interface AlarmMessageDetailViewController ()
-
+@property (nonatomic,strong) UITextView *textLab;
+@property (nonatomic,copy) NSString *message;
 @end
 
 @implementation AlarmMessageDetailViewController
@@ -19,7 +24,45 @@
     
     NSString *str = self.messageId;
     NSLog(@"%@",str);
+    
+    self.textLab = [[UITextView alloc] initWithFrame:CGRectMake(5, 20, WIDTH-10, HEIGHT-70)];
+    [self.view addSubview:self.textLab];
+    self.textLab.editable = NO;
+    self.textLab.font = [UIFont systemFontOfSize:14];
+    [self getMessageById];
     // Do any additional setup after loading the view.
+}
+
+-(void)getMessageById
+{
+    NSString *msgId = self.messageId;
+    NSString *param = [@"id=" stringByAppendingString:msgId];
+    [SVProgressHUD showWithStatus:@"加载中..."];
+    [WGAPI post:API_GETMESSAGEBYID RequestParams:param FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        if(data){
+            NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSDictionary *infojson = [CMTool strDic:jsonStr];
+            if(infojson != nil){
+                NSDictionary *json = [infojson objectForKey:@"data"];
+                NSDictionary *contentJson = [json objectForKey:@"result"];
+                self.message = [contentJson objectForKey:@"msg_content"];
+                
+            
+            }
+             [self performSelectorOnMainThread:@selector(refreshData) withObject:data waitUntilDone:YES];
+        
+        }
+    }];
+
+
+}
+
+-(void)refreshData
+{
+    [SVProgressHUD showSuccessWithStatus:@"加载完成！" maskType:SVProgressHUDMaskTypeBlack];
+    self.textLab.text = self.message;
+
 }
 
 - (void)didReceiveMemoryWarning {

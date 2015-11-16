@@ -25,7 +25,7 @@ DEPENDENCIES:
   - ASIHTTPRequest (~> 1.8.2)
   - CTAssetsPickerController (~> 2.6.0)
   - NSDate+TimeAgo (~> 1.0.2)
-  - SDWebImage (~> 3.5)
+  - SDWebImage (~> 3.7.3)
   - SVProgressHUD (~> 1.1.2)
   - URBMediaFocusViewController (~> 0.5.7)
 

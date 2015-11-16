@@ -16,9 +16,12 @@
     
     if(self = [super init]){
         
+        self.voiceUrl = dict[@"voice_url"];
         self.voice = dict[@"voice"];
         self.strVoiceTime = dict[@"strVoiceTime"];
         self.strTime = dict[@"time"];
+        self.voice = [NSData dataWithContentsOfFile:[self voiceUrl]];
+       
         
     }
     return self;

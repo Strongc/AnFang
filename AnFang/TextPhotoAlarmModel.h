@@ -16,6 +16,7 @@
 @property (nonatomic,copy) NSString *state;
 @property (nonatomic,copy) NSString *time;
 @property (nonatomic,copy) UIImage *image;
+@property (nonatomic,copy) NSString *imageUrl;
 
 -(instancetype ) initWithDict:(NSDictionary *)dict;
 +(instancetype ) TextPhotoAlarmModelWithDict:(NSDictionary *)dict;

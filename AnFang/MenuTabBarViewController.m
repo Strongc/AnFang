@@ -19,27 +19,27 @@
     
     [super viewDidLoad];
     UITabBarItem *itemMessage = [self.tabBar.items objectAtIndex:3];
-    UIImage *imageUnSelect = [UIImage imageNamed:@"4"];
-    UIImage *imageSelected = [UIImage imageNamed:@"44"];
+    UIImage *imageUnSelect = [UIImage imageNamed:@"messagenor"];
+    UIImage *imageSelected = [UIImage imageNamed:@"messageSelect"];
     
     itemMessage.image = [imageUnSelect imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     itemMessage.selectedImage = [imageSelected imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     UITabBarItem *itemAnFang = [self.tabBar.items objectAtIndex:2];
-    itemAnFang.image = [[UIImage imageNamed:@"1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    itemAnFang.selectedImage = [[UIImage imageNamed:@"11"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    itemAnFang.image = [[UIImage imageNamed:@"anfangnor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    itemAnFang.selectedImage = [[UIImage imageNamed:@"anfangSelect"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     UITabBarItem *itemPublic = [self.tabBar.items objectAtIndex:0];
-    itemPublic.image = [[UIImage imageNamed:@"3"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    itemPublic.selectedImage = [[UIImage imageNamed:@"33"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    itemPublic.image = [[UIImage imageNamed:@"publicnor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    itemPublic.selectedImage = [[UIImage imageNamed:@"publicSelect"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     UITabBarItem *itemShangMeng = [self.tabBar.items objectAtIndex:1];
-    itemShangMeng.image = [[UIImage imageNamed:@"2"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    itemShangMeng.selectedImage = [[UIImage imageNamed:@"22"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    itemShangMeng.image = [[UIImage imageNamed:@"businessnor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    itemShangMeng.selectedImage = [[UIImage imageNamed:@"businessSelect"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
     UITabBarItem *itemSet = [self.tabBar.items objectAtIndex:4];
-    itemSet.image = [[UIImage imageNamed:@"5"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    itemSet.selectedImage = [[UIImage imageNamed:@"55"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    itemSet.image = [[UIImage imageNamed:@"setnor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    itemSet.selectedImage = [[UIImage imageNamed:@"setSelect"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithHexString:@"ffb90f"],NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
 
     // Do any additional setup after loading the view.

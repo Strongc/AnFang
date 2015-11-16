@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TextPhotoAlarmModel.h"
+#import "UIImageView+WebCache.h"
 
 @interface PhotoAlarmCell : UITableViewCell
 

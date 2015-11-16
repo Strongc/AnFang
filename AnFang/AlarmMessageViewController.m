@@ -14,6 +14,7 @@
 #import "JSONKit.h"
 #import "CMTool.h"
 #import "SDRefresh.h"
+#import "SVProgressHUD.h"
 //#import "LoadMoreTableFooterView.h"
 
 
@@ -118,7 +119,7 @@
         NSDictionary *pageInfo = @{@"page":page};
         NSString *pageStr = [pageInfo JSONString];
         NSString *userInfoData = [@"alarm=" stringByAppendingString:pageStr];
-    
+        [SVProgressHUD showWithStatus:@"加载中..."];
         [WGAPI post:API_GET_ALARMINFO RequestParams:nil FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
             if(data){
@@ -147,7 +148,7 @@
 
 -(void)refreshData
 {
-   
+   [SVProgressHUD showSuccessWithStatus:@"加载完成！" maskType:SVProgressHUDMaskTypeBlack];
     if(messageArray.count > 0){
         
         alertLab.hidden = YES;
@@ -186,8 +187,8 @@
     
     AlarmMessageModel *model = [messageArray objectAtIndex:indexPath.row];
     cell.alarmMessage = model;
-    
-    [cell.checkBtn addTarget:self action:@selector(jumpToDetailView) forControlEvents:UIControlEventTouchUpInside];
+    [cell.checkBtn setTag:indexPath.row];
+    [cell.checkBtn addTarget:self action:@selector(jumpToDetailView:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
     
@@ -203,19 +204,18 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-   // DeviceManagerViewController *defenceArea = [mainView instantiateViewControllerWithIdentifier:@"deviceManagerId"];
-   // self.navigationController.navigationBarHidden = NO;
-   // [self.navigationController pushViewController:defenceArea animated:YES];
     
 }
 
 
 
--(void)jumpToDetailView
+-(void)jumpToDetailView:(id)sender
 {
+     NSInteger n = [sender tag];
     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     AlarmMessageDetailViewController *detailView = [mainView instantiateViewControllerWithIdentifier:@"alarmMessageDetailId"];
+    AlarmMessageModel *model = [messageArray objectAtIndex:n];
+    detailView.messageId = model.messageId;
     [self.navigationController pushViewController:detailView animated:YES];
 
 }

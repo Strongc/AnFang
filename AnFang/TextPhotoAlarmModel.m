@@ -19,7 +19,7 @@
         self.message = dict[@"content"];
 //        self.state = dict[@"state"];
         self.time = dict[@"createDate"];
-        
+        self.imageUrl = dict[@"image_url"];
     }
     return self;
     

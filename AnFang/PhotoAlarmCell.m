@@ -16,10 +16,13 @@
 
 -(void)setPhotoKeyAlarm:(TextPhotoAlarmModel *)photoKeyAlarm
 {
-
+    NSString *const CMAPIBaseURL = @"http://192.168.0.40:8080";
     _photoKeyAlarm = photoKeyAlarm;
     self.messageLab.text = photoKeyAlarm.message;
-    self.locationImage.image = photoKeyAlarm.image;
+    NSString *strUrl = photoKeyAlarm.imageUrl;
+    //NSLog(@"%@ffffff",url);
+    NSURL *url = [NSURL URLWithString:[CMAPIBaseURL stringByAppendingString:strUrl]];
+    [self.locationImage setImageWithURL:url];
    // self.stateLab.text = photoKeyAlarm.state;
     self.timeLab.text = photoKeyAlarm.time;
 

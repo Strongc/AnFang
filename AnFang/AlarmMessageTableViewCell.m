@@ -73,11 +73,11 @@
         [self.contentView addSubview:messageTime];
         self.messageTime = messageTime;
         
-        UILabel *areaDetailInfo = [[UILabel alloc]initWithFrame:CGRectMake(90, 26, 230, 40)];
+        UILabel *areaDetailInfo = [[UILabel alloc]initWithFrame:CGRectMake(80, 26, 200, 40)];
         //areaDetailInfo.text = @"食堂防区异常";
         //areaDetailInfo.numberOfLines = 0;
         areaDetailInfo.textColor = [UIColor blackColor];
-        areaDetailInfo.font = [UIFont systemFontOfSize:13];
+        areaDetailInfo.font = [UIFont systemFontOfSize:12];
         [self.contentView addSubview:areaDetailInfo];
         self.messageInfo = areaDetailInfo;
         
@@ -85,11 +85,11 @@
         line.backgroundColor = [UIColor grayColor];
         [self.contentView addSubview:line];
         
-        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(275*WIDTH/375, 40*HEIGHT/667, 90*WIDTH/375, 14*HEIGHT/667)];
+        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(280*WIDTH/375, 40*HEIGHT/667, 90*WIDTH/375, 14*HEIGHT/667)];
         
         [btn setTitle:@"点击查看详情" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor colorWithHexString:@"a9a9a9"] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:14*WIDTH/375];
+        btn.titleLabel.font = [UIFont systemFontOfSize:13*WIDTH/375];
         [self.contentView addSubview:btn];
         self.checkBtn = btn;
         
