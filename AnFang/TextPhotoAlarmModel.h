@@ -11,9 +11,8 @@
 
 @interface TextPhotoAlarmModel : NSObject
 
-@property (nonatomic,copy) NSString *icon;
+
 @property (nonatomic,copy) NSString *message;
-@property (nonatomic,copy) NSString *state;
 @property (nonatomic,copy) NSString *time;
 @property (nonatomic,copy) UIImage *image;
 @property (nonatomic,copy) NSString *imageUrl;

@@ -40,7 +40,7 @@
     UITabBarItem *itemSet = [self.tabBar.items objectAtIndex:4];
     itemSet.image = [[UIImage imageNamed:@"setnor"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     itemSet.selectedImage = [[UIImage imageNamed:@"setSelect"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithHexString:@"ffb90f"],NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithHexString:@"00ff00"],NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
 
     // Do any additional setup after loading the view.
 }

@@ -14,6 +14,7 @@
 #import "RecordInfo.h"
 #import "Common.h"
 #import "UIColor+Extensions.h"
+#import "MenuTabBarViewController.h"
 
 static void *_vpHandle = NULL;
 
@@ -21,6 +22,8 @@ static void *_vpHandle = NULL;
 
 @property (strong, nonatomic) UIView *playView;
 @property (strong, nonatomic) UIImageView *captureImageView;
+@property (strong, nonatomic) UIView *headView;
+@property (strong, nonatomic) UIButton *backBtn;
 
 @end
 
@@ -34,43 +37,106 @@ static void *_vpHandle = NULL;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+   
     self.view.backgroundColor = [UIColor whiteColor];
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
-    headView.backgroundColor = [UIColor colorWithHexString:@"ffd700"];
+    self.headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
+    self.headView.backgroundColor = [UIColor colorWithHexString:@"ffd700"];
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20*HEIGHT/667, WIDTH, 50*HEIGHT/667)];
     title.textAlignment = NSTextAlignmentCenter;
     title.text = @"视频";
     title.textColor = [UIColor whiteColor];
-    [headView addSubview:title];
-    [self.view addSubview:headView];
+    [self.headView addSubview:title];
+    [self.view addSubview:self.headView];
     
-    UIButton *backBtn = [[UIButton alloc] initWithFrame:CGRectMake(10*WIDTH/375, 30*HEIGHT/667, 60*WIDTH/375, 30*HEIGHT/667)];
+    self.backBtn = [[UIButton alloc] initWithFrame:CGRectMake(10*WIDTH/375, 30*HEIGHT/667, 60*WIDTH/375, 30*HEIGHT/667)];
     UILabel *backTitle = [[UILabel alloc]initWithFrame:CGRectMake(18*WIDTH/375, 7*HEIGHT/667, 32, 16)];
     backTitle.textAlignment = NSTextAlignmentCenter;
     backTitle.text = @"返回";
     backTitle.font = [UIFont systemFontOfSize:16];
     backTitle.textColor = [UIColor whiteColor];
-    [backBtn addSubview:backTitle];
+    [self.backBtn addSubview:backTitle];
     
     UIImageView *backImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 5*HEIGHT/667, 20, 20)];
     backImage.image = [UIImage imageNamed:@"back.png"];
-    [backBtn addSubview:backImage];
-    [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backBtn];
+    [self.backBtn addSubview:backImage];
+    [self.backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.backBtn];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(doRotateAction:)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
 
     [self initViewControllerData];
+    
+    
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)doRotateAction:(NSNotification *)notification {
+    CGRect frame = self.playView.frame;
+    UIDevice *device = [UIDevice currentDevice] ;
+//    if ([device orientation] == UIDeviceOrientationPortraitUpsideDown) {
+//        
+//        [self.headView removeFromSuperview];
+//        [self.backBtn removeFromSuperview];
+//        //CGAffineTransform transform =CGAffineTransformMakeRotation(M_PI/2);
+//        //[self.playView setTransform:transform];
+//        frame = CGRectMake(0, 0, HEIGHT, WIDTH);
+//       
+//    } else {
+//        
+//        [self.view addSubview:self.headView];
+//        [self.view addSubview:self.backBtn];
+//        //CGAffineTransform transform =CGAffineTransformMakeRotation(-M_PI/2);
+//        //[self.playView setTransform:transform];
+//        
+//        frame = CGRectMake(0, 65*HEIGHT/667, WIDTH, 290*HEIGHT/667);
+//    }
+//    
+}
+
+-(BOOL)shouldAutorotate
+{
+    
+    return YES;
+}
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    CGRect frame = self.playView.frame;
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+
+    if(toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight){
+       [[NSNotificationCenter defaultCenter] postNotificationName:@"hideTabBar" object:nil];
+        [self.headView removeFromSuperview];
+        [self.backBtn removeFromSuperview];
+        self.playView.transform = CGAffineTransformMakeRotation(M_PI/2);
+        frame = CGRectMake(0, 0, 300, 200);
+       
+        
+    
+    }else{
+       [[NSNotificationCenter defaultCenter] postNotificationName:@"showTabBar" object:nil];
+        [self.view addSubview:self.headView];
+        [self.view addSubview:self.backBtn];
+        self.playView.transform = CGAffineTransformMakeRotation(0);
+        frame = CGRectMake(0, 65*HEIGHT/667, WIDTH, 290*HEIGHT/667);
+    
+    }
+
 }
 
 -(void)initViewControllerData
 {
     
-    self.playView = [[UIView alloc] initWithFrame:CGRectMake(0, 65*HEIGHT/667, WIDTH, 220*HEIGHT/667)];
+    self.playView = [[UIView alloc] initWithFrame:CGRectMake(0, 65*HEIGHT/667, WIDTH, 290*HEIGHT/667)];
     [self.view addSubview:self.playView];
     self.playView.backgroundColor = [UIColor blackColor];
     
-    UITextField *text1 = [[UITextField alloc]initWithFrame:CGRectMake(50*WIDTH/375, 320*HEIGHT/667, 120*WIDTH/375, 40*HEIGHT/667)];
+    UITextField *text1 = [[UITextField alloc]initWithFrame:CGRectMake(50*WIDTH/375, 365*HEIGHT/667, 120*WIDTH/375, 40*HEIGHT/667)];
     [self.view addSubview:text1];
+    
     text1.borderStyle = UITextBorderStyleRoundedRect;
     
     UIButton *playBtn = [[UIButton alloc] initWithFrame:CGRectMake(10*WIDTH/375, 5*HEIGHT/667, 45*WIDTH/375, 30*HEIGHT/667)];
@@ -91,7 +157,7 @@ static void *_vpHandle = NULL;
     [stopBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     [stopBtn addTarget:self action:@selector(stopAction:) forControlEvents:UIControlEventTouchUpInside];
 
-    UIButton *getImageBtn = [[UIButton alloc] initWithFrame:CGRectMake(215*WIDTH/375, 325*HEIGHT/667, 30*WIDTH/375, 30*HEIGHT/667)];
+    UIButton *getImageBtn = [[UIButton alloc] initWithFrame:CGRectMake(215*WIDTH/375, 370*HEIGHT/667, 30*WIDTH/375, 30*HEIGHT/667)];
     [self.view addSubview:getImageBtn];
     getImageBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15*WIDTH/375];
     [getImageBtn setTitle:@"抓图" forState:UIControlStateNormal];
@@ -100,10 +166,10 @@ static void *_vpHandle = NULL;
     [getImageBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     [getImageBtn addTarget:self action:@selector(onClickCapture:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.captureImageView = [[UIImageView alloc] initWithFrame:CGRectMake(250*WIDTH/375, 300*HEIGHT/667, 100*WIDTH/375, 70*HEIGHT/667)];
+    self.captureImageView = [[UIImageView alloc] initWithFrame:CGRectMake(250*WIDTH/375, 345*HEIGHT/667, 100*WIDTH/375, 70*HEIGHT/667)];
     [self.view addSubview:self.captureImageView];
     
-    UITextField *text2 = [[UITextField alloc]initWithFrame:CGRectMake(35*WIDTH/375, 380*HEIGHT/667, 160*WIDTH/375, 40*HEIGHT/667)];
+    UITextField *text2 = [[UITextField alloc]initWithFrame:CGRectMake(35*WIDTH/375, 415*HEIGHT/667, 160*WIDTH/375, 40*HEIGHT/667)];
     [self.view addSubview:text2];
     text2.borderStyle = UITextBorderStyleRoundedRect;
     
@@ -134,7 +200,7 @@ static void *_vpHandle = NULL;
     [backStopBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     [backStopBtn addTarget:self action:@selector(stopPlayBackAction:) forControlEvents:UIControlEventTouchUpInside];
 
-    UITextField *text3 = [[UITextField alloc]initWithFrame:CGRectMake(240*WIDTH/375, 380*HEIGHT/667, 100*WIDTH/375, 40*HEIGHT/667)];
+    UITextField *text3 = [[UITextField alloc]initWithFrame:CGRectMake(240*WIDTH/375, 415*HEIGHT/667, 100*WIDTH/375, 40*HEIGHT/667)];
     [self.view addSubview:text3];
     text3.borderStyle = UITextBorderStyleRoundedRect;
     UIButton *videoBtn = [[UIButton alloc] initWithFrame:CGRectMake(10*WIDTH/375, 5*HEIGHT/667, 45*WIDTH/375, 30*HEIGHT/667)];
@@ -246,9 +312,6 @@ static void *_vpHandle = NULL;
     [grayBtn setTitleColor:[UIColor colorWithHexString:@"4682b4"] forState:UIControlStateNormal];
     [grayBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     [backView addSubview:grayBtn];
-
-
-
 
 }
 

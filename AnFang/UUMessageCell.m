@@ -34,10 +34,11 @@
 {
 
     _message = message;
-    //self.labelTime.text = message.strTime;
+    self.labelTime.text = message.strTime;
     self.btnContent.voiceBackView.hidden = NO;
     self.btnContent.second.text = [NSString stringWithFormat:@"%@'s Voice",message.strVoiceTime];
     songData = message.voice;
+    voiceURL = message.voiceUrl;
 
 }
 

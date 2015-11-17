@@ -73,7 +73,7 @@
         [self.contentView addSubview:messageTime];
         self.messageTime = messageTime;
         
-        UILabel *areaDetailInfo = [[UILabel alloc]initWithFrame:CGRectMake(80, 26, 200, 40)];
+        UILabel *areaDetailInfo = [[UILabel alloc]initWithFrame:CGRectMake(80*WIDTH/375, 26, 200*WIDTH/375, 40)];
         //areaDetailInfo.text = @"食堂防区异常";
         //areaDetailInfo.numberOfLines = 0;
         areaDetailInfo.textColor = [UIColor blackColor];

@@ -93,7 +93,7 @@
         [self audio_PCMtoMP3];
     }else {
         
-       // [_recorder deleteRecording];
+        [_recorder deleteRecording];
         
         if ([_delegate respondsToSelector:@selector(failRecord)]) {
             [_delegate failRecord];
@@ -104,27 +104,27 @@
 - (void)cancelRecord
 {
     [_recorder stop];
-   // [_recorder deleteRecording];
+    [_recorder deleteRecording];
 }
 
-//- (void)deleteMp3Cache
-//{
-//    [self deleteFileWithPath:[self mp3Path]];
-//}
-//
-//- (void)deleteCafCache
-//{
-//    [self deleteFileWithPath:[self cafPath]];
-//}
-//
-//- (void)deleteFileWithPath:(NSString *)path
-//{
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-//    if([fileManager removeItemAtPath:path error:nil])
-//    {
-//        NSLog(@"删除以前的mp3文件");
-//    }
-//}
+- (void)deleteMp3Cache
+{
+    [self deleteFileWithPath:[self mp3Path]];
+}
+
+- (void)deleteCafCache
+{
+    [self deleteFileWithPath:[self cafPath]];
+}
+
+- (void)deleteFileWithPath:(NSString *)path
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if([fileManager removeItemAtPath:path error:nil])
+    {
+        NSLog(@"删除以前的mp3文件");
+    }
+}
 
 #pragma mark - Convert Utils
 - (void)audio_PCMtoMP3
@@ -133,7 +133,7 @@
     NSString *mp3FilePath = [self mp3Path];
     
     // remove the old mp3 file
-   // [self deleteMp3Cache];
+    [self deleteMp3Cache];
 
     NSLog(@"MP3转换开始");
     if (_delegate && [_delegate respondsToSelector:@selector(beginConvert)]) {
@@ -178,7 +178,7 @@
         [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategorySoloAmbient error: nil];
     }
     
-    //[self deleteCafCache];
+    [self deleteCafCache];
     NSLog(@"MP3转换结束");
     if (_delegate && [_delegate respondsToSelector:@selector(endConvertWithData:)]) {
         NSData *voiceData = [NSData dataWithContentsOfFile:[self mp3Path]];

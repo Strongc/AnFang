@@ -132,54 +132,54 @@
     NSString *str = @"user=";
     NSString *paramStr = [str stringByAppendingString:paramsStr];
     
-    //[self jumpToMainView];
-    if(![CMTool isConnectionAvailable]){
-        [SVProgressHUD showInfoWithStatus:@"网络没有连接！"];
-    
-    }else if([userName isEqualToString:@""]){
-        
-        [SVProgressHUD showInfoWithStatus:@"请输入用户名！"];
-    
-    }else if ([pwd isEqualToString:@""]){
-   
-        [SVProgressHUD showInfoWithStatus:@"请输入密码！"];
-        
-    }else{
- 
-        [SVProgressHUD showWithStatus:@"加载中..."];
-        [SVProgressHUD setBackgroundColor:[UIColor colorWithHexString:@"8f8f8f"]];
-        [WGAPI post:API_USER_LOGIN RequestParams:paramStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-            
-            if(data){
-                
-                //[self performSelectorOnMainThread:@selector(hideProgressHUD) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
-                NSString *json =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:json];
-                NSLog(@"%@",json);
-                if(infojson != nil){
-                    NSDictionary *messageJson = [infojson objectForKey:@"data"];
-                    message = [messageJson objectForKey:@"message"];
-                    NSLog(@"%@",message);
-                    if([message isEqualToString:@"登陆成功"]){
-                        
-                        [self performSelectorOnMainThread:@selector(jumpToMainView) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
-                        
-                    }else {
-                        
-                        [self performSelectorOnMainThread:@selector(errorMessage:) withObject:message waitUntilDone:YES];
-                    }
-
-                }
-                
-            }else{
-               
-               [SVProgressHUD  showErrorWithStatus:@"网络异常!"];
-               [SVProgressHUD setBackgroundColor:[UIColor colorWithHexString:@"8f8f8f"]];
-            }
-            
-        }];
-        
-    }
+    [self jumpToMainView];
+//    if(![CMTool isConnectionAvailable]){
+//        [SVProgressHUD showInfoWithStatus:@"网络没有连接！"];
+//    
+//    }else if([userName isEqualToString:@""]){
+//        
+//        [SVProgressHUD showInfoWithStatus:@"请输入用户名！"];
+//    
+//    }else if ([pwd isEqualToString:@""]){
+//   
+//        [SVProgressHUD showInfoWithStatus:@"请输入密码！"];
+//        
+//    }else{
+// 
+//        [SVProgressHUD showWithStatus:@"加载中..."];
+//        [SVProgressHUD setBackgroundColor:[UIColor colorWithHexString:@"8f8f8f"]];
+//        [WGAPI post:API_USER_LOGIN RequestParams:paramStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+//            
+//            if(data){
+//                
+//                //[self performSelectorOnMainThread:@selector(hideProgressHUD) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
+//                NSString *json =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//                NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:json];
+//                NSLog(@"%@",json);
+//                if(infojson != nil){
+//                    NSDictionary *messageJson = [infojson objectForKey:@"data"];
+//                    message = [messageJson objectForKey:@"message"];
+//                    NSLog(@"%@",message);
+//                    if([message isEqualToString:@"登陆成功"]){
+//                        
+//                        [self performSelectorOnMainThread:@selector(jumpToMainView) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
+//                        
+//                    }else {
+//                        
+//                        [self performSelectorOnMainThread:@selector(errorMessage:) withObject:message waitUntilDone:YES];
+//                    }
+//
+//                }
+//                
+//            }else{
+//               
+//               [SVProgressHUD  showErrorWithStatus:@"网络异常!"];
+//               [SVProgressHUD setBackgroundColor:[UIColor colorWithHexString:@"8f8f8f"]];
+//            }
+//            
+//        }];
+//        
+//    }
     
 }
 

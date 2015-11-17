@@ -330,19 +330,22 @@
     
     //NSData *voiceData = [NSData dataWithContentsOfFile:[self mp3Path]];
     NSDate *sendDate;
+    NSString *mp3Path = [CoreArchive strForKey:@"path"];
+    NSLog(@"-----%@",mp3Path);
+
     NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];
     [dateformatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
     sendDate = [NSDate date];
     NSString *sendTime=[dateformatter stringFromDate:sendDate];
 
     NSDictionary *dic = @{@"voice": voice,
-                          @"strVoiceTime": [NSString stringWithFormat:@"%d",(int)second],@"time":sendTime};
+                          @"voice_time": [NSString stringWithFormat:@"%d",(int)second],@"createDate":sendTime,@"voice_url":mp3Path};
     
+    NSString *voiceTime = [NSString stringWithFormat:@"%d",(int)second];
+    [CoreArchive setStr:voiceTime key:@"timeLength"];
     UUMessage *message = [UUMessage UUMessageModelWithDict:dic];
     [audioArray addObject:message];
-    NSString *mp3Path = [CoreArchive strForKey:@"path"];
-    NSLog(@"-----%@",mp3Path);
-    [WGAPI post:API_UPLOADFILE RequestParam:voice withFileName:mp3Path FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        [WGAPI post:API_UPLOADFILE RequestParam:voice withFileName:mp3Path FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if(data){
         
             NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -359,8 +362,6 @@
         }
         
     }];
-    
-    
     
     [helpMessage reloadData];
 }
@@ -415,7 +416,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
-   
     
     if(indexPath.section == 0){
     
@@ -474,10 +474,7 @@
             photocell.stateLab.textColor = [UIColor redColor];
             
         }
-        //NSString *imageUrl = [CMAPIBaseURL stringByAppendingString:model.imageUrl];
-       // NSURL *url = [NSURL URLWithString:imageUrl];
-        //[photocell.locationImage setImageWithURL:url];
-        cell = photocell;
+            cell = photocell;
 
     }else if (indexPath.section == 2){
         
@@ -578,7 +575,11 @@
     [helpMessage reloadData];
     [self savePhotoAlarmInfo];
     
-    IFView.TextViewInput.text = nil;
+    if(IFView.TextViewInput.text != nil){
+    
+         IFView.TextViewInput.text = nil;
+    }
+   
     
 }
 
@@ -619,7 +620,7 @@
 {
     
     NSString *path = [CoreArchive strForKey:@"imagePath"];
-    NSDictionary *params = @{@"type":@"1",@"title":@"图文报警",@"content":infoText.text,@"image_url":path};
+    NSDictionary *params = @{@"type":@"1",@"title":@"图文报警",@"content":IFView.TextViewInput.text,@"image_url":path};
     NSString *paramsStr = [CMTool dictionaryToJson:params];
     NSString *str = @"help=";
     paramsStr = [str stringByAppendingString:paramsStr];
@@ -678,7 +679,8 @@
 -(void)VoiceAlarm
 {
     NSString *path = [CoreArchive strForKey:@"voicePath"];
-    NSDictionary *params = @{@"type":@"2",@"title":@"语音报警",@"voice_url":path};
+    NSString *voiceTime = [CoreArchive strForKey:@"timeLength"];
+    NSDictionary *params = @{@"type":@"2",@"title":@"语音报警",@"voice_url":path,@"voice_time":voiceTime};
     NSString *paramsStr = [CMTool dictionaryToJson:params];
     NSString *str = @"help=";
     paramsStr = [str stringByAppendingString:paramsStr];
@@ -723,15 +725,25 @@
             string = [NSString stringWithFormat:@"%@\n%@",string,addressString];
             [SVProgressHUD showWithStatus:@"发送中..."];
             if(string != nil){
+                OneKeyAlarmModel *model;
+                NSDate *sendDate;
+                NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+                [dateformatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+                NSString *locationString=[dateformatter stringFromDate:sendDate];
+                NSDictionary *params = @{@"type":@"0",@"title":@"一键报警",@"content":string};
                 
-                    NSDictionary *params = @{@"type":@"0",@"title":@"一键报警",@"content":string};
-                    NSString *paramsStr = [CMTool dictionaryToJson:params];
-                    NSString *str = @"help=";
-                    paramsStr = [str stringByAppendingString:paramsStr];
+                model = [[OneKeyAlarmModel alloc]init];
+                model.location = string;
+                model.time = locationString;
+                [keyInfoArray addObject:model];
+
+                NSString *paramsStr = [CMTool dictionaryToJson:params];
+                NSString *str = @"help=";
+                paramsStr = [str stringByAppendingString:paramsStr];
                 
-                    [WGAPI post:API_ADD_HELP RequestParams:paramsStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                [WGAPI post:API_ADD_HELP RequestParams:paramsStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                         
-                        if(data){
+                    if(data){
                             
                             NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                             NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:json];
@@ -774,53 +786,62 @@
     NSDictionary *pageInfo = @{@"page":page};
     NSString *pageStr = [pageInfo JSONString];
     NSString *helpInfoData = [@"help=" stringByAppendingString:pageStr];
-
-    [SVProgressHUD showWithStatus:@"加载中..."];
-    [WGAPI post:API_GETHELPINFO RequestParams:helpInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        if(data){
+    
+    
+    if(![CMTool isConnectionAvailable]){
+        [SVProgressHUD showInfoWithStatus:@"网络没有连接！"];
+        
+    }else{
+        [SVProgressHUD showWithStatus:@"加载中..."];
+        [WGAPI post:API_GETHELPINFO RequestParams:helpInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            if(data){
             
-            NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSLog(@"%@",jsonStr);
-            NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
+                NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                NSLog(@"%@",jsonStr);
+                NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
             
-            if(infojson != nil){
+                if(infojson != nil){
                 
-               tempArray = [infojson objectForKey:@"datas"];
-                for(NSDictionary *dict in tempArray){
-                    NSString *type = [NSString stringWithFormat:@"%@",[dict objectForKey:@"type"]];
+                    tempArray = [infojson objectForKey:@"datas"];
+                    for(NSDictionary *dict in tempArray){
+                        NSString *type = [NSString stringWithFormat:@"%@",[dict objectForKey:@"type"]];
                    
-                    if ([type isEqualToString:@"0"]) {
+                        if ([type isEqualToString:@"0"]) {
                         
-                        OneKeyAlarmModel *model = [OneKeyAlarmModel OneKeyAlarmModelWithDict:dict];
-                        [keyInfoArray addObject:model];
-                    }else if ([type isEqualToString:@"1"]){
+                            OneKeyAlarmModel *model = [OneKeyAlarmModel OneKeyAlarmModelWithDict:dict];
+                            [keyInfoArray addObject:model];
+                        }else if ([type isEqualToString:@"1"]){
                     
-                        TextPhotoAlarmModel *model = [TextPhotoAlarmModel TextPhotoAlarmModelWithDict:dict];
-                        [photoAlarmArray addObject:model];
-                    }else if ([type isEqualToString:@"2"]){
+                            TextPhotoAlarmModel *model = [TextPhotoAlarmModel TextPhotoAlarmModelWithDict:dict];
+                            [photoAlarmArray addObject:model];
+                        }else if ([type isEqualToString:@"2"]){
                     
-                        UUMessage *model = [UUMessage UUMessageModelWithDict:dict];
-                        [audioArray addObject:model];
+                            UUMessage *model = [UUMessage UUMessageModelWithDict:dict];
+                            model.voice =[NSData dataWithContentsOfURL:[NSURL URLWithString:model.voiceUrl]];
+
+                            [audioArray addObject:model];
+                    
+                        }
                     
                     }
-                    
-                }
                 
+                }
+
+                [self performSelectorOnMainThread:@selector(refreshData) withObject:data waitUntilDone:YES];
             }
-
-             [self performSelectorOnMainThread:@selector(refreshData) withObject:data waitUntilDone:YES];
-        }
-    }];
-
+        }];
+    }
+    
 }
 
 -(void)responseOfKeyAlarm
 {
     
     [SVProgressHUD showSuccessWithStatus:@"发送成功！" maskType:SVProgressHUDMaskTypeBlack];
-    [keyInfoArray removeAllObjects];
-    [photoAlarmArray removeAllObjects];
-    [self getHelpMessage];
+    [helpMessage reloadData];
+    //[keyInfoArray removeAllObjects];
+    //[photoAlarmArray removeAllObjects];
+    //[self getHelpMessage];
     
 }
 

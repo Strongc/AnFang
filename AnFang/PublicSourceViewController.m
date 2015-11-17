@@ -97,7 +97,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self ConfigControl];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideTabBar) name:@"hideTabBar" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showTabBar) name:@"showTabBar" object:nil];
     _serverAddress = @"http://112.12.17.3";
     VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
     _lineList = [NSMutableArray array];
@@ -135,6 +136,19 @@
     publicSourceSection = [[NSMutableArray alloc] initWithObjects:@"交通",@"气象",@"商场",nil];
     // Do any additional setup after loading the view.
 }
+
+-(void) hideTabBar
+{
+
+    self.tabBarController.tabBar.hidden = YES;
+}
+
+-(void) showTabBar
+{
+    
+    self.tabBarController.tabBar.hidden = NO;
+}
+
 
 -(void)ConfigControl
 {
