@@ -116,7 +116,7 @@
         return;
     }
     
-    BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"dbwl" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
+    BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"test" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
     if (NO == result1) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
                                                             message:@"登录失败"
@@ -152,10 +152,10 @@
 
 -(void)ConfigControl
 {
-    self.view.backgroundColor = [UIColor colorWithHexString:@"ededed"];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
     
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
-    headView.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
+    headView.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20*HEIGHT/667, WIDTH, 50*HEIGHT/667)];
     title.textAlignment = NSTextAlignmentCenter;
     title.text = @"公共信息";
@@ -184,7 +184,7 @@
     [videoCollection registerClass:[PublicHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
     
     [self.view addSubview:videoCollection];
-    videoCollection.backgroundColor = [UIColor colorWithHexString:@"ededed"];
+    videoCollection.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
     
     videoCollection.scrollEnabled = YES;
     [videoCollection registerClass:[PublicVideoCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];

@@ -26,7 +26,7 @@
 
 @interface ViewController ()
 {
-    GradientButton *loginBtn;
+    UIButton *loginBtn;
     NSString *token;
     NSString *message;
     NSMutableArray *userInfoArray;
@@ -48,14 +48,14 @@
    // UIImageView *headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
     //[headView setImage:[UIImage imageNamed:@"header_bg.png"]];
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
-    
-    
+    headView.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, WIDTH, 50*HEIGHT/667)];
     title.textAlignment = NSTextAlignmentCenter;
     title.text = @"登录";
-    title.textColor = [UIColor whiteColor];
+    title.font = [UIFont fontWithName:@"Microsoft YaHei" size:28];
+    //title.textColor = [UIColor colorWithHexString:@"ffffff"];
     [headView addSubview:title];
-    //[self.view addSubview:headView];
+    [self.view addSubview:headView];
     
     UIButton *regBtn = [[UIButton alloc]initWithFrame:CGRectMake(WIDTH-50, 15, 40, 40)];
     [self.view addSubview:regBtn];
@@ -65,7 +65,7 @@
     [regBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     //[regBtn addTarget:self action:@selector(gotoRegisterView) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view setBackgroundColor:[UIColor colorWithHexString:@"ededed"]];
+    [self.view setBackgroundColor:[UIColor colorWithHexString:@"fafafa"]];
     
     UIView *inputView = [[UIView alloc] initWithFrame:CGRectMake(0, (headView.bottom+20), self.view.width, 100*HEIGHT/667)];
     inputView.backgroundColor = [UIColor whiteColor];
@@ -83,14 +83,15 @@
     line3.backgroundColor = [UIColor colorWithHexString:@"ededed"];
     [inputView addSubview:line3];
     
-    loginBtn = [[GradientButton alloc] initWithFrame:CGRectMake(15*WIDTH/375, 220*WIDTH/375, self.view.width-30, 45)];
+    loginBtn = [[UIButton alloc] initWithFrame:CGRectMake((WIDTH-190)/2, 220*WIDTH/375, 190, 60)];
     
     UILabel *title2 = [[UILabel alloc]initWithFrame:CGRectMake(150*WIDTH/375, 0, 40*WIDTH/375, 40*HEIGHT/667)];
     title2.text = @"登录";
     title2.textColor = [UIColor whiteColor];
-    [loginBtn addSubview:title2];
-    [loginBtn useGreenConfirmStyle];
+    //[loginBtn addSubview:title2];
     [self.view addSubview:loginBtn];
+    [loginBtn setBackgroundImage:[UIImage imageNamed:@"login.png"] forState:UIControlStateNormal];
+    [loginBtn setBackgroundImage:[UIImage imageNamed:@"loginPress.png"] forState:UIControlStateHighlighted];
     [loginBtn addTarget:self action:@selector(initViewController) forControlEvents:UIControlEventTouchUpInside];
     
     name = [[UITextField alloc] initWithFrame:CGRectMake(10*WIDTH/375, 5*WIDTH/375, self.view.width-20*WIDTH/375, 40*HEIGHT/667)];
@@ -108,7 +109,10 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];//设置导航栏返回按钮及文字背景颜色
     self.navigationItem.backBarButtonItem = item;
     userInfoArray = [[NSMutableArray alloc]init];
-   
+    
+//    UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(20, 400, WIDTH-40, 50)];
+//    [self.view addSubview:view1];
+//    view1.backgroundColor = [UIColor colorWithHexString:@"f0f0f0"];
     //UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(60, 200, WIDTH-120, 120)];
     //[self.view addSubview:imageView];
     // NSURL *url = [NSURL URLWithString:@"http://192.168.0.40:8080/static/upload/image/201511160935427843.png"];
@@ -132,54 +136,54 @@
     NSString *str = @"user=";
     NSString *paramStr = [str stringByAppendingString:paramsStr];
     
-    [self jumpToMainView];
-//    if(![CMTool isConnectionAvailable]){
-//        [SVProgressHUD showInfoWithStatus:@"网络没有连接！"];
-//    
-//    }else if([userName isEqualToString:@""]){
-//        
-//        [SVProgressHUD showInfoWithStatus:@"请输入用户名！"];
-//    
-//    }else if ([pwd isEqualToString:@""]){
-//   
-//        [SVProgressHUD showInfoWithStatus:@"请输入密码！"];
-//        
-//    }else{
-// 
-//        [SVProgressHUD showWithStatus:@"加载中..."];
-//        [SVProgressHUD setBackgroundColor:[UIColor colorWithHexString:@"8f8f8f"]];
-//        [WGAPI post:API_USER_LOGIN RequestParams:paramStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-//            
-//            if(data){
-//                
-//                //[self performSelectorOnMainThread:@selector(hideProgressHUD) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
-//                NSString *json =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//                NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:json];
-//                NSLog(@"%@",json);
-//                if(infojson != nil){
-//                    NSDictionary *messageJson = [infojson objectForKey:@"data"];
-//                    message = [messageJson objectForKey:@"message"];
-//                    NSLog(@"%@",message);
-//                    if([message isEqualToString:@"登陆成功"]){
-//                        
-//                        [self performSelectorOnMainThread:@selector(jumpToMainView) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
-//                        
-//                    }else {
-//                        
-//                        [self performSelectorOnMainThread:@selector(errorMessage:) withObject:message waitUntilDone:YES];
-//                    }
-//
-//                }
-//                
-//            }else{
-//               
-//               [SVProgressHUD  showErrorWithStatus:@"网络异常!"];
-//               [SVProgressHUD setBackgroundColor:[UIColor colorWithHexString:@"8f8f8f"]];
-//            }
-//            
-//        }];
-//        
-//    }
+    //[self jumpToMainView];
+    if(![CMTool isConnectionAvailable]){
+        [SVProgressHUD showInfoWithStatus:@"网络没有连接！"];
+    
+    }else if([userName isEqualToString:@""]){
+        
+        [SVProgressHUD showInfoWithStatus:@"请输入用户名！"];
+    
+    }else if ([pwd isEqualToString:@""]){
+   
+        [SVProgressHUD showInfoWithStatus:@"请输入密码！"];
+        
+    }else{
+ 
+        [SVProgressHUD showWithStatus:@"加载中..."];
+        [SVProgressHUD setBackgroundColor:[UIColor colorWithHexString:@"8f8f8f"]];
+        [WGAPI post:API_USER_LOGIN RequestParams:paramStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            
+            if(data){
+                
+                //[self performSelectorOnMainThread:@selector(hideProgressHUD) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
+                NSString *json =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:json];
+                NSLog(@"%@",json);
+                if(infojson != nil){
+                    NSDictionary *messageJson = [infojson objectForKey:@"data"];
+                    message = [messageJson objectForKey:@"message"];
+                    NSLog(@"%@",message);
+                    if([message isEqualToString:@"登陆成功"]){
+                        
+                        [self performSelectorOnMainThread:@selector(jumpToMainView) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
+                        
+                    }else {
+                        
+                        [self performSelectorOnMainThread:@selector(errorMessage:) withObject:message waitUntilDone:YES];
+                    }
+
+                }
+                
+            }else{
+               
+               [SVProgressHUD  showErrorWithStatus:@"网络异常!"];
+               [SVProgressHUD setBackgroundColor:[UIColor colorWithHexString:@"8f8f8f"]];
+            }
+            
+        }];
+        
+    }
     
 }
 

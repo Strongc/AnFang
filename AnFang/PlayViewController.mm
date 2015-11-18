@@ -24,6 +24,11 @@ static void *_vpHandle = NULL;
 @property (strong, nonatomic) UIImageView *captureImageView;
 @property (strong, nonatomic) UIView *headView;
 @property (strong, nonatomic) UIButton *backBtn;
+@property (strong, nonatomic) UIView *playViewLands;//横屏时播放窗口
+@property (strong, nonatomic) UIView *playViewVer;//竖屏时播放窗口
+@property (strong, nonatomic) UITapGestureRecognizer* singleTap;
+@property (assign, nonatomic) BOOL isHide;
+@property (strong, nonatomic) UIView *backgroundView;
 
 @end
 
@@ -37,10 +42,9 @@ static void *_vpHandle = NULL;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-   
     self.view.backgroundColor = [UIColor whiteColor];
     self.headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
-    self.headView.backgroundColor = [UIColor colorWithHexString:@"ffd700"];
+    self.headView.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20*HEIGHT/667, WIDTH, 50*HEIGHT/667)];
     title.textAlignment = NSTextAlignmentCenter;
     title.text = @"视频";
@@ -62,38 +66,18 @@ static void *_vpHandle = NULL;
     [self.backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.backBtn];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(doRotateAction:)
-                                                 name:UIDeviceOrientationDidChangeNotification
-                                               object:nil];
-
     [self initViewControllerData];
     
     
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)doRotateAction:(NSNotification *)notification {
-    CGRect frame = self.playView.frame;
-    UIDevice *device = [UIDevice currentDevice] ;
-//    if ([device orientation] == UIDeviceOrientationPortraitUpsideDown) {
-//        
-//        [self.headView removeFromSuperview];
-//        [self.backBtn removeFromSuperview];
-//        //CGAffineTransform transform =CGAffineTransformMakeRotation(M_PI/2);
-//        //[self.playView setTransform:transform];
-//        frame = CGRectMake(0, 0, HEIGHT, WIDTH);
-//       
-//    } else {
-//        
-//        [self.view addSubview:self.headView];
-//        [self.view addSubview:self.backBtn];
-//        //CGAffineTransform transform =CGAffineTransformMakeRotation(-M_PI/2);
-//        //[self.playView setTransform:transform];
-//        
-//        frame = CGRectMake(0, 65*HEIGHT/667, WIDTH, 290*HEIGHT/667);
-//    }
-//    
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+
+{
+    
+    return YES;
+    
 }
 
 -(BOOL)shouldAutorotate
@@ -105,40 +89,123 @@ static void *_vpHandle = NULL;
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     CGRect frame = self.playView.frame;
+    CGFloat x = frame.origin.x;
+    CGFloat y = frame.origin.y;
+    CGFloat w = frame.size.width;
+    CGFloat h = frame.size.height;
+    
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 
-    if(toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight){
+    if(toInterfaceOrientation == UIInterfaceOrientationLandscapeRight ){
        [[NSNotificationCenter defaultCenter] postNotificationName:@"hideTabBar" object:nil];
         [self.headView removeFromSuperview];
         [self.backBtn removeFromSuperview];
-        self.playView.transform = CGAffineTransformMakeRotation(M_PI/2);
-        frame = CGRectMake(0, 0, 300, 200);
-       
-        
-    
-    }else{
-       [[NSNotificationCenter defaultCenter] postNotificationName:@"showTabBar" object:nil];
-        [self.view addSubview:self.headView];
-        [self.view addSubview:self.backBtn];
-        self.playView.transform = CGAffineTransformMakeRotation(0);
-        frame = CGRectMake(0, 65*HEIGHT/667, WIDTH, 290*HEIGHT/667);
+        self.backgroundView.hidden = YES;
+        self.playView.transform = CGAffineTransformMakeRotation(M_PI * 2);
+       // w = 600*HEIGHT/667;
+        w = WIDTH;
+        //h = 345*WIDTH/375;
+        h = HEIGHT;
+        x = 0;
+        y = 0;
+        self.playView.frame = CGRectMake(x, y, w, h);
+        self.singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+        [self.view addGestureRecognizer:self.singleTap];//这个可以加到任何控件上,比如你只想响应WebView，我正好填满整个屏幕
+        self.singleTap.delegate = self;
+        self.singleTap.cancelsTouchesInView = NO;
+        CGRect frame1 = self.backgroundView.frame;
+        CGFloat x1 = frame1.origin.x;
+        CGFloat y1 = frame1.origin.y;
+        CGFloat w1 = frame1.size.width;
+        CGFloat h1 = frame1.size.height;
+        x1 += 100;
+        y1 += -160;
+        w1 += 0;
+        h1 += 0;
+        self.backgroundView.frame = CGRectMake(x1, y1, w1, h1);
+        self.backgroundView.backgroundColor = [UIColor clearColor];
     
     }
+    else if (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"hideTabBar" object:nil];
+        [self.headView removeFromSuperview];
+        [self.backBtn removeFromSuperview];
+        self.backgroundView.hidden = YES;
+        self.playView.transform = CGAffineTransformMakeRotation(M_PI * 2);
+        w = WIDTH;
+        h = HEIGHT;
+        x = 0;
+        y = 0;
+        self.playView.frame = CGRectMake(x, y, w, h);
+        
+        self.singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+        [self.view addGestureRecognizer:self.singleTap];//这个可以加到任何控件上,比如你只想响应WebView，我正好填满整个屏幕
+        self.singleTap.delegate = self;
+        self.singleTap.cancelsTouchesInView = NO;
+        CGRect frame2 = self.backgroundView.frame;
+        CGFloat x2 = frame2.origin.x;
+        CGFloat y2 = frame2.origin.y;
+        CGFloat w2 = frame2.size.width;
+        CGFloat h2 = frame2.size.height;
+        x2 += 100;
+        y2 += -160;
+        w2 += 0;
+        h2 += 0;
+        self.backgroundView.frame = CGRectMake(x2, y2, w2, h2);
+        self.backgroundView.backgroundColor = [UIColor clearColor];
+    }
+    else{
+       [[NSNotificationCenter defaultCenter] postNotificationName:@"showTabBar" object:nil];
+        //[self.playViewLands removeFromSuperview];
+        [self.view addSubview:self.headView];
+        [self.view addSubview:self.backBtn];
+       // self.playView.hidden = NO;
+        self.playView.transform = CGAffineTransformMakeRotation(0);
+        w = WIDTH;
+        h = 300;
+        x = 0;
+        y = 65;
+        self.playView.frame = CGRectMake(x, y, w, h);
+        self.backgroundView.frame = CGRectMake(0, 370, WIDTH, 200);
+        self.backgroundView.hidden = NO;
+        [self.view removeGestureRecognizer:self.singleTap];
+        
+    }
 
+}
+
+-(void)handleSingleTap:(UITapGestureRecognizer *)sender
+{
+    
+    if (self.backgroundView.hidden == NO) {
+        
+        self.backgroundView.hidden = YES;
+    }else{
+        
+        self.backgroundView.hidden = NO;
+    }
+    
 }
 
 -(void)initViewControllerData
 {
     
-    self.playView = [[UIView alloc] initWithFrame:CGRectMake(0, 65*HEIGHT/667, WIDTH, 290*HEIGHT/667)];
+    self.playView = [[UIView alloc] init];
+    self.playView.frame = CGRectMake(0, 65, WIDTH, 300);
     [self.view addSubview:self.playView];
     self.playView.backgroundColor = [UIColor blackColor];
     
-    UITextField *text1 = [[UITextField alloc]initWithFrame:CGRectMake(50*WIDTH/375, 365*HEIGHT/667, 120*WIDTH/375, 40*HEIGHT/667)];
-    [self.view addSubview:text1];
+    self.backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 370, WIDTH, 200)];
+    [self.view addSubview:self.backgroundView];
+    self.backgroundView.backgroundColor = [UIColor clearColor];
     
-    text1.borderStyle = UITextBorderStyleRoundedRect;
-    
+    UIView *text1 = [[UIView alloc]initWithFrame:CGRectMake(50*WIDTH/375, 10*HEIGHT/667, 120*WIDTH/375, 40*HEIGHT/667)];
+    [self.backgroundView addSubview:text1];
+    text1.layer.borderWidth = 1;
+    text1.layer.cornerRadius = 5;
+    text1.layer.masksToBounds = YES;
+    text1.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    text1.backgroundColor = [UIColor lightGrayColor];
     UIButton *playBtn = [[UIButton alloc] initWithFrame:CGRectMake(10*WIDTH/375, 5*HEIGHT/667, 45*WIDTH/375, 30*HEIGHT/667)];
     [text1 addSubview:playBtn];
     playBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15*WIDTH/375];
@@ -157,8 +224,8 @@ static void *_vpHandle = NULL;
     [stopBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     [stopBtn addTarget:self action:@selector(stopAction:) forControlEvents:UIControlEventTouchUpInside];
 
-    UIButton *getImageBtn = [[UIButton alloc] initWithFrame:CGRectMake(215*WIDTH/375, 370*HEIGHT/667, 30*WIDTH/375, 30*HEIGHT/667)];
-    [self.view addSubview:getImageBtn];
+    UIButton *getImageBtn = [[UIButton alloc] initWithFrame:CGRectMake(215*WIDTH/375, 15*HEIGHT/667, 30*WIDTH/375, 30*HEIGHT/667)];
+    [self.backgroundView addSubview:getImageBtn];
     getImageBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15*WIDTH/375];
     [getImageBtn setTitle:@"抓图" forState:UIControlStateNormal];
     getImageBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -166,12 +233,16 @@ static void *_vpHandle = NULL;
     [getImageBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     [getImageBtn addTarget:self action:@selector(onClickCapture:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.captureImageView = [[UIImageView alloc] initWithFrame:CGRectMake(250*WIDTH/375, 345*HEIGHT/667, 100*WIDTH/375, 70*HEIGHT/667)];
-    [self.view addSubview:self.captureImageView];
+    self.captureImageView = [[UIImageView alloc] initWithFrame:CGRectMake(250*WIDTH/375, 15*HEIGHT/667, 100*WIDTH/375, 70*HEIGHT/667)];
+    [self.backgroundView addSubview:self.captureImageView];
     
-    UITextField *text2 = [[UITextField alloc]initWithFrame:CGRectMake(35*WIDTH/375, 415*HEIGHT/667, 160*WIDTH/375, 40*HEIGHT/667)];
-    [self.view addSubview:text2];
-    text2.borderStyle = UITextBorderStyleRoundedRect;
+    UIView *text2 = [[UIView alloc]initWithFrame:CGRectMake(35*WIDTH/375, 80*HEIGHT/667, 160*WIDTH/375, 40*HEIGHT/667)];
+    [self.backgroundView addSubview:text2];
+    text2.layer.borderWidth = 1;
+    text2.layer.cornerRadius = 5;
+    text2.layer.masksToBounds = YES;
+    text2.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    text2.backgroundColor = [UIColor lightGrayColor];
     
     UIButton *backPlayBtn = [[UIButton alloc] initWithFrame:CGRectMake(10*WIDTH/375, 5*HEIGHT/667, 40*WIDTH/375, 30*HEIGHT/667)];
     [text2 addSubview:backPlayBtn];
@@ -200,9 +271,13 @@ static void *_vpHandle = NULL;
     [backStopBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     [backStopBtn addTarget:self action:@selector(stopPlayBackAction:) forControlEvents:UIControlEventTouchUpInside];
 
-    UITextField *text3 = [[UITextField alloc]initWithFrame:CGRectMake(240*WIDTH/375, 415*HEIGHT/667, 100*WIDTH/375, 40*HEIGHT/667)];
-    [self.view addSubview:text3];
-    text3.borderStyle = UITextBorderStyleRoundedRect;
+    UIView *text3 = [[UIView alloc]initWithFrame:CGRectMake(240*WIDTH/375, 80*HEIGHT/667, 100*WIDTH/375, 40*HEIGHT/667)];
+    [self.backgroundView addSubview:text3];
+    text3.layer.borderWidth = 1;
+    text3.layer.cornerRadius = 5;
+    text3.layer.masksToBounds = YES;
+    text3.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    text3.backgroundColor = [UIColor lightGrayColor];
     UIButton *videoBtn = [[UIButton alloc] initWithFrame:CGRectMake(10*WIDTH/375, 5*HEIGHT/667, 45*WIDTH/375, 30*HEIGHT/667)];
     [text3 addSubview:videoBtn];
     videoBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15*WIDTH/375];
@@ -223,7 +298,7 @@ static void *_vpHandle = NULL;
     
     UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(33*WIDTH/375, 460*HEIGHT/667, 310*WIDTH/375, 140*HEIGHT/667)];
     backView.backgroundColor = [UIColor colorWithHexString:@"d3d3d3"];
-    [self.view addSubview:backView];
+    //[self.view addSubview:backView];
     
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 8*HEIGHT/667, backView.frame.size.width, 21*HEIGHT/667)];
     [backView addSubview:title];

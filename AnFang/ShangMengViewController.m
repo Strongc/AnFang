@@ -8,6 +8,7 @@
 
 #import "ShangMengViewController.h"
 #import "Common.h"
+#import "UIColor+Extensions.h"
 
 @interface ShangMengViewController ()
 
@@ -20,7 +21,17 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
+    
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
+    headView.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
+    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, WIDTH, 50*HEIGHT/667)];
+    title.textAlignment = NSTextAlignmentCenter;
+    title.text = @"商盟";
+    title.textColor = [UIColor whiteColor];
+    [headView addSubview:title];
+    [self.view addSubview:headView];
+
+    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT)];
     [self.view addSubview:self.webView];
     self.webView.delegate = self;
     self.activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake((WIDTH-50)/2, (HEIGHT-64-50)/2, 50, 50)];

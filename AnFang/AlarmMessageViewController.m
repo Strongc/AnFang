@@ -45,13 +45,13 @@
     // messageInfo = [[NSDictionary alloc] init];
     messageArray = [[NSMutableArray alloc]init];
     tempArray = [[NSArray alloc]init];
-    //self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
     
     messageTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT) style:UITableViewStylePlain];
     messageTable.delegate = self;
     messageTable.dataSource = self;
     messageTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-    messageTable.backgroundColor = [UIColor whiteColor];
+    messageTable.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
     // monitorTable.separatorStyle = NO;
     [self.view addSubview:messageTable];
     

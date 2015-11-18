@@ -11,6 +11,7 @@
 #import "WGAPI.h"
 #import "CMTool.h"
 #import "SVProgressHUD.h"
+#import "UIColor+Extensions.h"
 
 @interface AlarmMessageDetailViewController ()
 @property (nonatomic,strong) UITextView *textLab;
@@ -22,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
     NSString *str = self.messageId;
     NSLog(@"%@",str);
     
@@ -29,6 +31,7 @@
     [self.view addSubview:self.textLab];
     self.textLab.editable = NO;
     self.textLab.font = [UIFont systemFontOfSize:14];
+    self.textLab.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
     [self getMessageById];
     // Do any additional setup after loading the view.
 }

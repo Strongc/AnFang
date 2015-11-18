@@ -67,7 +67,7 @@
 {
     
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
-    headView.backgroundColor = [UIColor colorWithHexString:@"ffd700"];
+    headView.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20*HEIGHT/667, WIDTH, 50*HEIGHT/667)];
     title.textAlignment = NSTextAlignmentCenter;
     title.text = @"套餐配置";
@@ -89,17 +89,17 @@
     [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backBtn];
     
-    UIImageView *menuImage = [[UIImageView alloc]initWithFrame:CGRectMake(20*WIDTH/375, 90*HEIGHT/667, 70*WIDTH/375, 80*HEIGHT/667)];
+    UIImageView *menuImage = [[UIImageView alloc]initWithFrame:CGRectMake(20*WIDTH/375, 90*HEIGHT/667, 80*WIDTH/375, 80*HEIGHT/667)];
     menuImage.image = [UIImage imageNamed:_menuImageName];
     [self.view addSubview:menuImage];
     
-    UILabel *menuName = [[UILabel alloc]initWithFrame:CGRectMake(100*WIDTH/375, 90*HEIGHT/667, 100*WIDTH/375, 20*HEIGHT/667)];
+    UILabel *menuName = [[UILabel alloc]initWithFrame:CGRectMake(110*WIDTH/375, 90*HEIGHT/667, 100*WIDTH/375, 20*HEIGHT/667)];
     menuName.text = _menuStyle;
     menuName.textColor = [UIColor blackColor];
     menuName.font = [UIFont boldSystemFontOfSize:18*WIDTH/375];
     [self.view addSubview:menuName];
     
-    UILabel *menuDetail = [[UILabel alloc]initWithFrame:CGRectMake(100*WIDTH/375, 112*HEIGHT/667, 265*WIDTH/375, 55*HEIGHT/667)];
+    UILabel *menuDetail = [[UILabel alloc]initWithFrame:CGRectMake(110*WIDTH/375, 112*HEIGHT/667, 260*WIDTH/375, 60*HEIGHT/667)];
     menuDetail.text = _menuDetail;
     menuDetail.numberOfLines = 0;
     menuDetail.textColor = [UIColor grayColor];

@@ -31,7 +31,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor grayColor];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithHexString:@"ce7031"];
     
 //    UIImage *imageUnSelect = [UIImage imageNamed:@"message.png"];
 //    UIImage *imageSelected = [UIImage imageNamed:@"messagePress.png"];

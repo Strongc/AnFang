@@ -109,7 +109,7 @@
     
     _navTabBar.delegate = self;
     //_navTabBar.backgroundColor = _navTabBarColor
-    _navTabBar.backgroundColor = [UIColor colorWithHexString:@"fff68f"];
+    _navTabBar.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
     
     _navTabBar.lineColor = [UIColor whiteColor];
     _navTabBar.itemTitles = _titles;

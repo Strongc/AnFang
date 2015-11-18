@@ -129,23 +129,29 @@
 
 -(void)ConfigControl
 {
+    
+    UIImageView *background = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
+    [self.view addSubview:background];
+    background.image = [UIImage imageNamed:@"background"];
+    
     UIView *blueLine = [[UIView alloc]initWithFrame:CGRectMake(0, 430*HEIGHT/667, WIDTH, 3.0)];
     [self.view addSubview:blueLine];
     blueLine.backgroundColor = [UIColor colorWithHexString:@"6495ed"];
 
-    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH,blueLine.frame.origin.y)];
-    [self.view addSubview:backGroundView];
-    backGroundView.backgroundColor = [UIColor colorWithHexString:@"ffffe0"];
+    //UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH,blueLine.frame.origin.y)];
+    //[self.view addSubview:backGroundView];
+   // backGroundView.backgroundColor = [UIColor colorWithHexString:@"ffffe0"];
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"yh.png" ofType:nil];
     NSString *pathSelected = [[NSBundle mainBundle] pathForResource:@"yh_select.png" ofType:nil];
     stateImageView = [[UIImageView alloc] initWithFrame:CGRectMake(40, 30, WIDTH-80, 300*HEIGHT/667)];
     stateBtn = [[UIButton alloc] initWithFrame:CGRectMake(40, 30, WIDTH - 80, 300*HEIGHT/667)];
-    [backGroundView addSubview:stateBtn];
-    //stateImageView.image = [UIImage imageWithContentsOfFile:path];
-    [stateBtn setBackgroundImage:[UIImage imageWithContentsOfFile:path] forState:UIControlStateNormal];
-    [stateBtn setBackgroundImage:[UIImage imageWithContentsOfFile:pathSelected] forState:UIControlStateHighlighted];
-
+    //[backGroundView addSubview:stateBtn];
+    //stateImageView.image = [UIImage imageNamed:@"state"];
+    [stateBtn setBackgroundImage:[UIImage imageNamed:@"state"] forState:UIControlStateNormal];
+    //[stateBtn setBackgroundImage:[UIImage imageWithContentsOfFile:pathSelected] forState:UIControlStateHighlighted];
+    [self.view addSubview:stateBtn];
+    
     stateLab = [[UILabel alloc]initWithFrame:CGRectMake(150*WIDTH/375, 140*HEIGHT/667, 60*WIDTH/375, 20*HEIGHT/667)];
     stateLab.text = @"已部防";
     stateLab.textColor = [UIColor greenColor];

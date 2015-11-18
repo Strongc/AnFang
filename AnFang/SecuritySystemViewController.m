@@ -10,6 +10,7 @@
 #import "Common.h"
 #import "AnFangTabBarViewController.h"
 #import "MonitorViewController.h"
+#import "UIColor+Extensions.h"
 //#import "HostListViewController.h"
 
 //@interface SecuritySystemViewController ()<MHTabBarControllerDelegate>
@@ -36,8 +37,8 @@
     monitorView.title = @"屋";
     
     AnFangTabBarViewController *navTabBarController = [[AnFangTabBarViewController alloc] init];
-    navTabBarController.navTabBarColor = [UIColor blueColor];
-  
+   // navTabBarController.navTabBarColor = [UIColor colorWithHexString:@"ce7031"];
+   
     navTabBarController.subViewControllers = @[needHelpView,monitorView];
     [navTabBarController addParentController:self];
     

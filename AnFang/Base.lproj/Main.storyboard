@@ -263,14 +263,14 @@
         <!--personNav-->
         <scene sceneID="X6Y-mn-Seb">
             <objects>
-                <navigationController title="personNav" automaticallyAdjustsScrollViewInsets="NO" id="naJ-OE-xf7" sceneMemberID="viewController">
+                <navigationController title="personNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="naJ-OE-xf7" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="商盟" image="businessnor" selectedImage="22" id="oxQ-xM-Toi"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" alpha="0.0" contentMode="scaleToFill" id="2Gc-Yd-vgl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="0.93231300500000003" blue="0.27364313750000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="1" green="0.86469446809999995" blue="0.31933228870000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" white="0.42999999999999999" alpha="1" colorSpace="calibratedWhite"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -327,7 +327,7 @@
         <!--LoginNav-->
         <scene sceneID="XFl-IK-lXE">
             <objects>
-                <navigationController storyboardIdentifier="loginNavId" title="LoginNav" automaticallyAdjustsScrollViewInsets="NO" id="GnI-8l-sP5" customClass="LoginNavigationViewController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="loginNavId" title="LoginNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="GnI-8l-sP5" customClass="LoginNavigationViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pb6-iS-5uX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -639,13 +639,13 @@
         <scene sceneID="32t-a8-7i8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wwP-zW-rxF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="资讯" image="messagenor" selectedImage="44" id="ghQ-79-wNp"/>
+                    <tabBarItem key="tabBarItem" title="资讯" image="messagenor" id="ghQ-79-wNp"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AmU-yH-FjE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="1" green="0.86469446809999995" blue="0.31933228870000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.90588235294117647" green="0.49238827955537279" blue="0.096479422027333159" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -1026,12 +1026,11 @@
     </scenes>
     <resources>
         <image name="22" width="40" height="40"/>
-        <image name="44" width="40" height="40"/>
         <image name="55" width="40" height="40"/>
-        <image name="anfangnor" width="24" height="30"/>
-        <image name="businessnor" width="20" height="30"/>
-        <image name="messagenor" width="30" height="27"/>
-        <image name="publicnor" width="30" height="26"/>
-        <image name="setnor" width="30" height="30"/>
+        <image name="anfangnor" width="20" height="20"/>
+        <image name="businessnor" width="20" height="20"/>
+        <image name="messagenor" width="20" height="20"/>
+        <image name="publicnor" width="20" height="20"/>
+        <image name="setnor" width="20" height="20"/>
     </resources>
 </document>

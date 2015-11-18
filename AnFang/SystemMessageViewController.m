@@ -14,6 +14,7 @@
 #import "CMTool.h"
 #import "SDRefresh.h"
 #import "MessageViewController.h"
+#import "UIColor+Extensions.h"
 
 @interface SystemMessageViewController ()
 {
@@ -33,6 +34,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
     
     self.sysMessageArray = [[NSMutableArray alloc]init];
     tempArray = [[NSMutableArray alloc] init];
@@ -41,7 +43,7 @@
     messageTable.delegate = self;
     messageTable.dataSource = self;
     messageTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-    messageTable.backgroundColor = [UIColor whiteColor];
+    messageTable.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
     [self.view addSubview:messageTable];
 
     alertLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 80, WIDTH, 15*HEIGHT/667)];

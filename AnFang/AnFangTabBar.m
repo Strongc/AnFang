@@ -15,7 +15,9 @@
     UIScrollView    *_navgationTabBar;      // all items on this scroll view
     UIImageView     *_arrowButton;          // arrow button
     
-    UIView          *_line;                 // underscore show which item selected
+    UIView          *_line;
+    UIImageView     *_imageView;
+    // underscore show which item selected
    // SCPopView       *_popView;              // when item menu, will show this view
     
     NSMutableArray  *_items;                // SCNavTabBar pressed item
@@ -60,7 +62,7 @@
     //    {
     _arrowButton = [[UIImageView alloc] initWithFrame:CGRectMake(2, DOT_COORDINATE, 30, 30)];
     _arrowButton.layer.shadowColor = [UIColor lightGrayColor].CGColor;
-    
+    _itemImageArray = [[NSArray alloc] initWithObjects:@"human", @"house",nil];
    // _arrowButton.userInteractionEnabled = YES;
     
     //[self addSubview:_arrowButton];
@@ -84,6 +86,7 @@
 {
     _line = [[UIView alloc] initWithFrame:CGRectMake(13 + 10, NAV_TAB_BAR_HEIGHT - 10.0f, 66, 2.0f)];
     _line.backgroundColor = [UIColor colorWithHexString:@"333333"];
+    //_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(23,  NAV_TAB_BAR_HEIGHT - 10.0f, 66, 2.0f)];
     
     // backBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 20, 20)];
     //backBtn.titleLabel.text = @"返回";
@@ -101,11 +104,13 @@
     for (NSInteger index = 0; index < [_itemTitles count]; index++)
     {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        //UIImageView *tabImageView = [[UIImageView alloc] initWithFrame:CGRectMake(, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)];
         button.frame = CGRectMake(buttonX, 25.0, ([widths[index] floatValue])*WIDTH/375, 44*WIDTH/375);
         //button.frame = CGRectMake(buttonX, 15.0, 100*WIDTH/375, 44);
-        [button setTitle:_itemTitles[index] forState:UIControlStateNormal];
+        //[button setTitle:_itemTitles[index] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
         button.titleLabel.font = [UIFont boldSystemFontOfSize:20*WIDTH/375];
+        [button setBackgroundImage:[UIImage imageNamed:_itemImageArray[index]] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor greenColor] forState:UIControlStateSelected];
         [button addTarget:self action:@selector(itemPressed:) forControlEvents:UIControlEventTouchUpInside];
         //button.backgroundColor = [UIColor redColor];

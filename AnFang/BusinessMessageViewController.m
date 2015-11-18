@@ -8,6 +8,7 @@
 
 #import "BusinessMessageViewController.h"
 #import "Common.h"
+#import "UIColor+Extensions.h"
 
 @interface BusinessMessageViewController (){
 
@@ -26,6 +27,7 @@
     [self.view addSubview:alertLab];
     alertLab.text = @"暂无内容！";
     alertLab.textAlignment = NSTextAlignmentCenter;
+    self.view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
     // Do any additional setup after loading the view.
 }
 

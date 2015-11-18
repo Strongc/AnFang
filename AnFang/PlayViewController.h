@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "VMSNetSDK.h"
 
-@interface PlayViewController : UIViewController
+@interface PlayViewController : UIViewController<UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) CCameraInfo *cameraInfo;
 @property (nonatomic, copy)   NSString *serverAddress;
