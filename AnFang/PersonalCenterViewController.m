@@ -123,7 +123,7 @@
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20*HEIGHT/667, WIDTH, 50*HEIGHT/667)];
     title.textAlignment = NSTextAlignmentCenter;
     title.text = @"个人中心";
-    title.textColor = [UIColor whiteColor];
+    title.font = [UIFont fontWithName:@"MicrosoftYaHei" size:28];
     [headView addSubview:title];
     [self.view addSubview:headView];
     

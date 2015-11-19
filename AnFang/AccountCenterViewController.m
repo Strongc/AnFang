@@ -48,29 +48,30 @@
 {
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
     headView.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
-    
-    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20*HEIGHT/667, WIDTH, 50*HEIGHT/667)];
+    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, WIDTH, 44)];
+    [headView addSubview:navView];
+
+    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, WIDTH, 30)];
     title.textAlignment = NSTextAlignmentCenter;
     title.text = @"账户中心";
-    title.textColor = [UIColor whiteColor];
-    [headView addSubview:title];
+    title.font = [UIFont fontWithName:@"MicrosoftYaHei" size:28];
+    [navView addSubview:title];
     [self.view addSubview:headView];
     
-    UIButton *backBtn = [[UIButton alloc] initWithFrame:CGRectMake(10*WIDTH/375, 30*HEIGHT/667, 60*WIDTH/375, 30*HEIGHT/667)];
-    UILabel *backTitle = [[UILabel alloc]initWithFrame:CGRectMake(18*WIDTH/375, 7*HEIGHT/667, 32, 16)];
+    UIButton *backBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 80, 50)];
+    UILabel *backTitle = [[UILabel alloc]initWithFrame:CGRectMake(5, 7, 60, 16)];
     backTitle.textAlignment = NSTextAlignmentCenter;
     backTitle.text = @"返回";
-    backTitle.font = [UIFont systemFontOfSize:16];
-    backTitle.textColor = [UIColor whiteColor];
+    backTitle.font = [UIFont fontWithName:@"MicrosoftYaHei" size:28];
     [backBtn addSubview:backTitle];
     
-    UIImageView *backImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 5*HEIGHT/667, 20, 20)];
+    UIImageView *backImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 5, 20, 20)];
     backImage.image = [UIImage imageNamed:@"back.png"];
     [backBtn addSubview:backImage];
     [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backBtn];
+    [navView addSubview:backBtn];
     
-    UIView *backgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, 64*HEIGHT/667, WIDTH, 130*HEIGHT/667)];
+    UIView *backgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, WIDTH, 130*HEIGHT/667)];
     backgroundView.backgroundColor = [UIColor colorWithHexString:@"ee9a49"];
     [self.view addSubview:backgroundView];
     

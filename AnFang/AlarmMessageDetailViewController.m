@@ -22,18 +22,48 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
+    headView.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
+    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, WIDTH, 44)];
+    [headView addSubview:navView];
+
+    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, WIDTH, 30)];
+    title.textAlignment = NSTextAlignmentCenter;
+    title.text = @"资讯详情";
+    title.font = [UIFont fontWithName:@"MicrosoftYaHei" size:28];
+    [navView addSubview:title];
+    [self.view addSubview:headView];
     
+    UIButton *backBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 80, 50)];
+    UILabel *backTitle = [[UILabel alloc]initWithFrame:CGRectMake(5, 7, 60, 16)];
+    backTitle.textAlignment = NSTextAlignmentCenter;
+    backTitle.text = @"返回";
+    backTitle.font = [UIFont fontWithName:@"MicrosoftYaHei" size:28];
+    [backBtn addSubview:backTitle];
+    
+    UIImageView *backImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 5, 20, 20)];
+    backImage.image = [UIImage imageNamed:@"back.png"];
+    [backBtn addSubview:backImage];
+    [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    [navView addSubview:backBtn];
+
     self.view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
     NSString *str = self.messageId;
     NSLog(@"%@",str);
     
-    self.textLab = [[UITextView alloc] initWithFrame:CGRectMake(5, 20, WIDTH-10, HEIGHT-70)];
+    self.textLab = [[UITextView alloc] initWithFrame:CGRectMake(0, 84, WIDTH, HEIGHT-90)];
     [self.view addSubview:self.textLab];
     self.textLab.editable = NO;
-    self.textLab.font = [UIFont systemFontOfSize:14];
+   
     self.textLab.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
     [self getMessageById];
     // Do any additional setup after loading the view.
+}
+
+-(void)backAction
+{
+    NSLog(@"%@",@"ddddd");
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)getMessageById
@@ -53,6 +83,7 @@
                 
             
             }
+            
              [self performSelectorOnMainThread:@selector(refreshData) withObject:data waitUntilDone:YES];
         
         }
@@ -64,7 +95,9 @@
 -(void)refreshData
 {
     [SVProgressHUD showSuccessWithStatus:@"加载完成！" maskType:SVProgressHUDMaskTypeBlack];
+    self.textLab.font = [UIFont fontWithName:@"Helvetica" size:18];
     self.textLab.text = self.message;
+    [self.view addSubview:self.textLab];
 
 }
 

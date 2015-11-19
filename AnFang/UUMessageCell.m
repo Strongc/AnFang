@@ -88,6 +88,7 @@
         contentVoiceIsPlaying = NO;
 
     }
+    self.backgroundColor = [UIColor clearColor];
     return self;
 }
 

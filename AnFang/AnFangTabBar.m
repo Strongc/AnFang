@@ -63,6 +63,7 @@
     _arrowButton = [[UIImageView alloc] initWithFrame:CGRectMake(2, DOT_COORDINATE, 30, 30)];
     _arrowButton.layer.shadowColor = [UIColor lightGrayColor].CGColor;
     _itemImageArray = [[NSArray alloc] initWithObjects:@"human", @"house",nil];
+    _itemImageSelectArray = [[NSArray alloc] initWithObjects:@"humanSelect",@"houseSelect", nil];
    // _arrowButton.userInteractionEnabled = YES;
     
     //[self addSubview:_arrowButton];
@@ -100,24 +101,25 @@
 
 - (CGFloat)contentWidthAndAddNavTabBarItemsWithButtonsWidth:(NSArray *)widths
 {
-    CGFloat buttonX = 90*WIDTH/375;
+    CGFloat buttonX = 70;
     for (NSInteger index = 0; index < [_itemTitles count]; index++)
     {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         //UIImageView *tabImageView = [[UIImageView alloc] initWithFrame:CGRectMake(, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)];
-        button.frame = CGRectMake(buttonX, 25.0, ([widths[index] floatValue])*WIDTH/375, 44*WIDTH/375);
+        button.frame = CGRectMake(buttonX, 25.0, [widths[index] floatValue], 30);
         //button.frame = CGRectMake(buttonX, 15.0, 100*WIDTH/375, 44);
         //[button setTitle:_itemTitles[index] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
         button.titleLabel.font = [UIFont boldSystemFontOfSize:20*WIDTH/375];
         [button setBackgroundImage:[UIImage imageNamed:_itemImageArray[index]] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:_itemImageSelectArray[index]] forState:UIControlStateSelected];
         [button setTitleColor:[UIColor greenColor] forState:UIControlStateSelected];
         [button addTarget:self action:@selector(itemPressed:) forControlEvents:UIControlEventTouchUpInside];
         //button.backgroundColor = [UIColor redColor];
         [_navgationTabBar addSubview:button];
         
         [_items addObject:button];
-        buttonX += [widths[index] floatValue]*WIDTH/375 + 75*WIDTH/375;
+        buttonX += [widths[index] floatValue] + (WIDTH - 2*30  -140);
         // buttonX += [widths[index] floatValue]*WIDTH/375;
         //buttonX += 140*WIDTH/375;
         if (index == 0) {
@@ -155,7 +157,8 @@
     for (NSString *title in titles)
     {
         CGSize size = [title sizeWithFont:[UIFont systemFontOfSize:[UIFont systemFontSize]]];
-        NSNumber *width = [NSNumber numberWithFloat:size.width + 40.0f];
+       // NSNumber *width = [NSNumber numberWithFloat:size.width + 40.0f];
+        NSNumber *width =[NSNumber numberWithInt: 30.0f];
         [widths addObject:width];
     }
     

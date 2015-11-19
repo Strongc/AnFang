@@ -13,11 +13,14 @@
 
 -(UUMessage *) initWithDict:(NSDictionary *)dict
 {
-    NSString *const CMAPIBaseURL = @"http://192.168.0.41:8080";
+    NSString *const CMAPIBaseURL = @"http://192.168.0.131:8080";
     if(self = [super init]){
         
         NSString *dictUrl = dict[@"voice_url"];
-        self.voiceUrl = [CMAPIBaseURL stringByAppendingString:dictUrl];
+        if(dictUrl != nil){
+             self.voiceUrl = [CMAPIBaseURL stringByAppendingString:dictUrl];
+        }
+    
         self.voice = dict[@"voice"];
         self.strVoiceTime = dict[@"voice_time"];
         self.strTime = dict[@"createDate"];

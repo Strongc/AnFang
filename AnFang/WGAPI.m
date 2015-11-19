@@ -20,8 +20,8 @@
 
 //NSString *const CMAPIBaseURL=@"http://192.168.0.42:8080/wellgood/base";
 //NSString *const CMAPIBaseURL = @"http://wellgood.tpddns.cn:8080/";
-//NSString *const CMAPIBaseURL = @"http://192.168.0.41:8080/";
-NSString *const CMAPIBaseURL = @"http://192.168.0.41:8080/";
+NSString *const CMAPIBaseURL = @"http://192.168.0.131:8080/";
+//NSString *const CMAPIBaseURL = @"http://121.41.24.19:8080/";
 
 #else
 //NSString *const CMAPIBaseURL=@"http://guanwu.puyuntech.com/yht_api/";
@@ -303,7 +303,6 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
 
 +(void)post:(NSString *)strUrl RequsetParam:(id)image withFileName:(NSString *)fileName FinishBlock:(void (^)(NSURLResponse *, NSData *, NSError *))block
 {
-    
     NSString *url = [CMAPIBaseURL stringByAppendingString:strUrl];
     //分界线的标识符
     NSString *TWITTERFON_FORM_BOUNDARY = @"---------------------------JHMLY622510";
@@ -312,20 +311,14 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
     NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
                                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                                         timeoutInterval:10];
-    
-    
     //分界线
     NSString *MPboundary=[[NSString alloc]initWithFormat:@"--%@",TWITTERFON_FORM_BOUNDARY];
-    
     //结束符
     NSString *endMPboundary=[[NSString alloc]initWithFormat:@"%@--",MPboundary];
-    //   //要上传的图片
-    //   UIImage *image=[params objectForKey:@"pic"];
     //得到图片的data
     NSData *data = UIImageJPEGRepresentation(image, 1.0);
     //http body的字符串
     NSMutableString *body=[[NSMutableString alloc]init];
-    //NSMutableData *body = [NSMutableData data];
     ////添加分界线，换行
     [body appendFormat:@"%@\r\n",MPboundary];
     //声明pic字段，文件名为boris.png
@@ -339,8 +332,6 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
     NSString *end=[[NSString alloc]initWithFormat:@"\r\n%@",endMPboundary];
     //声明myRequestData，用来放入http body
     NSMutableData *myRequestData=[NSMutableData data];
-    //NSString *disposition = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\";filename=\"%@\"\r\n",@"file",fileName];
-    //[myRequestData appendData:[disposition dataUsingEncoding:NSUTF8StringEncoding]];
     //将body字符串转化为UTF8格式的二进制
     [myRequestData appendData:[body dataUsingEncoding:NSUTF8StringEncoding]];
     //将image的data加入
@@ -357,7 +348,6 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
     [request setHTTPBody:myRequestData];
     //http method
     [request setHTTPMethod:@"POST"];
-    
     //创建一个新的队列（开启新线程）
     NSOperationQueue *queue = [NSOperationQueue new];
     //发送异步请求，请求完以后返回的数据，通过completionHandler参数来调用

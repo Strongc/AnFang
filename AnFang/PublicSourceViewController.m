@@ -156,10 +156,10 @@
     
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
     headView.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
-    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20*HEIGHT/667, WIDTH, 50*HEIGHT/667)];
+    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, WIDTH, 50*HEIGHT/667)];
     title.textAlignment = NSTextAlignmentCenter;
     title.text = @"公共信息";
-    title.textColor = [UIColor orangeColor];
+    title.font = [UIFont fontWithName:@"MicrosoftYaHei" size:28];
     [headView addSubview:title];
     [self.view addSubview:headView];
 
@@ -174,12 +174,12 @@
     searchBar.searchBarStyle = UISearchBarStyleMinimal;
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
 
-    videoCollection = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 80*HEIGHT/667, WIDTH, HEIGHT-110-self.tabBarController.tabBar.bounds.size.height) collectionViewLayout:flowLayout];
+    videoCollection = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-110-self.tabBarController.tabBar.bounds.size.height) collectionViewLayout:flowLayout];
     videoCollection.delegate = self;
     videoCollection.dataSource = self;
     #pragma mark -- 头尾部大小设置
     //设置头部并给定大小
-    [flowLayout setHeaderReferenceSize:CGSizeMake(videoCollection.frame.size.width, 40*HEIGHT/667)];
+    [flowLayout setHeaderReferenceSize:CGSizeMake(videoCollection.frame.size.width, 40)];
     #pragma mark -- 注册头部视图
     [videoCollection registerClass:[PublicHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
     

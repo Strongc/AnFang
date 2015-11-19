@@ -30,7 +30,7 @@
 {
     self.superVC = superVC;
     self.backgroundColor = [UIColor lightGrayColor];
-    CGRect frame = CGRectMake(0, Main_Screen_Height-300*HEIGHT/667, Main_Screen_Width, 150);
+    CGRect frame = CGRectMake(0, Main_Screen_Height-64-150-49, Main_Screen_Width, 150);
     
     self = [super initWithFrame:frame];
     if (self) {

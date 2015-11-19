@@ -49,10 +49,10 @@
     //[headView setImage:[UIImage imageNamed:@"header_bg.png"]];
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
     headView.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
-    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, WIDTH, 50*HEIGHT/667)];
+    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, WIDTH, 50*HEIGHT/667)];
     title.textAlignment = NSTextAlignmentCenter;
     title.text = @"登录";
-    title.font = [UIFont fontWithName:@"Microsoft YaHei" size:28];
+    title.font = [UIFont fontWithName:@"MicrosoftYaHei" size:28];
     //title.textColor = [UIColor colorWithHexString:@"ffffff"];
     [headView addSubview:title];
     [self.view addSubview:headView];

@@ -109,7 +109,7 @@
    // _navTabBar = [[SCNavTabBar alloc] initWithFrame:CGRectMake(80, 30, SCREEN_WIDTH-40, 40) showArrowButton:_showArrowButton];
     //_navTabBar = [[SCNavTabBar alloc] initWithFrame:CGRectMake(DOT_COORDINATE, 20, SCREEN_WIDTH, 20)];
 //     _navTabBar = [[SCNavTabBar alloc] initWithFrame:CGRectMake(80, 20, SCREEN_WIDTH-40, 40) showArrowButton:_showArrowButton];
-     _navTabBar = [[SCNavTabBar alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 35) showArrowButton:_showArrowButton];
+     _navTabBar = [[SCNavTabBar alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 35) showArrowButton:_showArrowButton];
 
     _navTabBar.delegate = self;
     
@@ -213,6 +213,7 @@
 #pragma mark -
 - (void)itemDidSelectedWithIndex:(NSInteger)index
 {
+    
     [_mainView setContentOffset:CGPointMake(index * SCREEN_WIDTH, DOT_COORDINATE) animated:_scrollAnimation];
 }
 

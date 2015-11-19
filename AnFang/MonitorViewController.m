@@ -134,9 +134,9 @@
     [self.view addSubview:background];
     background.image = [UIImage imageNamed:@"background"];
     
-    UIView *blueLine = [[UIView alloc]initWithFrame:CGRectMake(0, 430*HEIGHT/667, WIDTH, 3.0)];
-    [self.view addSubview:blueLine];
-    blueLine.backgroundColor = [UIColor colorWithHexString:@"6495ed"];
+//    UIView *blueLine = [[UIView alloc]initWithFrame:CGRectMake(0, 430*HEIGHT/667, WIDTH, 3.0)];
+//    [self.view addSubview:blueLine];
+//    blueLine.backgroundColor = [UIColor colorWithHexString:@"6495ed"];
 
     //UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH,blueLine.frame.origin.y)];
     //[self.view addSubview:backGroundView];
@@ -151,6 +151,7 @@
     [stateBtn setBackgroundImage:[UIImage imageNamed:@"state"] forState:UIControlStateNormal];
     //[stateBtn setBackgroundImage:[UIImage imageWithContentsOfFile:pathSelected] forState:UIControlStateHighlighted];
     [self.view addSubview:stateBtn];
+    [stateBtn addTarget:self action:@selector(getUserHostInfo) forControlEvents:UIControlEventTouchUpInside];
     
     stateLab = [[UILabel alloc]initWithFrame:CGRectMake(150*WIDTH/375, 140*HEIGHT/667, 60*WIDTH/375, 20*HEIGHT/667)];
     stateLab.text = @"已部防";
@@ -168,27 +169,27 @@
     
     NSString *path1 = [[NSBundle mainBundle] pathForResource:@"bufang_nor.png" ofType:nil];
     NSString *path2 = [[NSBundle mainBundle] pathForResource:@"bufang_select.png" ofType:nil];
-    bufangBtn = [[UIButton alloc]initWithFrame:CGRectMake(80*WIDTH/375, 460*HEIGHT/667, 60*WIDTH/375, 60*HEIGHT/667)];
-    [bufangBtn setBackgroundImage:[UIImage imageWithContentsOfFile:path1] forState:UIControlStateNormal];
-    [bufangBtn setBackgroundImage:[UIImage imageWithContentsOfFile:path2] forState:UIControlStateHighlighted];
+    bufangBtn = [[UIButton alloc]initWithFrame:CGRectMake(60*WIDTH/375, 460*HEIGHT/667, 60*WIDTH/375, 60*HEIGHT/667)];
+    [bufangBtn setBackgroundImage:[UIImage imageNamed:@"bufang"] forState:UIControlStateNormal];
+    [bufangBtn setBackgroundImage:[UIImage imageNamed:@"bufangSelect"] forState:UIControlStateHighlighted];
     [bufangBtn addTarget:self action:@selector(BuFangRequestAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bufangBtn];
     
-    chefangBtn = [[UIButton alloc]initWithFrame:CGRectMake(80*WIDTH/375, 460*HEIGHT/667, 60*WIDTH/375, 60*HEIGHT/667)];
+    chefangBtn = [[UIButton alloc]initWithFrame:CGRectMake(160*WIDTH/375, 460*HEIGHT/667, 60*WIDTH/375, 60*HEIGHT/667)];
     [self.view addSubview:chefangBtn];
-    NSString *path5 = [[NSBundle mainBundle] pathForResource:@"chefang_nor.png" ofType:nil];
-    NSString *path6 = [[NSBundle mainBundle] pathForResource:@"chefang_select.png" ofType:nil];
-    [chefangBtn setBackgroundImage:[UIImage imageWithContentsOfFile:path5] forState:UIControlStateNormal];
-    [chefangBtn setBackgroundImage:[UIImage imageWithContentsOfFile:path6] forState:UIControlStateHighlighted];
+    //NSString *path5 = [[NSBundle mainBundle] pathForResource:@"chefang.png" ofType:nil];
+    //NSString *path6 = [[NSBundle mainBundle] pathForResource:@"chefang_select.png" ofType:nil];
+    [chefangBtn setBackgroundImage:[UIImage imageNamed:@"chefang"] forState:UIControlStateNormal];
+    [chefangBtn setBackgroundImage:[UIImage imageNamed:@"chefangSelect"] forState:UIControlStateHighlighted];
     [chefangBtn addTarget:self action:@selector(CheFangAction) forControlEvents:UIControlEventTouchUpInside];
 
-    UIButton *cameraBtn = [[UIButton alloc] initWithFrame:CGRectMake(230*WIDTH/375, 465*HEIGHT/667, 60*WIDTH/375, 55*HEIGHT/667)];
+    UIButton *cameraBtn = [[UIButton alloc] initWithFrame:CGRectMake(260*WIDTH/375, 465*HEIGHT/667, 60*WIDTH/375, 55*HEIGHT/667)];
     [self.view addSubview:cameraBtn];
 
-    NSString *path3 = [[NSBundle mainBundle] pathForResource:@"camera_nor.png" ofType:nil];
-    NSString *path4 = [[NSBundle mainBundle] pathForResource:@"camera_select.png" ofType:nil];
-    [cameraBtn setBackgroundImage:[UIImage imageWithContentsOfFile:path3] forState:UIControlStateNormal];
-    [cameraBtn setBackgroundImage:[UIImage imageWithContentsOfFile:path4] forState:UIControlStateHighlighted];
+    //NSString *path3 = [[NSBundle mainBundle] pathForResource:@"video" ofType:nil];
+    //NSString *path4 = [[NSBundle mainBundle] pathForResource:@"videoSelect" ofType:nil];
+    [cameraBtn setBackgroundImage:[UIImage imageNamed:@"video"] forState:UIControlStateNormal];
+    [cameraBtn setBackgroundImage:[UIImage imageNamed:@"videoSelect"] forState:UIControlStateHighlighted];
     [cameraBtn addTarget:self action:@selector(gotoVideoListView) forControlEvents:UIControlEventTouchUpInside];
     
 //    UIImageView *locationImage = [[UIImageView alloc]initWithFrame:CGRectMake(20*WIDTH/375, 44*HEIGHT/667, 110*WIDTH/375, 110*HEIGHT/667)];
@@ -331,12 +332,12 @@
     
         stateLab.text = @"未部防";
         stateLab.textColor = [UIColor redColor];
-        chefangBtn.hidden = YES;
+        
     }else if ([onLineStatus isEqualToString:@"TRUE"]){
     
         stateLab.text = @"已部防";
         stateLab.textColor = [UIColor greenColor];
-        bufangBtn.hidden = YES;
+        
     }
 
 }
@@ -379,10 +380,8 @@
     [SVProgressHUD showSuccessWithStatus:@"布防成功！" maskType:SVProgressHUDMaskTypeBlack];
     stateLab.text = @"已部防";
     stateLab.textColor = [UIColor greenColor];
-    bufangBtn.hidden = YES;
-    chefangBtn.hidden = NO;
     
-    timer = [NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(getUserHostInfo) userInfo:nil repeats:YES];
+    //timer = [NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(getUserHostInfo) userInfo:nil repeats:YES];
 
 }
 
@@ -425,9 +424,7 @@
     [SVProgressHUD showSuccessWithStatus:@"撤防成功！" maskType:SVProgressHUDMaskTypeBlack];
     stateLab.text = @"未部防";
     stateLab.textColor = [UIColor redColor];
-    bufangBtn.hidden = NO;
-    chefangBtn.hidden = YES;
-    timer = [NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(getUserHostInfo) userInfo:nil repeats:YES];
+    //timer = [NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(getUserHostInfo) userInfo:nil repeats:YES];
 
 }
 

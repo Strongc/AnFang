@@ -39,7 +39,7 @@
         timeLab.font = [UIFont systemFontOfSize:14*WIDTH/375];
         [self.contentView addSubview:timeLab];
         self.timeLab = timeLab;
-        self.contentView.backgroundColor = [UIColor colorWithHexString:@"ededed"];
+        //self.contentView.backgroundColor = [UIColor colorWithHexString:@"ededed"];
         
         UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(15*WIDTH/375, 24*HEIGHT/667, WIDTH-30*WIDTH/375, 44*HEIGHT/667)];
         backgroundView.backgroundColor = [UIColor whiteColor];
@@ -77,6 +77,7 @@
         
     }
     
+     self.backgroundColor = [UIColor clearColor];
      return self;
     
 }

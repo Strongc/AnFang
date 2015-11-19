@@ -19,7 +19,7 @@
         _titleLab = [[UILabel alloc]init];
         _titleLab.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
         _titleLab.textAlignment = NSTextAlignmentCenter;
-        _titleLab.textColor = [UIColor blueColor];
+        _titleLab.font = [UIFont fontWithName:@"MicrosoftYaHei" size:24];
         _titleLab.backgroundColor = [UIColor colorWithHexString:@"ffd700"];
         [self addSubview:_titleLab];
         

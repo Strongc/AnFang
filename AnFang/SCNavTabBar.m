@@ -101,14 +101,14 @@
 
 - (CGFloat)contentWidthAndAddNavTabBarItemsWithButtonsWidth:(NSArray *)widths
 {
-    CGFloat buttonX = 10*WIDTH/375;
+    CGFloat buttonX = 5*WIDTH/375;
     for (NSInteger index = 0; index < [_itemTitles count]; index++)
     {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(buttonX, 5.0, ([widths[index] floatValue]-25)*WIDTH/375, 30*WIDTH/375);
+        button.frame = CGRectMake(buttonX, 5.0, ([widths[index] floatValue]-15)*WIDTH/375, 30*WIDTH/375);
         [button setTitle:_itemTitles[index] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
-        button.titleLabel.font = [UIFont boldSystemFontOfSize:15*WIDTH/375];
+        //[button setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
+        button.titleLabel.font = [UIFont fontWithName:@"MicrosoftYaHei" size:22*WIDTH/375];
         [button setTitleColor:[UIColor greenColor] forState:UIControlStateSelected];
         [button addTarget:self action:@selector(itemPressed:) forControlEvents:UIControlEventTouchUpInside];
         //button.backgroundColor = [UIColor redColor];

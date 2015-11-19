@@ -45,26 +45,29 @@ static void *_vpHandle = NULL;
     self.view.backgroundColor = [UIColor whiteColor];
     self.headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
     self.headView.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
-    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20*HEIGHT/667, WIDTH, 50*HEIGHT/667)];
+    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, WIDTH, 44)];
+    [self.headView addSubview:navView];
+    //navView.backgroundColor = [UIColor blueColor];
+    
+    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, WIDTH, 30)];
     title.textAlignment = NSTextAlignmentCenter;
     title.text = @"视频";
-    title.textColor = [UIColor whiteColor];
-    [self.headView addSubview:title];
+    title.font = [UIFont fontWithName:@"MicrosoftYaHei" size:28];
+    [navView addSubview:title];
     [self.view addSubview:self.headView];
     
-    self.backBtn = [[UIButton alloc] initWithFrame:CGRectMake(10*WIDTH/375, 30*HEIGHT/667, 60*WIDTH/375, 30*HEIGHT/667)];
-    UILabel *backTitle = [[UILabel alloc]initWithFrame:CGRectMake(18*WIDTH/375, 7*HEIGHT/667, 32, 16)];
+    self.backBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 80, 50)];
+    UILabel *backTitle = [[UILabel alloc]initWithFrame:CGRectMake(5, 7, 60, 16)];
     backTitle.textAlignment = NSTextAlignmentCenter;
     backTitle.text = @"返回";
-    backTitle.font = [UIFont systemFontOfSize:16];
-    backTitle.textColor = [UIColor whiteColor];
+    backTitle.font = [UIFont fontWithName:@"MicrosoftYaHei" size:28];
     [self.backBtn addSubview:backTitle];
     
-    UIImageView *backImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 5*HEIGHT/667, 20, 20)];
+    UIImageView *backImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 5, 20, 20)];
     backImage.image = [UIImage imageNamed:@"back.png"];
     [self.backBtn addSubview:backImage];
     [self.backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.backBtn];
+    [navView addSubview:self.backBtn];
 
     [self initViewControllerData];
     
@@ -99,7 +102,7 @@ static void *_vpHandle = NULL;
     if(toInterfaceOrientation == UIInterfaceOrientationLandscapeRight ){
        [[NSNotificationCenter defaultCenter] postNotificationName:@"hideTabBar" object:nil];
         [self.headView removeFromSuperview];
-        [self.backBtn removeFromSuperview];
+        //[self.backBtn removeFromSuperview];
         self.backgroundView.hidden = YES;
         self.playView.transform = CGAffineTransformMakeRotation(M_PI * 2);
        // w = 600*HEIGHT/667;
@@ -129,7 +132,7 @@ static void *_vpHandle = NULL;
     else if (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft){
         [[NSNotificationCenter defaultCenter] postNotificationName:@"hideTabBar" object:nil];
         [self.headView removeFromSuperview];
-        [self.backBtn removeFromSuperview];
+        //[self.backBtn removeFromSuperview];
         self.backgroundView.hidden = YES;
         self.playView.transform = CGAffineTransformMakeRotation(M_PI * 2);
         w = WIDTH;
@@ -158,13 +161,13 @@ static void *_vpHandle = NULL;
        [[NSNotificationCenter defaultCenter] postNotificationName:@"showTabBar" object:nil];
         //[self.playViewLands removeFromSuperview];
         [self.view addSubview:self.headView];
-        [self.view addSubview:self.backBtn];
+        //[self.view addSubview:self.backBtn];
        // self.playView.hidden = NO;
         self.playView.transform = CGAffineTransformMakeRotation(0);
         w = WIDTH;
         h = 300;
         x = 0;
-        y = 65;
+        y = 64;
         self.playView.frame = CGRectMake(x, y, w, h);
         self.backgroundView.frame = CGRectMake(0, 370, WIDTH, 200);
         self.backgroundView.hidden = NO;
@@ -191,7 +194,7 @@ static void *_vpHandle = NULL;
 {
     
     self.playView = [[UIView alloc] init];
-    self.playView.frame = CGRectMake(0, 65, WIDTH, 300);
+    self.playView.frame = CGRectMake(0, 64, WIDTH, 300);
     [self.view addSubview:self.playView];
     self.playView.backgroundColor = [UIColor blackColor];
     

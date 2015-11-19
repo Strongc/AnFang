@@ -6,7 +6,6 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "信息.png",
       "scale" : "2x"
     },
     {
@@ -19,6 +18,7 @@
     },
     {
       "idiom" : "iphone",
+      "filename" : "信息.png",
       "scale" : "2x"
     },
     {

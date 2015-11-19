@@ -638,7 +638,7 @@
         <!--资讯-->
         <scene sceneID="32t-a8-7i8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wwP-zW-rxF" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="wwP-zW-rxF" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="资讯" image="messagenor" id="ghQ-79-wNp"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -647,7 +647,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.90588235294117647" green="0.49238827955537279" blue="0.096479422027333159" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" name="HoeflerText-Regular" family="Hoefler Text" pointSize="28"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -826,7 +826,7 @@
         <!--Navigation Controller-->
         <scene sceneID="XrR-nm-SOO">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hyQ-vJ-aCz" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="hyQ-vJ-aCz" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="29H-Tf-6LO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1027,10 +1027,10 @@
     <resources>
         <image name="22" width="40" height="40"/>
         <image name="55" width="40" height="40"/>
-        <image name="anfangnor" width="20" height="20"/>
-        <image name="businessnor" width="20" height="20"/>
-        <image name="messagenor" width="20" height="20"/>
-        <image name="publicnor" width="20" height="20"/>
-        <image name="setnor" width="20" height="20"/>
+        <image name="anfangnor" width="30" height="30"/>
+        <image name="businessnor" width="30" height="30"/>
+        <image name="messagenor" width="30" height="30"/>
+        <image name="publicnor" width="30" height="30"/>
+        <image name="setnor" width="30" height="30"/>
     </resources>
 </document>

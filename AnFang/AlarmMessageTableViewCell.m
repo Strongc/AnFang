@@ -62,14 +62,14 @@
         lab.backgroundColor = [UIColor whiteColor];
         
         UIImageView *areaImage = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 50, 60*HEIGHT/667)];
-        areaImage.image = [UIImage imageNamed:@"alarm.png"];
+        areaImage.image = [UIImage imageNamed:@"alert"];
         [self.contentView addSubview:areaImage];
         //self.areaImage = areaImage;
         
         UILabel *messageTime = [[UILabel alloc]initWithFrame:CGRectMake(90, 15, 200, 15)];
         //messageTime.text = @"2015-5-21  23:25";
         messageTime.textColor = [UIColor blackColor];
-        messageTime.font = [UIFont systemFontOfSize:14];
+        messageTime.font = [UIFont fontWithName:@"MicrosoftYaHei" size:18];
         [self.contentView addSubview:messageTime];
         self.messageTime = messageTime;
         
@@ -77,11 +77,11 @@
         //areaDetailInfo.text = @"食堂防区异常";
         //areaDetailInfo.numberOfLines = 0;
         areaDetailInfo.textColor = [UIColor blackColor];
-        areaDetailInfo.font = [UIFont systemFontOfSize:12];
+        areaDetailInfo.font = [UIFont fontWithName:@"MicrosoftYaHei" size:18];
         [self.contentView addSubview:areaDetailInfo];
         self.messageInfo = areaDetailInfo;
         
-        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 64*HEIGHT/667, WIDTH, 1.0)];
+        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 70, WIDTH, 1.0)];
         line.backgroundColor = [UIColor grayColor];
         [self.contentView addSubview:line];
         

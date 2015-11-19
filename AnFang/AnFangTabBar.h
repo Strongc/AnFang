@@ -40,6 +40,7 @@
 @property (nonatomic, strong)   UIColor     *lineColor;                 // set the underscore color
 @property (nonatomic, strong)   UIImage     *arrowImage;
 @property (nonatomic, strong)   NSArray     *itemImageArray;
+@property (nonatomic, strong)   NSArray     *itemImageSelectArray;
 // set arrow button's image
 
 //@property (nonatomic,strong) UIButton *backBtn;

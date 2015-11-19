@@ -55,7 +55,7 @@
         messageLab.font = [UIFont systemFontOfSize:12*WIDTH/375];
         [backgroundView addSubview:messageLab];
         self.messageLab = messageLab;
-        self.contentView.backgroundColor = [UIColor colorWithHexString:@"ededed"];
+        //self.contentView.backgroundColor = [UIColor colorWithHexString:@"ededed"];
         
         UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(5*WIDTH/375, 5*HEIGHT/667, 60*WIDTH/375, 20*HEIGHT/667)];
         [backgroundView addSubview:titleLab];
@@ -86,7 +86,7 @@
         stateLab.font = [UIFont boldSystemFontOfSize:12*WIDTH/375];
         
     }
-    
+    self.backgroundColor = [UIColor clearColor];
     return self;
     
 }

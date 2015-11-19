@@ -201,14 +201,18 @@
     MyAudioRecorder = [[AVAudioRecorder alloc]init];
     _currentRow = -1;
     voicePathArray = [[NSMutableArray alloc]init];
-    self.view.backgroundColor = [UIColor colorWithHexString:@"ededed"];
+    self.view.backgroundColor = [UIColor clearColor];
     [self ConfigControl];
+    UIImageView *backGround = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-64-49)];
+    backGround.image = [UIImage imageNamed:@"anfangBack"];
+    [self.view addSubview:backGround];
+
     helpMessage = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,WIDTH, 360*HEIGHT/667) style:UITableViewStylePlain];
     [self.view addSubview:helpMessage];
     helpMessage.delegate = self;
     helpMessage.dataSource = self;
     helpMessage.separatorStyle = UITableViewCellSeparatorStyleNone;
-    helpMessage.backgroundColor = [UIColor colorWithHexString:@"ededed"];
+    helpMessage.backgroundColor = [UIColor clearColor];
   
     pickImageViewController.delegate = self;
     //_photoAlarmData = [[NSMutableArray alloc] init];
@@ -262,7 +266,7 @@
     IFView = [[UUInputFunctionView alloc]initWithSuperVC:self];
     IFView.delegate = self;
     [self.view addSubview:IFView];
-
+    
     UIView *alarmView = [[UIView alloc]initWithFrame:CGRectMake(15*WIDTH/375, 380*HEIGHT/667, WIDTH-30*WIDTH/375, 150*HEIGHT/667)];
     alarmView.backgroundColor = [UIColor colorWithHexString:@"bababa"];
    // [self.view addSubview:alarmView];
@@ -285,13 +289,13 @@
     [alarmBtn addTarget:self action:@selector(KeyAlarm) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:alarmBtn];
     
-    UIButton *addBtn = [[UIButton alloc]initWithFrame:CGRectMake(300*WIDTH/375, 380*HEIGHT/667, 50*WIDTH/375, 50*HEIGHT/667)];
+    UIButton *addBtn = [[UIButton alloc]initWithFrame:CGRectMake(300*WIDTH/375, 5, 50*WIDTH/375, 50*HEIGHT/667)];
     UIImageView *addImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 50*WIDTH/375, 50*HEIGHT/667)];
    // addBtn.backgroundColor = [UIColor blueColor];
     addImage.image = [UIImage imageNamed:@"Chat_take_picture.png"];
     [addBtn addSubview:addImage];
     [addBtn addTarget:self action:@selector(AddPhotoImage) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:addBtn];
+    [IFView addSubview:addBtn];
     
       // playProgress.hidden = YES;
    // [self.view addSubview:playProgress];
@@ -483,7 +487,6 @@
             
             voicecell = [[UUMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellID"];
             voicecell.accessoryType = UITableViewCellAccessoryNone;
-            voicecell.backgroundColor = [UIColor colorWithHexString:@"ededed"];
             voicecell.selectionStyle = UITableViewCellSelectionStyleNone;
             voicecell.delegate = self;
         }
