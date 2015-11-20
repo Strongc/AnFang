@@ -187,9 +187,9 @@
     SystemMessageModel *model = [self.sysMessageArray objectAtIndex:indexPath.row];
     cell.sysMessage = model;
    // NSString *msgId = model.messageId;
-    [cell.checkBtn setTag:indexPath.row];
+   // [cell.checkBtn setTag:indexPath.row];
    // [cell.checkBtn addT];
-    [cell.checkBtn addTarget:self action:@selector(jumpToDetailView:) forControlEvents:UIControlEventTouchUpInside];
+    //[cell.checkBtn addTarget:self action:@selector(jumpToDetailView:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
     
@@ -205,27 +205,21 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    // DeviceManagerViewController *defenceArea = [mainView instantiateViewControllerWithIdentifier:@"deviceManagerId"];
-    // self.navigationController.navigationBarHidden = NO;
-    // [self.navigationController pushViewController:defenceArea animated:YES];
-    
-}
-
--(void)jumpToDetailView:(id)sender
-{
-    NSInteger n = [sender tag];
-    
     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     AlarmMessageDetailViewController *detailView = [mainView instantiateViewControllerWithIdentifier:@"alarmMessageDetailId"];
     
-    SystemMessageModel *model = [self.sysMessageArray objectAtIndex: n];
+    SystemMessageModel *model = [self.sysMessageArray objectAtIndex:indexPath.row];
     NSString *msgId = model.messageId;
     detailView.messageId = msgId;
     [self.navigationController pushViewController:detailView animated:YES];
     
 }
 
+//-(void)jumpToDetailView
+//{
+//   // NSInteger n = [sender tag];
+//}
+//
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

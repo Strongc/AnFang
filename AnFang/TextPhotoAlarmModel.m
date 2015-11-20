@@ -12,7 +12,7 @@
 
 -(TextPhotoAlarmModel *) initWithDict:(NSDictionary *)dict
 {
-    NSString *const CMAPIBaseURL = @"http://192.168.0.131:8080";
+    NSString *const CMAPIBaseURL = @"http://192.168.0.44:8080";
     if(self = [super init]){
        
         NSString *dictUrl = dict[@"image_url"];
@@ -20,6 +20,16 @@
         self.time = dict[@"createDate"];
         
         if(dictUrl != nil){
+            //NSMutableString *str = [NSMutableString stringWithString:dictUrl];
+//            NSRange range = NSMakeRange(0, [str length]);
+//            for (int i = 0; i < str.length; i ++) {
+//               NSString *character = [str substringWithRange:NSMakeRange(i, 1)];
+//                if ([character isEqualToString:@"/"]){
+//                    [str replaceOccurrencesOfString:character withString:@"\\" options:NSCaseInsensitiveSearch range:range ];
+//                }
+//            }
+//            
+            NSLog(@"dsffdfdfddfdfdfdffd%@",dictUrl);
              self.imageUrl = [CMAPIBaseURL stringByAppendingString:dictUrl];
         }
        

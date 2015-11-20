@@ -197,8 +197,6 @@
 		04E5239F1BCF925600F3D0CC /* KeyAlarmCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5239E1BCF925600F3D0CC /* KeyAlarmCell.m */; };
 		04E523A21BCFAA8D00F3D0CC /* PhotoAlarmCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E523A11BCFAA8D00F3D0CC /* PhotoAlarmCell.m */; };
 		282FF0EDADFEBDBE80FAC796 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6563E09E4651676361820012 /* libPods.a */; };
-		3E01FCA41BFC870A00B3975A /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E01FCA21BFC870A00B3975A /* login.png */; };
-		3E01FCA51BFC870A00B3975A /* loginPress.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E01FCA31BFC870A00B3975A /* loginPress.png */; };
 		3E02EF941BEDD0FF00390C49 /* NewFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E02EF931BEDD0FF00390C49 /* NewFeatureViewController.m */; };
 		3E02EF971BEDD3C100390C49 /* LoginNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E02EF961BEDD3C100390C49 /* LoginNavigationViewController.m */; };
 		3E02EF991BEDDC2200390C49 /* newFeature_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E02EF981BEDDC2200390C49 /* newFeature_3.png */; };
@@ -226,6 +224,8 @@
 		3E6A75921BEC690000113360 /* base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6A75911BEC690000113360 /* base64.m */; };
 		3E6A75E31BEC810600113360 /* CCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6A75E01BEC810600113360 /* CCLocationManager.m */; };
 		3E6A75E41BEC810600113360 /* CLLocation+YCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6A75E21BEC810600113360 /* CLLocation+YCLocation.m */; };
+		3E6A864A1BFEE4D200CE31DA /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E6A86481BFEE4D200CE31DA /* login.png */; };
+		3E6A864B1BFEE4D200CE31DA /* loginPress.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E6A86491BFEE4D200CE31DA /* loginPress.png */; };
 		3E71991E1BF9D6B20001098E /* 收藏夹.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E7199191BF9D6B20001098E /* 收藏夹.png */; };
 		3E71991F1BF9D6B20001098E /* 我的行业.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E71991A1BF9D6B20001098E /* 我的行业.png */; };
 		3E7199201BF9D6B20001098E /* 系统设置.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E71991B1BF9D6B20001098E /* 系统设置.png */; };
@@ -643,8 +643,6 @@
 		04E5239E1BCF925600F3D0CC /* KeyAlarmCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyAlarmCell.m; sourceTree = "<group>"; };
 		04E523A01BCFAA8D00F3D0CC /* PhotoAlarmCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoAlarmCell.h; sourceTree = "<group>"; };
 		04E523A11BCFAA8D00F3D0CC /* PhotoAlarmCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoAlarmCell.m; sourceTree = "<group>"; };
-		3E01FCA21BFC870A00B3975A /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
-		3E01FCA31BFC870A00B3975A /* loginPress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginPress.png; sourceTree = "<group>"; };
 		3E02EF921BEDD0FF00390C49 /* NewFeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeatureViewController.h; sourceTree = "<group>"; };
 		3E02EF931BEDD0FF00390C49 /* NewFeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeatureViewController.m; sourceTree = "<group>"; };
 		3E02EF951BEDD3C100390C49 /* LoginNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginNavigationViewController.h; sourceTree = "<group>"; };
@@ -761,6 +759,8 @@
 		3E6A75E01BEC810600113360 /* CCLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLocationManager.m; sourceTree = "<group>"; };
 		3E6A75E11BEC810600113360 /* CLLocation+YCLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+YCLocation.h"; sourceTree = "<group>"; };
 		3E6A75E21BEC810600113360 /* CLLocation+YCLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+YCLocation.m"; sourceTree = "<group>"; };
+		3E6A86481BFEE4D200CE31DA /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
+		3E6A86491BFEE4D200CE31DA /* loginPress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginPress.png; sourceTree = "<group>"; };
 		3E7199191BF9D6B20001098E /* 收藏夹.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "收藏夹.png"; sourceTree = "<group>"; };
 		3E71991A1BF9D6B20001098E /* 我的行业.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我的行业.png"; sourceTree = "<group>"; };
 		3E71991B1BF9D6B20001098E /* 系统设置.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "系统设置.png"; sourceTree = "<group>"; };
@@ -1090,8 +1090,8 @@
 		04801E281BB3C15C00714CC9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3E01FCA21BFC870A00B3975A /* login.png */,
-				3E01FCA31BFC870A00B3975A /* loginPress.png */,
+				3E6A86481BFEE4D200CE31DA /* login.png */,
+				3E6A86491BFEE4D200CE31DA /* loginPress.png */,
 				3E7199191BF9D6B20001098E /* 收藏夹.png */,
 				3E71991A1BF9D6B20001098E /* 我的行业.png */,
 				3E71991B1BF9D6B20001098E /* 系统设置.png */,
@@ -2179,16 +2179,15 @@
 				3EF9918C1BF32F1800832B4F /* chefang_select.png in Resources */,
 				04DEDA191BE0946800116789 /* 兰溪移动_公司大门进出口.jpg in Resources */,
 				04801EB91BB3CE1500714CC9 /* backward_disable@2x.png in Resources */,
+				3E6A864B1BFEE4D200CE31DA /* loginPress.png in Resources */,
 				045595DC1BCF77CB00BB5094 /* anfang.png in Resources */,
 				04801ED11BB3CE2F00714CC9 /* fast_forward_disable@2x.png in Resources */,
 				04801ECF1BB3CE2F00714CC9 /* down.jpg in Resources */,
 				04DEDA061BE06EE100116789 /* fs_icon_wave_1.png in Resources */,
 				04E4002A1BB903AE0098F2D4 /* MonitorArea.plist in Resources */,
-				3E01FCA51BFC870A00B3975A /* loginPress.png in Resources */,
 				04801F201BB3CE6D00714CC9 /* play_nor@2x.png in Resources */,
 				04801F1D1BB3CE6D00714CC9 /* pause_nor@2x.png in Resources */,
 				3EF9918A1BF32F1800832B4F /* camera_select.png in Resources */,
-				3E01FCA41BFC870A00B3975A /* login.png in Resources */,
 				04801ED01BB3CE2F00714CC9 /* fast_backward_disable@2x.png in Resources */,
 				04DEDA211BE0961800116789 /* 浙江大学附属第四医院.jpg in Resources */,
 				04DEDA041BE06EE100116789 /* fs_chat_bubble.png in Resources */,
@@ -2218,6 +2217,7 @@
 				04DEDA071BE06EE100116789 /* fs_icon_wave_2.png in Resources */,
 				3E7199211BF9D6B20001098E /* 意见反馈.png in Resources */,
 				04801F1C1BB3CE6D00714CC9 /* pause_disable@2x.png in Resources */,
+				3E6A864A1BFEE4D200CE31DA /* login.png in Resources */,
 				043FB7AB1BCCDA3C006C96A1 /* public_key.der in Resources */,
 				04801F451BB3CE6D00714CC9 /* video_num_front@2x.png in Resources */,
 				3EF991881BF32F1800832B4F /* bufang_select.png in Resources */,
@@ -2578,6 +2578,7 @@
 			baseConfigurationReference = F3C40336A7B22936EFB1F1AE /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets-2";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -2644,6 +2645,7 @@
 			baseConfigurationReference = 815A5FE989008A8FD1FBBB82 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets-2";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;

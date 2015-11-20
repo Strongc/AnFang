@@ -132,7 +132,7 @@
     
     UIImageView *background = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
     [self.view addSubview:background];
-    background.image = [UIImage imageNamed:@"background"];
+    background.image = [UIImage imageNamed:@"anfangBack"];
     
 //    UIView *blueLine = [[UIView alloc]initWithFrame:CGRectMake(0, 430*HEIGHT/667, WIDTH, 3.0)];
 //    [self.view addSubview:blueLine];
@@ -151,7 +151,7 @@
     [stateBtn setBackgroundImage:[UIImage imageNamed:@"state"] forState:UIControlStateNormal];
     //[stateBtn setBackgroundImage:[UIImage imageWithContentsOfFile:pathSelected] forState:UIControlStateHighlighted];
     [self.view addSubview:stateBtn];
-    [stateBtn addTarget:self action:@selector(getUserHostInfo) forControlEvents:UIControlEventTouchUpInside];
+    //[stateBtn addTarget:self action:@selector(getUserHostInfo) forControlEvents:UIControlEventTouchUpInside];
     
     stateLab = [[UILabel alloc]initWithFrame:CGRectMake(150*WIDTH/375, 140*HEIGHT/667, 60*WIDTH/375, 20*HEIGHT/667)];
     stateLab.text = @"已部防";

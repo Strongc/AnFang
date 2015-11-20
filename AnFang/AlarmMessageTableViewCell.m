@@ -37,9 +37,9 @@
     
     self.messageTime.text = alarmMessage.time;
     self.messageInfo.text = alarmMessage.content;
-  
+    self.messageSource.text = alarmMessage.messageSource;
+    
 }
-
 
 -(void)setSysMessage:(SystemMessageModel *)sysMessage
 {
@@ -47,6 +47,7 @@
     _sysMessage = sysMessage;
     self.messageInfo.text = sysMessage.content;
     self.messageTime.text = sysMessage.time;
+    self.messageSource.text = sysMessage.messageSource;
 
 }
 
@@ -57,27 +58,34 @@
     
     if(self){
         
-        UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(5, 5,WIDTH-10, 60)];
-       // [self.contentView addSubview:lab];
-        lab.backgroundColor = [UIColor whiteColor];
+        UILabel *messageSource = [[UILabel alloc] initWithFrame:CGRectMake(70, 5,WIDTH-80, 30)];
+        [self.contentView addSubview:messageSource];
+        messageSource.font = [UIFont systemFontOfSize:20];
+        messageSource.textColor = [UIColor blueColor];
+        self.messageSource = messageSource;
         
-        UIImageView *areaImage = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 50, 60*HEIGHT/667)];
+        UILabel *timeLab = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH-80, 10, 60, 15)];
+        [self.contentView addSubview:timeLab];
+        timeLab.font = [UIFont systemFontOfSize:13];
+        timeLab.text = @"更新时间";
+        
+        UIImageView *areaImage = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 50, 50*HEIGHT/667)];
         areaImage.image = [UIImage imageNamed:@"alert"];
         [self.contentView addSubview:areaImage];
         //self.areaImage = areaImage;
         
-        UILabel *messageTime = [[UILabel alloc]initWithFrame:CGRectMake(90, 15, 200, 15)];
+        UILabel *messageTime = [[UILabel alloc]initWithFrame:CGRectMake(WIDTH-140, 40, 130, 12)];
         //messageTime.text = @"2015-5-21  23:25";
         messageTime.textColor = [UIColor blackColor];
-        messageTime.font = [UIFont fontWithName:@"MicrosoftYaHei" size:18];
+        messageTime.font = [UIFont systemFontOfSize:12];
         [self.contentView addSubview:messageTime];
         self.messageTime = messageTime;
         
-        UILabel *areaDetailInfo = [[UILabel alloc]initWithFrame:CGRectMake(80*WIDTH/375, 26, 200*WIDTH/375, 40)];
+        UILabel *areaDetailInfo = [[UILabel alloc]initWithFrame:CGRectMake(80*WIDTH/375, 26, 100, 40)];
         //areaDetailInfo.text = @"食堂防区异常";
         //areaDetailInfo.numberOfLines = 0;
         areaDetailInfo.textColor = [UIColor blackColor];
-        areaDetailInfo.font = [UIFont fontWithName:@"MicrosoftYaHei" size:18];
+        areaDetailInfo.font = [UIFont fontWithName:@"MicrosoftYaHei" size:16];
         [self.contentView addSubview:areaDetailInfo];
         self.messageInfo = areaDetailInfo;
         
@@ -85,13 +93,13 @@
         line.backgroundColor = [UIColor grayColor];
         [self.contentView addSubview:line];
         
-        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(280*WIDTH/375, 40*HEIGHT/667, 90*WIDTH/375, 14*HEIGHT/667)];
-        
-        [btn setTitle:@"点击查看详情" forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor colorWithHexString:@"a9a9a9"] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:13*WIDTH/375];
-        [self.contentView addSubview:btn];
-        self.checkBtn = btn;
+//        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(280*WIDTH/375, 40*HEIGHT/667, 90*WIDTH/375, 14*HEIGHT/667)];
+//        
+//        [btn setTitle:@"点击查看详情" forState:UIControlStateNormal];
+//        [btn setTitleColor:[UIColor colorWithHexString:@"a9a9a9"] forState:UIControlStateNormal];
+//        btn.titleLabel.font = [UIFont systemFontOfSize:13*WIDTH/375];
+//        [self.contentView addSubview:btn];
+//        self.checkBtn = btn;
         
         //self.areaDetailInfo = areaDetailInfo;
         

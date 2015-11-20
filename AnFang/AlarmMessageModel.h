@@ -13,6 +13,7 @@
 @property (nonatomic,copy) NSString *time;
 @property (nonatomic,copy) NSString *content;
 @property (nonatomic,copy) NSString *messageId;
+@property (nonatomic,copy) NSString *messageSource;
 
 -(instancetype ) initWithDict:(NSDictionary *)dict;
 +(instancetype ) AlarmMessageModelWithDict:(NSDictionary *)dict;

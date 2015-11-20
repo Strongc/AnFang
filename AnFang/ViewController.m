@@ -31,6 +31,7 @@
     NSString *message;
     NSMutableArray *userInfoArray;
     NSString *userId;
+    UIView *inputView;
     //NSString *userName;
    // NSMutableData *infoData;
 }
@@ -42,84 +43,97 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //infoData= [[NSMutableData alloc] init];
-//    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithHexString:@"1e90ff"]];
-//    [self.navigationController.navigationBar setFrame:CGRectMake(0, 0, WIDTH, 35)];
-   
-   // UIImageView *headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
-    //[headView setImage:[UIImage imageNamed:@"header_bg.png"]];
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
     headView.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, WIDTH, 50*HEIGHT/667)];
     title.textAlignment = NSTextAlignmentCenter;
     title.text = @"登录";
-    title.font = [UIFont fontWithName:@"MicrosoftYaHei" size:28];
+    title.font = [UIFont fontWithName:@"MicrosoftYaHei" size:24];
     //title.textColor = [UIColor colorWithHexString:@"ffffff"];
     [headView addSubview:title];
     [self.view addSubview:headView];
+    //[self.view setBackgroundColor:[UIColor colorWithHexString:@"fafafa"]];
+    UIImageView *backGroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-64)];
+    [self.view addSubview:backGroundImage];
+    backGroundImage.image = [UIImage imageNamed:@"loginBackGround"];
     
-    UIButton *regBtn = [[UIButton alloc]initWithFrame:CGRectMake(WIDTH-50, 15, 40, 40)];
-    [self.view addSubview:regBtn];
-    //[regBtn setTitle:@"注册" forState:UIControlStateNormal];
-    regBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    regBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [regBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    //[regBtn addTarget:self action:@selector(gotoRegisterView) forControlEvents:UIControlEventTouchUpInside];
+    UIImageView *logoImage = [[UIImageView alloc] initWithFrame:CGRectMake((WIDTH-60)/2, 75, 60, 60)];
+    [backGroundImage addSubview:logoImage];
+    logoImage.image = [UIImage imageNamed:@"logo"];
     
-    [self.view setBackgroundColor:[UIColor colorWithHexString:@"fafafa"]];
-    
-    UIView *inputView = [[UIView alloc] initWithFrame:CGRectMake(0, (headView.bottom+20), self.view.width, 100*HEIGHT/667)];
-    inputView.backgroundColor = [UIColor whiteColor];
+    inputView = [[UIView alloc] initWithFrame:CGRectMake(0, (headView.bottom+240), self.view.width, 101)];
+    //inputView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:inputView];
     
-    UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 1)];
-    line1.backgroundColor = [UIColor colorWithHexString:@"ededed"];
-    [inputView addSubview:line1];
+//    UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 1)];
+//    line1.backgroundColor = [UIColor colorWithHexString:@"ededed"];
+    //[inputView addSubview:line1];
     
-    UIView *line2  = [[UIView alloc] initWithFrame:CGRectMake(10*WIDTH/375, 50*WIDTH/375, self.view.width-20*WIDTH/375, 1)];
-    line2.backgroundColor = [UIColor colorWithHexString:@"ededed"];
+    UILabel *nameTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 48, 50)];
+    [inputView addSubview:nameTitle];
+    nameTitle.textAlignment = NSTextAlignmentCenter;
+    nameTitle.text = @"账号";
+    nameTitle.font = [UIFont fontWithName:@"MicrosoftYaHei" size:24];
+    
+    UIView *line2  = [[UIView alloc] initWithFrame:CGRectMake(35, 50, self.view.width-70, 1)];
+    line2.backgroundColor = [UIColor colorWithHexString:@"323232"];
     [inputView addSubview:line2];
     
-    UIView *line3 = [[UIView alloc] initWithFrame:CGRectMake(0,100*WIDTH/375, self.view.width, 1)];
-    line3.backgroundColor = [UIColor colorWithHexString:@"ededed"];
+    UILabel *passwordTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, 51, 48, 50)];
+    [inputView addSubview:passwordTitle];
+    passwordTitle.textAlignment = NSTextAlignmentCenter;
+    passwordTitle.text = @"密码";
+    passwordTitle.font = [UIFont fontWithName:@"MicrosoftYaHei" size:24];
+    
+    UIView *line3 = [[UIView alloc] initWithFrame:CGRectMake(35,100, self.view.width-70, 1)];
+    line3.backgroundColor = [UIColor colorWithHexString:@"323232"];
     [inputView addSubview:line3];
     
-    loginBtn = [[UIButton alloc] initWithFrame:CGRectMake((WIDTH-190)/2, 220*WIDTH/375, 190, 60)];
+    loginBtn = [[UIButton alloc] initWithFrame:CGRectMake((WIDTH-190)/2, inputView.frame.size.height + inputView.frame.origin.y + 44, 190, 45)];
     
-    UILabel *title2 = [[UILabel alloc]initWithFrame:CGRectMake(150*WIDTH/375, 0, 40*WIDTH/375, 40*HEIGHT/667)];
+    UILabel *title2 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, loginBtn.frame.size.width, loginBtn.frame.size.height)];
     title2.text = @"登录";
-    title2.textColor = [UIColor whiteColor];
-    //[loginBtn addSubview:title2];
+    title2.textAlignment = NSTextAlignmentCenter;
+    [loginBtn addSubview:title2];
     [self.view addSubview:loginBtn];
     [loginBtn setBackgroundImage:[UIImage imageNamed:@"login.png"] forState:UIControlStateNormal];
     [loginBtn setBackgroundImage:[UIImage imageNamed:@"loginPress.png"] forState:UIControlStateHighlighted];
     [loginBtn addTarget:self action:@selector(initViewController) forControlEvents:UIControlEventTouchUpInside];
     
-    name = [[UITextField alloc] initWithFrame:CGRectMake(10*WIDTH/375, 5*WIDTH/375, self.view.width-20*WIDTH/375, 40*HEIGHT/667)];
+    name = [[UITextField alloc] initWithFrame:CGRectMake(100, 0, inputView.width-70, 50)];
     [inputView addSubview:name];
+    name.textColor = [UIColor colorWithHexString:@"323232"];
     name.placeholder = @"手机号/邮箱/用户名";
     
-    passWordField = [[UITextField alloc]initWithFrame:CGRectMake(10*WIDTH/375, 50*WIDTH/375, self.view.width-20*WIDTH/375, 40*HEIGHT/667)];
+    passWordField = [[UITextField alloc]initWithFrame:CGRectMake(100, 51, inputView.width-70, 50)];
     [inputView addSubview:passWordField];
-    passWordField.placeholder = @"密码";
+    passWordField.placeholder = @"请输入密码";
     passWordField.secureTextEntry = YES;
-    passWordField.keyboardType = UIKeyboardTypeNumberPad;
+    name.textColor = [UIColor colorWithHexString:@"4d4d4d"];
+    passWordField.keyboardType = UIKeyboardTypeDecimalPad;
     
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] init];
-    item.title = @"返回";
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];//设置导航栏返回按钮及文字背景颜色
-    self.navigationItem.backBarButtonItem = item;
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(keyBoardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+
+//    UIBarButtonItem *item = [[UIBarButtonItem alloc] init];
+//    item.title = @"返回";
+//    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];//设置导航栏返回按钮及文字背景颜色
+//    self.navigationItem.backBarButtonItem = item;
     userInfoArray = [[NSMutableArray alloc]init];
     
-//    UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(20, 400, WIDTH-40, 50)];
-//    [self.view addSubview:view1];
-//    view1.backgroundColor = [UIColor colorWithHexString:@"f0f0f0"];
-    //UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(60, 200, WIDTH-120, 120)];
-    //[self.view addSubview:imageView];
-    // NSURL *url = [NSURL URLWithString:@"http://192.168.0.40:8080/static/upload/image/201511160935427843.png"];
-    //[imageView setImageWithURL:url];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+//监听键盘弹出事件
+-(void)keyBoardWillChangeFrame:(NSNotification *)noteInfo
+{
+    
+    CGRect rectEnd = [noteInfo.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat keyboardY = rectEnd.origin.y - self.view.frame.size.height;
+    CGFloat tranformValue = keyboardY;
+    self.view.transform = CGAffineTransformMakeTranslation(0, tranformValue);
+    
+}
 
 -(void)initViewController
 {

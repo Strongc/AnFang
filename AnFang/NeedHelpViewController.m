@@ -585,7 +585,6 @@
          IFView.TextViewInput.text = nil;
     }
    
-    
 }
 
 //上传图片

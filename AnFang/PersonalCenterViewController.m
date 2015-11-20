@@ -225,14 +225,12 @@
     static NSString *reuseIdentifier = @"cell";
     
     PersonCenterTableViewCell *cell =(PersonCenterTableViewCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    
-    //cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-    // cell.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
-    
+
     if (cell == nil) {
         
         cell = [[PersonCenterTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     if(indexPath.section == 0){
         cell.cellImage.image = [UIImage imageNamed:[optionImage1 objectAtIndex:indexPath.row]];

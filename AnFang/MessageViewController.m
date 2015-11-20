@@ -51,19 +51,19 @@
     AlarmMessageViewController *alarmMessageView = [[AlarmMessageViewController alloc] init];
     SystemMessageViewController *systemMessageView = [[SystemMessageViewController alloc] init];
     UserMessageViewController *userMessageView = [[UserMessageViewController alloc]init];
-    BusinessMessageViewController *businessView = [[BusinessMessageViewController alloc]init];
+    //BusinessMessageViewController *businessView = [[BusinessMessageViewController alloc]init];
     
-    alarmMessageView.title = @"安防消息";
-    systemMessageView.title = @"温馨提醒";
-    userMessageView.title = @"资讯内容";
-    businessView.title = @"商业活动";
+    alarmMessageView.title = @"资讯";
+    systemMessageView.title = @"安防警示";
+    userMessageView.title = @"资费提醒";
+    //businessView.title = @"商业活动";
     
 //    MHTabBarController *tabBarController = [[MHTabBarController alloc] init];
 //    NSArray *viewControllers = [NSArray arrayWithObjects:alarmMessageView, systemMessageView, userMessageView, businessView,nil];
 //    tabBarController.delegate = self;
 //    tabBarController.viewControllers = viewControllers;
     SCNavTabBarController *navTabBarController = [[SCNavTabBarController alloc] init];
-    navTabBarController.subViewControllers = @[alarmMessageView, systemMessageView,userMessageView,businessView];
+    navTabBarController.subViewControllers = @[alarmMessageView, systemMessageView,userMessageView];
     [navTabBarController addParentController:self];
     
     UIButton *item = [navTabBarController.navTabBar.items objectAtIndex:1];
@@ -72,7 +72,7 @@
     
     NSInteger n = systemMessageView.amount;
     NSLog(@"数量：%ld",(long)n);
-    [item.badgeView setBadgeValue:2];
+    //[item.badgeView setBadgeValue:2];
 
 //    arMenu = @[@[@"建讨论组",@"menu_icon_createDiscuss.png"],
 //               @[@"多人通话",@"menu_icon_groupaudio.png"],

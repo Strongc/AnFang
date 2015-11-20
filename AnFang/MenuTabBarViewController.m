@@ -48,6 +48,7 @@
     
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithHexString:@"323232"],NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
     self.mainTabBar.tintColor = [UIColor colorWithHexString:@"323232"];
+    self.selectedIndex = 2;
     // Do any additional setup after loading the view.
 }
 

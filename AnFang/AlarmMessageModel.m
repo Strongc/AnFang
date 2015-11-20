@@ -15,10 +15,10 @@
 
     if(self = [super init]){
         
-        self.time = dict[@"createDate"];
+        self.time = dict[@"modifyDate"];
         self.content = dict[@"msg_content"];
         self.messageId = dict[@"msg_id"];
-        
+        self.messageSource = dict[@"msg_src"];
     }
     return self;
 

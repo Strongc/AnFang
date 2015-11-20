@@ -187,8 +187,8 @@
     
     AlarmMessageModel *model = [messageArray objectAtIndex:indexPath.row];
     cell.alarmMessage = model;
-    [cell.checkBtn setTag:indexPath.row];
-    [cell.checkBtn addTarget:self action:@selector(jumpToDetailView:) forControlEvents:UIControlEventTouchUpInside];
+    //[cell.checkBtn setTag:indexPath.row];
+    //[cell.checkBtn addTarget:self action:@selector(jumpToDetailView:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
     
@@ -205,20 +205,18 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-}
-
-
-
--(void)jumpToDetailView:(id)sender
-{
-     NSInteger n = [sender tag];
     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     AlarmMessageDetailViewController *detailView = [mainView instantiateViewControllerWithIdentifier:@"alarmMessageDetailId"];
-    AlarmMessageModel *model = [messageArray objectAtIndex:n];
+    AlarmMessageModel *model = [messageArray objectAtIndex:indexPath.row];
     detailView.messageId = model.messageId;
     [self.navigationController pushViewController:detailView animated:YES];
-
+    
 }
+
+//-(void)jumpToDetailView:(id)sender
+//{
+//     NSInteger n = [sender tag];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

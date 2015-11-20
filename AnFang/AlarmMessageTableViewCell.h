@@ -18,10 +18,11 @@
 /** 防区信息*/
 @property (nonatomic,weak) UILabel *messageInfo;
 
-@property (nonatomic,weak) UIButton *checkBtn;
+//@property (nonatomic,weak) UIButton *checkBtn;
 
 @property (nonatomic,strong) AlarmMessageModel *alarmMessage;
 
 @property (nonatomic,strong) SystemMessageModel *sysMessage;
-
+/** 资讯来源*/
+@property (nonatomic,weak) UILabel *messageSource;
 @end

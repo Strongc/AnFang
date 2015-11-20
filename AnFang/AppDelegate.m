@@ -39,6 +39,8 @@
     // Override point for customization after application launch.
     
     //初始化视频播放库
+    //[[UIApplication sharedApplication] setStatusBarHidden:NO];
+    //[UIViewController ]
     VP_InitSDK();
     //创建窗口
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -126,6 +128,14 @@
 {
 
     return  YES;
+}
+
+
+-(BOOL)prefersStatusBarHidden
+{
+    
+    return  NO;
+    
 }
 
 - (BOOL)application:(UIApplication *)application
