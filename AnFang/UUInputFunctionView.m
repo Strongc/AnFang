@@ -30,7 +30,7 @@
 {
     self.superVC = superVC;
     self.backgroundColor = [UIColor lightGrayColor];
-    CGRect frame = CGRectMake(0, Main_Screen_Height-64-150-49, Main_Screen_Width, 150);
+    CGRect frame = CGRectMake(0, Main_Screen_Height-64-80-49, Main_Screen_Width, 80);
     
     self = [super initWithFrame:frame];
     if (self) {
@@ -44,7 +44,7 @@
         [self.btnChangeVoiceState setBackgroundImage:[UIImage imageNamed:@"chat_voice_record.png"] forState:UIControlStateNormal];
         self.btnChangeVoiceState.titleLabel.font = [UIFont systemFontOfSize:12];
         [self.btnChangeVoiceState addTarget:self action:@selector(voiceRecord:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:self.btnChangeVoiceState];
+        //[self addSubview:self.btnChangeVoiceState];
 
         //语音录入键
         self.btnVoiceRecord = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -60,7 +60,7 @@
         [self.btnVoiceRecord addTarget:self action:@selector(cancelRecordVoice:) forControlEvents:UIControlEventTouchUpOutside | UIControlEventTouchCancel];
         [self.btnVoiceRecord addTarget:self action:@selector(RemindDragExit:) forControlEvents:UIControlEventTouchDragExit];
         [self.btnVoiceRecord addTarget:self action:@selector(RemindDragEnter:) forControlEvents:UIControlEventTouchDragEnter];
-        [self addSubview:self.btnVoiceRecord];
+        //[self addSubview:self.btnVoiceRecord];
         
         //输入框
         self.TextViewInput = [[UITextView alloc]initWithFrame:CGRectMake(60, 70, Main_Screen_Width-2*60, 60)];
@@ -69,7 +69,7 @@
         self.TextViewInput.delegate = self;
         self.TextViewInput.layer.borderWidth = 1;
         self.TextViewInput.layer.borderColor = [[[UIColor lightGrayColor] colorWithAlphaComponent:0.4] CGColor];
-        [self addSubview:self.TextViewInput];
+       // [self addSubview:self.TextViewInput];
         
         //输入框的提示语
         placeHold = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, 200, 30)];

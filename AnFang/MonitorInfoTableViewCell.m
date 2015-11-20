@@ -37,19 +37,19 @@
 //        [self.contentView addSubview:lab];
 //        lab.backgroundColor = [UIColor whiteColor];
         
-        UIImageView *areaImage = [[UIImageView alloc]initWithFrame:CGRectMake(16*WIDTH/375, 9*HEIGHT/667, 60*WIDTH/375, 50*HEIGHT/667)];
-        areaImage.image = [UIImage imageNamed:@"dev.png"];
+        UIImageView *areaImage = [[UIImageView alloc]initWithFrame:CGRectMake(16, 20, 60*WIDTH/375, 50*HEIGHT/667)];
+        areaImage.image = [UIImage imageNamed:@"videoSelect"];
         [self.contentView addSubview:areaImage];
         self.devImage = areaImage;
         
-        UILabel *areaName = [[UILabel alloc]initWithFrame:CGRectMake(90*WIDTH/375, 15*HEIGHT/667, 200*WIDTH/375, 15*HEIGHT/667)];
+        UILabel *areaName = [[UILabel alloc]initWithFrame:CGRectMake(90, 30, 200*WIDTH/375, 15*HEIGHT/667)];
         //areaName.text = @"大楼西侧朝南监控";
-        areaName.textColor = [UIColor colorWithHexString:@"666666"];
-        areaName.font = [UIFont systemFontOfSize:14*WIDTH/375];
+        areaName.font = [UIFont fontWithName:@"MicrosoftYaHei" size:20];
+        areaName.font = [UIFont systemFontOfSize:18];
         [self.contentView addSubview:areaName];
         self.devName = areaName;
         
-        UILabel *areaDetailInfo = [[UILabel alloc]initWithFrame:CGRectMake(90*WIDTH/375, 26*HEIGHT/667, 230*WIDTH/375, 40*HEIGHT/667)];
+        UILabel *areaDetailInfo = [[UILabel alloc]initWithFrame:CGRectMake(90, 26, 230*WIDTH/375, 40*HEIGHT/667)];
         //areaDetailInfo.text = @"工作正常";
         //areaDetailInfo.numberOfLines = 0;
         areaDetailInfo.textColor = [UIColor colorWithHexString:@"666666"];
@@ -57,7 +57,7 @@
         [self.contentView addSubview:areaDetailInfo];
         self.devState = areaDetailInfo;
         
-        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 79*HEIGHT/667, WIDTH, 1)];
+        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 79, WIDTH, 1)];
         line.backgroundColor = [UIColor colorWithHexString:@"bababa"];
         [self.contentView addSubview:line];
         

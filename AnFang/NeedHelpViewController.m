@@ -207,13 +207,7 @@
     backGround.image = [UIImage imageNamed:@"anfangBack"];
     [self.view addSubview:backGround];
 
-    helpMessage = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,WIDTH, 360*HEIGHT/667) style:UITableViewStylePlain];
-    [self.view addSubview:helpMessage];
-    helpMessage.delegate = self;
-    helpMessage.dataSource = self;
-    helpMessage.separatorStyle = UITableViewCellSeparatorStyleNone;
-    helpMessage.backgroundColor = [UIColor clearColor];
-  
+    
     pickImageViewController.delegate = self;
     //_photoAlarmData = [[NSMutableArray alloc] init];
     
@@ -240,6 +234,15 @@
 //   // _voiceAlarmData = nil;
 //    NSLog(@"%@",voicePlistPath);
     [self ConfigControl];
+    
+    helpMessage = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,WIDTH, HEIGHT-64-IFView.frame.size.height-49) style:UITableViewStylePlain];
+    [self.view addSubview:helpMessage];
+    helpMessage.delegate = self;
+    helpMessage.dataSource = self;
+    helpMessage.separatorStyle = UITableViewCellSeparatorStyleNone;
+    helpMessage.backgroundColor = [UIColor clearColor];
+
+    
     [self getHelpMessage];
     self.chatModel = [[ChatModel alloc]init];
     self.chatModel.dataSource = [[NSMutableArray alloc] init];
@@ -275,12 +278,12 @@
      , 180*WIDTH/375, 40*HEIGHT/375)];
     [alarmView addSubview:voiceInfoView];
     
-    infoText = [[UITextView alloc]initWithFrame:voiceInfoView.frame];
-    [alarmView addSubview:infoText];
+//    infoText = [[UITextView alloc]initWithFrame:voiceInfoView.frame];
+//    [alarmView addSubview:infoText];
     
     voiceInfoView.backgroundColor = [UIColor whiteColor];
 
-    UIButton *alarmBtn = [[UIButton alloc]initWithFrame:CGRectMake(110*WIDTH/375,IFView.frame.origin.y + 10, 150*WIDTH/375, 40*HEIGHT/667)];
+    UIButton *alarmBtn = [[UIButton alloc]initWithFrame:CGRectMake(110*WIDTH/375,IFView.frame.origin.y + 20, 150*WIDTH/375, 40*HEIGHT/667)];
     alarmBtn.backgroundColor = [UIColor redColor];
     [alarmBtn setTitle:@"一 键 报 警" forState:UIControlStateNormal];
     [alarmBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -291,11 +294,10 @@
     
     UIButton *addBtn = [[UIButton alloc]initWithFrame:CGRectMake(300*WIDTH/375, 5, 50*WIDTH/375, 50*HEIGHT/667)];
     UIImageView *addImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 50*WIDTH/375, 50*HEIGHT/667)];
-   // addBtn.backgroundColor = [UIColor blueColor];
     addImage.image = [UIImage imageNamed:@"Chat_take_picture.png"];
     [addBtn addSubview:addImage];
-    [addBtn addTarget:self action:@selector(AddPhotoImage) forControlEvents:UIControlEventTouchUpInside];
-    [IFView addSubview:addBtn];
+    //[addBtn addTarget:self action:@selector(AddPhotoImage) forControlEvents:UIControlEventTouchUpInside];
+    //[IFView addSubview:addBtn];
     
       // playProgress.hidden = YES;
    // [self.view addSubview:playProgress];
@@ -509,13 +511,13 @@
     
     if(indexPath.section == 0){
     
-        h = 68*HEIGHT/667;
+        h = 68;
     }else if (indexPath.section == 1){
     
-        h = 120*HEIGHT/667;
+        h = 120;
     }else if (indexPath.section == 2){
     
-        h = 100*HEIGHT/667;
+        h = 100;
     }
     
     return h;
@@ -726,7 +728,7 @@
         } withAddress:^(NSString *addressString) {
            // NSLog(@"%@",addressString);
             string = [NSString stringWithFormat:@"%@\n%@",string,addressString];
-            [SVProgressHUD showWithStatus:@"发送中..."];
+           
             if(string != nil){
                 OneKeyAlarmModel *model;
                 NSDate *sendDate;
@@ -743,7 +745,7 @@
                 NSString *paramsStr = [CMTool dictionaryToJson:params];
                 NSString *str = @"help=";
                 paramsStr = [str stringByAppendingString:paramsStr];
-                
+                [SVProgressHUD showWithStatus:@"发送中..."];
                 [WGAPI post:API_ADD_HELP RequestParams:paramsStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                         
                     if(data){

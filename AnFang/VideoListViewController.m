@@ -15,23 +15,93 @@
 #import "CMTool.h"
 #import "CameraModel.h"
 #import "MonitorInfoTableViewCell.h"
+#import "PlayViewController.h"
 
-@implementation VideoListViewController
+@interface VideoListViewController()
 {
     NSMutableArray *tempArray;
     NSMutableArray *temp2Array;
     NSString *tempId;
     NSMutableArray *cameraArray;
     UITableView *monitorTable;
+    NSMutableArray *_allResorceList;
+    NSMutableArray *_lineList;
+    int _selectedLineID;
+    
+}
+
+@property (nonatomic,strong) NSArray *camreaName;
+
+@end
+
+@implementation VideoListViewController
+
+//获取当前层级的所有资源
+- (NSMutableArray *)_getAllResources {
+    
+    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
+    _allResorceList = [NSMutableArray array];
+    
+    //获取区域下的区域
+    [vmsNetSDK getRegionListFromRegion:_serverAddress
+                           toSessionID:_mspInfo.sessionID
+                            toRegionID:9
+                          toNumPerOnce:50
+                             toCurPage:1
+                          toRegionList:_allResorceList];
+    
+    //获取区域下的设备
+    [vmsNetSDK getCameraListFromRegion:_serverAddress
+                           toSessionID:_mspInfo.sessionID
+                            toRegionID:9
+                          toNumPerOnce:50
+                             toCurPage:1
+                          toCameraList:_allResorceList];
+    
+    return _allResorceList;
 }
 
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+
+    _serverAddress = @"http://112.12.17.3";
+    
+    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
+    _lineList = [NSMutableArray array];
+    _mspInfo = [[CMSPInfo alloc]init];
+    BOOL result = [vmsNetSDK getLineList:_serverAddress toLineInfoList:_lineList];
+    _selectedLineID = 2;
+    
+    
+    if (NO == result) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"获取线路失败"
+                                                           delegate:nil cancelButtonTitle:@"好"
+                                                  otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
+    
+    BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"test" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
+    if (NO == result1) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"登录失败"
+                                                           delegate:nil cancelButtonTitle:@"好"
+                                                  otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
+
+   
+//    [self _getAllResources];
+//    [monitorTable reloadData];
+
     tempArray = [[NSMutableArray alloc] init];
     cameraArray = [[NSMutableArray alloc] init];
     temp2Array = [[NSMutableArray alloc] init];
+    _camreaName = [[NSArray alloc] initWithObjects:@"Camera1",@"Camera2", nil];
     
     UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
     headView.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
@@ -56,13 +126,15 @@
     [backBtn addSubview:backImage];
     [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [navView addSubview:backBtn];
-    
     monitorTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT) style:UITableViewStylePlain];
     monitorTable.delegate = self;
     monitorTable.dataSource = self;
     monitorTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-    monitorTable.backgroundColor = [UIColor whiteColor];
-    [self getAreaInfo];
+    [self.view addSubview:monitorTable];
+    [self _getAllResources];
+    [monitorTable reloadData];
+
+    // [self getAreaInfo];
 
     // Do any additional setup after loading the view.
 }
@@ -160,7 +232,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return cameraArray.count;
+    return 2;
     
 }
 
@@ -179,9 +251,9 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
-    
-    CameraModel *model = [cameraArray objectAtIndex:indexPath.row];
-    cell.cameraModel = model;
+    cell.devName.text = _camreaName[indexPath.row];
+//    CameraModel *model = [_allResorceList objectAtIndex:indexPath.row];
+//    cell.cameraModel = model;
     
     return cell;
     
@@ -191,11 +263,25 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 80.0*HEIGHT/667;
+    return 80.0;
     
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([_allResorceList[indexPath.row] isMemberOfClass:[CCameraInfo class]]) {
+        PlayViewController *playVC = [[PlayViewController alloc] init];
+        
+        //把预览回放和云台控制所需的参数传过去
+        playVC.serverAddress = _serverAddress;
+        playVC.mspInfo = _mspInfo;
+        playVC.cameraInfo = _allResorceList[indexPath.row];
+        [self.navigationController pushViewController:playVC animated:YES];
+        
+        return;
+    }
 
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

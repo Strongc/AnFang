@@ -46,8 +46,8 @@
     itemSet.selectedImage = [[UIImage imageNamed:@"setSelect"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     itemSet.imageInsets = UIEdgeInsetsMake(-1, -1, 1, 1);
     
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithHexString:@"f1a400"],NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
-    self.mainTabBar.tintColor = [UIColor colorWithHexString:@"f0f0f0"];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithHexString:@"323232"],NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
+    self.mainTabBar.tintColor = [UIColor colorWithHexString:@"323232"];
     // Do any additional setup after loading the view.
 }
 

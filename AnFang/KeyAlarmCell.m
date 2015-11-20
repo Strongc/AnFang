@@ -41,23 +41,24 @@
         self.timeLab = timeLab;
         //self.contentView.backgroundColor = [UIColor colorWithHexString:@"ededed"];
         
-        UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(15*WIDTH/375, 24*HEIGHT/667, WIDTH-30*WIDTH/375, 44*HEIGHT/667)];
-        backgroundView.backgroundColor = [UIColor whiteColor];
+        UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(15*WIDTH/375, 24*HEIGHT/667, WIDTH-30*WIDTH/375, 50*HEIGHT/667)];
+        backgroundView.backgroundColor = [UIColor colorWithHexString:@"000000"];
+        backgroundView.alpha = 0.6;
         [self.contentView addSubview:backgroundView];
         
         UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(5*WIDTH/375, 5*HEIGHT/667, 60*WIDTH/375, 20*HEIGHT/667)];
         [backgroundView addSubview:titleLab];
         titleLab.textAlignment = NSTextAlignmentCenter;
-        titleLab.textColor = [UIColor blackColor];
+        titleLab.textColor = [UIColor grayColor];
         titleLab.font = [UIFont boldSystemFontOfSize:12*WIDTH/375];
         titleLab.text = @"一键报警";
         
-        UILabel *locationLab = [[UILabel alloc]initWithFrame:CGRectMake(80*WIDTH/375, 5*HEIGHT/667, 220*WIDTH/375, 30*HEIGHT/667)];
+        UILabel *locationLab = [[UILabel alloc]initWithFrame:CGRectMake(80*WIDTH/375, 5*HEIGHT/667, 220*WIDTH/375, 40)];
         self.locationLab = locationLab;
         locationLab.numberOfLines = 0;
         [backgroundView addSubview:locationLab];
         locationLab.textAlignment = NSTextAlignmentCenter;
-        locationLab.textColor = [UIColor blackColor];
+        locationLab.textColor = [UIColor grayColor];
         locationLab.font = [UIFont boldSystemFontOfSize:12*WIDTH/375];
         
         UILabel *stateLab = [[UILabel alloc]initWithFrame:CGRectMake(280*WIDTH/375, 25*HEIGHT/667, 50*WIDTH/375, 20*HEIGHT/667)];
