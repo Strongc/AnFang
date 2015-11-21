@@ -73,7 +73,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.96072048611111116" green="0.96072048611111116" blue="0.96072048611111116" alpha="0.0" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="1" green="0.93231300500000003" blue="0.27364313750000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <color key="selectedImageTintColor" red="1" green="0.93231300500000003" blue="0.27364313750000002" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
@@ -160,7 +160,7 @@
         <!--公共-->
         <scene sceneID="PCi-JF-BrP">
             <objects>
-                <viewController title="联系人" id="NXf-mk-JAB" userLabel="公共" customClass="PublicSourceViewController" sceneMemberID="viewController">
+                <viewController id="NXf-mk-JAB" userLabel="公共" customClass="PublicSourceClassViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2Kh-nX-gLY"/>
                         <viewControllerLayoutGuide type="bottom" id="mnu-dy-DaV"/>
@@ -170,7 +170,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="联系人" id="hqw-Bh-YD4"/>
+                    <navigationItem key="navigationItem" id="hqw-Bh-YD4"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                 </viewController>
@@ -462,7 +462,7 @@
         <scene sceneID="Jnx-T6-NcW">
             <objects>
                 <navigationController title="SettingNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="fD4-Xl-cFY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="设置" image="setnor" selectedImage="55" id="ch0-we-1Ok"/>
+                    <tabBarItem key="tabBarItem" title="我的" image="setnor" id="ch0-we-1Ok"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6A3-zw-AbW">
@@ -1063,7 +1063,6 @@
     </scenes>
     <resources>
         <image name="22" width="40" height="40"/>
-        <image name="55" width="40" height="40"/>
         <image name="anfangnor" width="30" height="30"/>
         <image name="businessnor" width="30" height="30"/>
         <image name="messagenor" width="30" height="30"/>

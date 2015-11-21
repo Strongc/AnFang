@@ -33,14 +33,14 @@
     
     [super viewDidLoad];
     
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
-    headView.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
-    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, WIDTH, 50*HEIGHT/667)];
-    title.textAlignment = NSTextAlignmentCenter;
-    title.text = @"资讯";
-    title.font = [UIFont fontWithName:@"MicrosoftYaHei" size:28];
-    [headView addSubview:title];
-    [self.view addSubview:headView];
+//    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
+//    headView.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
+//    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, WIDTH, 50*HEIGHT/667)];
+//    title.textAlignment = NSTextAlignmentCenter;
+//    title.text = @"资讯";
+//    title.font = [UIFont fontWithName:@"MicrosoftYaHei" size:28];
+//    [headView addSubview:title];
+//    [self.view addSubview:headView];
 
 //    UIImage *imageUnSelect = [UIImage imageNamed:@"message.png"];
 //    UIImage *imageSelected = [UIImage imageNamed:@"messagePress.png"];
@@ -54,7 +54,7 @@
     //BusinessMessageViewController *businessView = [[BusinessMessageViewController alloc]init];
     
     alarmMessageView.title = @"资讯";
-    systemMessageView.title = @"安防警示";
+    systemMessageView.title = @"安防消息";
     userMessageView.title = @"资费提醒";
     //businessView.title = @"商业活动";
     

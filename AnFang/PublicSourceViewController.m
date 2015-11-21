@@ -155,23 +155,24 @@
     self.view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
     
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
-    headView.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
+    headView.backgroundColor = [UIColor colorWithHexString:@"222121"];
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, WIDTH, 50*HEIGHT/667)];
     title.textAlignment = NSTextAlignmentCenter;
     title.text = @"公共信息";
-    title.font = [UIFont fontWithName:@"MicrosoftYaHei" size:28];
+    title.font = [UIFont boldSystemFontOfSize:20];
+    title.textColor = [UIColor whiteColor];
     [headView addSubview:title];
     [self.view addSubview:headView];
 
-    UIView *searchBarView = [[UIView alloc]initWithFrame:CGRectMake(0, 64*HEIGHT/667, WIDTH, 40*HEIGHT/667)];
+    //UIView *searchBarView = [[UIView alloc]initWithFrame:CGRectMake(0, 64*HEIGHT/667, WIDTH, 40*HEIGHT/667)];
     //[self.view addSubview:searchBarView];
-    searchBarView.backgroundColor = [UIColor colorWithHexString:@"bababa"];
+    //searchBarView.backgroundColor = [UIColor colorWithHexString:@"bababa"];
     
-    UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(240*WIDTH/375, 5*HEIGHT/667, 120*WIDTH/375, 30*HEIGHT/667)];
-    [searchBarView addSubview:searchBar];
-    [[searchBar.subviews objectAtIndex:0] setBackgroundColor:[UIColor whiteColor]];
-    searchBar.backgroundColor = [UIColor whiteColor];
-    searchBar.searchBarStyle = UISearchBarStyleMinimal;
+//    UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(240*WIDTH/375, 5*HEIGHT/667, 120*WIDTH/375, 30*HEIGHT/667)];
+//    [searchBarView addSubview:searchBar];
+//    [[searchBar.subviews objectAtIndex:0] setBackgroundColor:[UIColor whiteColor]];
+//    searchBar.backgroundColor = [UIColor whiteColor];
+//    searchBar.searchBarStyle = UISearchBarStyleMinimal;
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
 
     videoCollection = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-110-self.tabBarController.tabBar.bounds.size.height) collectionViewLayout:flowLayout];

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PublicSourceClassViewController : UIViewController
+@interface PublicSourceClassViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
 @end

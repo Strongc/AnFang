@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"040818"];
     
     self.sysMessageArray = [[NSMutableArray alloc]init];
     tempArray = [[NSMutableArray alloc] init];
@@ -43,7 +43,7 @@
     messageTable.delegate = self;
     messageTable.dataSource = self;
     messageTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-    messageTable.backgroundColor = [UIColor colorWithHexString:@"ffffff"];
+    messageTable.backgroundColor = [UIColor colorWithHexString:@"040818"];
     [self.view addSubview:messageTable];
 
     alertLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 80, WIDTH, 15*HEIGHT/667)];
@@ -179,7 +179,6 @@
         cell = [[AlarmMessageTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentify];
         
         cell.accessoryType = UITableViewCellAccessoryNone;
-        cell.backgroundColor = [UIColor whiteColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
@@ -199,7 +198,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 70.0;
+    return 80.0;
     
 }
 

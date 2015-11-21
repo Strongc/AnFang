@@ -142,8 +142,8 @@
     //[self.view addSubview:backGroundView];
    // backGroundView.backgroundColor = [UIColor colorWithHexString:@"ffffe0"];
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"yh.png" ofType:nil];
-    NSString *pathSelected = [[NSBundle mainBundle] pathForResource:@"yh_select.png" ofType:nil];
+    //NSString *path = [[NSBundle mainBundle] pathForResource:@"yh.png" ofType:nil];
+   // NSString *pathSelected = [[NSBundle mainBundle] pathForResource:@"yh_select.png" ofType:nil];
     stateImageView = [[UIImageView alloc] initWithFrame:CGRectMake(40, 30, WIDTH-80, 300*HEIGHT/667)];
     stateBtn = [[UIButton alloc] initWithFrame:CGRectMake(40, 30, WIDTH - 80, 300*HEIGHT/667)];
     //[backGroundView addSubview:stateBtn];
@@ -167,8 +167,8 @@
     onlineLab.font = [UIFont boldSystemFontOfSize:18*WIDTH/375];
     [stateBtn addSubview:onlineLab];
     
-    NSString *path1 = [[NSBundle mainBundle] pathForResource:@"bufang_nor.png" ofType:nil];
-    NSString *path2 = [[NSBundle mainBundle] pathForResource:@"bufang_select.png" ofType:nil];
+   // NSString *path1 = [[NSBundle mainBundle] pathForResource:@"bufang_nor.png" ofType:nil];
+    //NSString *path2 = [[NSBundle mainBundle] pathForResource:@"bufang_select.png" ofType:nil];
     bufangBtn = [[UIButton alloc]initWithFrame:CGRectMake(60*WIDTH/375, 460*HEIGHT/667, 60*WIDTH/375, 60*HEIGHT/667)];
     [bufangBtn setBackgroundImage:[UIImage imageNamed:@"bufang"] forState:UIControlStateNormal];
     [bufangBtn setBackgroundImage:[UIImage imageNamed:@"bufangSelect"] forState:UIControlStateHighlighted];
@@ -332,12 +332,15 @@
     
         stateLab.text = @"未部防";
         stateLab.textColor = [UIColor redColor];
+        chefangBtn.userInteractionEnabled = NO;
+        bufangBtn.userInteractionEnabled = YES;
         
     }else if ([onLineStatus isEqualToString:@"TRUE"]){
     
         stateLab.text = @"已部防";
         stateLab.textColor = [UIColor greenColor];
-        
+        chefangBtn.userInteractionEnabled = YES;
+        bufangBtn.userInteractionEnabled = NO;
     }
 
 }
@@ -376,11 +379,11 @@
 
 -(void)ResponseInfo
 {
-   
+    bufangBtn.userInteractionEnabled = NO;
     [SVProgressHUD showSuccessWithStatus:@"布防成功！" maskType:SVProgressHUDMaskTypeBlack];
     stateLab.text = @"已部防";
     stateLab.textColor = [UIColor greenColor];
-    
+    chefangBtn.userInteractionEnabled = YES;
     //timer = [NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(getUserHostInfo) userInfo:nil repeats:YES];
 
 }
@@ -420,10 +423,11 @@
 
 -(void)ResponseInfo2
 {
-    
+    chefangBtn.userInteractionEnabled = NO;
     [SVProgressHUD showSuccessWithStatus:@"撤防成功！" maskType:SVProgressHUDMaskTypeBlack];
     stateLab.text = @"未部防";
     stateLab.textColor = [UIColor redColor];
+    bufangBtn.userInteractionEnabled = YES;
     //timer = [NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(getUserHostInfo) userInfo:nil repeats:YES];
 
 }

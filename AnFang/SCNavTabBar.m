@@ -105,10 +105,10 @@
     for (NSInteger index = 0; index < [_itemTitles count]; index++)
     {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(buttonX, 5.0, ([widths[index] floatValue]-15)*WIDTH/375, 30*WIDTH/375);
+        button.frame = CGRectMake(buttonX, 25, ([widths[index] floatValue]-15)*WIDTH/375, 30);
         [button setTitle:_itemTitles[index] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor colorWithHexString:@"323232"] forState:UIControlStateNormal];
-        button.titleLabel.font = [UIFont fontWithName:@"MicrosoftYaHei" size:22*WIDTH/375];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        button.titleLabel.font = [UIFont boldSystemFontOfSize:20*WIDTH/375];
         [button setTitleColor:[UIColor colorWithHexString:@"ce7031"] forState:UIControlStateSelected];
         [button addTarget:self action:@selector(itemPressed:) forControlEvents:UIControlEventTouchUpInside];
         //button.backgroundColor = [UIColor redColor];

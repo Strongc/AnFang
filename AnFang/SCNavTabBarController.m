@@ -109,12 +109,12 @@
    // _navTabBar = [[SCNavTabBar alloc] initWithFrame:CGRectMake(80, 30, SCREEN_WIDTH-40, 40) showArrowButton:_showArrowButton];
     //_navTabBar = [[SCNavTabBar alloc] initWithFrame:CGRectMake(DOT_COORDINATE, 20, SCREEN_WIDTH, 20)];
 //     _navTabBar = [[SCNavTabBar alloc] initWithFrame:CGRectMake(80, 20, SCREEN_WIDTH-40, 40) showArrowButton:_showArrowButton];
-     _navTabBar = [[SCNavTabBar alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 35) showArrowButton:_showArrowButton];
+     _navTabBar = [[SCNavTabBar alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 64) showArrowButton:_showArrowButton];
 
     _navTabBar.delegate = self;
     
     //_navTabBar.backgroundColor = _navTabBarColor
-    _navTabBar.backgroundColor = [UIColor colorWithHexString:@"f0f0f0"];
+    _navTabBar.backgroundColor = [UIColor colorWithHexString:@"222121"];
 
     _navTabBar.lineColor = [UIColor whiteColor];
     _navTabBar.itemTitles = _titles;

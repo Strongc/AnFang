@@ -43,25 +43,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //infoData= [[NSMutableData alloc] init];
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
-    headView.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
-    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, WIDTH, 50*HEIGHT/667)];
-    title.textAlignment = NSTextAlignmentCenter;
-    title.text = @"登录";
-    title.font = [UIFont fontWithName:@"MicrosoftYaHei" size:24];
-    //title.textColor = [UIColor colorWithHexString:@"ffffff"];
-    [headView addSubview:title];
-    [self.view addSubview:headView];
+//    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
+//    headView.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
+//    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, WIDTH, 50*HEIGHT/667)];
+//    title.textAlignment = NSTextAlignmentCenter;
+//    title.text = @"登录";
+//    title.font = [UIFont fontWithName:@"MicrosoftYaHei" size:24];
+//    //title.textColor = [UIColor colorWithHexString:@"ffffff"];
+//    [headView addSubview:title];
+//    [self.view addSubview:headView];
     //[self.view setBackgroundColor:[UIColor colorWithHexString:@"fafafa"]];
-    UIImageView *backGroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-64)];
-    [self.view addSubview:backGroundImage];
-    backGroundImage.image = [UIImage imageNamed:@"loginBackGround"];
-    
-    UIImageView *logoImage = [[UIImageView alloc] initWithFrame:CGRectMake((WIDTH-60)/2, 75, 60, 60)];
-    [backGroundImage addSubview:logoImage];
+//    UIImageView *backGroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-64)];
+//    [self.view addSubview:backGroundImage];
+//    backGroundImage.image = [UIImage imageNamed:@"loginBackGround"];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"040818"];
+    UIImageView *logoImage = [[UIImageView alloc] initWithFrame:CGRectMake((WIDTH-80)/2, 180, 80, 80)];
+    [self.view addSubview:logoImage];
     logoImage.image = [UIImage imageNamed:@"logo"];
     
-    inputView = [[UIView alloc] initWithFrame:CGRectMake(0, (headView.bottom+240), self.view.width, 101)];
+    inputView = [[UIView alloc] initWithFrame:CGRectMake(0, (64+240), self.view.width, 101)];
     //inputView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:inputView];
     
@@ -73,7 +73,8 @@
     [inputView addSubview:nameTitle];
     nameTitle.textAlignment = NSTextAlignmentCenter;
     nameTitle.text = @"账号";
-    nameTitle.font = [UIFont fontWithName:@"MicrosoftYaHei" size:24];
+    nameTitle.font = [UIFont systemFontOfSize:20];
+    nameTitle.textColor = [UIColor whiteColor];
     
     UIView *line2  = [[UIView alloc] initWithFrame:CGRectMake(35, 50, self.view.width-70, 1)];
     line2.backgroundColor = [UIColor colorWithHexString:@"323232"];
@@ -83,7 +84,8 @@
     [inputView addSubview:passwordTitle];
     passwordTitle.textAlignment = NSTextAlignmentCenter;
     passwordTitle.text = @"密码";
-    passwordTitle.font = [UIFont fontWithName:@"MicrosoftYaHei" size:24];
+    passwordTitle.font = [UIFont systemFontOfSize:20];
+    passwordTitle.textColor = [UIColor whiteColor];
     
     UIView *line3 = [[UIView alloc] initWithFrame:CGRectMake(35,100, self.view.width-70, 1)];
     line3.backgroundColor = [UIColor colorWithHexString:@"323232"];
@@ -94,6 +96,7 @@
     UILabel *title2 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, loginBtn.frame.size.width, loginBtn.frame.size.height)];
     title2.text = @"登录";
     title2.textAlignment = NSTextAlignmentCenter;
+    title2.textColor = [UIColor whiteColor];
     [loginBtn addSubview:title2];
     [self.view addSubview:loginBtn];
     [loginBtn setBackgroundImage:[UIImage imageNamed:@"login.png"] forState:UIControlStateNormal];
@@ -109,7 +112,7 @@
     [inputView addSubview:passWordField];
     passWordField.placeholder = @"请输入密码";
     passWordField.secureTextEntry = YES;
-    name.textColor = [UIColor colorWithHexString:@"4d4d4d"];
+    name.textColor = [UIColor whiteColor];
     passWordField.keyboardType = UIKeyboardTypeDecimalPad;
     
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
@@ -268,6 +271,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(BOOL)prefersStatusBarHidden
+{
+
+    return YES;
 }
 
 @end

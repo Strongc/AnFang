@@ -233,6 +233,14 @@
 		3E7199221BF9D6B20001098E /* 账户中心.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E71991D1BF9D6B20001098E /* 账户中心.png */; };
 		3E74F3F31BEF2385004E2935 /* PublicHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E74F3F21BEF2385004E2935 /* PublicHeaderView.m */; };
 		3E75F1961C003CAB001A91CF /* PublicSourceClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E75F1951C003CAB001A91CF /* PublicSourceClassViewController.m */; };
+		3E75F1981C006A1D001A91CF /* head.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E75F1971C006A1D001A91CF /* head.png */; };
+		3E75F19B1C006C96001A91CF /* PublicVideoClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E75F19A1C006C96001A91CF /* PublicVideoClassCell.m */; };
+		3E75F19E1C006EB2001A91CF /* PublicVideoClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E75F19D1C006EB2001A91CF /* PublicVideoClassModel.m */; };
+		3E75F1A01C0070E9001A91CF /* PublicClass.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E75F19F1C0070E9001A91CF /* PublicClass.plist */; };
+		3E75F1A31C0071CC001A91CF /* sequ.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E75F1A11C0071CC001A91CF /* sequ.png */; };
+		3E75F1A41C0071CC001A91CF /* xiaoyuan.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E75F1A21C0071CC001A91CF /* xiaoyuan.png */; };
+		3E75F1A71C00724A001A91CF /* lvyou.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E75F1A51C00724A001A91CF /* lvyou.png */; };
+		3E75F1A81C00724A001A91CF /* jiaotong.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E75F1A61C00724A001A91CF /* jiaotong.png */; };
 		3EF006961BEB6257008CDE77 /* HostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF006951BEB6257008CDE77 /* HostCell.m */; };
 		3EF006991BEB6292008CDE77 /* HostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF006981BEB6292008CDE77 /* HostModel.m */; };
 		3EF991731BF320D700832B4F /* yh_select.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF991711BF320D700832B4F /* yh_select.png */; };
@@ -771,6 +779,16 @@
 		3E74F3F21BEF2385004E2935 /* PublicHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicHeaderView.m; sourceTree = "<group>"; };
 		3E75F1941C003CAB001A91CF /* PublicSourceClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicSourceClassViewController.h; sourceTree = "<group>"; };
 		3E75F1951C003CAB001A91CF /* PublicSourceClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicSourceClassViewController.m; sourceTree = "<group>"; };
+		3E75F1971C006A1D001A91CF /* head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head.png; sourceTree = "<group>"; };
+		3E75F1991C006C96001A91CF /* PublicVideoClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicVideoClassCell.h; sourceTree = "<group>"; };
+		3E75F19A1C006C96001A91CF /* PublicVideoClassCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicVideoClassCell.m; sourceTree = "<group>"; };
+		3E75F19C1C006EB2001A91CF /* PublicVideoClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicVideoClassModel.h; sourceTree = "<group>"; };
+		3E75F19D1C006EB2001A91CF /* PublicVideoClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicVideoClassModel.m; sourceTree = "<group>"; };
+		3E75F19F1C0070E9001A91CF /* PublicClass.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PublicClass.plist; sourceTree = "<group>"; };
+		3E75F1A11C0071CC001A91CF /* sequ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sequ.png; sourceTree = "<group>"; };
+		3E75F1A21C0071CC001A91CF /* xiaoyuan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiaoyuan.png; sourceTree = "<group>"; };
+		3E75F1A51C00724A001A91CF /* lvyou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lvyou.png; sourceTree = "<group>"; };
+		3E75F1A61C00724A001A91CF /* jiaotong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jiaotong.png; sourceTree = "<group>"; };
 		3EF006941BEB6257008CDE77 /* HostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostCell.h; sourceTree = "<group>"; };
 		3EF006951BEB6257008CDE77 /* HostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostCell.m; sourceTree = "<group>"; };
 		3EF006971BEB6292008CDE77 /* HostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostModel.h; sourceTree = "<group>"; };
@@ -1093,6 +1111,7 @@
 		04801E281BB3C15C00714CC9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3E75F1971C006A1D001A91CF /* head.png */,
 				3E6A86481BFEE4D200CE31DA /* login.png */,
 				3E6A86491BFEE4D200CE31DA /* loginPress.png */,
 				3E7199191BF9D6B20001098E /* 收藏夹.png */,
@@ -1129,6 +1148,7 @@
 				045595DD1BCF86E700BB5094 /* KeyAlarm.plist */,
 				045595DF1BCF872900BB5094 /* TextAndPhotoAlarm.plist */,
 				045595E11BCF876800BB5094 /* VoiceAlarm.plist */,
+				3E75F19F1C0070E9001A91CF /* PublicClass.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1203,6 +1223,8 @@
 			children = (
 				04801E561BB3C8ED00714CC9 /* PublicVideoSource.m */,
 				04801E551BB3C8ED00714CC9 /* PublicVideoSource.h */,
+				3E75F19C1C006EB2001A91CF /* PublicVideoClassModel.h */,
+				3E75F19D1C006EB2001A91CF /* PublicVideoClassModel.m */,
 			);
 			name = PublicSource;
 			sourceTree = "<group>";
@@ -1338,6 +1360,10 @@
 		04801EA41BB3CD1A00714CC9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3E75F1A51C00724A001A91CF /* lvyou.png */,
+				3E75F1A61C00724A001A91CF /* jiaotong.png */,
+				3E75F1A11C0071CC001A91CF /* sequ.png */,
+				3E75F1A21C0071CC001A91CF /* xiaoyuan.png */,
 				3EFABCC71BF5A21E0017D697 /* chat_message_back.png */,
 				3EF9F5581BF4900C00BBDEA9 /* chat_ipunt_message.png */,
 				3EF9F5591BF4900C00BBDEA9 /* Chat_record_circle.png */,
@@ -1450,6 +1476,8 @@
 			children = (
 				04801F621BB3D00600714CC9 /* PublicVideoCollectionViewCell.h */,
 				04801F631BB3D00600714CC9 /* PublicVideoCollectionViewCell.m */,
+				3E75F1991C006C96001A91CF /* PublicVideoClassCell.h */,
+				3E75F19A1C006C96001A91CF /* PublicVideoClassCell.m */,
 			);
 			name = PublicVideoCell;
 			sourceTree = "<group>";
@@ -2184,6 +2212,7 @@
 				3EF9918C1BF32F1800832B4F /* chefang_select.png in Resources */,
 				04DEDA191BE0946800116789 /* 兰溪移动_公司大门进出口.jpg in Resources */,
 				04801EB91BB3CE1500714CC9 /* backward_disable@2x.png in Resources */,
+				3E75F1981C006A1D001A91CF /* head.png in Resources */,
 				3E6A864B1BFEE4D200CE31DA /* loginPress.png in Resources */,
 				045595DC1BCF77CB00BB5094 /* anfang.png in Resources */,
 				04801ED11BB3CE2F00714CC9 /* fast_forward_disable@2x.png in Resources */,
@@ -2192,6 +2221,7 @@
 				04E4002A1BB903AE0098F2D4 /* MonitorArea.plist in Resources */,
 				04801F201BB3CE6D00714CC9 /* play_nor@2x.png in Resources */,
 				04801F1D1BB3CE6D00714CC9 /* pause_nor@2x.png in Resources */,
+				3E75F1A41C0071CC001A91CF /* xiaoyuan.png in Resources */,
 				3EF9918A1BF32F1800832B4F /* camera_select.png in Resources */,
 				04801ED01BB3CE2F00714CC9 /* fast_backward_disable@2x.png in Resources */,
 				04DEDA211BE0961800116789 /* 浙江大学附属第四医院.jpg in Resources */,
@@ -2203,12 +2233,14 @@
 				3E71991F1BF9D6B20001098E /* 我的行业.png in Resources */,
 				3EF9F5461BF4820100BBDEA9 /* chat_animation2.png in Resources */,
 				3EFABCC81BF5A21E0017D697 /* chat_message_back.png in Resources */,
+				3E75F1A31C0071CC001A91CF /* sequ.png in Resources */,
 				04DEDA171BE093C900116789 /* 永康移动_公司楼顶基站.jpg in Resources */,
 				04D9A63C1BB3DA2B006D7B8A /* MenuConfig.plist in Resources */,
 				045595E21BCF876800BB5094 /* VoiceAlarm.plist in Resources */,
 				049B6F051BD88B1F00ED4E32 /* btn1.png in Resources */,
 				049B6F071BD88B2900ED4E32 /* btn.png in Resources */,
 				3EF991731BF320D700832B4F /* yh_select.png in Resources */,
+				3E75F1A81C00724A001A91CF /* jiaotong.png in Resources */,
 				04801ED21BB3CE2F00714CC9 /* fast_forward_nor@2x.png in Resources */,
 				3EF9918B1BF32F1800832B4F /* chefang_nor.png in Resources */,
 				3EF9F5611BF4900C00BBDEA9 /* Chat_take_picture.png in Resources */,
@@ -2234,8 +2266,10 @@
 				3E68648B1BF071E600FCA20C /* messagePress.png in Resources */,
 				04DEDA131BE090F600116789 /* 磐安移动_公司大门口.jpg in Resources */,
 				04801EB81BB3CE1500714CC9 /* back.png in Resources */,
+				3E75F1A01C0070E9001A91CF /* PublicClass.plist in Resources */,
 				04801ED31BB3CE2F00714CC9 /* forward_disable@2x.png in Resources */,
 				3EF991891BF32F1800832B4F /* camera_nor.png in Resources */,
+				3E75F1A71C00724A001A91CF /* lvyou.png in Resources */,
 				3EF991871BF32F1800832B4F /* bufang_nor.png in Resources */,
 				04801ECD1BB3CE2F00714CC9 /* cut.png in Resources */,
 				04DEDA371BE0E26800116789 /* sdRefeshView_arrow@2x.png in Resources */,
@@ -2338,6 +2372,7 @@
 				042038091BD09DFD00D10004 /* MMLocationManager.m in Sources */,
 				04801E681BB3CA3400714CC9 /* DefenceAreaModel.m in Sources */,
 				04D9A6231BB3D8DA006D7B8A /* DefenceAreaViewController.m in Sources */,
+				3E75F19B1C006C96001A91CF /* PublicVideoClassCell.m in Sources */,
 				04DEDA3A1BE0E26800116789 /* SDRefreshView.m in Sources */,
 				044AD46E1BBBB4C2004D17BB /* NSString+Base64.m in Sources */,
 				04D9A6251BB3D8DA006D7B8A /* JRPlayerViewController.m in Sources */,
@@ -2400,6 +2435,7 @@
 				3E6A758D1BEC68DD00113360 /* openssl_wrapper.m in Sources */,
 				3EF9F5711BF4AE7200BBDEA9 /* UUMessageCell.m in Sources */,
 				04801F741BB3D0ED00714CC9 /* MonitorInfoTableViewCell.m in Sources */,
+				3E75F19E1C006EB2001A91CF /* PublicVideoClassModel.m in Sources */,
 				04E5239B1BCF909E00F3D0CC /* VoiceAlarmModel.m in Sources */,
 				04801F5C1BB3CF9500714CC9 /* PayStyleCollectionViewCell.m in Sources */,
 				04801E7B1BB3CB3D00714CC9 /* AnFangTabBarViewController.m in Sources */,

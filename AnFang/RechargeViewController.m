@@ -82,14 +82,15 @@
 {
 
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
-    headView.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
+    headView.backgroundColor = [UIColor colorWithHexString:@"222121"];
     UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, WIDTH, 44)];
     [headView addSubview:navView];
 
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, WIDTH, 30)];
     title.textAlignment = NSTextAlignmentCenter;
     title.text = @"充值";
-    title.font = [UIFont fontWithName:@"MicrosoftYaHei" size:28];
+    title.font = [UIFont systemFontOfSize:20];
+    title.textColor = [UIColor colorWithHexString:@"ce7031"];
     [navView addSubview:title];
     [self.view addSubview:headView];
     

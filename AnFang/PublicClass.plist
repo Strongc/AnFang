@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>icon</key>
+		<string>sequ.png</string>
+		<key>name</key>
+		<string>智慧社区</string>
+	</dict>
+	<dict>
+		<key>icon</key>
+		<string>xiaoyuan.png</string>
+		<key>name</key>
+		<string>智慧校园</string>
+	</dict>
+	<dict>
+		<key>icon</key>
+		<string>jiaotong.png</string>
+		<key>name</key>
+		<string>智慧交通</string>
+	</dict>
+	<dict>
+		<key>icon</key>
+		<string>lvyou.png</string>
+		<key>name</key>
+		<string>智慧旅游</string>
+	</dict>
+</array>
+</plist>
