@@ -728,59 +728,61 @@
            // NSLog(@"%@",addressString);
             string = [NSString stringWithFormat:@"%@\n%@",string,addressString];
            
-            if(string != nil){
-                OneKeyAlarmModel *model;
-                NSDate *sendDate;
-                NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
-                [dateformatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
-                NSString *locationString=[dateformatter stringFromDate:sendDate];
-                NSDictionary *params = @{@"type":@"0",@"title":@"一键报警",@"content":string};
-                
-                model = [[OneKeyAlarmModel alloc]init];
-                model.location = string;
-                model.time = locationString;
-                [keyInfoArray addObject:model];
-
-                NSString *paramsStr = [CMTool dictionaryToJson:params];
-                NSString *str = @"help=";
-                paramsStr = [str stringByAppendingString:paramsStr];
-                [SVProgressHUD showWithStatus:@"发送中..."];
-                [WGAPI post:API_ADD_HELP RequestParams:paramsStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-                        
-                    if(data){
-                            
-                            NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                            NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:json];
-                            if(infojson != nil){
-                            
-                                NSDictionary *messageJson = [infojson objectForKey:@"data"];
-                                helpId = [messageJson objectForKey:@"help_id"];
-                                if(helpId != nil){
-                                
-                                    [self performSelectorOnMainThread:@selector(responseOfKeyAlarm) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
-
-                                }
-                            
-                            }
-                        
-                        }
-                    }];
-                
-            }else{
-            
-                 [self performSelectorOnMainThread:@selector(showLocationError) withObject:addressString waitUntilDone:YES];//通知主线程刷新(UI)
-            
-            }
             
         }];
     }
+    
+    if(string != nil){
+        OneKeyAlarmModel *model;
+        NSDate *sendDate;
+        NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+        [dateformatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+        NSString *locationString=[dateformatter stringFromDate:sendDate];
+        NSDictionary *params = @{@"type":@"0",@"title":@"一键报警",@"content":string};
+        
+        model = [[OneKeyAlarmModel alloc]init];
+        model.location = string;
+        model.time = locationString;
+        [keyInfoArray addObject:model];
+        
+        NSString *paramsStr = [CMTool dictionaryToJson:params];
+        NSString *str = @"help=";
+        paramsStr = [str stringByAppendingString:paramsStr];
+        [SVProgressHUD showWithStatus:@"发送中..."];
+        [WGAPI post:API_ADD_HELP RequestParams:paramsStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            
+            if(data){
+                
+                NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:json];
+                if(infojson != nil){
+                    
+                    NSDictionary *messageJson = [infojson objectForKey:@"data"];
+                    helpId = [messageJson objectForKey:@"help_id"];
+                    if(helpId != nil){
+                        
+                        [self performSelectorOnMainThread:@selector(responseOfKeyAlarm) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
+                        
+                    }
+                    
+                }
+                
+            }
+        }];
+        
+    }else{
+        
+        [self performSelectorOnMainThread:@selector(showLocationError) withObject:string waitUntilDone:YES];//通知主线程刷新(UI)
+        
+    }
+
 
 }
 
 -(void)showLocationError
 {
 
-     [SVProgressHUD showWithStatus:@"获取位置信息失败！"];
+     [SVProgressHUD showInfoWithStatus:@"获取位置信息失败，请检查GPS是否打开！"];
 
 }
 

@@ -232,6 +232,7 @@
 		3E7199211BF9D6B20001098E /* 意见反馈.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E71991C1BF9D6B20001098E /* 意见反馈.png */; };
 		3E7199221BF9D6B20001098E /* 账户中心.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E71991D1BF9D6B20001098E /* 账户中心.png */; };
 		3E74F3F31BEF2385004E2935 /* PublicHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E74F3F21BEF2385004E2935 /* PublicHeaderView.m */; };
+		3E75F1961C003CAB001A91CF /* PublicSourceClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E75F1951C003CAB001A91CF /* PublicSourceClassViewController.m */; };
 		3EF006961BEB6257008CDE77 /* HostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF006951BEB6257008CDE77 /* HostCell.m */; };
 		3EF006991BEB6292008CDE77 /* HostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF006981BEB6292008CDE77 /* HostModel.m */; };
 		3EF991731BF320D700832B4F /* yh_select.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF991711BF320D700832B4F /* yh_select.png */; };
@@ -768,6 +769,8 @@
 		3E71991D1BF9D6B20001098E /* 账户中心.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "账户中心.png"; sourceTree = "<group>"; };
 		3E74F3F11BEF2385004E2935 /* PublicHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicHeaderView.h; sourceTree = "<group>"; };
 		3E74F3F21BEF2385004E2935 /* PublicHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicHeaderView.m; sourceTree = "<group>"; };
+		3E75F1941C003CAB001A91CF /* PublicSourceClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicSourceClassViewController.h; sourceTree = "<group>"; };
+		3E75F1951C003CAB001A91CF /* PublicSourceClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicSourceClassViewController.m; sourceTree = "<group>"; };
 		3EF006941BEB6257008CDE77 /* HostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostCell.h; sourceTree = "<group>"; };
 		3EF006951BEB6257008CDE77 /* HostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostCell.m; sourceTree = "<group>"; };
 		3EF006971BEB6292008CDE77 /* HostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostModel.h; sourceTree = "<group>"; };
@@ -1686,6 +1689,8 @@
 				04D0340F1BDF39CB00E9E2BE /* ResourceTreeViewController.m */,
 				04D9A6101BB3D8DA006D7B8A /* PublicSourceViewController.h */,
 				04D9A6111BB3D8DA006D7B8A /* PublicSourceViewController.m */,
+				3E75F1941C003CAB001A91CF /* PublicSourceClassViewController.h */,
+				3E75F1951C003CAB001A91CF /* PublicSourceClassViewController.m */,
 			);
 			name = PublicSource;
 			sourceTree = "<group>";
@@ -2350,6 +2355,7 @@
 				04801E951BB3CC3600714CC9 /* MHTabBarController.m in Sources */,
 				04D9A6321BB3D8DA006D7B8A /* UserMessageViewController.m in Sources */,
 				044FFDA31BCE476C00F74AE9 /* RsaFactory.m in Sources */,
+				3E75F1961C003CAB001A91CF /* PublicSourceClassViewController.m in Sources */,
 				04801E641BB3C9FE00714CC9 /* PayStyle.m in Sources */,
 				04801E841BB3CB9700714CC9 /* SCNavTabBar.m in Sources */,
 				044AD4551BBB8C26004D17BB /* WGAPI.m in Sources */,
