@@ -16,6 +16,9 @@
 /** 分类名称*/
 @property (nonatomic,copy) NSString *className;
 
+/** 区域ID*/
+@property (nonatomic,copy) NSString *regionId;
+
 -(instancetype)initWithDict:(NSDictionary *)dict;
 +(instancetype)publicVideoClassModel:(NSDictionary *)dict;
 @end

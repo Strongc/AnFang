@@ -153,29 +153,29 @@
     [self.view addSubview:stateBtn];
     //[stateBtn addTarget:self action:@selector(getUserHostInfo) forControlEvents:UIControlEventTouchUpInside];
     
-    stateLab = [[UILabel alloc]initWithFrame:CGRectMake(150*WIDTH/375, 140*HEIGHT/667, 60*WIDTH/375, 20*HEIGHT/667)];
+    stateLab = [[UILabel alloc]initWithFrame:CGRectMake(120*WIDTH/375, 140*HEIGHT/667, 60*WIDTH/375, 20*HEIGHT/667)];
     stateLab.text = @"已部防";
-    stateLab.textColor = [UIColor greenColor];
+    stateLab.textColor = [UIColor whiteColor];
     stateLab.textAlignment = NSTextAlignmentCenter;
     stateLab.font = [UIFont boldSystemFontOfSize:18*WIDTH/375];
     [stateBtn addSubview:stateLab];
     
-    onlineLab = [[UILabel alloc]initWithFrame:CGRectMake(70*WIDTH/375, 140*HEIGHT/667, 60*WIDTH/375, 20*HEIGHT/667)];
-    onlineLab.text = @"在线";
-    onlineLab.textColor = [UIColor greenColor];
-    onlineLab.textAlignment = NSTextAlignmentCenter;
-    onlineLab.font = [UIFont boldSystemFontOfSize:18*WIDTH/375];
-    [stateBtn addSubview:onlineLab];
+//    onlineLab = [[UILabel alloc]initWithFrame:CGRectMake(70*WIDTH/375, 140*HEIGHT/667, 60*WIDTH/375, 20*HEIGHT/667)];
+//    onlineLab.text = @"在线";
+//    onlineLab.textColor = [UIColor greenColor];
+//    onlineLab.textAlignment = NSTextAlignmentCenter;
+//    onlineLab.font = [UIFont boldSystemFontOfSize:18*WIDTH/375];
+//    [stateBtn addSubview:onlineLab];
     
    // NSString *path1 = [[NSBundle mainBundle] pathForResource:@"bufang_nor.png" ofType:nil];
     //NSString *path2 = [[NSBundle mainBundle] pathForResource:@"bufang_select.png" ofType:nil];
-    bufangBtn = [[UIButton alloc]initWithFrame:CGRectMake(60*WIDTH/375, 460*HEIGHT/667, 60*WIDTH/375, 60*HEIGHT/667)];
+    bufangBtn = [[UIButton alloc]initWithFrame:CGRectMake(60*WIDTH/375, 420*HEIGHT/667, 60*WIDTH/375, 60*HEIGHT/667)];
     [bufangBtn setBackgroundImage:[UIImage imageNamed:@"bufang"] forState:UIControlStateNormal];
     [bufangBtn setBackgroundImage:[UIImage imageNamed:@"bufangSelect"] forState:UIControlStateHighlighted];
     [bufangBtn addTarget:self action:@selector(BuFangRequestAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bufangBtn];
     
-    chefangBtn = [[UIButton alloc]initWithFrame:CGRectMake(160*WIDTH/375, 460*HEIGHT/667, 60*WIDTH/375, 60*HEIGHT/667)];
+    chefangBtn = [[UIButton alloc]initWithFrame:CGRectMake(160*WIDTH/375, 420*HEIGHT/667, 60*WIDTH/375, 60*HEIGHT/667)];
     [self.view addSubview:chefangBtn];
     //NSString *path5 = [[NSBundle mainBundle] pathForResource:@"chefang.png" ofType:nil];
     //NSString *path6 = [[NSBundle mainBundle] pathForResource:@"chefang_select.png" ofType:nil];
@@ -183,7 +183,7 @@
     [chefangBtn setBackgroundImage:[UIImage imageNamed:@"chefangSelect"] forState:UIControlStateHighlighted];
     [chefangBtn addTarget:self action:@selector(CheFangAction) forControlEvents:UIControlEventTouchUpInside];
 
-    UIButton *cameraBtn = [[UIButton alloc] initWithFrame:CGRectMake(260*WIDTH/375, 465*HEIGHT/667, 60*WIDTH/375, 55*HEIGHT/667)];
+    UIButton *cameraBtn = [[UIButton alloc] initWithFrame:CGRectMake(260*WIDTH/375, 425*HEIGHT/667, 60*WIDTH/375, 55*HEIGHT/667)];
     [self.view addSubview:cameraBtn];
 
     //NSString *path3 = [[NSBundle mainBundle] pathForResource:@"video" ofType:nil];
@@ -331,14 +331,14 @@
     if([onLineStatus isEqualToString:@"FALSE"]){
     
         stateLab.text = @"未部防";
-        stateLab.textColor = [UIColor redColor];
+        stateLab.textColor = [UIColor whiteColor];
         chefangBtn.userInteractionEnabled = NO;
         bufangBtn.userInteractionEnabled = YES;
         
     }else if ([onLineStatus isEqualToString:@"TRUE"]){
     
         stateLab.text = @"已部防";
-        stateLab.textColor = [UIColor greenColor];
+        stateLab.textColor = [UIColor whiteColor];
         chefangBtn.userInteractionEnabled = YES;
         bufangBtn.userInteractionEnabled = NO;
     }

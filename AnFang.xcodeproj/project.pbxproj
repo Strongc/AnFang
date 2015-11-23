@@ -226,6 +226,8 @@
 		3E6A75E41BEC810600113360 /* CLLocation+YCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6A75E21BEC810600113360 /* CLLocation+YCLocation.m */; };
 		3E6A864A1BFEE4D200CE31DA /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E6A86481BFEE4D200CE31DA /* login.png */; };
 		3E6A864B1BFEE4D200CE31DA /* loginPress.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E6A86491BFEE4D200CE31DA /* loginPress.png */; };
+		3E7152691C02A1CD002AF67F /* PublicSourceItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7152681C02A1CD002AF67F /* PublicSourceItemViewController.m */; };
+		3E71526C1C02AA4B002AF67F /* PublicItemVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E71526B1C02AA4B002AF67F /* PublicItemVideoCell.m */; };
 		3E71991E1BF9D6B20001098E /* 收藏夹.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E7199191BF9D6B20001098E /* 收藏夹.png */; };
 		3E71991F1BF9D6B20001098E /* 我的行业.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E71991A1BF9D6B20001098E /* 我的行业.png */; };
 		3E7199201BF9D6B20001098E /* 系统设置.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E71991B1BF9D6B20001098E /* 系统设置.png */; };
@@ -770,6 +772,10 @@
 		3E6A75E21BEC810600113360 /* CLLocation+YCLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+YCLocation.m"; sourceTree = "<group>"; };
 		3E6A86481BFEE4D200CE31DA /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
 		3E6A86491BFEE4D200CE31DA /* loginPress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginPress.png; sourceTree = "<group>"; };
+		3E7152671C02A1CD002AF67F /* PublicSourceItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicSourceItemViewController.h; sourceTree = "<group>"; };
+		3E7152681C02A1CD002AF67F /* PublicSourceItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicSourceItemViewController.m; sourceTree = "<group>"; };
+		3E71526A1C02AA4B002AF67F /* PublicItemVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicItemVideoCell.h; sourceTree = "<group>"; };
+		3E71526B1C02AA4B002AF67F /* PublicItemVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicItemVideoCell.m; sourceTree = "<group>"; };
 		3E7199191BF9D6B20001098E /* 收藏夹.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "收藏夹.png"; sourceTree = "<group>"; };
 		3E71991A1BF9D6B20001098E /* 我的行业.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我的行业.png"; sourceTree = "<group>"; };
 		3E71991B1BF9D6B20001098E /* 系统设置.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "系统设置.png"; sourceTree = "<group>"; };
@@ -1111,6 +1117,7 @@
 		04801E281BB3C15C00714CC9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				04D9A63F1BB3DAD6006D7B8A /* Images.xcassets */,
 				3E75F1971C006A1D001A91CF /* head.png */,
 				3E6A86481BFEE4D200CE31DA /* login.png */,
 				3E6A86491BFEE4D200CE31DA /* loginPress.png */,
@@ -1400,7 +1407,6 @@
 				049B6F091BD88E6E00ED4E32 /* mic_normal_358x358@2x.png */,
 				049B6F0A1BD88E6E00ED4E32 /* mic_talk_358x358@2x.png */,
 				049B6F0B1BD88E6E00ED4E32 /* wave70x117@2x.png */,
-				04D9A63F1BB3DAD6006D7B8A /* Images.xcassets */,
 				04D9E0D31BB3F02000161CE8 /* location.png */,
 				04D9A6411BB3DB7E006D7B8A /* newFeature_3.png */,
 				04801EE11BB3CE6D00714CC9 /* pause_disable@2x.png */,
@@ -1478,6 +1484,8 @@
 				04801F631BB3D00600714CC9 /* PublicVideoCollectionViewCell.m */,
 				3E75F1991C006C96001A91CF /* PublicVideoClassCell.h */,
 				3E75F19A1C006C96001A91CF /* PublicVideoClassCell.m */,
+				3E71526A1C02AA4B002AF67F /* PublicItemVideoCell.h */,
+				3E71526B1C02AA4B002AF67F /* PublicItemVideoCell.m */,
 			);
 			name = PublicVideoCell;
 			sourceTree = "<group>";
@@ -1719,6 +1727,8 @@
 				04D9A6111BB3D8DA006D7B8A /* PublicSourceViewController.m */,
 				3E75F1941C003CAB001A91CF /* PublicSourceClassViewController.h */,
 				3E75F1951C003CAB001A91CF /* PublicSourceClassViewController.m */,
+				3E7152671C02A1CD002AF67F /* PublicSourceItemViewController.h */,
+				3E7152681C02A1CD002AF67F /* PublicSourceItemViewController.m */,
 			);
 			name = PublicSource;
 			sourceTree = "<group>";
@@ -2371,6 +2381,7 @@
 				04801F551BB3CF4400714CC9 /* MenuSelectCollectionViewCell.m in Sources */,
 				042038091BD09DFD00D10004 /* MMLocationManager.m in Sources */,
 				04801E681BB3CA3400714CC9 /* DefenceAreaModel.m in Sources */,
+				3E71526C1C02AA4B002AF67F /* PublicItemVideoCell.m in Sources */,
 				04D9A6231BB3D8DA006D7B8A /* DefenceAreaViewController.m in Sources */,
 				3E75F19B1C006C96001A91CF /* PublicVideoClassCell.m in Sources */,
 				04DEDA3A1BE0E26800116789 /* SDRefreshView.m in Sources */,
@@ -2452,6 +2463,7 @@
 				04801E341BB3C15C00714CC9 /* ViewController.m in Sources */,
 				04801E8C1BB3CBDA00714CC9 /* QHConfiguredObj.m in Sources */,
 				04DEDA0A1BE0740900116789 /* FSVoiceBubble.m in Sources */,
+				3E7152691C02A1CD002AF67F /* PublicSourceItemViewController.m in Sources */,
 				047975B51BD4EF4F006380D5 /* AudioRecorderViewController.m in Sources */,
 				04AEFF671BB51FB8004634A8 /* Order.m in Sources */,
 				04801E7A1BB3CB3D00714CC9 /* AnFangTabBar.m in Sources */,
@@ -2678,7 +2690,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7 arm64 armv7s";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -2744,7 +2756,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7 arm64 armv7s";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};

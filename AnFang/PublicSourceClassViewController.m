@@ -11,11 +11,15 @@
 #import "Common.h"
 #import "PublicVideoClassCell.h"
 #import "PublicVideoClassModel.h"
+#import "PublicSourceItemViewController.h"
 
 @interface PublicSourceClassViewController ()
 {
 
     UICollectionView *videoClass;
+    NSMutableArray *_allSectionList;
+    NSMutableArray *_lineList;
+    int _selectedLineID;
 
 }
 @property (nonatomic,strong) NSArray *classData;
@@ -25,6 +29,37 @@
 
 @implementation PublicSourceClassViewController
 
+
+//-(NSMutableArray *)_getAllVideoInSection:(int)regionId
+//{
+//    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
+//    _allSectionList = [NSMutableArray array];
+//    NSMutableArray *tempArray = [NSMutableArray array];
+//    
+//    //获取区域下的区域
+//    [vmsNetSDK getRegionListFromRegion:_serverAddress
+//                           toSessionID:_mspInfo.sessionID
+//                            toRegionID:regionId
+//                          toNumPerOnce:50
+//                             toCurPage:1
+//                          toRegionList:tempArray];
+//    [_allSectionList addObjectsFromArray:tempArray];
+//    [tempArray removeAllObjects];
+//    
+//    //获取区域下的设备
+//    [vmsNetSDK getCameraListFromRegion:_serverAddress
+//                           toSessionID:_mspInfo.sessionID
+//                            toRegionID:regionId
+//                          toNumPerOnce:50
+//                             toCurPage:1
+//                          toCameraList:tempArray];
+//    [_allSectionList addObjectsFromArray:tempArray];
+//    [tempArray removeAllObjects];
+//    
+//    
+//    return _allSectionList;
+//    
+//}
 
 -(NSArray *)classData
 {
@@ -67,6 +102,34 @@
     self.view.backgroundColor = [UIColor colorWithHexString:@"040818"];
     [self initConfigControl];
     
+//    _serverAddress = @"http://112.12.17.3";
+//    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
+//    _lineList = [NSMutableArray array];
+//    _mspInfo = [[CMSPInfo alloc]init];
+//    BOOL result = [vmsNetSDK getLineList:_serverAddress toLineInfoList:_lineList];
+//    _selectedLineID = 2;
+//    
+//
+//    if (NO == result) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+//                                                            message:@"获取线路失败"
+//                                                           delegate:nil cancelButtonTitle:@"好"
+//                                                  otherButtonTitles:nil, nil];
+//        [alertView show];
+//        return;
+//    }
+//    
+//    BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"dbwl" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
+//    if (NO == result1) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+//                                                            message:@"登录失败"
+//                                                           delegate:nil cancelButtonTitle:@"好"
+//                                                  otherButtonTitles:nil, nil];
+//        [alertView show];
+//        return;
+//    }
+
+    
     // Do any additional setup after loading the view.
 }
 
@@ -96,7 +159,6 @@
     title2.font = [UIFont boldSystemFontOfSize:18];
     title2.textColor = [UIColor colorWithHexString:@"db0303"];
 
-    
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     videoClass = [[UICollectionView alloc]initWithFrame:CGRectMake(5, 234, WIDTH-10, WIDTH-10) collectionViewLayout:flowLayout];
     videoClass.delegate = self;
@@ -108,6 +170,7 @@
 //    [videoCollection registerClass:[PublicHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
     
     [self.view addSubview:videoClass];
+    videoClass.backgroundColor = [UIColor colorWithHexString:@"040818"];
     videoClass.scrollEnabled = YES;
     [videoClass registerClass:[PublicVideoClassCell class] forCellWithReuseIdentifier:@"cell"];
 
@@ -115,12 +178,10 @@
 }
 
 #pragma mark UICollectionViewDataSource
-
-
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     
-    return 4;
+    return self.classData.count;
 }
 
 
@@ -169,6 +230,15 @@
 {
     
     
+    UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    PublicSourceItemViewController *publicItem = [mainView instantiateViewControllerWithIdentifier:@"publicitemId"];
+    PublicVideoClassModel *model = [_classData objectAtIndex:indexPath.row];
+    publicItem.itemStr = model.className;
+    publicItem.regionId = model.regionId;
+   // [self _getAllVideoInSection:model.regionId.intValue];
+   // publicItem.SectionList = _allSectionList;
+    [self.navigationController pushViewController:publicItem animated:YES];
+
 }
 
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -176,8 +246,6 @@
     
     return YES;
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

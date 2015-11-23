@@ -68,7 +68,7 @@
 - (NSMutableArray *)_getAllResources {
     VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
     _allResorceList = [NSMutableArray array];
-   // NSMutableArray *tempArray = [NSMutableArray array];
+    NSMutableArray *tempArray = [NSMutableArray array];
     
     //判断当前对象应该获取控制中心还是区域下的资源
 //    if (nil == _regionInfo) {
@@ -81,7 +81,9 @@
 //                                            toNumPerOnce:50
 //                                               toCurPage:1
 //                                       toControlUnitList:tempArray];
-//            [_allResorceList addObjectsFromArray:tempArray];
+//                [_allResorceList addObjectsFromArray:tempArray];
+//                [tempArray removeAllObjects];
+
 //        } else {
 //        
 //            //获取控制中心下的控制中心
@@ -91,7 +93,9 @@
 //                                           toNumPerOnce:50
 //                                              toCurPage:1
 //                                      toControlUnitList:tempArray];
-//            [_allResorceList addObjectsFromArray:tempArray];
+ //                   [_allResorceList addObjectsFromArray:tempArray];
+ //                   [tempArray removeAllObjects];
+
 //            
 //            //获取控制中心下的区域
 //            [vmsNetSDK getRegionListFromCtrlUnit:_serverAddress
@@ -101,6 +105,7 @@
 //                                       toCurPage:1
 //                                    toRegionList:tempArray];
 //            [_allResorceList addObjectsFromArray:tempArray];
+//            [tempArray removeAllObjects];
 //            
 //            //获取控制中心下的设备
 //            [vmsNetSDK getCameraListFromCtrlUnit:_serverAddress
@@ -110,6 +115,7 @@
 //                                       toCurPage:1
 //                                    toCameraList:tempArray];
 //            [_allResorceList addObjectsFromArray:tempArray];
+//            [tempArray removeAllObjects];
 //        }
    // } else {
         
@@ -119,16 +125,20 @@
                                 toRegionID:9
                               toNumPerOnce:50
                                  toCurPage:1
-                              toRegionList:_allResorceList];
-        
+                              toRegionList:tempArray];
+        [_allResorceList addObjectsFromArray:tempArray];
+        [tempArray removeAllObjects];
+    
         //获取区域下的设备
         [vmsNetSDK getCameraListFromRegion:_serverAddress
                                toSessionID:_mspInfo.sessionID
                                 toRegionID:9
                               toNumPerOnce:50
                                  toCurPage:1
-                              toCameraList:_allResorceList];
-       // }
+                              toCameraList:tempArray];
+        [_allResorceList addObjectsFromArray:tempArray];
+        [tempArray removeAllObjects];
+    // }
     
     int Id = _regionInfo.regionID;
     int controlId = _controlUnitInfo.controlUnitID;

@@ -17,6 +17,7 @@
         self.classImage = dict[@"icon"];
 
         self.className = dict[@"name"];
+        self.regionId = dict[@"regionId"];
        
     }
     

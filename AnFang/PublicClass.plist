@@ -3,24 +3,32 @@
 <plist version="1.0">
 <array>
 	<dict>
+		<key>regionId</key>
+		<string>257</string>
 		<key>icon</key>
 		<string>sequ.png</string>
 		<key>name</key>
 		<string>智慧社区</string>
 	</dict>
 	<dict>
+		<key>regionId</key>
+		<string>214</string>
 		<key>icon</key>
 		<string>xiaoyuan.png</string>
 		<key>name</key>
 		<string>智慧校园</string>
 	</dict>
 	<dict>
+		<key>regionId</key>
+		<string>262</string>
 		<key>icon</key>
 		<string>jiaotong.png</string>
 		<key>name</key>
 		<string>智慧交通</string>
 	</dict>
 	<dict>
+		<key>regionId</key>
+		<string>137</string>
 		<key>icon</key>
 		<string>lvyou.png</string>
 		<key>name</key>

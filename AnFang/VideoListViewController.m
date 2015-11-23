@@ -45,7 +45,7 @@
     //获取区域下的区域
     [vmsNetSDK getRegionListFromRegion:_serverAddress
                            toSessionID:_mspInfo.sessionID
-                            toRegionID:9
+                            toRegionID:309
                           toNumPerOnce:50
                              toCurPage:1
                           toRegionList:_allResorceList];
@@ -53,7 +53,7 @@
     //获取区域下的设备
     [vmsNetSDK getCameraListFromRegion:_serverAddress
                            toSessionID:_mspInfo.sessionID
-                            toRegionID:9
+                            toRegionID:309
                           toNumPerOnce:50
                              toCurPage:1
                           toCameraList:_allResorceList];
@@ -84,7 +84,7 @@
         return;
     }
     
-    BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"test" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
+    BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"dbwl" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
     if (NO == result1) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
                                                             message:@"登录失败"
@@ -94,14 +94,11 @@
         return;
     }
 
-   
-//    [self _getAllResources];
-//    [monitorTable reloadData];
 
     tempArray = [[NSMutableArray alloc] init];
     cameraArray = [[NSMutableArray alloc] init];
     temp2Array = [[NSMutableArray alloc] init];
-    _camreaName = [[NSArray alloc] initWithObjects:@"Camera1",@"Camera2", nil];
+    _camreaName = [[NSArray alloc] initWithObjects:@"Camera1", nil];
     
     UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
     headView.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
@@ -232,7 +229,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 2;
+    return _allResorceList.count;
     
 }
 
@@ -252,8 +249,6 @@
         
     }
     cell.devName.text = _camreaName[indexPath.row];
-//    CameraModel *model = [_allResorceList objectAtIndex:indexPath.row];
-//    cell.cameraModel = model;
     
     return cell;
     
