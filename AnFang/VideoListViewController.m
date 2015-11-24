@@ -45,16 +45,16 @@
     //获取区域下的区域
     [vmsNetSDK getRegionListFromRegion:_serverAddress
                            toSessionID:_mspInfo.sessionID
-                            toRegionID:309
-                          toNumPerOnce:50
+                            toRegionID:153
+                          toNumPerOnce:1
                              toCurPage:1
                           toRegionList:_allResorceList];
     
     //获取区域下的设备
     [vmsNetSDK getCameraListFromRegion:_serverAddress
                            toSessionID:_mspInfo.sessionID
-                            toRegionID:309
-                          toNumPerOnce:50
+                            toRegionID:153
+                          toNumPerOnce:1
                              toCurPage:1
                           toCameraList:_allResorceList];
     
@@ -101,7 +101,7 @@
     _camreaName = [[NSArray alloc] initWithObjects:@"Camera1", nil];
     
     UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
-    headView.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
+    headView.backgroundColor = [UIColor colorWithHexString:@"222121"];
     UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, WIDTH, 44)];
     [headView addSubview:navView];
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, WIDTH, 30)];
@@ -109,6 +109,7 @@
     title.text = @"监控列表";
     title.font = [UIFont fontWithName:@"MicrosoftYaHei" size:28];
     [navView addSubview:title];
+    title.textColor = [UIColor colorWithHexString:@"ce7031"];
     [self.view addSubview:headView];
     
     UIButton *backBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 80, 50)];
@@ -116,6 +117,7 @@
     backTitle.textAlignment = NSTextAlignmentCenter;
     backTitle.text = @"返回";
     backTitle.font = [UIFont fontWithName:@"MicrosoftYaHei" size:28];
+    backTitle.textColor = [UIColor whiteColor];
     [backBtn addSubview:backTitle];
     
     UIImageView *backImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 5, 20, 20)];

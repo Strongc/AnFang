@@ -44,7 +44,7 @@ static void *_vpHandle = NULL;
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
-    self.headView.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
+    self.headView.backgroundColor = [UIColor colorWithHexString:@"222121"];
     UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, WIDTH, 44)];
     [self.headView addSubview:navView];
     //navView.backgroundColor = [UIColor blueColor];
@@ -62,6 +62,7 @@ static void *_vpHandle = NULL;
     backTitle.textAlignment = NSTextAlignmentCenter;
     backTitle.text = @"返回";
     backTitle.font = [UIFont fontWithName:@"MicrosoftYaHei" size:28];
+    backTitle.textColor = [UIColor whiteColor];
     [self.backBtn addSubview:backTitle];
     
     UIImageView *backImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 5, 20, 20)];

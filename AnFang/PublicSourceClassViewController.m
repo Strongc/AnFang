@@ -12,6 +12,7 @@
 #import "PublicVideoClassCell.h"
 #import "PublicVideoClassModel.h"
 #import "PublicSourceItemViewController.h"
+#import "SVProgressHUD.h"
 
 @interface PublicSourceClassViewController ()
 {
@@ -229,15 +230,14 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
+    [SVProgressHUD showWithStatus:@"加载中..."];
     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     PublicSourceItemViewController *publicItem = [mainView instantiateViewControllerWithIdentifier:@"publicitemId"];
     PublicVideoClassModel *model = [_classData objectAtIndex:indexPath.row];
     publicItem.itemStr = model.className;
     publicItem.regionId = model.regionId;
-   // [self _getAllVideoInSection:model.regionId.intValue];
-   // publicItem.SectionList = _allSectionList;
     [self.navigationController pushViewController:publicItem animated:YES];
+    [SVProgressHUD dismiss];
 
 }
 
