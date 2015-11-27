@@ -92,7 +92,6 @@
     [inputView addSubview:line3];
     
     loginBtn = [[UIButton alloc] initWithFrame:CGRectMake((WIDTH-190)/2, inputView.frame.size.height + inputView.frame.origin.y + 44, 190, 45)];
-    
     UILabel *title2 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, loginBtn.frame.size.width, loginBtn.frame.size.height)];
     title2.text = @"登录";
     title2.textAlignment = NSTextAlignmentCenter;
@@ -105,14 +104,16 @@
     
     name = [[UITextField alloc] initWithFrame:CGRectMake(100, 0, inputView.width-70, 50)];
     [inputView addSubview:name];
-    name.textColor = [UIColor colorWithHexString:@"323232"];
+    name.textColor = [UIColor whiteColor];
+    //[name setValue:[UIColor whiteColor] forKeyPath:@"_Label.textColor"];
     name.placeholder = @"手机号/邮箱/用户名";
     
     passWordField = [[UITextField alloc]initWithFrame:CGRectMake(100, 51, inputView.width-70, 50)];
     [inputView addSubview:passWordField];
     passWordField.placeholder = @"请输入密码";
     passWordField.secureTextEntry = YES;
-    name.textColor = [UIColor whiteColor];
+    passWordField.textColor = [UIColor whiteColor];
+    //[passWordField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     passWordField.keyboardType = UIKeyboardTypeDecimalPad;
     
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];

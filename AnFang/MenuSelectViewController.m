@@ -83,6 +83,7 @@
     backTitle.textAlignment = NSTextAlignmentCenter;
     backTitle.text = @"返回";
     backTitle.font = [UIFont fontWithName:@"MicrosoftYaHei" size:28];
+    backTitle.textColor = [UIColor whiteColor];
     [backBtn addSubview:backTitle];
     
     UIImageView *backImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 5, 20, 20)];

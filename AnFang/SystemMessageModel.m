@@ -18,7 +18,7 @@
         self.time = dict[@"modifyDate"];
         self.content = dict[@"msg_content"];
         self.messageId = dict[@"msg_id"];
-        self.messageSource = dict[@"msg_src"];
+        self.messageSource = dict[@"msg_type"];
         
     }
     return self;

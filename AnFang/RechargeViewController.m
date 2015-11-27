@@ -99,6 +99,7 @@
     backTitle.textAlignment = NSTextAlignmentCenter;
     backTitle.text = @"返回";
     backTitle.font = [UIFont fontWithName:@"MicrosoftYaHei" size:28];
+    backTitle.textColor = [UIColor whiteColor];
     [backBtn addSubview:backTitle];
     
     UIImageView *backImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 5, 20, 20)];
@@ -383,8 +384,8 @@
     order.tradeNO = [self generateTradeNO]; //订单ID（由商家自行制定）
     order.productName = @"充值金额"; //商品标题
     order.productDescription = @"安防服务续费"; //商品描述
-    order.amount = [NSString stringWithFormat:@"%.2f",0.01]; //商品价格
-    order.notifyURL = @"http://www.xxx.com"; //回调URL
+    order.amount = [NSString stringWithFormat:@"%.3f",0.001]; //商品价格
+    order.notifyURL = @"http://121.41.24.19:8080/order/accept"; //回调URL
     
     order.service = @"mobile.securitypay.pay";
     order.paymentType = @"1";

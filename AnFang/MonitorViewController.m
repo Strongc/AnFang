@@ -153,19 +153,19 @@
     [self.view addSubview:stateBtn];
     //[stateBtn addTarget:self action:@selector(getUserHostInfo) forControlEvents:UIControlEventTouchUpInside];
     
-    stateLab = [[UILabel alloc]initWithFrame:CGRectMake(120*WIDTH/375, 140*HEIGHT/667, 60*WIDTH/375, 20*HEIGHT/667)];
+    stateLab = [[UILabel alloc]initWithFrame:CGRectMake(120*WIDTH/375, 160*HEIGHT/667, 60*WIDTH/375, 20*HEIGHT/667)];
     stateLab.text = @"已部防";
     stateLab.textColor = [UIColor whiteColor];
     stateLab.textAlignment = NSTextAlignmentCenter;
     stateLab.font = [UIFont boldSystemFontOfSize:18*WIDTH/375];
     [stateBtn addSubview:stateLab];
     
-//    onlineLab = [[UILabel alloc]initWithFrame:CGRectMake(70*WIDTH/375, 140*HEIGHT/667, 60*WIDTH/375, 20*HEIGHT/667)];
-//    onlineLab.text = @"在线";
-//    onlineLab.textColor = [UIColor greenColor];
-//    onlineLab.textAlignment = NSTextAlignmentCenter;
-//    onlineLab.font = [UIFont boldSystemFontOfSize:18*WIDTH/375];
-//    [stateBtn addSubview:onlineLab];
+    onlineLab = [[UILabel alloc]initWithFrame:CGRectMake(120*WIDTH/375, 138*HEIGHT/667, 60*WIDTH/375, 20*HEIGHT/667)];
+    onlineLab.text = @"在线";
+    onlineLab.textColor = [UIColor greenColor];
+    onlineLab.textAlignment = NSTextAlignmentCenter;
+    onlineLab.font = [UIFont boldSystemFontOfSize:22*WIDTH/375];
+    [stateBtn addSubview:onlineLab];
     
    // NSString *path1 = [[NSBundle mainBundle] pathForResource:@"bufang_nor.png" ofType:nil];
     //NSString *path2 = [[NSBundle mainBundle] pathForResource:@"bufang_select.png" ofType:nil];
@@ -191,53 +191,6 @@
     [cameraBtn setBackgroundImage:[UIImage imageNamed:@"video"] forState:UIControlStateNormal];
     [cameraBtn setBackgroundImage:[UIImage imageNamed:@"videoSelect"] forState:UIControlStateHighlighted];
     [cameraBtn addTarget:self action:@selector(gotoVideoListView) forControlEvents:UIControlEventTouchUpInside];
-    
-//    UIImageView *locationImage = [[UIImageView alloc]initWithFrame:CGRectMake(20*WIDTH/375, 44*HEIGHT/667, 110*WIDTH/375, 110*HEIGHT/667)];
-//    locationImage.image = [UIImage imageNamed:@"location.png"];
-//    [self.view addSubview:locationImage];
-//    
-//    UILabel *locationName = [[UILabel alloc]initWithFrame:CGRectMake(200*WIDTH/375, 34*HEIGHT/667, 120*WIDTH/375, 20*HEIGHT/667)];
-//    locationName.textColor = [UIColor blackColor];
-//    locationName.textAlignment = NSTextAlignmentLeft;
-//    locationName.text = @"华业大厦";
-//    locationName.font = [UIFont boldSystemFontOfSize:20*WIDTH/375];
-//    [self.view addSubview:locationName];
-//    
-//    UILabel *title1 = [[UILabel alloc]initWithFrame:CGRectMake(150*WIDTH/375, 64*HEIGHT/667, 45*WIDTH/375, 15*HEIGHT/667)];
-//    title1.text = @"地址:";
-//    title1.textAlignment = NSTextAlignmentCenter;
-//    title1.textColor = [UIColor blackColor];
-//    title1.font = [UIFont boldSystemFontOfSize:15*WIDTH/375];
-//    [self.view addSubview:title1];
-//    
-//    UILabel *locationLab = [[UILabel alloc]initWithFrame:CGRectMake(170*WIDTH/375, 89*HEIGHT/667, 180*WIDTH/375, 15*HEIGHT/667)];
-//    locationLab.text = @"杭州市滨江区建业路511号";
-//    locationLab.textAlignment = NSTextAlignmentCenter;
-//    locationLab.textColor = [UIColor grayColor];
-//    locationLab.font = [UIFont boldSystemFontOfSize:13*WIDTH/375];
-//    [self.view addSubview:locationLab];
-//    
-//    UILabel *title2 = [[UILabel alloc]initWithFrame:CGRectMake(150*WIDTH/375, 109*HEIGHT/667, 45*WIDTH/375, 15*HEIGHT/667)];
-//    title2.text = @"公司:";
-//    title2.textAlignment = NSTextAlignmentCenter;
-//    title2.textColor = [UIColor blackColor];
-//    title2.font = [UIFont boldSystemFontOfSize:15*WIDTH/375];
-//    [self.view addSubview:title2];
-//    
-//    UILabel *companyLab = [[UILabel alloc]initWithFrame:CGRectMake(170*WIDTH/375, 129*HEIGHT/667, 180*WIDTH/375, 15*HEIGHT/667)];
-//    companyLab.text = @"杭州润宇物业管理有限公司";
-//    companyLab.textAlignment = NSTextAlignmentCenter;
-//    companyLab.textColor = [UIColor grayColor];
-//    companyLab.font = [UIFont boldSystemFontOfSize:13*WIDTH/375];
-//    [self.view addSubview:companyLab];
-//    
-//    UILabel *title3 = [[UILabel alloc]initWithFrame:CGRectMake(130*WIDTH/375, 164*HEIGHT/667, 70*WIDTH/375, 15*HEIGHT/667)];
-//    title3.text = @"主机状态:";
-//    title3.textAlignment = NSTextAlignmentCenter;
-//    title3.textColor = [UIColor blackColor];
-//    title3.font = [UIFont boldSystemFontOfSize:15*WIDTH/375];
-//    [self.view addSubview:title3];
-
     
     
 }

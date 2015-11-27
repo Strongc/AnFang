@@ -790,7 +790,7 @@
         <!--分类视频-->
         <scene sceneID="RsG-z8-bzh">
             <objects>
-                <viewController storyboardIdentifier="publicitemId" title="分类视频" id="zN2-ND-ZcI" customClass="PublicSourceItemViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="publicitemId" title="分类视频" id="zN2-ND-ZcI" customClass="PublicVideoitemViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ExP-HS-13s"/>
                         <viewControllerLayoutGuide type="bottom" id="ELh-JU-tak"/>

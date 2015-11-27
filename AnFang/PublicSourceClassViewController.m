@@ -13,6 +13,7 @@
 #import "PublicVideoClassModel.h"
 #import "PublicSourceItemViewController.h"
 #import "SVProgressHUD.h"
+#import "PublicVideoitemViewController.h"
 
 @interface PublicSourceClassViewController ()
 {
@@ -232,9 +233,9 @@
     
     [SVProgressHUD showWithStatus:@"加载中..."];
     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    PublicSourceItemViewController *publicItem = [mainView instantiateViewControllerWithIdentifier:@"publicitemId"];
+    PublicVideoitemViewController *publicItem = [mainView instantiateViewControllerWithIdentifier:@"publicitemId"];
     PublicVideoClassModel *model = [_classData objectAtIndex:indexPath.row];
-    publicItem.itemStr = model.className;
+    //publicItem.itemStr = model.className;
     publicItem.regionId = model.regionId;
     [self.navigationController pushViewController:publicItem animated:YES];
     [SVProgressHUD dismiss];
