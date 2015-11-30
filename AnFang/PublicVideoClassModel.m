@@ -18,6 +18,7 @@
 
         self.className = dict[@"name"];
         self.regionId = dict[@"regionId"];
+        self.regionCount = dict[@"count"];
        
     }
     

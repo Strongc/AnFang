@@ -599,7 +599,7 @@
             
                 NSDictionary *pathJson = [infoJson objectForKey:@"data"];
                 imagePath = [pathJson objectForKey:@"path_0"];
-                NSLog(@"图片路径%@",imagePath);
+                //NSLog(@"图片路径%@",imagePath);
                 [self performSelectorOnMainThread:@selector(saveImageData) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
             }
             
@@ -803,7 +803,7 @@
             if(data){
             
                 NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                NSLog(@"%@",jsonStr);
+               // NSLog(@"%@",jsonStr);
                 NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
             
                 if(infojson != nil){

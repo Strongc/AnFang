@@ -214,7 +214,7 @@
      NSString *userName = name.text;
     [CoreArchive setStr:userName key:@"name"];
     self.navigationController.navigationBarHidden = YES;
-   // [self getUserInfo];
+    //[self getUserInfo];
     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     MenuTabBarViewController *menuTab = [mainView instantiateViewControllerWithIdentifier:@"menuTabBar"];
     [self.navigationController pushViewController:menuTab animated:YES];

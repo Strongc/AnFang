@@ -4,35 +4,43 @@
 <array>
 	<dict>
 		<key>regionId</key>
-		<string>257</string>
+		<string>214</string>
 		<key>icon</key>
 		<string>sequ.png</string>
 		<key>name</key>
 		<string>智慧社区</string>
-	</dict>
-	<dict>
-		<key>regionId</key>
-		<string>214</string>
-		<key>icon</key>
-		<string>xiaoyuan.png</string>
-		<key>name</key>
-		<string>智慧校园</string>
+		<key>count</key>
+		<string>3</string>
 	</dict>
 	<dict>
 		<key>regionId</key>
 		<string>262</string>
 		<key>icon</key>
-		<string>jiaotong.png</string>
+		<string>xiaoyuan.png</string>
 		<key>name</key>
-		<string>智慧交通</string>
+		<string>智慧校园</string>
+		<key>count</key>
+		<string>2</string>
 	</dict>
 	<dict>
 		<key>regionId</key>
-		<string>137</string>
+		<string>340</string>
+		<key>icon</key>
+		<string>jiaotong.png</string>
+		<key>name</key>
+		<string>智慧交通</string>
+		<key>count</key>
+		<string>2</string>
+	</dict>
+	<dict>
+		<key>regionId</key>
+		<string>341</string>
 		<key>icon</key>
 		<string>lvyou.png</string>
 		<key>name</key>
 		<string>智慧旅游</string>
+		<key>count</key>
+		<string>2</string>
 	</dict>
 </array>
 </plist>

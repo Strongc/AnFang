@@ -19,6 +19,8 @@
 /** 区域ID*/
 @property (nonatomic,copy) NSString *regionId;
 
+@property (nonatomic,copy) NSString *regionCount;
+
 -(instancetype)initWithDict:(NSDictionary *)dict;
 +(instancetype)publicVideoClassModel:(NSDictionary *)dict;
 @end

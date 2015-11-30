@@ -53,9 +53,9 @@
 //获取用户主机ID
 #define API_GETHOST @"user/getHost"
 //获取商品订单
-#define API_GET_PAYINFO @"pay/getPayInfo"
+#define API_GET_ORDERNO @"order/apply"
 //支付成功后返回给后台
-#define API_GET_PAYACCEPT @"pay/accept"
+#define API_GET_PAYACCEPT @"order/accept"
 //求助
 #define API_ADD_HELP @"help/add"
 //文件上传

@@ -36,7 +36,7 @@
 {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.layer.borderColor = kBorderColor.CGColor;
-    btn.layer.borderWidth = 0.5;
+    btn.layer.borderWidth = 1;
     btn.clipsToBounds = YES;
     btn.layer.masksToBounds = YES;
     btn.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
@@ -49,6 +49,8 @@
     titleLabel.textAlignment = NSTextAlignmentLeft;
     titleLabel.textColor = kTextColor;
     [btn addSubview:titleLabel];
+    
+    //_titlesList = [[NSMutableArray alloc] init];
     
     _arrow = [[UIImageView alloc]initWithFrame:CGRectMake(btn.frame.size.width - imgW - 2, (self.frame.size.height-imgH)/2.0, imgW, imgH)];
     _arrow.image = [UIImage imageNamed:_arrowImgName];
@@ -65,14 +67,14 @@
     
     [_supView addSubview:_listTable];
     
-    titleLabel.text = [_titlesList objectAtIndex:_defaultIndex];
+    titleLabel.text = [_titlesList[0] name];
 }
 
 //刷新视图
 -(void)reloadData
 {
     [_listTable reloadData];
-    titleLabel.text = [_titlesList objectAtIndex:_defaultIndex];
+    titleLabel.text = [_titlesList[0] name];
 }
 
 //关闭父视图上面的其他combox
@@ -185,19 +187,19 @@
         [cell addSubview:line];
     }
     UILabel *label = (UILabel *)[cell viewWithTag:1000];
-    label.text = [_titlesList objectAtIndex:indexPath.row];
+    label.text = [_titlesList[indexPath.row] name];
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    titleLabel.text = [_titlesList objectAtIndex:indexPath.row];
+    titleLabel.text = [_titlesList[indexPath.row] name];
     _isOpen = YES;
     [self tapAction];
     if([_delegate respondsToSelector:@selector(selectAtIndex:inCombox:)])
     {
-        [_delegate selectAtIndex:indexPath.row inCombox:self];
+        [_delegate selectAtIndex:(int)indexPath.row inCombox:self];
     }
     [self performSelector:@selector(deSelectedRow) withObject:nil afterDelay:0.2];
 }

@@ -17,6 +17,7 @@
 #import "DataSigner.h"
 #import "WGAPI.h"
 #import "CMTool.h"
+#import "CoreArchive.h"
 //#import "payRequsestHandler.h"
 //#import "WXApiObject.h"
 //#import "WXApi.h"
@@ -32,6 +33,7 @@
     NSIndexPath *previousSelectedIndex1;
     UICollectionView *payStyleCollectionView;
     //2088902492111085
+    NSString *orderNo;
     
 }
 
@@ -329,6 +331,7 @@
         }
         
         [payStyleCollectionView reloadData];
+        [self createOrderNumber];
 
     }
 
@@ -362,10 +365,45 @@
     return resultStr;
 }
 
+-(void)createOrderNumber
+{
+    
+    NSString *userId = [CoreArchive strForKey:@"userId"];
+    NSDictionary *params = @{@"goods_id":@"201511121655240669",
+                                 @"user_id":userId
+                                 };
+    NSString *paramsStr = [CMTool dictionaryToJson:params];
+    NSString *str = @"order=";
+    NSString *paramStr = [str stringByAppendingString:paramsStr];
+    [WGAPI post:API_GET_ORDERNO RequestParams:paramStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if(data){
+    
+            NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            //NSLog(@"%@",jsonStr);
+            NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
+            orderNo = [infojson objectForKey:@"out_trade_no"];
+           
+            [self performSelectorOnMainThread:@selector(saveUserInfo) withObject:data waitUntilDone:YES];//刷新UI线程
+
+            
+        }
+    }];
+
+
+
+}
+
+-(void)saveUserInfo
+{
+    
+    [CoreArchive setStr:orderNo key:@"order"];
+    
+}
 
 
 #pragma mark - 支付宝
 - (void)doAliPay {
+    
     
 //    NSString *goodsName = @"账户充值";
 //    NSString *price = [NSString stringWithFormat:@"%.2f",1.00];
@@ -373,19 +411,20 @@
 //    
 //    NSDictionary *payInfoDict = @{@"goodsName":goodsName,@"goodsDetail":goodsDetail,@"price":price};
     
+    
     NSString *partner = @"2088021410775742";
     NSString *seller = @"3266924131@qq.com";
     
-    NSString *privateKey = @"MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBANsc9OxxK1Ava5InFWG9TaHwLUgD6P/fhk/8Y+87LtE5yi+pEkOWKe2tlzoNYOsvwV/KzwGpqUk/0aPldtcnfrwLwKxAhE4ng93Vo6NmvPwGjy5qpuMvd7s3ueJ4Rlaxe3WwJtvUkiwCCRpJKzeNisKdXTfRAebg3XeOKUi9URVjAgMBAAECgYEAlWGAeVIOPXSW2eVbZm8w5h5gQKCp0QgLAa0IVKj8mhfUB/o0QW+21htq5mEImk7Mfwo9ZtzMVOv1eM+P3c9HTpmHpDIJRIXuuU5+ZAYetaFoeE3Fr47Yuu/8d//g7hVmWD1tAPHgKpzQ7Kf9yV8l3ucwF4v10E/G5pdxJy+cI4ECQQDzNvpDNU57VfOkGLEfMhaUR04pRzOUl9WAX7aFM06FZV7+lILICuLAoL6bKQmJia0edv5EHmiw/CdQFEwkwwVbAkEA5qGin9yBiJdYLC56hvckVY1DdPO1ia8d0RH6d2aPCM/s9da+/zq2aSyIRiCzDWe5bQdTkAVL025oxltmeaRGmQJAVvGcXVI9EBIV2t+I0eIR+EfVRSRS6BevFwkgMlW5CC7I2rE0X1ak4L+V49mzsxsoa++VzbwhKMO7OgFHhwzAaQJBAN61u0rQLq3uKBESGPP3+Dg9H6TyKp34YryftdRTT1BdKSAE7Y+d7MQHYtkFfqI1RZQJfSIYWy6i8b6KSJyyjBECQE1d72BQ3n/vJmmfeTkU+QKR3Zc4vvHyX7LpvCaCg4Tfzg7opFUhgER0fyDYxVyuPiqHDdnpbKkwFlPjgX5EGX0=";
+    NSString *privateKey = @"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBANJDoVbuSo6yFhikcrcw2EbgM90g94jI6y+jW1JDJ+uhnK+u3YlYVp0F+J5MJGcJlbgpiF2z8MFgFLfDRMY6WZVUvYn2HbO1V2HRbOlr0cV/ixQoxX/Xrjs9kZk6+R/HyC1hOR3m2SZeiJB8f0ToaIrlBMNZAVgO1kQWc9xE9tSRAgMBAAECgYBWK1UxdRKlDCK2Ep7YqHHaCgP3OY14Ry7rJP1F5zOzA1ZdQUKVCNjmHQ5YgUfh2jG7eXnjPN0Lwr562NGUk1EmfYVQrFv0c0GvyLvozkwQ3bh/Tvsr8oK0BA9kIBRiOV/N7BtAB790Y6WZjro8HfVr0CyyxMnRfxZwEDTu7+qvYQJBAO87We6mo5J8ez5wd0qy2QuikRcxSMYGgTcP1hiWMWvalsQZhBy1uzfCQydIo73X2qTfVNApjrwwLXDacPHds5UCQQDhAH+oyoh9YpBPH7x5VkqNBUTBhyXggQX3TNJotLC64bf5qglbbJAV4nwv6J1j0QKM486jGz+Z++ZuCiEQtF4NAkBmUZ4vQjpnprIXjIaY/lFydn9TyhJ0D8goQq+xKFvO41jkWn10wg1m1cFfBeRyh+XN6m8d8QhJWNm2kNcJu2bZAkEAmRtxwzYussPDV1RNOHQTvup64wZILAEgQiwwcbejG0hFnMqsG15AnePEhgVQNIAhsCXEkxETsoDLSM3zuh5CcQJATM1GwzZsrRGayPuehl1PvKnNhuo/mGwKeSYi/MNVYprpIgYu5canZAQ6luZS1VR2DI4U4pPALc8hZlO9qPJMhA==";
     
     Order *order = [[Order alloc] init];
     order.partner = partner;
     order.seller = seller;
-    order.tradeNO = [self generateTradeNO]; //订单ID（由商家自行制定）
+    order.tradeNO = [CoreArchive strForKey:@"order"]; //订单ID（由商家自行制定）
     order.productName = @"充值金额"; //商品标题
     order.productDescription = @"安防服务续费"; //商品描述
-    order.amount = [NSString stringWithFormat:@"%.3f",0.001]; //商品价格
-    order.notifyURL = @"http://121.41.24.19:8080/order/accept"; //回调URL
+    order.amount = [NSString stringWithFormat:@"%.2f",0.01]; //商品价格
+    order.notifyURL = @"http://121.41.24.19:8080/pay/accept"; //回调URL
     
     order.service = @"mobile.securitypay.pay";
     order.paymentType = @"1";

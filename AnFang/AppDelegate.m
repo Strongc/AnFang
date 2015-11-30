@@ -143,23 +143,13 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     
-    if([url.host isEqualToString:@"safepay"]){
-        
-        [[AlipaySDK  defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+   
+    [[AlipaySDK  defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
             
             NSLog(@"result = %@",resultDic);
-        }];
+    }];
     
-    }
     
-    if([url.host isEqualToString:@"platformapi"]){
-    
-        [[AlipaySDK  defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            
-            NSLog(@"result = %@",resultDic);
-        }];
-
-    }
     
     return YES;
 }
