@@ -44,7 +44,7 @@
     [self addSubview:btn];
     
     titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(2, 0, self.frame.size.width-imgW - 5 - 2, self.frame.size.height)];
-    titleLabel.font = [UIFont systemFontOfSize:11];
+    titleLabel.font = [UIFont systemFontOfSize:15];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textAlignment = NSTextAlignmentLeft;
     titleLabel.textColor = kTextColor;
@@ -177,7 +177,7 @@
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(2, 0, self.frame.size.width-4, self.frame.size.height)];
         label.backgroundColor = [UIColor clearColor];
         label.textAlignment = NSTextAlignmentLeft;
-        label.font = [UIFont systemFontOfSize:11];
+        label.font = [UIFont systemFontOfSize:15];
         label.textColor = kTextColor;
         label.tag = 1000;
         [cell addSubview:label];
@@ -202,6 +202,8 @@
         [_delegate selectAtIndex:(int)indexPath.row inCombox:self];
     }
     [self performSelector:@selector(deSelectedRow) withObject:nil afterDelay:0.2];
+    
+    
 }
 
 -(void)deSelectedRow

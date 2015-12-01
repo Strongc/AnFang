@@ -13,7 +13,7 @@
 #import <UIKit/UIKit.h>
 #define imgW 10
 #define imgH 10
-#define tableH 60
+#define tableH 150
 #define DEGREES_TO_RADIANS(angle) ((angle)/180.0 *M_PI)
 #define kBorderColor [UIColor colorWithRed:219/255.0 green:217/255.0 blue:216/255.0 alpha:1]
 #define kTextColor   [UIColor darkGrayColor]
@@ -34,6 +34,7 @@
 @property(nonatomic,strong)NSMutableArray *titlesList;
 @property(nonatomic,assign)int defaultIndex;
 @property(nonatomic,assign)float tableHeight;
+@property(nonatomic,assign)int selectIndex;
 @property(nonatomic,strong)UIImageView *arrow;
 @property(nonatomic,copy)NSString *arrowImgName;//箭头图标名称
 @property(nonatomic,assign)id<LMComBoxViewDelegate>delegate;

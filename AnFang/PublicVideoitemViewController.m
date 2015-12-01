@@ -28,6 +28,8 @@
     int _selectedLineID;
     NSMutableArray *streetNameArray;//存放街道名称
     LMComBoxView *cityBoxView;
+    int selectIndex;
+
 
 }
 
@@ -128,17 +130,6 @@
     
     }
     
-    for(int i=0;i<villageArray.count;i++){
-        
-        if([villageArray[i] isMemberOfClass:[CRegionInfo class]]){
-        
-            self.countStr = 3;
-        }else{
-        
-            self.countStr = 2;
-        }
-        
-    }
     
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
     headView.backgroundColor = [UIColor colorWithHexString:@"222121"];
@@ -173,16 +164,13 @@
     self.publicItemTable.backgroundColor = [UIColor colorWithHexString:@"040818"];
     self.publicItemTable.separatorStyle = UITableViewCellSeparatorStyleNone;
 
-    videoScrollView = [[LMContainsLMComboxScrollView alloc]initWithFrame:CGRectMake(0, 70, WIDTH, 120)];
+    videoScrollView = [[LMContainsLMComboxScrollView alloc]initWithFrame:CGRectMake(0, 70, WIDTH, 200)];
     videoScrollView.backgroundColor = [UIColor clearColor];
     videoScrollView.showsVerticalScrollIndicator = NO;
     videoScrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:videoScrollView];
-    
     [self setUpVideoScrollView];
-    
      selectedVillageName = [villageArray[0] name];
-    
     
     // Do any additional setup after loading the view.
 }
@@ -194,7 +182,7 @@
     
     for(NSInteger i=0;i<2;i++)
     {
-        LMComBoxView *comBox = [[LMComBoxView alloc]initWithFrame:CGRectMake(10+(90+6)*i, 15, 90, 35)];
+        LMComBoxView *comBox = [[LMComBoxView alloc]initWithFrame:CGRectMake(20+(110+5)*i, 5, 110, 40)];
         comBox.backgroundColor = [UIColor whiteColor];
         comBox.arrowImgName = @"down_dark0";
         comBox.titlesList = [NSMutableArray arrayWithArray:streetNameArray];
@@ -203,56 +191,96 @@
         [comBox defaultSettings];
         comBox.tag = kDropDownListTag + i;
         [videoScrollView addSubview:comBox];
-        //[self selectAtIndex:0 inCombox:comBox];
+       
         
     }
+    LMComBoxView* comBox1 = [videoScrollView viewWithTag:kDropDownListTag];
+    LMComBoxView* comBox2 = [videoScrollView viewWithTag:kDropDownListTag +1];
+    [self selectAtIndex:0 inCombox:comBox1];
+    if(self.countOfRegion == 3){
     
+        [self selectAtIndex:0 inCombox:comBox2];
+    }
+    
+    
+}
+
+/**
+ 
+ */
+-(int)countOfRegion
+{
+    int countStr = 0;
+    for(int i=0;i<villageArray.count;i++){
+        
+        if([villageArray[i] isMemberOfClass:[CRegionInfo class]]){
+            
+            countStr = 3;
+        }else{
+            
+            countStr = 2;
+        }
+        
+    }
+
+    return countStr;
 
 }
 
 #pragma mark -LMComBoxViewDelegate
 -(void)selectAtIndex:(int)index inCombox:(LMComBoxView *)_combox
 {
+    
     NSInteger tag = _combox.tag - kDropDownListTag;
     switch (tag) {
         case 0:
             {
+                LMComBoxView *areaCombox = (LMComBoxView *)[videoScrollView viewWithTag:kDropDownListTag];
+                NSIndexPath *indexPath = [areaCombox.listTable indexPathForSelectedRow];
+                int index = (int)indexPath.row;
+                selectIndex = index;
+                NSLog(@"下标 %d",selectIndex);
                 int regionId = [streetArray[index] regionID];
-                [self _getAllVideoInSection:regionId];
-                //if(self.countStr == 3){
+               [self _getAllVideoInSection:regionId];
+                
+                
+                if(self.countOfRegion == 2){
+                    LMComBoxView* comBox = (LMComBoxView *)[videoScrollView viewWithTag:kDropDownListTag+1];//通过tag移除指定的子视图
+                    comBox.hidden = YES;
+                    [comBox removeFromSuperview];
+                    [self.publicItemTable reloadData];
+                
+                }else if (self.countOfRegion == 3){
+                
+                    LMComBoxView *villageCombox = [[LMComBoxView alloc]initWithFrame:CGRectMake(20+(110+5)*1, 5, 110, 40)];
+                    villageCombox.backgroundColor = [UIColor whiteColor];
+                    villageCombox.arrowImgName = @"down_dark0";
+                    villageCombox.delegate = self;
+                    villageCombox.supView = videoScrollView;
+                    [villageCombox defaultSettings];
+                    villageCombox.tag = kDropDownListTag + 1;
+                    [videoScrollView addSubview:villageCombox];
+                    villageCombox.titlesList = [NSMutableArray arrayWithArray:villageArray];
+                    [villageCombox reloadData];
                     
-                    LMComBoxView *cityCombox = (LMComBoxView *)[videoScrollView viewWithTag:tag + 1 + kDropDownListTag];
-                    cityCombox.titlesList = [NSMutableArray arrayWithArray:villageArray];
-                    [cityCombox reloadData];
-               // }
-                //else{
-                
-                    //[self.publicItemTable reloadData];
-                
-                //}
+                }
+                    
                
             }
             break;
             
          case 1:
             {
-        
-                int regionId = [villageArray[index] regionID];
+                
+                LMComBoxView *village1Combox = (LMComBoxView *)[videoScrollView viewWithTag:kDropDownListTag +1];
+                int index2 = (int)village1Combox.listTable.indexPathForSelectedRow.row;
+                NSLog(@"下标ddddd %d",index2);
+                int regionId = [streetArray[selectIndex] regionID];
                 [self _getAllVideoInSection:regionId];
+                int videoId = [villageArray[index2] regionID];
+                [self _getAllVideoInSection:videoId];
+                [self.publicItemTable reloadData];
                 
-//                if(self.countStr == 3){
-//                    
-//                    LMComBoxView *cityCombox = (LMComBoxView *)[videoScrollView viewWithTag:tag + 1 + kDropDownListTag];
-//                    cityCombox.titlesList = [NSMutableArray arrayWithArray:villageArray];
-//                    [cityCombox reloadData];
-//                }
-//                else{
-                
-                    [self.publicItemTable reloadData];
-                    
-               // }
-
-        
             }
             break;
             
