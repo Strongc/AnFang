@@ -12,6 +12,7 @@
 #import "UIColor+Extensions.h"
 #import "PublicItemVideoCell.h"
 #import "PlayViewController.h"
+#import "SVProgressHUD.h"
 #define kDropDownListTag 1000
 
 @interface PublicVideoitemViewController ()
@@ -29,8 +30,6 @@
     NSMutableArray *streetNameArray;//存放街道名称
     LMComBoxView *cityBoxView;
     int selectIndex;
-
-
 }
 
 @end
@@ -57,6 +56,7 @@
     [streetArray addObjectsFromArray:tempArray];
    
     [tempArray removeAllObjects];
+   
     return streetArray;
 }
 
@@ -86,11 +86,17 @@
                           toCameraList:tempArray];
     [villageArray addObjectsFromArray:tempArray];
     [tempArray removeAllObjects];
-    
+   
     return villageArray;
     
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+     [[NSNotificationCenter defaultCenter] postNotificationName:@"hideHUD" object:nil];
+    //[self _getAllStreetArray];
+
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -130,7 +136,6 @@
     
     }
     
-    
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
     headView.backgroundColor = [UIColor colorWithHexString:@"222121"];
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, WIDTH, 50*HEIGHT/667)];
@@ -164,7 +169,7 @@
     self.publicItemTable.backgroundColor = [UIColor colorWithHexString:@"040818"];
     self.publicItemTable.separatorStyle = UITableViewCellSeparatorStyleNone;
 
-    videoScrollView = [[LMContainsLMComboxScrollView alloc]initWithFrame:CGRectMake(0, 70, WIDTH, 200)];
+    videoScrollView = [[LMContainsLMComboxScrollView alloc]initWithFrame:CGRectMake(0, 64, WIDTH-150, 140)];
     videoScrollView.backgroundColor = [UIColor clearColor];
     videoScrollView.showsVerticalScrollIndicator = NO;
     videoScrollView.showsHorizontalScrollIndicator = NO;
@@ -172,6 +177,9 @@
     [self setUpVideoScrollView];
      selectedVillageName = [villageArray[0] name];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showProgressHUD) name:@"showProHUD" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideProgressHUD) name:@"hideProHUD" object:nil];
+
     // Do any additional setup after loading the view.
 }
 
@@ -182,7 +190,7 @@
     
     for(NSInteger i=0;i<2;i++)
     {
-        LMComBoxView *comBox = [[LMComBoxView alloc]initWithFrame:CGRectMake(20+(110+5)*i, 5, 110, 40)];
+        LMComBoxView *comBox = [[LMComBoxView alloc]initWithFrame:CGRectMake(20+(90+5)*i, 5, 90, 30)];
         comBox.backgroundColor = [UIColor whiteColor];
         comBox.arrowImgName = @"down_dark0";
         comBox.titlesList = [NSMutableArray arrayWithArray:streetNameArray];
@@ -227,10 +235,30 @@
 
 }
 
+-(void)showProgressHUD
+{
+
+    [SVProgressHUD showWithStatus:@"加载中..."];
+    
+}
+
+-(void)hideProgressHUD
+{
+    
+    [SVProgressHUD dismiss];
+}
+
+//刷新视图
+-(void)reloadData
+{
+    [self.publicItemTable reloadData];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"hideProHUD" object:nil];
+}
+
 #pragma mark -LMComBoxViewDelegate
 -(void)selectAtIndex:(int)index inCombox:(LMComBoxView *)_combox
 {
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"showProHUD" object:nil];
     NSInteger tag = _combox.tag - kDropDownListTag;
     switch (tag) {
         case 0:
@@ -248,11 +276,11 @@
                     LMComBoxView* comBox = (LMComBoxView *)[videoScrollView viewWithTag:kDropDownListTag+1];//通过tag移除指定的子视图
                     comBox.hidden = YES;
                     [comBox removeFromSuperview];
-                    [self.publicItemTable reloadData];
+                    [self reloadData];
                 
                 }else if (self.countOfRegion == 3){
                 
-                    LMComBoxView *villageCombox = [[LMComBoxView alloc]initWithFrame:CGRectMake(20+(110+5)*1, 5, 110, 40)];
+                    LMComBoxView *villageCombox = [[LMComBoxView alloc]initWithFrame:CGRectMake(20+(90+5)*1, 5, 90, 30)];
                     villageCombox.backgroundColor = [UIColor whiteColor];
                     villageCombox.arrowImgName = @"down_dark0";
                     villageCombox.delegate = self;
@@ -262,6 +290,7 @@
                     [videoScrollView addSubview:villageCombox];
                     villageCombox.titlesList = [NSMutableArray arrayWithArray:villageArray];
                     [villageCombox reloadData];
+                   
                     
                 }
                     
@@ -279,7 +308,7 @@
                 [self _getAllVideoInSection:regionId];
                 int videoId = [villageArray[index2] regionID];
                 [self _getAllVideoInSection:videoId];
-                [self.publicItemTable reloadData];
+               [self reloadData];
                 
             }
             break;
@@ -289,7 +318,7 @@
             
     }
    
-
+    
 }
 
 #pragma mark UITableViewDataSource
@@ -317,7 +346,7 @@
     }
     
     cell.videoNameLab.text = [villageArray[indexPath.row] name];
-    
+     [[NSNotificationCenter defaultCenter] postNotificationName:@"hideProHuD" object:nil];
     return cell;
     
 }
@@ -332,7 +361,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
    // NSMutableArray *array = villageArray[indexPath.section];
-    
+    int index = (int)indexPath.row;
+    NSLog(@"被选中 %d",index);
     if ([villageArray[indexPath.row] isMemberOfClass:[CCameraInfo class]]) {
         PlayViewController *playVC = [[PlayViewController alloc] init];
         
@@ -344,8 +374,7 @@
         return;
     }
     
-    
-    
+
 }
 
 

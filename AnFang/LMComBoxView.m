@@ -58,7 +58,7 @@
     
     //默认不展开
     _isOpen = NO;
-    _listTable = [[UITableView alloc]initWithFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y+self.frame.size.height, self.frame.size.width, 0) style:UITableViewStylePlain];
+    _listTable = [[UITableView alloc]initWithFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y + self.frame.size.height, self.frame.size.width, 0) style:UITableViewStylePlain];
     _listTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     _listTable.delegate = self;
     _listTable.dataSource = self;
@@ -75,6 +75,7 @@
 {
     [_listTable reloadData];
     titleLabel.text = [_titlesList[0] name];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"hideProHUD" object:nil];
 }
 
 //关闭父视图上面的其他combox
@@ -163,7 +164,8 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return self.frame.size.height;
+    //return self.frame.size.height;
+    return 30.0;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -189,7 +191,9 @@
     UILabel *label = (UILabel *)[cell viewWithTag:1000];
     label.text = [_titlesList[indexPath.row] name];
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    
     return cell;
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

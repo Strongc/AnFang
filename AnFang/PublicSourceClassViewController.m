@@ -22,6 +22,7 @@
     NSMutableArray *_allSectionList;
     NSMutableArray *_lineList;
     int _selectedLineID;
+    //PublicVideoitemViewController *publicItem;
 
 }
 @property (nonatomic,strong) NSArray *classData;
@@ -32,53 +33,53 @@
 @implementation PublicSourceClassViewController
 
 
--(NSMutableArray *)_getAllVideoInSection
-{
-    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
-    _allSectionList = [NSMutableArray array];
-    NSMutableArray *tempArray = [NSMutableArray array];
-    if (nil == _regionInfo) {
-        if (nil == _controlUnitInfo) {
-            
-            //获取根控制中心
-            [vmsNetSDK getControlUnitList:_serverAddress
-                              toSessionID:_mspInfo.sessionID
-                          toControlUnitID:0
-                             toNumPerOnce:50
-                                toCurPage:1
-                        toControlUnitList:tempArray];
-            [_allSectionList addObjectsFromArray:tempArray];
-            [tempArray removeAllObjects];
-        } else {
-            
-            //获取控制中心下的控制中心
-            [vmsNetSDK getControlUnitList:_serverAddress
-                              toSessionID:_mspInfo.sessionID
-                          toControlUnitID:_controlUnitInfo.controlUnitID
-                             toNumPerOnce:50
-                                toCurPage:1
-                        toControlUnitList:tempArray];
-            [_allSectionList addObjectsFromArray:tempArray];
-            [tempArray removeAllObjects];
-            
-            //获取控制中心下的区域
-            [vmsNetSDK getRegionListFromCtrlUnit:_serverAddress
-                                     toSessionID:_mspInfo.sessionID
-                                 toControlUnitID:_controlUnitInfo.controlUnitID
-                                    toNumPerOnce:50
-                                       toCurPage:1
-                                    toRegionList:tempArray];
-            [_allSectionList addObjectsFromArray:tempArray];
-            [tempArray removeAllObjects];
-            
-        }
-    } else {
-        
-        
-    }
-    return _allSectionList;
-    
-}
+//-(NSMutableArray *)_getAllVideoInSection
+//{
+//    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
+//    _allSectionList = [NSMutableArray array];
+//    NSMutableArray *tempArray = [NSMutableArray array];
+//    if (nil == _regionInfo) {
+//        if (nil == _controlUnitInfo) {
+//            
+//            //获取根控制中心
+//            [vmsNetSDK getControlUnitList:_serverAddress
+//                              toSessionID:_mspInfo.sessionID
+//                          toControlUnitID:0
+//                             toNumPerOnce:50
+//                                toCurPage:1
+//                        toControlUnitList:tempArray];
+//            [_allSectionList addObjectsFromArray:tempArray];
+//            [tempArray removeAllObjects];
+//        } else {
+//            
+//            //获取控制中心下的控制中心
+//            [vmsNetSDK getControlUnitList:_serverAddress
+//                              toSessionID:_mspInfo.sessionID
+//                          toControlUnitID:_controlUnitInfo.controlUnitID
+//                             toNumPerOnce:50
+//                                toCurPage:1
+//                        toControlUnitList:tempArray];
+//            [_allSectionList addObjectsFromArray:tempArray];
+//            [tempArray removeAllObjects];
+//            
+//            //获取控制中心下的区域
+//            [vmsNetSDK getRegionListFromCtrlUnit:_serverAddress
+//                                     toSessionID:_mspInfo.sessionID
+//                                 toControlUnitID:_controlUnitInfo.controlUnitID
+//                                    toNumPerOnce:50
+//                                       toCurPage:1
+//                                    toRegionList:tempArray];
+//            [_allSectionList addObjectsFromArray:tempArray];
+//            [tempArray removeAllObjects];
+//            
+//        }
+//    } else {
+//        
+//        
+//    }
+//    return _allSectionList;
+//    
+//}
 
 -(NSArray *)classData
 {
@@ -147,10 +148,28 @@
         [alertView show];
         return;
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showProgressHUD) name:@"showHUD" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideProgressHUD) name:@"hideHUD" object:nil];
 
+    
    // [self _getAllVideoInSection];
     
     // Do any additional setup after loading the view.
+}
+
+-(void)showProgressHUD
+{
+
+    SVProgressHUD *svP = [[SVProgressHUD alloc] init];
+    [SVProgressHUD showWithStatus:@"加载中..."];
+    [self.view addSubview:svP];
+}
+
+-(void)hideProgressHUD
+{
+    
+    [SVProgressHUD dismiss];
 }
 
 
@@ -214,7 +233,8 @@
     PublicVideoClassModel *model = [self.classData objectAtIndex:indexPath.item];
     
     cell.publicClass = model;
-
+    [cell setTag:indexPath.row];
+    //[cell.backViewBtn addTarget:self action:@selector(doJumpTo:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
@@ -248,23 +268,29 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    [SVProgressHUD showWithStatus:@"加载中..."];
-    UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    PublicVideoitemViewController *publicItem = [mainView instantiateViewControllerWithIdentifier:@"publicitemId"];
-    PublicVideoClassModel *region = [self.classData objectAtIndex:indexPath.row];
-    publicItem.itemStr = region.className;
-    publicItem.regionId = region.regionId;
-    publicItem.countStr = region.regionCount.intValue;
-    [self.navigationController pushViewController:publicItem animated:YES];
-    [SVProgressHUD dismiss];
-
+   // int index = (int)indexPath.row;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"showHUD" object:nil];
+    [self performSelector:@selector(doJumpTo:) withObject:indexPath afterDelay:2.0f];
 }
 
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
     return YES;
+}
+
+
+-(void)doJumpTo:(NSIndexPath *)index
+{
+    //int index = (int)[sender tag];
+    UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    PublicVideoitemViewController *publicItem = [mainView instantiateViewControllerWithIdentifier:@"publicitemId"];
+    PublicVideoClassModel *region = [self.classData objectAtIndex:index.row];
+    publicItem.itemStr = region.className;
+    publicItem.regionId = region.regionId;
+    publicItem.countStr = region.regionCount.intValue;
+    [self.navigationController pushViewController:publicItem animated:YES];
+
 }
 
 - (void)didReceiveMemoryWarning {

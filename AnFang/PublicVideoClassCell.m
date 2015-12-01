@@ -37,11 +37,11 @@
         className.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:className];
         self.className = className;
-        UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height-40, self.frame.size.width, 40)];
-        [self.contentView addSubview:backView];
-        backView.backgroundColor = [UIColor blackColor];
-        backView.alpha = 0.65;
-        
+        UIButton *backViewBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height-40, self.frame.size.width, 40)];
+        [self.contentView addSubview:backViewBtn];
+        backViewBtn.backgroundColor = [UIColor blackColor];
+        backViewBtn.alpha = 0.65;
+        self.backViewBtn = backViewBtn;
     }
     
     self.backgroundColor = [UIColor clearColor];

@@ -17,5 +17,7 @@
 /** 分类名称*/
 @property (nonatomic,weak) UILabel *className;
 
+@property (nonatomic,weak) UIButton *backViewBtn;
+
 @property (nonatomic,strong) PublicVideoClassModel *publicClass;
 @end
