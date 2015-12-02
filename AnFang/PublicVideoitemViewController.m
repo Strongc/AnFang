@@ -91,11 +91,10 @@
     
 }
 
--(void)viewDidAppear:(BOOL)animated
+-(void)viewWillAppear:(BOOL)animated
 {
-     [[NSNotificationCenter defaultCenter] postNotificationName:@"hideHUD" object:nil];
-    //[self _getAllStreetArray];
-
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"hideHUD" object:nil];
+    
 }
 
 - (void)viewDidLoad {
@@ -361,8 +360,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
    // NSMutableArray *array = villageArray[indexPath.section];
-    int index = (int)indexPath.row;
-    NSLog(@"被选中 %d",index);
+    //int index = (int)indexPath.row;
+    //NSLog(@"被选中 %d",index);
     if ([villageArray[indexPath.row] isMemberOfClass:[CCameraInfo class]]) {
         PlayViewController *playVC = [[PlayViewController alloc] init];
         

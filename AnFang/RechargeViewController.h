@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "payRequsestHandler.h"
+#import <QuartzCore/QuartzCore.h>
 //#import "BeeCloud.h"
 
 static NSString * const billTitle = @"2015-09-18 Release";

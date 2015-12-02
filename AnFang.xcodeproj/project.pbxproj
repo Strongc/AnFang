@@ -201,6 +201,9 @@
 		3E02EF971BEDD3C100390C49 /* LoginNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E02EF961BEDD3C100390C49 /* LoginNavigationViewController.m */; };
 		3E02EF991BEDDC2200390C49 /* newFeature_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E02EF981BEDDC2200390C49 /* newFeature_3.png */; };
 		3E02EF9B1BEDE17A00390C49 /* tiyan.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E02EF9A1BEDE17A00390C49 /* tiyan.png */; };
+		3E498E7D1C0EC52200E53DF2 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E498E7C1C0EC52200E53DF2 /* libWeChatSDK.a */; };
+		3E498E7F1C0EC55C00E53DF2 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E498E7E1C0EC55C00E53DF2 /* libsqlite3.0.tbd */; };
+		3E498E831C0EC6A300E53DF2 /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E498E821C0EC6A300E53DF2 /* WXApiManager.m */; };
 		3E6864891BF0714100FCA20C /* message.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E6864881BF0714100FCA20C /* message.png */; };
 		3E68648B1BF071E600FCA20C /* messagePress.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E68648A1BF071E600FCA20C /* messagePress.png */; };
 		3E68648D1BF078B500FCA20C /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E68648C1BF078B500FCA20C /* bg.png */; };
@@ -233,6 +236,9 @@
 		3E7199211BF9D6B20001098E /* 意见反馈.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E71991C1BF9D6B20001098E /* 意见反馈.png */; };
 		3E7199221BF9D6B20001098E /* 账户中心.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E71991D1BF9D6B20001098E /* 账户中心.png */; };
 		3E74F3F31BEF2385004E2935 /* PublicHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E74F3F21BEF2385004E2935 /* PublicHeaderView.m */; };
+		3E75490C1C0EE85A005B52F3 /* ApiXml.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E7549071C0EE85A005B52F3 /* ApiXml.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3E75490D1C0EE85A005B52F3 /* payRequsestHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E7549091C0EE85A005B52F3 /* payRequsestHandler.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3E75490E1C0EE85A005B52F3 /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E75490B1C0EE85A005B52F3 /* WXUtil.mm */; };
 		3E75F1961C003CAB001A91CF /* PublicSourceClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E75F1951C003CAB001A91CF /* PublicSourceClassViewController.m */; };
 		3E75F1981C006A1D001A91CF /* head.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E75F1971C006A1D001A91CF /* head.png */; };
 		3E75F19B1C006C96001A91CF /* PublicVideoClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E75F19A1C006C96001A91CF /* PublicVideoClassCell.m */; };
@@ -242,6 +248,13 @@
 		3E75F1A41C0071CC001A91CF /* xiaoyuan.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E75F1A21C0071CC001A91CF /* xiaoyuan.png */; };
 		3E75F1A71C00724A001A91CF /* lvyou.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E75F1A51C00724A001A91CF /* lvyou.png */; };
 		3E75F1A81C00724A001A91CF /* jiaotong.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E75F1A61C00724A001A91CF /* jiaotong.png */; };
+		3E838D6E1C0E93F200AFACAE /* ShangMengItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E838D6D1C0E93F200AFACAE /* ShangMengItemViewController.m */; };
+		3E838D701C0EB04B00AFACAE /* ShangmengItem.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E838D6F1C0EB04B00AFACAE /* ShangmengItem.plist */; };
+		3E838D741C0EB20400AFACAE /* ShangMengClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E838D731C0EB20400AFACAE /* ShangMengClassModel.m */; };
+		3E838D791C0EB5E600AFACAE /* anfang.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E838D751C0EB5E600AFACAE /* anfang.jpg */; };
+		3E838D7A1C0EB5E600AFACAE /* dongyang.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E838D761C0EB5E600AFACAE /* dongyang.jpg */; };
+		3E838D7B1C0EB5E600AFACAE /* guanggao.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E838D771C0EB5E600AFACAE /* guanggao.jpg */; };
+		3E838D7C1C0EB5E600AFACAE /* jiaju.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E838D781C0EB5E600AFACAE /* jiaju.jpg */; };
 		3E9589CE1C082D8E00307DED /* PublicVideoitemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9589CD1C082D8E00307DED /* PublicVideoitemViewController.m */; };
 		3E9589D41C08319500307DED /* LMComBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9589D11C08319500307DED /* LMComBoxView.m */; };
 		3E9589D51C08319500307DED /* LMContainsLMComboxScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9589D31C08319500307DED /* LMContainsLMComboxScrollView.m */; };
@@ -660,6 +673,12 @@
 		3E02EF961BEDD3C100390C49 /* LoginNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginNavigationViewController.m; sourceTree = "<group>"; };
 		3E02EF981BEDDC2200390C49 /* newFeature_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newFeature_3.png; sourceTree = "<group>"; };
 		3E02EF9A1BEDE17A00390C49 /* tiyan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiyan.png; sourceTree = "<group>"; };
+		3E498E7A1C0EC4F900E53DF2 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		3E498E7B1C0EC4F900E53DF2 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		3E498E7C1C0EC52200E53DF2 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		3E498E7E1C0EC55C00E53DF2 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		3E498E811C0EC6A300E53DF2 /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
+		3E498E821C0EC6A300E53DF2 /* WXApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiManager.m; sourceTree = "<group>"; };
 		3E6864881BF0714100FCA20C /* message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message.png; sourceTree = "<group>"; };
 		3E68648A1BF071E600FCA20C /* messagePress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = messagePress.png; sourceTree = "<group>"; };
 		3E68648C1BF078B500FCA20C /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
@@ -706,6 +725,12 @@
 		3E71991D1BF9D6B20001098E /* 账户中心.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "账户中心.png"; sourceTree = "<group>"; };
 		3E74F3F11BEF2385004E2935 /* PublicHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicHeaderView.h; sourceTree = "<group>"; };
 		3E74F3F21BEF2385004E2935 /* PublicHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicHeaderView.m; sourceTree = "<group>"; };
+		3E7549061C0EE85A005B52F3 /* ApiXml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiXml.h; sourceTree = "<group>"; };
+		3E7549071C0EE85A005B52F3 /* ApiXml.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApiXml.mm; sourceTree = "<group>"; };
+		3E7549081C0EE85A005B52F3 /* payRequsestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = payRequsestHandler.h; sourceTree = "<group>"; };
+		3E7549091C0EE85A005B52F3 /* payRequsestHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = payRequsestHandler.mm; sourceTree = "<group>"; };
+		3E75490A1C0EE85A005B52F3 /* WXUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUtil.h; sourceTree = "<group>"; };
+		3E75490B1C0EE85A005B52F3 /* WXUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WXUtil.mm; sourceTree = "<group>"; };
 		3E75F1941C003CAB001A91CF /* PublicSourceClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicSourceClassViewController.h; sourceTree = "<group>"; };
 		3E75F1951C003CAB001A91CF /* PublicSourceClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicSourceClassViewController.m; sourceTree = "<group>"; };
 		3E75F1971C006A1D001A91CF /* head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head.png; sourceTree = "<group>"; };
@@ -718,6 +743,15 @@
 		3E75F1A21C0071CC001A91CF /* xiaoyuan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiaoyuan.png; sourceTree = "<group>"; };
 		3E75F1A51C00724A001A91CF /* lvyou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lvyou.png; sourceTree = "<group>"; };
 		3E75F1A61C00724A001A91CF /* jiaotong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jiaotong.png; sourceTree = "<group>"; };
+		3E838D6C1C0E93F200AFACAE /* ShangMengItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShangMengItemViewController.h; sourceTree = "<group>"; };
+		3E838D6D1C0E93F200AFACAE /* ShangMengItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShangMengItemViewController.m; sourceTree = "<group>"; };
+		3E838D6F1C0EB04B00AFACAE /* ShangmengItem.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ShangmengItem.plist; sourceTree = "<group>"; };
+		3E838D721C0EB20400AFACAE /* ShangMengClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShangMengClassModel.h; sourceTree = "<group>"; };
+		3E838D731C0EB20400AFACAE /* ShangMengClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShangMengClassModel.m; sourceTree = "<group>"; };
+		3E838D751C0EB5E600AFACAE /* anfang.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = anfang.jpg; sourceTree = "<group>"; };
+		3E838D761C0EB5E600AFACAE /* dongyang.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dongyang.jpg; sourceTree = "<group>"; };
+		3E838D771C0EB5E600AFACAE /* guanggao.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = guanggao.jpg; sourceTree = "<group>"; };
+		3E838D781C0EB5E600AFACAE /* jiaju.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jiaju.jpg; sourceTree = "<group>"; };
 		3E9589CC1C082D8E00307DED /* PublicVideoitemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicVideoitemViewController.h; sourceTree = "<group>"; };
 		3E9589CD1C082D8E00307DED /* PublicVideoitemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicVideoitemViewController.m; sourceTree = "<group>"; };
 		3E9589D01C08319500307DED /* LMComBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMComBoxView.h; sourceTree = "<group>"; };
@@ -858,6 +892,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E498E7F1C0EC55C00E53DF2 /* libsqlite3.0.tbd in Frameworks */,
 				3E6A43FA1BF47D3D0066C3BD /* libmp3lame.a in Frameworks */,
 				3E68D0B81BEC4BEB003DAFC0 /* UIKit.framework in Frameworks */,
 				3E68D0B61BEC4BD6003DAFC0 /* CoreTelephony.framework in Frameworks */,
@@ -870,6 +905,7 @@
 				3EFA7F9F1BE8F262000D7308 /* libstdc++.6.0.9.tbd in Frameworks */,
 				3EFA7F9D1BE8F253000D7308 /* libiconv.2.4.0.tbd in Frameworks */,
 				3EFA7F9B1BE8F242000D7308 /* libz.1.1.3.tbd in Frameworks */,
+				3E498E7D1C0EC52200E53DF2 /* libWeChatSDK.a in Frameworks */,
 				3EFA7F9A1BE8F23B000D7308 /* libxml2.tbd in Frameworks */,
 				3EFA7F981BE8F21C000D7308 /* SystemConfiguration.framework in Frameworks */,
 				3EFA7F971BE8F20C000D7308 /* QuartzCore.framework in Frameworks */,
@@ -1104,6 +1140,7 @@
 		04801E271BB3C15C00714CC9 /* AnFang */ = {
 			isa = PBXGroup;
 			children = (
+				3E498E791C0EC4C500E53DF2 /* WeiXinPay */,
 				04D033421BDF094900E9E2BE /* MCRSDK */,
 				04D033471BDF094900E9E2BE /* VideoPlaySDK */,
 				04D033501BDF094900E9E2BE /* VMSNetSDK */,
@@ -1121,6 +1158,10 @@
 		04801E281BB3C15C00714CC9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3E838D751C0EB5E600AFACAE /* anfang.jpg */,
+				3E838D761C0EB5E600AFACAE /* dongyang.jpg */,
+				3E838D771C0EB5E600AFACAE /* guanggao.jpg */,
+				3E838D781C0EB5E600AFACAE /* jiaju.jpg */,
 				04D9A63F1BB3DAD6006D7B8A /* Images.xcassets */,
 				3E75F1971C006A1D001A91CF /* head.png */,
 				3E6A86481BFEE4D200CE31DA /* login.png */,
@@ -1160,6 +1201,7 @@
 				045595DF1BCF872900BB5094 /* TextAndPhotoAlarm.plist */,
 				045595E11BCF876800BB5094 /* VoiceAlarm.plist */,
 				3E75F19F1C0070E9001A91CF /* PublicClass.plist */,
+				3E838D6F1C0EB04B00AFACAE /* ShangmengItem.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1204,6 +1246,8 @@
 		04801E521BB3C80500714CC9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3E498E801C0EC67F00E53DF2 /* WeixinPay */,
+				3E838D711C0EB1D400AFACAE /* ShangMeng */,
 				04DBE4E11BD77BF90032939E /* Message */,
 				045595E31BCF8BD200BB5094 /* AnFang */,
 				044D2D6C1BBA79F50093453A /* LocalVideos */,
@@ -1760,6 +1804,8 @@
 			children = (
 				3EFCB3221BF1F322001B1729 /* ShangMengViewController.h */,
 				3EFCB3231BF1F322001B1729 /* ShangMengViewController.m */,
+				3E838D6C1C0E93F200AFACAE /* ShangMengItemViewController.h */,
+				3E838D6D1C0E93F200AFACAE /* ShangMengItemViewController.m */,
 			);
 			name = ShangMeng;
 			sourceTree = "<group>";
@@ -1865,6 +1911,7 @@
 		1BE3F1C289A601FFB5465594 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3E498E7E1C0EC55C00E53DF2 /* libsqlite3.0.tbd */,
 				3E68D0B41BEC4B85003DAFC0 /* libz.tbd */,
 				3EFA7FA41BE8F2A3000D7308 /* libsqlite3.tbd */,
 				3EFA7FA21BE8F280000D7308 /* libstdc++.tbd */,
@@ -1907,6 +1954,31 @@
 				6563E09E4651676361820012 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3E498E791C0EC4C500E53DF2 /* WeiXinPay */ = {
+			isa = PBXGroup;
+			children = (
+				3E7549061C0EE85A005B52F3 /* ApiXml.h */,
+				3E7549071C0EE85A005B52F3 /* ApiXml.mm */,
+				3E7549081C0EE85A005B52F3 /* payRequsestHandler.h */,
+				3E7549091C0EE85A005B52F3 /* payRequsestHandler.mm */,
+				3E75490A1C0EE85A005B52F3 /* WXUtil.h */,
+				3E75490B1C0EE85A005B52F3 /* WXUtil.mm */,
+				3E498E7C1C0EC52200E53DF2 /* libWeChatSDK.a */,
+				3E498E7A1C0EC4F900E53DF2 /* WXApi.h */,
+				3E498E7B1C0EC4F900E53DF2 /* WXApiObject.h */,
+			);
+			name = WeiXinPay;
+			sourceTree = "<group>";
+		};
+		3E498E801C0EC67F00E53DF2 /* WeixinPay */ = {
+			isa = PBXGroup;
+			children = (
+				3E498E811C0EC6A300E53DF2 /* WXApiManager.h */,
+				3E498E821C0EC6A300E53DF2 /* WXApiManager.m */,
+			);
+			name = WeixinPay;
 			sourceTree = "<group>";
 		};
 		3E6A43F31BF47C950066C3BD /* Voicelib */ = {
@@ -2071,6 +2143,15 @@
 				3E74F3F21BEF2385004E2935 /* PublicHeaderView.m */,
 			);
 			name = PublicHeaderView;
+			sourceTree = "<group>";
+		};
+		3E838D711C0EB1D400AFACAE /* ShangMeng */ = {
+			isa = PBXGroup;
+			children = (
+				3E838D721C0EB20400AFACAE /* ShangMengClassModel.h */,
+				3E838D731C0EB20400AFACAE /* ShangMengClassModel.m */,
+			);
+			name = ShangMeng;
 			sourceTree = "<group>";
 		};
 		3E9589CF1C08312000307DED /* LMComBox */ = {
@@ -2274,6 +2355,7 @@
 				04DEDA051BE06EE100116789 /* fs_icon_wave_0.png in Resources */,
 				3EF9F5421BF4820100BBDEA9 /* chat_animation_white1.png in Resources */,
 				04801F221BB3CE6D00714CC9 /* plus19.png in Resources */,
+				3E838D7C1C0EB5E600AFACAE /* jiaju.jpg in Resources */,
 				04D9A6381BB3D972006D7B8A /* menu.plist in Resources */,
 				04801F1E1BB3CE6D00714CC9 /* pause.png in Resources */,
 				049B6F0F1BD88E6E00ED4E32 /* wave70x117@2x.png in Resources */,
@@ -2285,12 +2367,15 @@
 				04801F451BB3CE6D00714CC9 /* video_num_front@2x.png in Resources */,
 				3EF991881BF32F1800832B4F /* bufang_select.png in Resources */,
 				04DBE4E61BD79AEF0032939E /* newFeature_1.png in Resources */,
+				3E838D701C0EB04B00AFACAE /* ShangmengItem.plist in Resources */,
 				04801E3C1BB3C15C00714CC9 /* LaunchScreen.xib in Resources */,
 				04801EBC1BB3CE1500714CC9 /* buddy_header_arrow@2x.png in Resources */,
 				04D034321BDF88F400E9E2BE /* ProgressHUD.bundle in Resources */,
+				3E838D791C0EB5E600AFACAE /* anfang.jpg in Resources */,
 				3EF9F5441BF4820100BBDEA9 /* chat_animation_white3.png in Resources */,
 				3E68648B1BF071E600FCA20C /* messagePress.png in Resources */,
 				04DEDA131BE090F600116789 /* 磐安移动_公司大门口.jpg in Resources */,
+				3E838D7B1C0EB5E600AFACAE /* guanggao.jpg in Resources */,
 				04801EB81BB3CE1500714CC9 /* back.png in Resources */,
 				3E75F1A01C0070E9001A91CF /* PublicClass.plist in Resources */,
 				04801ED31BB3CE2F00714CC9 /* forward_disable@2x.png in Resources */,
@@ -2309,6 +2394,7 @@
 				04AEFF631BB514FD004634A8 /* AlipaySDK.bundle in Resources */,
 				04DEDA261BE0B11100116789 /* bb.caf in Resources */,
 				04801F211BB3CE6D00714CC9 /* play.png in Resources */,
+				3E838D7A1C0EB5E600AFACAE /* dongyang.jpg in Resources */,
 				3E02EF991BEDDC2200390C49 /* newFeature_3.png in Resources */,
 				3E6864891BF0714100FCA20C /* message.png in Resources */,
 				3E7199221BF9D6B20001098E /* 账户中心.png in Resources */,
@@ -2389,6 +2475,7 @@
 				04DEDA381BE0E26800116789 /* SDRefreshFooterView.m in Sources */,
 				044C2FBC1BE366F400DE2613 /* VideoModel.m in Sources */,
 				3E6A44021BF47FEE0066C3BD /* UUProgressHUD.m in Sources */,
+				3E75490D1C0EE85A005B52F3 /* payRequsestHandler.mm in Sources */,
 				04DED9EA1BE05DB000116789 /* UIImage+FSExtension.m in Sources */,
 				042038131BD0CD8C00D10004 /* UIImage+Extensions.m in Sources */,
 				04E474911BE217BA003EC374 /* CameraModel.m in Sources */,
@@ -2409,6 +2496,8 @@
 				3EFCB3241BF1F322001B1729 /* ShangMengViewController.m in Sources */,
 				044FFDA01BCE237A00F74AE9 /* StringToBytes.m in Sources */,
 				04D9A62B1BB3D8DA006D7B8A /* PersonalCenterViewController.m in Sources */,
+				3E838D6E1C0E93F200AFACAE /* ShangMengItemViewController.m in Sources */,
+				3E498E831C0EC6A300E53DF2 /* WXApiManager.m in Sources */,
 				044AD45B1BBB9071004D17BB /* WGUserData.m in Sources */,
 				045595E61BCF8C2600BB5094 /* OneKeyAlarmModel.m in Sources */,
 				04801F591BB3CF7C00714CC9 /* AccountCollectionViewCell.m in Sources */,
@@ -2472,6 +2561,7 @@
 				042038051BD09AD600D10004 /* NSDateString.m in Sources */,
 				04801E6D1BB3CABB00714CC9 /* PopoverView.m in Sources */,
 				3E6A75921BEC690000113360 /* base64.m in Sources */,
+				3E838D741C0EB20400AFACAE /* ShangMengClassModel.m in Sources */,
 				04801EA31BB3CD0500714CC9 /* GradientButton.m in Sources */,
 				04D034101BDF39CB00E9E2BE /* ResourceTreeViewController.m in Sources */,
 				04D9A6271BB3D8DA006D7B8A /* MenuSelectViewController.m in Sources */,
@@ -2485,8 +2575,10 @@
 				04D9A62A1BB3D8DA006D7B8A /* NeedHelpViewController.m in Sources */,
 				04D9A5E91BB3D510006D7B8A /* mztools.c in Sources */,
 				04801E921BB3CC0600714CC9 /* UIView+KGViewExtend.m in Sources */,
+				3E75490C1C0EE85A005B52F3 /* ApiXml.mm in Sources */,
 				044A828F1BC612F6009304F7 /* JSONKit.m in Sources */,
 				04D9A6221BB3D8DA006D7B8A /* DefenceAreaDevListViewController.m in Sources */,
+				3E75490E1C0EE85A005B52F3 /* WXUtil.mm in Sources */,
 				04D9A6241BB3D8DA006D7B8A /* DeviceManagerViewController.m in Sources */,
 				04801E8B1BB3CBDA00714CC9 /* QHCommonUtil.m in Sources */,
 				04801F681BB3D04700714CC9 /* VideoTableViewCell.m in Sources */,

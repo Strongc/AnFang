@@ -21,6 +21,15 @@
 
 }
 
+-(void)setShangmengClassModel:(ShangMengClassModel *)shangmengClassModel
+{
+    
+    _shangmengClassModel = shangmengClassModel;
+    self.publicVideoImage.image = [UIImage imageNamed:shangmengClassModel.classImage];
+    self.className.text = shangmengClassModel.className;
+    
+}
+
 -(id)initWithFrame:(CGRect)frame
 {
 
@@ -31,16 +40,16 @@
         [self.contentView addSubview:publicVideoImage];
         self.publicVideoImage = publicVideoImage;
         
-        UILabel *className = [[UILabel alloc]initWithFrame:CGRectMake(0, self.frame.size.height-40, self.frame.size.width, 40)];
+        UILabel *className = [[UILabel alloc]initWithFrame:CGRectMake(0, self.frame.size.height-50, self.frame.size.width, 50)];
         className.font = [UIFont boldSystemFontOfSize:14];
-        className.textColor = [UIColor colorWithHexString:@"ffffff"];
+        className.textColor = [UIColor colorWithHexString:@"ededed"];
         className.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:className];
         self.className = className;
-        UIButton *backViewBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height-40, self.frame.size.width, 40)];
+        UIButton *backViewBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height-50, self.frame.size.width, 50)];
         [self.contentView addSubview:backViewBtn];
         backViewBtn.backgroundColor = [UIColor blackColor];
-        backViewBtn.alpha = 0.65;
+        backViewBtn.alpha = 0.85;
         self.backViewBtn = backViewBtn;
     }
     

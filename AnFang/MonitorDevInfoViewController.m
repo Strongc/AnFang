@@ -53,7 +53,6 @@
 
 -(void)backAction
 {
-    //NSLog(@"%@",@"ddddd");
     [self.navigationController popViewControllerAnimated:YES];
 }
 

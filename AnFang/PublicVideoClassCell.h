@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PublicVideoClassModel.h"
+#import "ShangMengClassModel.h"
 
 @interface PublicVideoClassCell : UICollectionViewCell
 
@@ -20,4 +21,7 @@
 @property (nonatomic,weak) UIButton *backViewBtn;
 
 @property (nonatomic,strong) PublicVideoClassModel *publicClass;
+
+@property (nonatomic,strong) ShangMengClassModel *shangmengClassModel;
+
 @end

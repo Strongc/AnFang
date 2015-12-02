@@ -18,9 +18,10 @@
 #import "WGAPI.h"
 #import "CMTool.h"
 #import "CoreArchive.h"
+#import "SVProgressHUD.h"
 //#import "payRequsestHandler.h"
 //#import "WXApiObject.h"
-//#import "WXApi.h"
+#import "WXApi.h"
 
 
 @interface RechargeViewController ()
@@ -34,6 +35,8 @@
     UICollectionView *payStyleCollectionView;
     //2088902492111085
     NSString *orderNo;
+    BOOL isGoodsSelect;
+    BOOL isPayStyleSelect;
     
 }
 
@@ -307,14 +310,17 @@
         if ([currentSelectedIndex isEqual:indexPath] ) {
             
             currentSelectedIndex = nil;
+            isGoodsSelect = NO;
             
         } else {
             
             currentSelectedIndex = indexPath;
+            isGoodsSelect = YES;
             
         }
         
         [accountCollectionView reloadData];
+        
 
     }else if (collectionView == payStyleCollectionView){
         
@@ -323,11 +329,11 @@
         if ([currentSelectedIndex1 isEqual:indexPath] ) {
             
             currentSelectedIndex1 = nil;
-            
+            isPayStyleSelect = NO;
         } else {
             
             currentSelectedIndex1 = indexPath;
-            
+            isPayStyleSelect = YES;
         }
         
         [payStyleCollectionView reloadData];
@@ -349,21 +355,22 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSString *)generateTradeNO
-{
-    static int kNumber = 15;
-    
-    NSString *sourceStr = @"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    NSMutableString *resultStr = [[NSMutableString alloc] init];
-    srand(time(0));
-    for (int i = 0; i < kNumber; i++)
-    {
-        unsigned index = rand() % [sourceStr length];
-        NSString *oneStr = [sourceStr substringWithRange:NSMakeRange(index, 1)];
-        [resultStr appendString:oneStr];
-    }
-    return resultStr;
-}
+//- (NSString *)generateTradeNO
+//{
+//    static int kNumber = 15;
+//    
+//    NSString *sourceStr = @"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+//    NSMutableString *resultStr = [[NSMutableString alloc] init];
+//    srand(time(0));
+//    for (int i = 0; i < kNumber; i++)
+//    {
+//        unsigned index = rand() % [sourceStr length];
+//        NSString *oneStr = [sourceStr substringWithRange:NSMakeRange(index, 1)];
+//        [resultStr appendString:oneStr];
+//    }
+//    return resultStr;
+//}
+
 
 -(void)createOrderNumber
 {
@@ -379,18 +386,13 @@
         if(data){
     
             NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            //NSLog(@"%@",jsonStr);
             NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
             orderNo = [infojson objectForKey:@"out_trade_no"];
-           
             [self performSelectorOnMainThread:@selector(saveUserInfo) withObject:data waitUntilDone:YES];//刷新UI线程
 
-            
         }
     }];
-
-
-
+    
 }
 
 -(void)saveUserInfo
@@ -400,120 +402,62 @@
     
 }
 
-
 #pragma mark - 支付宝
 - (void)doAliPay {
     
+    if(isPayStyleSelect == NO){
     
-//    NSString *goodsName = @"账户充值";
-//    NSString *price = [NSString stringWithFormat:@"%.2f",1.00];
-//    NSString *goodsDetail = @"给自己的安防服务账号充值";
-//    
-//    NSDictionary *payInfoDict = @{@"goodsName":goodsName,@"goodsDetail":goodsDetail,@"price":price};
+        [SVProgressHUD showInfoWithStatus:@"请选择付款方式！"];
+    }else if (isGoodsSelect == NO){
     
+        [SVProgressHUD showInfoWithStatus:@"请选择商品！"];
+    }else if (isGoodsSelect == NO && isPayStyleSelect == NO){
     
-    NSString *partner = @"2088021410775742";
-    NSString *seller = @"3266924131@qq.com";
+        [SVProgressHUD showInfoWithStatus:@"请选择商品和付款方式！"];
     
-    NSString *privateKey = @"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBANJDoVbuSo6yFhikcrcw2EbgM90g94jI6y+jW1JDJ+uhnK+u3YlYVp0F+J5MJGcJlbgpiF2z8MFgFLfDRMY6WZVUvYn2HbO1V2HRbOlr0cV/ixQoxX/Xrjs9kZk6+R/HyC1hOR3m2SZeiJB8f0ToaIrlBMNZAVgO1kQWc9xE9tSRAgMBAAECgYBWK1UxdRKlDCK2Ep7YqHHaCgP3OY14Ry7rJP1F5zOzA1ZdQUKVCNjmHQ5YgUfh2jG7eXnjPN0Lwr562NGUk1EmfYVQrFv0c0GvyLvozkwQ3bh/Tvsr8oK0BA9kIBRiOV/N7BtAB790Y6WZjro8HfVr0CyyxMnRfxZwEDTu7+qvYQJBAO87We6mo5J8ez5wd0qy2QuikRcxSMYGgTcP1hiWMWvalsQZhBy1uzfCQydIo73X2qTfVNApjrwwLXDacPHds5UCQQDhAH+oyoh9YpBPH7x5VkqNBUTBhyXggQX3TNJotLC64bf5qglbbJAV4nwv6J1j0QKM486jGz+Z++ZuCiEQtF4NAkBmUZ4vQjpnprIXjIaY/lFydn9TyhJ0D8goQq+xKFvO41jkWn10wg1m1cFfBeRyh+XN6m8d8QhJWNm2kNcJu2bZAkEAmRtxwzYussPDV1RNOHQTvup64wZILAEgQiwwcbejG0hFnMqsG15AnePEhgVQNIAhsCXEkxETsoDLSM3zuh5CcQJATM1GwzZsrRGayPuehl1PvKnNhuo/mGwKeSYi/MNVYprpIgYu5canZAQ6luZS1VR2DI4U4pPALc8hZlO9qPJMhA==";
+    }else{
     
-    Order *order = [[Order alloc] init];
-    order.partner = partner;
-    order.seller = seller;
-    order.tradeNO = [CoreArchive strForKey:@"order"]; //订单ID（由商家自行制定）
-    order.productName = @"充值金额"; //商品标题
-    order.productDescription = @"安防服务续费"; //商品描述
-    order.amount = [NSString stringWithFormat:@"%.2f",0.01]; //商品价格
-    order.notifyURL = @"http://121.41.24.19:8080/pay/accept"; //回调URL
+        NSString *partner = @"2088021410775742";
+        NSString *seller = @"3266924131@qq.com";
     
-    order.service = @"mobile.securitypay.pay";
-    order.paymentType = @"1";
-    order.inputCharset = @"utf-8";
-    order.itBPay = @"30m";
-    order.showUrl = @"m.alipay.com";
-    NSString *orderSpec = [order description];
+        NSString *privateKey = @"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBANJDoVbuSo6yFhikcrcw2EbgM90g94jI6y+jW1JDJ+uhnK+u3YlYVp0F+J5MJGcJlbgpiF2z8MFgFLfDRMY6WZVUvYn2HbO1V2HRbOlr0cV/ixQoxX/Xrjs9kZk6+R/HyC1hOR3m2SZeiJB8f0ToaIrlBMNZAVgO1kQWc9xE9tSRAgMBAAECgYBWK1UxdRKlDCK2Ep7YqHHaCgP3OY14Ry7rJP1F5zOzA1ZdQUKVCNjmHQ5YgUfh2jG7eXnjPN0Lwr562NGUk1EmfYVQrFv0c0GvyLvozkwQ3bh/Tvsr8oK0BA9kIBRiOV/N7BtAB790Y6WZjro8HfVr0CyyxMnRfxZwEDTu7+qvYQJBAO87We6mo5J8ez5wd0qy2QuikRcxSMYGgTcP1hiWMWvalsQZhBy1uzfCQydIo73X2qTfVNApjrwwLXDacPHds5UCQQDhAH+oyoh9YpBPH7x5VkqNBUTBhyXggQX3TNJotLC64bf5qglbbJAV4nwv6J1j0QKM486jGz+Z++ZuCiEQtF4NAkBmUZ4vQjpnprIXjIaY/lFydn9TyhJ0D8goQq+xKFvO41jkWn10wg1m1cFfBeRyh+XN6m8d8QhJWNm2kNcJu2bZAkEAmRtxwzYussPDV1RNOHQTvup64wZILAEgQiwwcbejG0hFnMqsG15AnePEhgVQNIAhsCXEkxETsoDLSM3zuh5CcQJATM1GwzZsrRGayPuehl1PvKnNhuo/mGwKeSYi/MNVYprpIgYu5canZAQ6luZS1VR2DI4U4pPALc8hZlO9qPJMhA==";
+    
+        Order *order = [[Order alloc] init];
+        order.partner = partner;
+        order.seller = seller;
+        order.tradeNO = [CoreArchive strForKey:@"order"]; //订单ID（从商家后台获取）
+        order.productName = @"充值金额"; //商品标题
+        order.productDescription = @"安防服务续费"; //商品描述
+        order.amount = [NSString stringWithFormat:@"%.2f",0.01]; //商品价格
+        order.notifyURL = @"http://121.41.24.19:8080/order/accept"; //回调URL
+        order.service = @"mobile.securitypay.pay";
+        order.paymentType = @"1";
+        order.inputCharset = @"utf-8";
+        order.itBPay = @"30m";
+        order.showUrl = @"m.alipay.com";
+        NSString *orderSpec = [order description];
 
-    //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
-    id<DataSigner> signer = CreateRSADataSigner(privateKey);
-    NSString *signedString = [signer signString:orderSpec];
-    NSLog(@"私钥：%@",signedString);
+        //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
+        id<DataSigner> signer = CreateRSADataSigner(privateKey);
+        NSString *signedString = [signer signString:orderSpec];
+        NSLog(@"私钥：%@",signedString);
     
-    NSString *appScheme = @"anfang";
-    
-    NSString *orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
+        NSString *appScheme = @"anfang";
+        NSString *orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
                    orderSpec, signedString, @"RSA"];
-    [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+        [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
         
-        NSLog(@"result = %@",resultDic);
-    }];
-    
+            NSLog(@"result = %@",resultDic);
+        }];
+   
+    }
 }
-
 
 -(void)WeiXinPay
 {
-
-//    //从服务器获取支付参数，服务端自定义处理逻辑和格式
-//    //订单标题
-//    NSString *ORDER_NAME    = @"Ios服务器端签名支付 测试";
-//    //订单金额，单位（元）
-//    NSString *ORDER_PRICE   = @"0.01";
-//    
-//    //根据服务器端编码确定是否转码
-//    NSStringEncoding enc;
-//    //if UTF8编码
-//    //enc = NSUTF8StringEncoding;
-//    //if GBK编码
-//    enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
-//    NSString *urlString = [NSString stringWithFormat:@"%@?plat=ios&order_no=%@&product_name=%@&order_price=%@",
-//                           SP_URL,
-//                           [[NSString stringWithFormat:@"%ld",time(0)] stringByAddingPercentEscapesUsingEncoding:enc],
-//                           [ORDER_NAME stringByAddingPercentEscapesUsingEncoding:enc],
-//                           ORDER_PRICE];
-//    
-//    //解析服务端返回json数据
-//    NSError *error;
-//    //加载一个NSURL对象
-//    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-//    //将请求的url数据放到NSData对象中
-//    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-//
-//    if ( response != nil) {
-//        NSMutableDictionary *dict = NULL;
-//        //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
-//        dict = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableLeaves error:&error];
-//        
-//        NSLog(@"url:%@",urlString);
-//        if(dict != nil){
-//            NSMutableString *retcode = [dict objectForKey:@"retcode"];
-//            if (retcode.intValue == 0){
-//                NSMutableString *stamp  = [dict objectForKey:@"timestamp"];
-//                
-//                //调起微信支付
-//                PayReq* req             = [[PayReq alloc] init];
-//                req.openID              = [dict objectForKey:@"appid"];
-//                req.partnerId           = [dict objectForKey:@"partnerid"];
-//                req.prepayId            = [dict objectForKey:@"prepayid"];
-//                req.nonceStr            = [dict objectForKey:@"noncestr"];
-//                req.timeStamp           = stamp.intValue;
-//                req.package             = [dict objectForKey:@"package"];
-//                req.sign                = [dict objectForKey:@"sign"];
-//                [WXApi sendReq:req];
-//                //日志输出
-//                NSLog(@"appid=%@\npartid=%@\nprepayid=%@\nnoncestr=%@\ntimestamp=%ld\npackage=%@\nsign=%@",req.openID,req.partnerId,req.prepayId,req.nonceStr,(long)req.timeStamp,req.package,req.sign );
-//            }else{
-//                
-//                //[self alert:@"提示信息" msg:[dict objectForKey:@"retmsg"]];
-//            }
-//        }else{
-//            
-//            //[self alert:@"提示信息" msg:@"服务器返回错误，未获取到json对象"];
-//        }
-//    }else{
-//        
-//        //[self alert:@"提示信息" msg:@"服务器返回错误"];
-//    }
-
+   
+    
+    
 }
 
 /*

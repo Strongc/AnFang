@@ -11,7 +11,7 @@
 //#import "DDTTYLogger.h"
 //#import "DDLog.h"
 #import "VideoPlaySDK.h"
-//#import "WXApiManager.h"
+#import "WXApiManager.h"
 
 @interface AppDelegate ()
 
@@ -39,8 +39,6 @@
     // Override point for customization after application launch.
     
     //初始化视频播放库
-    //[[UIApplication sharedApplication] setStatusBarHidden:NO];
-    //[UIViewController ]
     VP_InitSDK();
     //创建窗口
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -73,7 +71,7 @@
     }
     
     //向微信注册
-    //[WXApi registerApp:@"wxd930ea5d5a258f4f" withDescription:@"demo 2.0"];
+    [WXApi registerApp:@"wxd930ea5d5a258f4f" withDescription:@"demo 2.0"];
 //    [DDLog addLogger:[DDTTYLogger sharedInstance]];
 //    
 //    httpServer = [[HTTPServer alloc]init];
@@ -126,7 +124,7 @@
 
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-
+    [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
     return  YES;
 }
 
@@ -135,7 +133,7 @@
 {
     
     return  NO;
-    
+
 }
 
 - (BOOL)application:(UIApplication *)application
@@ -149,7 +147,7 @@
             NSLog(@"result = %@",resultDic);
     }];
     
-    
+    [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
     
     return YES;
 }

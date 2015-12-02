@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShangMengViewController : UIViewController<UIWebViewDelegate>
+@interface ShangMengViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
 @end

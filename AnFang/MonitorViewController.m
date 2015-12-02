@@ -153,18 +153,18 @@
     [self.view addSubview:stateBtn];
     //[stateBtn addTarget:self action:@selector(getUserHostInfo) forControlEvents:UIControlEventTouchUpInside];
     
-    stateLab = [[UILabel alloc]initWithFrame:CGRectMake(120*WIDTH/375, 160*HEIGHT/667, 60*WIDTH/375, 20*HEIGHT/667)];
-    stateLab.text = @"已部防";
+    stateLab = [[UILabel alloc]initWithFrame:CGRectMake(120*WIDTH/375, 165*HEIGHT/667, 60*WIDTH/375, 20*HEIGHT/667)];
+    stateLab.text = @"已布防";
     stateLab.textColor = [UIColor whiteColor];
     stateLab.textAlignment = NSTextAlignmentCenter;
-    stateLab.font = [UIFont boldSystemFontOfSize:18*WIDTH/375];
+    stateLab.font = [UIFont systemFontOfSize:20*WIDTH/375];
     [stateBtn addSubview:stateLab];
     
-    onlineLab = [[UILabel alloc]initWithFrame:CGRectMake(120*WIDTH/375, 138*HEIGHT/667, 60*WIDTH/375, 20*HEIGHT/667)];
+    onlineLab = [[UILabel alloc]initWithFrame:CGRectMake(120*WIDTH/375, 135*HEIGHT/667, 60*WIDTH/375, 20*HEIGHT/667)];
     onlineLab.text = @"在线";
-    onlineLab.textColor = [UIColor greenColor];
+    onlineLab.textColor = [UIColor whiteColor];
     onlineLab.textAlignment = NSTextAlignmentCenter;
-    onlineLab.font = [UIFont boldSystemFontOfSize:22*WIDTH/375];
+    onlineLab.font = [UIFont boldSystemFontOfSize:24*WIDTH/375];
     [stateBtn addSubview:onlineLab];
     
    // NSString *path1 = [[NSBundle mainBundle] pathForResource:@"bufang_nor.png" ofType:nil];
@@ -283,14 +283,14 @@
     [CoreArchive setStr:_hostId key:@"hostId"];
     if([onLineStatus isEqualToString:@"FALSE"]){
     
-        stateLab.text = @"未部防";
+        stateLab.text = @"未布防";
         stateLab.textColor = [UIColor whiteColor];
         chefangBtn.userInteractionEnabled = NO;
         bufangBtn.userInteractionEnabled = YES;
         
     }else if ([onLineStatus isEqualToString:@"TRUE"]){
     
-        stateLab.text = @"已部防";
+        stateLab.text = @"已布防";
         stateLab.textColor = [UIColor whiteColor];
         chefangBtn.userInteractionEnabled = YES;
         bufangBtn.userInteractionEnabled = NO;
@@ -334,8 +334,8 @@
 {
     bufangBtn.userInteractionEnabled = NO;
     [SVProgressHUD showSuccessWithStatus:@"布防成功！" maskType:SVProgressHUDMaskTypeBlack];
-    stateLab.text = @"已部防";
-    stateLab.textColor = [UIColor greenColor];
+    stateLab.text = @"已布防";
+    stateLab.textColor = [UIColor whiteColor];
     chefangBtn.userInteractionEnabled = YES;
     //timer = [NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(getUserHostInfo) userInfo:nil repeats:YES];
 
@@ -378,7 +378,7 @@
 {
     chefangBtn.userInteractionEnabled = NO;
     [SVProgressHUD showSuccessWithStatus:@"撤防成功！" maskType:SVProgressHUDMaskTypeBlack];
-    stateLab.text = @"未部防";
+    stateLab.text = @"未布防";
     stateLab.textColor = [UIColor redColor];
     bufangBtn.userInteractionEnabled = YES;
     //timer = [NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(getUserHostInfo) userInfo:nil repeats:YES];

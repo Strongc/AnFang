@@ -28,10 +28,7 @@
         accountLab.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:accountLab];
         self.accountLab = accountLab;
-        
-        
-        
-        
+    
     }
     
     return self;
