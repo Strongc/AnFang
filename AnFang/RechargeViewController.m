@@ -19,9 +19,10 @@
 #import "CMTool.h"
 #import "CoreArchive.h"
 #import "SVProgressHUD.h"
-//#import "payRequsestHandler.h"
 //#import "WXApiObject.h"
 #import "WXApi.h"
+#import "PayRequsestHandler.h"
+#import "CommonUtil.h"
 
 
 @interface RechargeViewController ()
@@ -161,7 +162,7 @@
     [commitBtn setBackgroundColor:[UIColor orangeColor]];
     [commitBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     commitBtn.titleLabel.font = [UIFont boldSystemFontOfSize:18*WIDTH/375];
-    [commitBtn addTarget:self action:@selector(doAliPay) forControlEvents:UIControlEventTouchUpInside];
+    [commitBtn addTarget:self action:@selector(submitOrders) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:commitBtn];
     
 }
@@ -355,30 +356,26 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (NSString *)generateTradeNO
-//{
-//    static int kNumber = 15;
-//    
-//    NSString *sourceStr = @"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-//    NSMutableString *resultStr = [[NSMutableString alloc] init];
-//    srand(time(0));
-//    for (int i = 0; i < kNumber; i++)
-//    {
-//        unsigned index = rand() % [sourceStr length];
-//        NSString *oneStr = [sourceStr substringWithRange:NSMakeRange(index, 1)];
-//        [resultStr appendString:oneStr];
-//    }
-//    return resultStr;
-//}
+//提交订单
+-(void)submitOrders
+{
+    if(currentSelectedIndex1.row == 0){
+    
+        [self doAliPay];
+    }else if (currentSelectedIndex1.row == 2){
+    
+        [self WeiXinPay];
+    }
+    
+}
 
-
+//从后台获取订单号
 -(void)createOrderNumber
 {
     
     NSString *userId = [CoreArchive strForKey:@"userId"];
     NSDictionary *params = @{@"goods_id":@"201511121655240669",
-                                 @"user_id":userId
-                                 };
+                             @"user_id":userId };
     NSString *paramsStr = [CMTool dictionaryToJson:params];
     NSString *str = @"order=";
     NSString *paramStr = [str stringByAppendingString:paramsStr];
@@ -453,12 +450,33 @@
     }
 }
 
+#pragma mark - 微信支付
 -(void)WeiXinPay
 {
-   
     
+    NSString *package = @"Sign=WXPay";
+    NSMutableDictionary *prePayReponse = [NSMutableDictionary dictionary];
+    prePayReponse = [[PayRequsestHandler shareInstance] sendPay_demo];
+    NSString *sign = [prePayReponse objectForKey:@"sign"];
+   // NSLog(@"%@",sign);
+    NSString *AppId = [prePayReponse objectForKey:@"appid"];
+    NSString *parenterId = [prePayReponse objectForKey:@"partnerid"];
+    NSString *prepayId = [prePayReponse objectForKey:@"prepayid"];
+    NSString *noncestr = [prePayReponse objectForKey:@"noncestr"];
+    NSString *time_stamp  = [NSString stringWithFormat:@"%.0f", [[NSDate date] timeIntervalSince1970]];
     
+    PayReq *request = [[PayReq alloc]init];
+    request.openID = AppId;
+    request.partnerId = parenterId;
+    request.prepayId = prepayId;
+    request.nonceStr = noncestr;
+    request.timeStamp = time_stamp.intValue;
+    request.package = package;
+    request.sign = sign;
+    [WXApi sendReq:request];
+
 }
+
 
 /*
 #pragma mark - Navigation

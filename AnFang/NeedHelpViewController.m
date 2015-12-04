@@ -330,7 +330,6 @@
     [self.view endEditing:YES];
 }
 
-
 - (void)UUInputFunctionView:(UUInputFunctionView *)funcView sendVoice:(NSData *)voice time:(NSInteger)second
 {
     
@@ -718,30 +717,19 @@
 -(void)KeyAlarm
 {
 
-    __block NSString *string;
-    if (IS_IOS8) {
-        
-        [[CCLocationManager shareLocation]getLocationCoordinate:^(CLLocationCoordinate2D locationCorrrdinate) {
-            
-            string = [NSString stringWithFormat:@"%f %f",locationCorrrdinate.latitude,locationCorrrdinate.longitude];
-        } withAddress:^(NSString *addressString) {
-           // NSLog(@"%@",addressString);
-            string = [NSString stringWithFormat:@"%@\n%@",string,addressString];
-           
-            
-        }];
-    }
+    NSString *address = [self getAddressInfo];
+    NSLog(@"地址 %@",address);
     
-    if(string != nil){
+    if(address != nil){
         OneKeyAlarmModel *model;
         NSDate *sendDate;
         NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
         [dateformatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
         NSString *locationString=[dateformatter stringFromDate:sendDate];
-        NSDictionary *params = @{@"type":@"0",@"title":@"一键报警",@"content":string};
+        NSDictionary *params = @{@"type":@"0",@"title":@"一键报警",@"content":address};
         
         model = [[OneKeyAlarmModel alloc]init];
-        model.location = string;
+        model.location = address;
         model.time = locationString;
         [keyInfoArray addObject:model];
         
@@ -772,17 +760,45 @@
         
     }else{
         
-        [self performSelectorOnMainThread:@selector(showLocationError) withObject:string waitUntilDone:YES];//通知主线程刷新(UI)
+        [self performSelectorOnMainThread:@selector(showLocationError) withObject:address waitUntilDone:YES];//通知主线程刷新(UI)
         
     }
 
 
 }
 
+//获取地理位置
+-(NSString *)getAddressInfo
+{
+
+    __block NSString *string;
+    if (IS_IOS8) {
+        
+        [[CCLocationManager shareLocation]getLocationCoordinate:^(CLLocationCoordinate2D locationCorrrdinate) {
+            
+            string = [NSString stringWithFormat:@"%f %f",locationCorrrdinate.latitude,locationCorrrdinate.longitude];
+            [self saveAddressInfo:string];
+        } withAddress:^(NSString *addressString) {
+            // NSLog(@"%@",addressString);
+            string = [NSString stringWithFormat:@"%@\n%@",string,addressString];
+        
+        }];
+    }
+    
+    NSString *address = [CoreArchive strForKey:@"address"];
+    return address;
+}
+
+-(void)saveAddressInfo:(NSString *)adresssStr
+{
+
+    [CoreArchive setStr:adresssStr key:@"address"];
+}
+
 -(void)showLocationError
 {
 
-     [SVProgressHUD showInfoWithStatus:@"获取位置信息失败，请检查GPS是否打开！"];
+    [SVProgressHUD showInfoWithStatus:@"获取位置信息失败，请检查GPS是否打开！"];
 
 }
 
@@ -792,7 +808,6 @@
     NSDictionary *pageInfo = @{@"page":page};
     NSString *pageStr = [pageInfo JSONString];
     NSString *helpInfoData = [@"help=" stringByAppendingString:pageStr];
-    
     
     if(![CMTool isConnectionAvailable]){
         [SVProgressHUD showInfoWithStatus:@"网络没有连接！"];
@@ -850,7 +865,6 @@
     //[self getHelpMessage];
     
 }
-
 
 -(void)refreshData
 {

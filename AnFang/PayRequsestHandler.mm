@@ -1,10 +1,34 @@
 
 #import <Foundation/Foundation.h>
-#import "payRequsestHandler.h"
+#import "PayRequsestHandler.h"
+
+#define APP_ID          @"wx263870c2830052ee"               //APPID
+#define APP_SECRET      @"cf36de2224d7d8db339b7ae8591dcc24" //appsecret
+//商户号，填写商户对应参数
+#define MCH_ID          @"1280576201"
+//商户API密钥，填写相应参数
+#define PARTNER_ID      @"hzwellgood163company201512021525"
+//支付结果回调页面
+#define NOTIFY_URL      @"http://wxpay.weixin.qq.com/pub_v2/pay/notify.v2.php"
+//获取服务器端支付数据地址（商户自定义）
+#define SP_URL          @"http://wxpay.weixin.qq.com/pub_v2/app/app_pay.php"
+
+
 /*
  服务器请求操作处理
  */
-@implementation payRequsestHandler
+@implementation PayRequsestHandler
+
++ (instancetype)shareInstance
+{
+    static PayRequsestHandler *payRequest = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        payRequest = [[PayRequsestHandler alloc] init];
+    });
+    return payRequest;
+}
 
 //初始化函数
 -(BOOL) init:(NSString *)app_id mch_id:(NSString *)mch_id;
@@ -57,7 +81,7 @@
         
     }
     //添加key字段
-    [contentString appendFormat:@"key=%@", spkey];
+    [contentString appendFormat:@"key=%@", @"hzwellgood163company201512021525"];
     //得到MD5 sign签名
     NSString *md5Sign =[WXUtil md5:contentString];
     
@@ -93,16 +117,16 @@
     NSString *send      = [self genPackage:prePayParams];
     
     //输出Debug Info
-    [debugInfo appendFormat:@"API链接:%@\n", payUrl];
+    [debugInfo appendFormat:@"API链接:%@\n",  @"https://api.mch.weixin.qq.com/pay/unifiedorder"];
     [debugInfo appendFormat:@"发送的xml:%@\n", send];
     
     //发送请求post xml数据
-    NSData *res = [WXUtil httpSend:payUrl method:@"POST" data:send];
+    NSData *res = [WXUtil httpSend:@"https://api.mch.weixin.qq.com/pay/unifiedorder" method:@"POST" data:send];
     
     //输出Debug Info
     [debugInfo appendFormat:@"服务器返回：\n%@\n\n",[[NSString alloc] initWithData:res encoding:NSUTF8StringEncoding]];
     
-    XMLHelper *xml  = [[XMLHelper alloc] autorelease];
+    XMLHelper *xml  = [[XMLHelper alloc] init];
     
     //开始解析
     [xml startParse:res];
@@ -146,56 +170,59 @@
 // 更新时间：2015年3月3日
 // 负责人：李启波（marcyli）
 //============================================================
--(NSMutableDictionary *)sendPay_demo:(NSString *)title price:(NSString *)price address:(NSString *)address
+- ( NSMutableDictionary *)sendPay_demo
 {
 
     //订单标题，展示给用户
-    NSString *order_name    = title;
+    NSString *order_name    = @"V3支付测试";
     //订单金额,单位（分）
-    NSString *order_price   = price;//1分钱测试
-
-
+    NSString *order_price   = @"1";//1分钱测试
+   //设备的IP
+    NSString *IpAdresss = [CommonUtil getIPAddress:YES];
+    NSString *noncestr;
     //================================
     //预付单参数订单设置
     //================================
     srand( (unsigned)time(0) );
-    NSString *noncestr  = [NSString stringWithFormat:@"%d", rand()];
+    noncestr  = [NSString stringWithFormat:@"%d", rand()];
     NSString *orderno   = [NSString stringWithFormat:@"%ld",time(0)];
     NSMutableDictionary *packageParams = [NSMutableDictionary dictionary];
     
-    [packageParams setObject: appid             forKey:@"appid"];       //开放平台appid
-    [packageParams setObject: mchid             forKey:@"mch_id"];      //商户号
-    [packageParams setObject: @"APP-001"        forKey:@"device_info"]; //支付设备号或门店号
+    [packageParams setObject: APP_ID             forKey:@"appid"];       //开放平台appid
+    [packageParams setObject: MCH_ID             forKey:@"mch_id"];      //商户号
+    //[packageParams setObject: @"APP-001"        forKey:@"device_info"]; //支付设备号或门店号
     [packageParams setObject: noncestr          forKey:@"nonce_str"];   //随机串
     [packageParams setObject: @"APP"            forKey:@"trade_type"];  //支付类型，固定为APP
     [packageParams setObject: order_name        forKey:@"body"];        //订单描述，展示给用户
     [packageParams setObject: NOTIFY_URL        forKey:@"notify_url"];  //支付结果异步通知
     [packageParams setObject: orderno           forKey:@"out_trade_no"];//商户订单号
-    [packageParams setObject: address           forKey:@"spbill_create_ip"];//发器支付的机器ip
+    [packageParams setObject: IpAdresss    forKey:@"spbill_create_ip"];//发器支付的机器ip
     [packageParams setObject: order_price       forKey:@"total_fee"];       //订单金额，单位为分
     
     //获取prepayId（预支付交易会话标识）
     NSString *prePayid;
-    prePayid            = [self sendPrepay:packageParams];
+    prePayid = [self sendPrepay:packageParams];
     
     if ( prePayid != nil) {
         //获取到prepayid后进行第二次签名
         
-        NSString    *package, *time_stamp, *nonce_str;
+        NSString    *package, *time_stamp;
         //设置支付参数
         time_t now;
         time(&now);
-        time_stamp  = [NSString stringWithFormat:@"%ld", now];
-        nonce_str	= [WXUtil md5:time_stamp];
+        srand( (unsigned)time(0) );
+        time_stamp  = [NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970]] ;
+        //nonce_str	= [WXUtil md5:time_stamp];
+        //noncestr  = [NSString stringWithFormat:@"%d", rand()];
         //重新按提交格式组包，微信客户端暂只支持package=Sign=WXPay格式，须考虑升级后支持携带package具体参数的情况
         //package       = [NSString stringWithFormat:@"Sign=%@",package];
-        package         = @"Sign=WXPay";
+        package = @"Sign=WXPay";
         //第二次签名参数列表
         NSMutableDictionary *signParams = [NSMutableDictionary dictionary];
-        [signParams setObject: appid        forKey:@"appid"];
-        [signParams setObject: nonce_str    forKey:@"noncestr"];
+        [signParams setObject: APP_ID        forKey:@"appid"];
+        [signParams setObject: noncestr    forKey:@"noncestr"];
         [signParams setObject: package      forKey:@"package"];
-        [signParams setObject: mchid        forKey:@"partnerid"];
+        [signParams setObject: MCH_ID        forKey:@"partnerid"];
         [signParams setObject: time_stamp   forKey:@"timestamp"];
         [signParams setObject: prePayid     forKey:@"prepayid"];
         //[signParams setObject: @"MD5"       forKey:@"signType"];

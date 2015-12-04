@@ -3,6 +3,8 @@
 #import <Foundation/Foundation.h>
 #import "WXUtil.h"
 #import "ApiXml.h"
+#import "CommonUtil.h"
+
 /*
  // 签名实例
  // 更新时间：2015年3月3日
@@ -41,19 +43,9 @@
 // 账号帐户资料
 //更改商户把相关参数后可测试
 
-#define APP_ID          @""               //APPID
-#define APP_SECRET      @"" //appsecret
-//商户号，填写商户对应参数
-#define MCH_ID          @""
-//商户API密钥，填写相应参数
-#define PARTNER_ID      @""
-//支付结果回调页面
-#define NOTIFY_URL      @"http://wxpay.weixin.qq.com/pub_v2/pay/notify.v2.php"
-//获取服务器端支付数据地址（商户自定义）
-#define SP_URL          @"http://wxpay.weixin.qq.com/pub_v2/app/app_pay.php"
 
 
-@interface payRequsestHandler : NSObject{
+@interface PayRequsestHandler : NSObject{
 	//预支付网关url地址
     NSString *payUrl;
 
@@ -76,6 +68,11 @@
 //提交预支付
 -(NSString *)sendPrepay:(NSMutableDictionary *)prePayParams;
 //签名实例测试
-- ( NSMutableDictionary *)sendPay_demo:(NSString *)title price:(NSString *)price address:(NSString *)address;
+- ( NSMutableDictionary *)sendPay_demo;
+
++ (instancetype)shareInstance;
+
+//- (void)payProduct;
+
 
 @end

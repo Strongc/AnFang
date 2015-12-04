@@ -168,11 +168,26 @@
                     <view key="view" contentMode="scaleToFill" id="deS-gj-XWc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="l3s-ft-QnB">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="l3s-ft-QnB" firstAttribute="top" secondItem="2Kh-nX-gLY" secondAttribute="bottom" constant="44" id="7M8-qC-sV3"/>
+                            <constraint firstItem="mnu-dy-DaV" firstAttribute="top" secondItem="l3s-ft-QnB" secondAttribute="bottom" id="8A0-Km-aMV"/>
+                            <constraint firstItem="l3s-ft-QnB" firstAttribute="leading" secondItem="deS-gj-XWc" secondAttribute="leading" id="XjV-aj-yF4"/>
+                            <constraint firstAttribute="trailing" secondItem="l3s-ft-QnB" secondAttribute="trailing" id="xMe-RJ-QJ4"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hqw-Bh-YD4"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
+                    <connections>
+                        <outlet property="mainTableView" destination="l3s-ft-QnB" id="WwO-Sl-VR8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bii-pj-RGI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

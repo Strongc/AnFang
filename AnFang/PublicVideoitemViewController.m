@@ -168,7 +168,7 @@
     self.publicItemTable.backgroundColor = [UIColor colorWithHexString:@"040818"];
     self.publicItemTable.separatorStyle = UITableViewCellSeparatorStyleNone;
 
-    videoScrollView = [[LMContainsLMComboxScrollView alloc]initWithFrame:CGRectMake(0, 64, WIDTH-150, 140)];
+    videoScrollView = [[LMContainsLMComboxScrollView alloc]initWithFrame:CGRectMake(0, 64, WIDTH-110, 140)];
     videoScrollView.backgroundColor = [UIColor clearColor];
     videoScrollView.showsVerticalScrollIndicator = NO;
     videoScrollView.showsHorizontalScrollIndicator = NO;

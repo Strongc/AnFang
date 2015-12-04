@@ -10,9 +10,10 @@
 #import <CoreData/CoreData.h>
 #import "LoginNavigationViewController.h"
 #import "NewFeatureViewController.h"
+#import "WXApi.h"
 //@class HTTPServer;
 //#import "HTTPServer.h"
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,UIAlertViewDelegate, WXApiDelegate>
 {
 
    // HTTPServer *httpServer;

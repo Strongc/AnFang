@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "VMSNetSDK.h"
 
-@interface PublicSourceClassViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+@interface PublicSourceClassViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) CMSPInfo *mspInfo;
 @property (nonatomic, copy)  NSString *serverAddress;

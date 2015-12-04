@@ -14,6 +14,9 @@
 #import "PublicSourceItemViewController.h"
 #import "SVProgressHUD.h"
 #import "PublicVideoitemViewController.h"
+#import "HeadImageCell.h"
+#import "ClassVideoCell.h"
+#import "TitleCell.h"
 
 @interface PublicSourceClassViewController ()
 {
@@ -22,13 +25,14 @@
     NSMutableArray *_allSectionList;
     NSMutableArray *_lineList;
     int _selectedLineID;
+   
     //PublicVideoitemViewController *publicItem;
 
 }
 @property (nonatomic,strong) NSArray *classData;
+@property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 
 @end
-
 
 @implementation PublicSourceClassViewController
 
@@ -175,123 +179,248 @@
 
 -(void)initConfigControl
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"head.png" ofType:nil];
-    UIImageView *headImage = [[UIImageView alloc] initWithFrame:CGRectMake(15, 74, WIDTH-30, 150)];
-    [self.view addSubview:headImage];
-    headImage.image = [UIImage imageWithContentsOfFile:path];
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"head.png" ofType:nil];
+//    UIImageView *headImage = [[UIImageView alloc] initWithFrame:CGRectMake(15, 74, WIDTH-30, 150)];
+//    [self.view addSubview:headImage];
+//    headImage.image = [UIImage imageWithContentsOfFile:path];
     
-    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, headImage.frame.size.height-40, headImage.frame.size.width, 40)];
-    [headImage addSubview:backView];
-    backView.backgroundColor = [UIColor blackColor];
-    backView.alpha = 0.65;
-    UILabel *title1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, backView.frame.size.width, backView.frame.size.height)];
-    [backView addSubview:title1];
-    title1.textAlignment = NSTextAlignmentCenter;
-    title1.text = @"最热门点击视频";
-    title1.font = [UIFont boldSystemFontOfSize:14];
-    title1.textColor = [UIColor whiteColor];
-    
-    UILabel *title2 = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 76, backView.frame.size.height)];
-    [backView addSubview:title2];
-    title2.textAlignment = NSTextAlignmentCenter;
-    title2.text = @"热门视频";
-    title2.font = [UIFont boldSystemFontOfSize:18];
-    title2.textColor = [UIColor colorWithHexString:@"db0303"];
+//    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, headImage.frame.size.height-40, headImage.frame.size.width, 40)];
+//    [headImage addSubview:backView];
+//    backView.backgroundColor = [UIColor blackColor];
+//    backView.alpha = 0.65;
+//    UILabel *title1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, backView.frame.size.width, backView.frame.size.height)];
+//    [backView addSubview:title1];
+//    title1.textAlignment = NSTextAlignmentCenter;
+//    title1.text = @"最热门点击视频";
+//    title1.font = [UIFont boldSystemFontOfSize:14];
+//    title1.textColor = [UIColor whiteColor];
+//    
+//    UILabel *title2 = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 76, backView.frame.size.height)];
+//    [backView addSubview:title2];
+//    title2.textAlignment = NSTextAlignmentCenter;
+//    title2.text = @"热门视频";
+//    title2.font = [UIFont boldSystemFontOfSize:18];
+//    title2.textColor = [UIColor colorWithHexString:@"db0303"];
 
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    videoClass = [[UICollectionView alloc]initWithFrame:CGRectMake(5, 234, WIDTH-10, WIDTH-10) collectionViewLayout:flowLayout];
-    videoClass.delegate = self;
-    videoClass.dataSource = self;
-#pragma mark -- 头尾部大小设置
-    //设置头部并给定大小
-    //[flowLayout setHeaderReferenceSize:CGSizeMake(videoClass.frame.size.width, 40)];
-#pragma mark -- 注册头部视图
-//    [videoCollection registerClass:[PublicHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
-    
-    [self.view addSubview:videoClass];
-    videoClass.backgroundColor = [UIColor colorWithHexString:@"040818"];
-    videoClass.scrollEnabled = YES;
-    [videoClass registerClass:[PublicVideoClassCell class] forCellWithReuseIdentifier:@"cell"];
+    self.mainTableView.dataSource = self;
+    self.mainTableView.delegate = self;
+    self.mainTableView.backgroundColor = [UIColor colorWithHexString:@"040818"];
+//    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+//    videoClass = [[UICollectionView alloc]initWithFrame:CGRectMake(5, 234, WIDTH-10, WIDTH-10) collectionViewLayout:flowLayout];
+//    videoClass.delegate = self;
+//    videoClass.dataSource = self;
+//#pragma mark -- 头尾部大小设置
+//    //设置头部并给定大小
+//    //[flowLayout setHeaderReferenceSize:CGSizeMake(videoClass.frame.size.width, 40)];
+//#pragma mark -- 注册头部视图
+////    [videoCollection registerClass:[PublicHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
+//    
+//    //[self.view addSubview:videoClass];
+//    videoClass.backgroundColor = [UIColor colorWithHexString:@"040818"];
+//    videoClass.scrollEnabled = YES;
+//    [videoClass registerClass:[PublicVideoClassCell class] forCellWithReuseIdentifier:@"cell"];
 
 
 }
 
-#pragma mark UICollectionViewDataSource
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+#pragma mark - UITableViewDataSource
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
-    return self.classData.count;
+    return 4;
 }
 
-
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    static NSString *identifyId = @"cell";
-    PublicVideoClassCell *cell = (PublicVideoClassCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifyId forIndexPath:indexPath];
+    return  1;
     
-    PublicVideoClassModel *model = [self.classData objectAtIndex:indexPath.item];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
-    cell.publicClass = model;
-    [cell setTag:indexPath.row];
-    //[cell.backViewBtn addTarget:self action:@selector(doJumpTo:) forControlEvents:UIControlEventTouchUpInside];
+    UITableViewCell *cell;
+    if(indexPath.section == 0){
+    
+        static NSString *reuseIdentify = @"cell";
+        HeadImageCell *headCell = (HeadImageCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentify];
+        
+        if(headCell == nil){
+            
+            headCell = [[HeadImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentify];
+            headCell.accessoryType = UITableViewCellAccessoryNone;
+            headCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+        }
+
+        cell = headCell;
+    
+    }else if (indexPath.section == 1){
+    
+        static NSString *reuseIdentify1 = @"cell1";
+        ClassVideoCell *classCell = (ClassVideoCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentify1];
+        
+        if(classCell == nil){
+            
+            classCell = [[ClassVideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentify1];
+            classCell.accessoryType = UITableViewCellAccessoryNone;
+            classCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+        }
+
+        cell = classCell;
+        classCell.classDataArray = self.classData;
+    }else if (indexPath.section == 2){
+    
+        static NSString *reuseIdentify2 = @"cell2";
+        TitleCell *titleCell = (TitleCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentify2];
+        
+        if(titleCell == nil){
+            
+            titleCell = [[TitleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentify2];
+            titleCell.accessoryType = UITableViewCellAccessoryNone;
+            titleCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+        }
+        
+        cell = titleCell;
+
+    
+    }
+    
+//    AlarmMessageTableViewCell *cell = (AlarmMessageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentify];
+//    
+//    if(cell == nil){
+//        
+//        cell = [[AlarmMessageTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentify];
+//        
+//        cell.accessoryType = UITableViewCellAccessoryNone;
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        
+//    }
+//    
+//    AlarmMessageModel *model = [messageArray objectAtIndex:indexPath.row];
+//    cell.alarmMessage = model;
+    //[cell.checkBtn setTag:indexPath.row];
+    //[cell.checkBtn addTarget:self action:@selector(jumpToDetailView:) forControlEvents:UIControlEventTouchUpInside];
+    
     return cell;
+    
 }
 
-#pragma mark UICollectionViewDelegateFlowLayout
+#pragma mark - UITableViewDelegate
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat height;
+    if(indexPath.section == 0){
+    
+        height = 150;
+    }else if (indexPath.section == 1){
+    
+        height = WIDTH - 20;
+    }else if (indexPath.section == 2){
+    
+        height = 40;
+    }
+//    }else{
+//    
+//        height = 80;
+//    }
+    
+    return height;
+    
+}
 
-//定义每个cell的大小
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return CGSizeMake((videoClass.frame.size.width-40)/2 +5, (videoClass.frame.size.height-40)/2);
-}
-
-//设置每组cell的边界
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
+//    UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    AlarmMessageDetailViewController *detailView = [mainView instantiateViewControllerWithIdentifier:@"alarmMessageDetailId"];
+//    AlarmMessageModel *model = [messageArray objectAtIndex:indexPath.row];
+//    detailView.messageId = model.messageId;
+//    [self.navigationController pushViewController:detailView animated:YES];
     
-    return UIEdgeInsetsMake(0, 10, 10, 10);//上,左，下，右
 }
 
-//-(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+
+//#pragma mark UICollectionViewDataSource
+//-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 //{
 //    
-//    return 0;
+//    return self.classData.count;
 //}
 //
-//-(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+//
+//-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 //{
 //    
-//    return 10;
+//    static NSString *identifyId = @"cell";
+//    PublicVideoClassCell *cell = (PublicVideoClassCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifyId forIndexPath:indexPath];
+//    
+//    PublicVideoClassModel *model = [self.classData objectAtIndex:indexPath.item];
+//    
+//    cell.publicClass = model;
+//    [cell setTag:indexPath.row];
+//    //[cell.backViewBtn addTarget:self action:@selector(doJumpTo:) forControlEvents:UIControlEventTouchUpInside];
+//    return cell;
 //}
-
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-   // int index = (int)indexPath.row;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"showHUD" object:nil];
-    [self performSelector:@selector(doJumpTo:) withObject:indexPath afterDelay:2.0f];
-}
-
--(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    return YES;
-}
-
-
--(void)doJumpTo:(NSIndexPath *)index
-{
-    //int index = (int)[sender tag];
-    UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    PublicVideoitemViewController *publicItem = [mainView instantiateViewControllerWithIdentifier:@"publicitemId"];
-    PublicVideoClassModel *region = [self.classData objectAtIndex:index.row];
-    publicItem.itemStr = region.className;
-    publicItem.regionId = region.regionId;
-    publicItem.countStr = region.regionCount.intValue;
-    [self.navigationController pushViewController:publicItem animated:YES];
-
-}
+//
+//#pragma mark UICollectionViewDelegateFlowLayout
+//
+////定义每个cell的大小
+//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    
+//    return CGSizeMake((videoClass.frame.size.width-40)/2 +5, (videoClass.frame.size.height-40)/2);
+//}
+//
+////设置每组cell的边界
+//-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+//{
+//    
+//    return UIEdgeInsetsMake(0, 10, 10, 10);//上,左，下，右
+//}
+//
+////-(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+////{
+////    
+////    return 0;
+////}
+////
+////-(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+////{
+////    
+////    return 10;
+////}
+//
+//-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//   // int index = (int)indexPath.row;
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"showHUD" object:nil];
+//    [self performSelector:@selector(doJumpTo:) withObject:indexPath afterDelay:2.0f];
+//}
+//
+//-(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    
+//    return YES;
+//}
+//
+//
+//-(void)doJumpTo:(NSIndexPath *)index
+//{
+//    //int index = (int)[sender tag];
+//    UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    PublicVideoitemViewController *publicItem = [mainView instantiateViewControllerWithIdentifier:@"publicitemId"];
+//    PublicVideoClassModel *region = [self.classData objectAtIndex:index.row];
+//    publicItem.itemStr = region.className;
+//    publicItem.regionId = region.regionId;
+//    publicItem.countStr = region.regionCount.intValue;
+//    [self.navigationController pushViewController:publicItem animated:YES];
+//
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

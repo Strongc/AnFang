@@ -12,6 +12,39 @@
 //#import "DDLog.h"
 #import "VideoPlaySDK.h"
 #import "WXApiManager.h"
+#import "Constant.h"
+
+
+/**
+ *  微信开放平台申请得到的 appid, 需要同时添加在 URL schema
+ */
+NSString * const WXAppId = @"wx263870c2830052ee";
+
+/**
+ * 微信开放平台和商户约定的支付密钥
+ *
+ * 注意：不能hardcode在客户端，建议genSign这个过程由服务器端完成
+ */
+NSString * const WXAppKey = @"L8LrMqqeGRxST5reouB0K66CaYAWpqhAVsq7ggKkxHCOastWksvuX1uvmvQclxaHoYd3ElNBrNO2DHnnzgfVG9Qs473M3DTOZug5er46FhuGofumV8H2FVR9qkjSlC5K";
+
+/**
+ * 微信开放平台和商户约定的密钥
+ *
+ * 注意：不能hardcode在客户端，建议genSign这个过程由服务器端完成
+ */
+NSString * const WXAppSecret = @"cf36de2224d7d8db339b7ae8591dcc24";
+//cf36de2224d7d8db339b7ae8591dcc24
+/**
+ * 微信开放平台和商户约定的支付密钥
+ *
+ * 注意：不能hardcode在客户端，建议genSign这个过程由服务器端完成
+ */
+NSString * const WXPartnerKey = @"hzwellgood163company201512021525";
+
+/**
+ *  微信公众平台商户模块生成的ID
+ */
+NSString * const WXPartnerId = @"1280576201";
 
 @interface AppDelegate ()
 
@@ -71,7 +104,7 @@
     }
     
     //向微信注册
-    [WXApi registerApp:@"wxd930ea5d5a258f4f" withDescription:@"demo 2.0"];
+    [WXApi registerApp:@"wx263870c2830052ee" withDescription:@"掌上安防"];
 //    [DDLog addLogger:[DDTTYLogger sharedInstance]];
 //    
 //    httpServer = [[HTTPServer alloc]init];
@@ -92,6 +125,39 @@
     [self.window makeKeyAndVisible];
     return YES;
 }
+
+-(void) onResp:(BaseResp*)resp
+{
+    NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
+    NSString *strTitle;
+    
+    if([resp isKindOfClass:[SendMessageToWXResp class]])
+    {
+        strTitle = [NSString stringWithFormat:@"发送媒体消息结果"];
+    }
+    if([resp isKindOfClass:[PayResp class]]){
+        //支付返回结果，实际支付结果需要去微信服务器端查询
+        strTitle = [NSString stringWithFormat:@"支付结果"];
+        
+        switch (resp.errCode) {
+            case WXSuccess:
+                strMsg = @"支付结果：成功！";
+                NSLog(@"支付成功－PaySuccess，retcode = %d", resp.errCode);
+                break;
+                
+            default:
+               // strMsg = [NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", resp.errCode,resp.errStr];
+                strMsg = [NSString stringWithFormat:@"支付结果：交易取消！"];
+                NSLog(@"错误，retcode = %d, retstr = %@", resp.errCode,resp.errStr);
+                break;
+        }
+    }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+    
+}
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -122,9 +188,11 @@
     [self saveContext];
 }
 
+
+
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+    [WXApi handleOpenURL:url delegate:self];
     return  YES;
 }
 
@@ -147,11 +215,10 @@
             NSLog(@"result = %@",resultDic);
     }];
     
-    [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+    [WXApi handleOpenURL:url delegate:self];
     
     return YES;
 }
-
 
 #pragma mark - Core Data stack
 
