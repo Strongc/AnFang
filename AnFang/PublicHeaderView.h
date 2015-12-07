@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+@class PublicHeaderView;
+@protocol PublicHeaderViewDelegate <NSObject>
+
+-(void)jumpToSheQuVideo:(PublicHeaderView *)publicHeaderView;
+
+@end
 
 @interface PublicHeaderView : UICollectionReusableView
 
 @property (strong,nonatomic) UILabel *titleLab;
+@property (strong,nonatomic) UIButton *moreBtn;
+@property (nonatomic,weak) id<PublicHeaderViewDelegate> delegate;
 
 @end

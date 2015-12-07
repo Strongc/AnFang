@@ -11,6 +11,7 @@
 // 发布代码于最专业的源码分享网站: Code4App.com
 
 #import "LMComBoxView.h"
+#import "UIColor+Extensions.h"
 
 @implementation LMComBoxView
 @synthesize isOpen = _isOpen;
@@ -43,16 +44,14 @@
     [btn addTarget:self action:@selector(tapAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn];
     
-    titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(2, 0, self.frame.size.width-imgW - 5 - 2, self.frame.size.height)];
+    titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 0, self.frame.size.width-imgW - 5 - 2, self.frame.size.height)];
     titleLabel.font = [UIFont systemFontOfSize:15];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textAlignment = NSTextAlignmentLeft;
-    titleLabel.textColor = kTextColor;
+    titleLabel.textColor = [UIColor colorWithHexString:@"ce7031"];
     [btn addSubview:titleLabel];
-    
-    //_titlesList = [[NSMutableArray alloc] init];
-    
-    _arrow = [[UIImageView alloc]initWithFrame:CGRectMake(btn.frame.size.width - imgW - 2, (self.frame.size.height-imgH)/2.0, imgW, imgH)];
+
+    _arrow = [[UIImageView alloc]initWithFrame:CGRectMake(btn.frame.size.width - imgW - 6, (self.frame.size.height-imgH)/2.0, imgW, imgH)];
     _arrow.image = [UIImage imageNamed:_arrowImgName];
     [btn addSubview:_arrow];
     
@@ -64,9 +63,7 @@
     _listTable.dataSource = self;
     _listTable.layer.borderWidth = 0.5;
     _listTable.layer.borderColor = kBorderColor.CGColor;
-    
     [_supView addSubview:_listTable];
-    
     titleLabel.text = [_titlesList[0] name];
 }
 

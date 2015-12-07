@@ -11,6 +11,8 @@
 #import "Common.h"
 #import "PublicItemVideoCell.h"
 #import "PlayViewController.h"
+#import "LMContainsLMComboxScrollView.h"
+#define kDropDownListTag 1000
 
 @interface PublicSourceItemViewController ()
 {
@@ -20,6 +22,10 @@
     NSMutableArray *_allCameraList;
     NSMutableArray *_allCameraRegionId;
     NSMutableArray *_allVideoList;
+    LMContainsLMComboxScrollView *videoScrollView;
+    LMComBoxView *cityBoxView;
+    NSMutableArray *streetNameArray;//存放街道名称
+    NSMutableArray *villageArray;//存放村
     
 }
 
@@ -65,7 +71,6 @@
                              toCurPage:1
                           toCameraList:tempArray];
     [_allSectionList addObjectsFromArray:tempArray];
-    [self.publicItemTable reloadData];
 
     [tempArray removeAllObjects];
     
@@ -106,6 +111,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    streetNameArray = [[NSMutableArray alloc]init];
+    villageArray = [[NSMutableArray alloc]init];
     _allSectionList = [[NSMutableArray alloc] init];
     _allVideoList = [[NSMutableArray alloc] init];
     [self initViewControlData];
@@ -137,7 +144,6 @@
     
     [self _getAllResources];
    
-    [self.publicItemTable reloadData];
     // Do any additional setup after loading the view.
 }
 
@@ -172,101 +178,58 @@
     [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [navView addSubview:backBtn];
 
-    self.publicItemTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-64-49) style:UITableViewStyleGrouped];
-    [self.view addSubview:self.publicItemTable];
-    self.publicItemTable.delegate = self;
-    self.publicItemTable.dataSource = self;
-    self.publicItemTable.backgroundColor = [UIColor colorWithHexString:@"040818"];
-    self.publicItemTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-
 }
 
-#pragma mark UITableViewDataSource
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+-(void)setUpVideoScrollView
 {
     
-    return _allSectionList.count;
-
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-
-    NSMutableArray *array = _allVideoList[section];
-    return array.count;
-
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-    static NSString *reuseIdentify = @"cell";
-    PublicItemVideoCell *cell = (PublicItemVideoCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentify];
-    
-    if(cell == nil){
+    for(NSInteger i=0;i<2;i++)
+    {
+        LMComBoxView *comBox = [[LMComBoxView alloc]initWithFrame:CGRectMake(20+(90+5)*i, 5, 90, 30)];
+        comBox.backgroundColor = [UIColor whiteColor];
+        comBox.arrowImgName = @"down_dark0";
+        comBox.titlesList = [NSMutableArray arrayWithArray:streetNameArray];
+        comBox.delegate = self;
+        comBox.supView = videoScrollView;
+        [comBox defaultSettings];
+        comBox.tag = kDropDownListTag + i;
+        [videoScrollView addSubview:comBox];
         
-        cell = [[PublicItemVideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentify];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
-    NSMutableArray *array = _allVideoList[indexPath.section];
-    cell.videoNameLab.text = [array[indexPath.row] name];
-    
-    return cell;
-
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-    return 70.0;
-
-}
-
-//section标题高度
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-
-    return 50.0;
-}
-
-//自定义头部视图
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    CGRect headerframe = CGRectMake(0, 0, WIDTH, 60.0);
-    UIView *headerView = [[UIView alloc] initWithFrame:headerframe];
-    UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, WIDTH-20, 60.0)];
-    titleLab.font = [UIFont boldSystemFontOfSize:20];
-    titleLab.text = [_allSectionList[section] name];
-    titleLab.textAlignment = NSTextAlignmentLeft;
-    titleLab.textColor = [UIColor whiteColor];
-    //headerView.backgroundColor = [UIColor orangeColor];
-    [headerView addSubview:titleLab];
-    
-    return headerView;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSMutableArray *array = _allVideoList[indexPath.section];
-    
-    if ([array[indexPath.row] isMemberOfClass:[CCameraInfo class]]) {
-        PlayViewController *playVC = [[PlayViewController alloc] init];
+    LMComBoxView* comBox1 = [videoScrollView viewWithTag:kDropDownListTag];
+    LMComBoxView* comBox2 = [videoScrollView viewWithTag:kDropDownListTag +1];
+    [self selectAtIndex:0 inCombox:comBox1];
+    if(self.countOfRegion == 3){
         
-        //把预览回放和云台控制所需的参数传过去
-        playVC.serverAddress = _serverAddress;
-        playVC.mspInfo = _mspInfo;
-        playVC.cameraInfo = array[indexPath.row];
-        [self.navigationController pushViewController:playVC animated:YES];
-        return;
+        [self selectAtIndex:0 inCombox:comBox2];
     }
-
-
-
+    
+    
 }
+
+/**
+ 
+ */
+-(int)countOfRegion
+{
+    int countStr = 0;
+    for(int i=0;i<villageArray.count;i++){
+        
+        if([villageArray[i] isMemberOfClass:[CRegionInfo class]]){
+            
+            countStr = 3;
+        }else{
+            
+            countStr = 2;
+        }
+        
+    }
+    
+    return countStr;
+    
+}
+
 
 -(void)backAction
 {

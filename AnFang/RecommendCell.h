@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RecommendVideoCell.h"
+#import "PublicVideoClassCell.h"
 
-@interface RecommendCell : UITableViewCell
+@interface RecommendCell : UITableViewCell<UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UICollectionViewDelegate>
+
+@property (nonatomic,strong) UICollectionView *recommendVideo;
+@property (nonatomic,strong) NSArray *recondVideoArray;
 
 @end

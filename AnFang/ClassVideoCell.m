@@ -29,7 +29,7 @@
     
     if(self){
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        self.videoClass = [[UICollectionView alloc]initWithFrame:CGRectMake(5, 0, WIDTH-10, WIDTH-20) collectionViewLayout:flowLayout];
+        self.videoClass = [[UICollectionView alloc]initWithFrame:CGRectMake(5, 0, WIDTH-10, WIDTH-60) collectionViewLayout:flowLayout];
         self.videoClass.delegate = self;
         self.videoClass.dataSource = self;
 #pragma mark -- 头尾部大小设置
@@ -64,6 +64,7 @@
     PublicVideoClassModel *model = [self.classDataArray objectAtIndex:indexPath.item];
     cell.publicClass = model;
     [cell setTag:indexPath.row];
+
     //[cell.backViewBtn addTarget:self action:@selector(doJumpTo:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
@@ -74,7 +75,7 @@
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return CGSizeMake((self.videoClass.frame.size.width-40)/2 +5, (self.videoClass.frame.size.height-40)/2 + 5);
+    return CGSizeMake((self.videoClass.frame.size.width-40)/2 +5, (self.videoClass.frame.size.height-30)/2 + 5);
 }
 
 //设置每组cell的边界
@@ -86,9 +87,11 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-   // int index = (int)indexPath.row;
+    int index = (int)indexPath.row;
+    self.cellIndex = index;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"showHUD" object:nil];
-    //[self performSelector:@selector(doJumpTo:) withObject:indexPath afterDelay:2.0f];
+    [self performSelector:@selector(clickClassVideoCell) withObject:nil afterDelay:2.0f];
+    
 }
 
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -97,5 +100,16 @@
     return YES;
 }
 
+/**
+ *  点击cell调用的方法
+ */
+-(void)clickClassVideoCell
+{
+    if([self.delegate respondsToSelector:@selector(jumpToItemVideo:)]){
+    
+        [self.delegate jumpToItemVideo:self];
+    }
+
+}
 
 @end

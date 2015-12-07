@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "LMComBoxView.h"
 #import "VMSNetSDK.h"
+#import "PublicHeaderView.h"
 
-@interface PublicVideoitemViewController : UIViewController<LMComBoxViewDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface  CommunityVideoViewController: UIViewController<PublicHeaderViewDelegate,LMComBoxViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (nonatomic,copy) NSString *regionId;
 @property (nonatomic, copy) NSString *serverAddress;
@@ -18,5 +19,6 @@
 @property (nonatomic,copy) NSString *itemStr;
 @property (nonatomic,assign) int countStr;
 @property (nonatomic,strong) UITableView *publicItemTable;
+@property (nonatomic,strong) UICollectionView *videoCollectionView;
 
 @end

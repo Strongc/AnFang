@@ -10,26 +10,24 @@
 #import "UIColor+Extensions.h"
 #import "Common.h"
 #import "PublicVideoClassCell.h"
-#import "PublicVideoClassModel.h"
 #import "PublicSourceItemViewController.h"
 #import "SVProgressHUD.h"
-#import "PublicVideoitemViewController.h"
-#import "HeadImageCell.h"
+#import "CommunityVideoViewController.h"
 #import "ClassVideoCell.h"
-#import "TitleCell.h"
+#import "SchoolVideoViewController.h"
 
-@interface PublicSourceClassViewController ()
+@interface PublicSourceClassViewController ()<VideoCollectionCellDelagate>
 {
 
     UICollectionView *videoClass;
     NSMutableArray *_allSectionList;
     NSMutableArray *_lineList;
     int _selectedLineID;
-   
     //PublicVideoitemViewController *publicItem;
 
 }
 @property (nonatomic,strong) NSArray *classData;
+@property (nonatomic,strong) NSArray *recommendVideoData;
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 
 @end
@@ -85,6 +83,11 @@
 //    
 //}
 
+/**
+ *  从plist文件中懒加载数据
+ *
+ *  @return _classData
+ */
 -(NSArray *)classData
 {
     if(_classData == nil){
@@ -112,6 +115,39 @@
     return _classData;
 }
 
+/**
+ *  从plist文件中懒加载数据
+ *
+ *  @return _recommendVideoData
+ */
+-(NSArray *)recommendVideoData
+{
+
+    if(_recommendVideoData == nil){
+        
+        //1.获取PayStyleIcon.plist文件的路径
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"recommendVideo.plist" ofType:nil];
+        //2.根据路径加载数据
+        NSArray *arrayDict = [NSArray arrayWithContentsOfFile:path];
+        
+        //3.创建一个可变数组来保存一个一个对象
+        NSMutableArray *arrayModels = [NSMutableArray array];
+        
+        //4.循环字典数组，把每个字典对象转化成一个模型对象
+        for(NSDictionary *dict in arrayDict){
+            
+            RecommendVideoModel *model = [RecommendVideoModel recommendVideoClassModel:dict];
+            
+            [arrayModels addObject:model];
+        }
+        
+        _recommendVideoData = arrayModels;
+        
+    }
+    
+    return _recommendVideoData;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
@@ -125,6 +161,7 @@
     [self.view addSubview:headView];
     self.view.backgroundColor = [UIColor colorWithHexString:@"040818"];
     [self initConfigControl];
+    
     
     _serverAddress = @"http://112.12.17.3";
     VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
@@ -176,7 +213,9 @@
     [SVProgressHUD dismiss];
 }
 
-
+/**
+ *  在控制器设置控件
+ */
 -(void)initConfigControl
 {
 //    NSString *path = [[NSBundle mainBundle] pathForResource:@"head.png" ofType:nil];
@@ -205,6 +244,7 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.delegate = self;
     self.mainTableView.backgroundColor = [UIColor colorWithHexString:@"040818"];
+    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
 //    videoClass = [[UICollectionView alloc]initWithFrame:CGRectMake(5, 234, WIDTH-10, WIDTH-10) collectionViewLayout:flowLayout];
 //    videoClass.delegate = self;
@@ -271,6 +311,9 @@
         }
 
         cell = classCell;
+        
+        //设置ClassVideoCell的代理为当前的控制器
+        classCell.delegate = self;
         classCell.classDataArray = self.classData;
     }else if (indexPath.section == 2){
     
@@ -286,8 +329,21 @@
         }
         
         cell = titleCell;
-
+    }else if (indexPath.section == 3){
     
+        static NSString *reuseIdentify3 = @"cell3";
+        RecommendCell *recommendCell = (RecommendCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentify3];
+        
+        if(recommendCell == nil){
+            
+            recommendCell = [[RecommendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentify3];
+            recommendCell.accessoryType = UITableViewCellAccessoryNone;
+            recommendCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+        }
+
+        cell = recommendCell;
+        recommendCell.recondVideoArray = self.recommendVideoData;
     }
     
 //    AlarmMessageTableViewCell *cell = (AlarmMessageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentify];
@@ -319,15 +375,14 @@
         height = 150;
     }else if (indexPath.section == 1){
     
-        height = WIDTH - 20;
+        height = WIDTH - 60;
     }else if (indexPath.section == 2){
     
         height = 40;
+    }else{
+    
+        height = 200;
     }
-//    }else{
-//    
-//        height = 80;
-//    }
     
     return height;
     
@@ -335,15 +390,37 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-//    UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    AlarmMessageDetailViewController *detailView = [mainView instantiateViewControllerWithIdentifier:@"alarmMessageDetailId"];
-//    AlarmMessageModel *model = [messageArray objectAtIndex:indexPath.row];
-//    detailView.messageId = model.messageId;
-//    [self.navigationController pushViewController:detailView animated:YES];
+
     
 }
 
+/**
+ *  实现ClassVideoCell的代理方法
+ *
+ *  @param classVideoCell <#classVideoCell description#>
+ */
+-(void)jumpToItemVideo:(ClassVideoCell *)classVideoCell
+{
+    int index = classVideoCell.cellIndex;
+    
+    if(index == 0){
+    
+        UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        CommunityVideoViewController *publicItem = [mainView instantiateViewControllerWithIdentifier:@"publicitemId"];
+        PublicVideoClassModel *region = [self.classData objectAtIndex:index];
+        publicItem.itemStr = region.className;
+        publicItem.regionId = region.regionId;
+        publicItem.countStr = region.regionCount.intValue;
+        [self.navigationController pushViewController:publicItem animated:YES];
+    
+    }else if (index == 1){
+    
+        UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        SchoolVideoViewController *schoolView = [mainView instantiateViewControllerWithIdentifier:@"schoolId"];
+       [self.navigationController pushViewController:schoolView animated:YES];
+    }
+   
+}
 
 //#pragma mark UICollectionViewDataSource
 //-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section

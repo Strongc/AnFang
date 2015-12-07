@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "VMSNetSDK.h"
+#import "HeadImageCell.h"
 
-@interface PublicSourceClassViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+#import "TitleCell.h"
+#import "RecommendCell.h"
+
+@interface PublicSourceClassViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) CMSPInfo *mspInfo;
 @property (nonatomic, copy)  NSString *serverAddress;

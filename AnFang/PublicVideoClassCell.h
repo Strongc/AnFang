@@ -10,6 +10,7 @@
 #import "PublicVideoClassModel.h"
 #import "ShangMengClassModel.h"
 
+
 @interface PublicVideoClassCell : UICollectionViewCell
 
 /** 分类图片*/
@@ -23,5 +24,7 @@
 @property (nonatomic,strong) PublicVideoClassModel *publicClass;
 
 @property (nonatomic,strong) ShangMengClassModel *shangmengClassModel;
+
+
 
 @end

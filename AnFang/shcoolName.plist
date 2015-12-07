@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>幼儿园</string>
+		<key>icon</key>
+		<string>yueryuan</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>小学</string>
+		<key>icon</key>
+		<string>xiaoxue</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>中学</string>
+		<key>icon</key>
+		<string>zhongxue</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>大学</string>
+		<key>icon</key>
+		<string>daxue</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>图书</string>
+		<key>icon</key>
+		<string>book</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>活动</string>
+		<key>icon</key>
+		<string>cosplay</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>展览</string>
+		<key>icon</key>
+		<string>zhanlan</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>大会</string>
+		<key>icon</key>
+		<string>daxuedahui</string>
+	</dict>
+</array>
+</plist>
