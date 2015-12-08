@@ -15,6 +15,7 @@
 #import "CommunityVideoViewController.h"
 #import "ClassVideoCell.h"
 #import "SchoolVideoViewController.h"
+#import "TrafficViewController.h"
 
 @interface PublicSourceClassViewController ()<VideoCollectionCellDelagate>
 {
@@ -151,7 +152,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
-    headView.backgroundColor = [UIColor colorWithHexString:@"222121"];
+    headView.backgroundColor = [UIColor colorWithHexString:@"dfdfdf"];
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, WIDTH, 50*HEIGHT/667)];
     title.textAlignment = NSTextAlignmentCenter;
     title.text = @"公共信息";
@@ -159,10 +160,10 @@
     title.textColor = [UIColor colorWithHexString:@"ce7031"];
     [headView addSubview:title];
     [self.view addSubview:headView];
-    self.view.backgroundColor = [UIColor colorWithHexString:@"040818"];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"efefef"];
     [self initConfigControl];
     
-    
+    [self recommendVideoData];
     _serverAddress = @"http://112.12.17.3";
     VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
     _lineList = [NSMutableArray array];
@@ -243,7 +244,7 @@
 
     self.mainTableView.dataSource = self;
     self.mainTableView.delegate = self;
-    self.mainTableView.backgroundColor = [UIColor colorWithHexString:@"040818"];
+    self.mainTableView.backgroundColor = [UIColor colorWithHexString:@"efefef"];
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
 //    videoClass = [[UICollectionView alloc]initWithFrame:CGRectMake(5, 234, WIDTH-10, WIDTH-10) collectionViewLayout:flowLayout];
@@ -417,7 +418,31 @@
     
         UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         SchoolVideoViewController *schoolView = [mainView instantiateViewControllerWithIdentifier:@"schoolId"];
+        //PublicVideoClassModel *region = [self.classData objectAtIndex:index];
+        //schoolView.itemStr = region.className;
+        //schoolView.regionId = region.regionId;
+        //schoolView.countStr = region.regionCount.intValue;
        [self.navigationController pushViewController:schoolView animated:YES];
+    }else if (index == 2){
+    
+        UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        TrafficViewController *trafficView = [mainView instantiateViewControllerWithIdentifier:@"trafficId"];
+        PublicVideoClassModel *region = [self.classData objectAtIndex:index];
+        trafficView.itemStr = region.className;
+        trafficView.regionId = region.regionId;
+        trafficView.type = 2;
+        [self.navigationController pushViewController:trafficView animated:YES];
+    }else if (index == 3){
+    
+        UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        TrafficViewController *trafficView = [mainView instantiateViewControllerWithIdentifier:@"trafficId"];
+        PublicVideoClassModel *region = [self.classData objectAtIndex:index];
+        trafficView.itemStr = region.className;
+        trafficView.regionId = region.regionId;
+        trafficView.type = 3;
+        // trafficView.countStr = region.regionCount.intValue;
+        [self.navigationController pushViewController:trafficView animated:YES];
+    
     }
    
 }

@@ -813,7 +813,7 @@
         [SVProgressHUD showInfoWithStatus:@"网络没有连接！"];
         
     }else{
-        [SVProgressHUD showWithStatus:@"加载中..."];
+        //[SVProgressHUD showWithStatus:@"加载中..."];
         [WGAPI post:API_GETHELPINFO RequestParams:helpInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
             if(data){
             

@@ -119,7 +119,7 @@
         NSDictionary *pageInfo = @{@"page":page};
         NSString *pageStr = [pageInfo JSONString];
         NSString *userInfoData = [@"alarm=" stringByAppendingString:pageStr];
-        [SVProgressHUD showWithStatus:@"加载中..."];
+        //[SVProgressHUD showWithStatus:@"加载中..."];
         [WGAPI post:API_GET_ALARMINFO RequestParams:nil FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
             if(data){

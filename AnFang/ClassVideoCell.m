@@ -39,7 +39,7 @@
         //    [videoCollection registerClass:[PublicHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
         
         //[self.view addSubview:videoClass];
-        self.videoClass.backgroundColor = [UIColor colorWithHexString:@"040818"];
+        self.videoClass.backgroundColor = [UIColor colorWithHexString:@"efefef"];
         self.videoClass.scrollEnabled = YES;
         [self.videoClass registerClass:[PublicVideoClassCell class] forCellWithReuseIdentifier:@"cell"];
         [self.contentView addSubview:self.videoClass];

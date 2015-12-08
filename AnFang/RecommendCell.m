@@ -40,7 +40,7 @@
         //    [videoCollection registerClass:[PublicHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
         
         //[self.view addSubview:videoClass];
-        self.recommendVideo.backgroundColor = [UIColor colorWithHexString:@"040818"];
+        self.recommendVideo.backgroundColor = [UIColor colorWithHexString:@"efefef"];
         self.recommendVideo.scrollEnabled = NO;
         [self.recommendVideo registerClass:[RecommendVideoCell class] forCellWithReuseIdentifier:@"cell"];
         [self.contentView addSubview:self.recommendVideo];

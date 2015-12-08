@@ -273,13 +273,18 @@
 		3E9589CE1C082D8E00307DED /* CommunityVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9589CD1C082D8E00307DED /* CommunityVideoViewController.m */; };
 		3E9589D41C08319500307DED /* LMComBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9589D11C08319500307DED /* LMComBoxView.m */; };
 		3E9589D51C08319500307DED /* LMContainsLMComboxScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9589D31C08319500307DED /* LMContainsLMComboxScrollView.m */; };
+		3E9C0F011C169BD4003B3716 /* CampusVideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9C0F001C169BD4003B3716 /* CampusVideoListViewController.m */; };
+		3E9C0F041C16A8FB003B3716 /* TrafficViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9C0F031C16A8FB003B3716 /* TrafficViewController.m */; };
+		3E9C0F061C16B3E8003B3716 /* trafficEvent.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E9C0F051C16B3E8003B3716 /* trafficEvent.plist */; };
+		3E9C0F091C16D1AA003B3716 /* TourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9C0F081C16D1AA003B3716 /* TourViewController.m */; };
+		3E9C0F0B1C16D4AB003B3716 /* tourList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E9C0F0A1C16D4AB003B3716 /* tourList.plist */; };
 		3EB2298B1C12B31100B70CE2 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB2298A1C12B31100B70CE2 /* back.png */; };
 		3EB2298E1C12BABF00B70CE2 /* RecommendVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB2298D1C12BABF00B70CE2 /* RecommendVideoCell.m */; };
 		3EB229911C12BC8900B70CE2 /* RecommendVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB229901C12BC8900B70CE2 /* RecommendVideoModel.m */; };
 		3EB229931C12BEBF00B70CE2 /* recommendVideo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3EB229921C12BEBF00B70CE2 /* recommendVideo.plist */; };
-		3EB229971C12BF2300B70CE2 /* 03.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB229941C12BF2300B70CE2 /* 03.png */; };
-		3EB229981C12BF2300B70CE2 /* 05.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB229951C12BF2300B70CE2 /* 05.png */; };
-		3EB229991C12BF2300B70CE2 /* 07.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB229961C12BF2300B70CE2 /* 07.png */; };
+		3EB229971C12BF2300B70CE2 /* 003.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB229941C12BF2300B70CE2 /* 003.png */; };
+		3EB229981C12BF2300B70CE2 /* 005.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB229951C12BF2300B70CE2 /* 005.png */; };
+		3EB229991C12BF2300B70CE2 /* 007.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB229961C12BF2300B70CE2 /* 007.png */; };
 		3EF991731BF320D700832B4F /* yh_select.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF991711BF320D700832B4F /* yh_select.png */; };
 		3EF991741BF320D700832B4F /* yh.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF991721BF320D700832B4F /* yh.png */; };
 		3EF991871BF32F1800832B4F /* bufang_nor.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF991811BF32F1800832B4F /* bufang_nor.png */; };
@@ -878,15 +883,23 @@
 		3E958A1E1C08509F00307DED /* x509_vfy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509_vfy.h; sourceTree = "<group>"; };
 		3E958A1F1C08509F00307DED /* x509.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509.h; sourceTree = "<group>"; };
 		3E958A201C08509F00307DED /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509v3.h; sourceTree = "<group>"; };
+		3E9C0EFF1C169BD4003B3716 /* CampusVideoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampusVideoListViewController.h; sourceTree = "<group>"; };
+		3E9C0F001C169BD4003B3716 /* CampusVideoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampusVideoListViewController.m; sourceTree = "<group>"; };
+		3E9C0F021C16A8FB003B3716 /* TrafficViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrafficViewController.h; sourceTree = "<group>"; };
+		3E9C0F031C16A8FB003B3716 /* TrafficViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrafficViewController.m; sourceTree = "<group>"; };
+		3E9C0F051C16B3E8003B3716 /* trafficEvent.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = trafficEvent.plist; sourceTree = "<group>"; };
+		3E9C0F071C16D1AA003B3716 /* TourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TourViewController.h; sourceTree = "<group>"; };
+		3E9C0F081C16D1AA003B3716 /* TourViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TourViewController.m; sourceTree = "<group>"; };
+		3E9C0F0A1C16D4AB003B3716 /* tourList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tourList.plist; sourceTree = "<group>"; };
 		3EB2298A1C12B31100B70CE2 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		3EB2298C1C12BABF00B70CE2 /* RecommendVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendVideoCell.h; sourceTree = "<group>"; };
 		3EB2298D1C12BABF00B70CE2 /* RecommendVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendVideoCell.m; sourceTree = "<group>"; };
 		3EB2298F1C12BC8900B70CE2 /* RecommendVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendVideoModel.h; sourceTree = "<group>"; };
 		3EB229901C12BC8900B70CE2 /* RecommendVideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendVideoModel.m; sourceTree = "<group>"; };
 		3EB229921C12BEBF00B70CE2 /* recommendVideo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = recommendVideo.plist; sourceTree = "<group>"; };
-		3EB229941C12BF2300B70CE2 /* 03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 03.png; sourceTree = "<group>"; };
-		3EB229951C12BF2300B70CE2 /* 05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 05.png; sourceTree = "<group>"; };
-		3EB229961C12BF2300B70CE2 /* 07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 07.png; sourceTree = "<group>"; };
+		3EB229941C12BF2300B70CE2 /* 003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 003.png; sourceTree = "<group>"; };
+		3EB229951C12BF2300B70CE2 /* 005.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 005.png; sourceTree = "<group>"; };
+		3EB229961C12BF2300B70CE2 /* 007.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 007.png; sourceTree = "<group>"; };
 		3EF006941BEB6257008CDE77 /* HostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostCell.h; sourceTree = "<group>"; };
 		3EF006951BEB6257008CDE77 /* HostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostCell.m; sourceTree = "<group>"; };
 		3EF006971BEB6292008CDE77 /* HostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostModel.h; sourceTree = "<group>"; };
@@ -1219,9 +1232,9 @@
 				3E89D1B81C154E640083CDB0 /* 3.png */,
 				3E89D1B91C154E640083CDB0 /* 4.png */,
 				3E89D1BF1C154F4A0083CDB0 /* 5.png */,
-				3EB229941C12BF2300B70CE2 /* 03.png */,
-				3EB229951C12BF2300B70CE2 /* 05.png */,
-				3EB229961C12BF2300B70CE2 /* 07.png */,
+				3EB229941C12BF2300B70CE2 /* 003.png */,
+				3EB229951C12BF2300B70CE2 /* 005.png */,
+				3EB229961C12BF2300B70CE2 /* 007.png */,
 				3EB2298A1C12B31100B70CE2 /* back.png */,
 				3E838D751C0EB5E600AFACAE /* anfang.jpg */,
 				3E838D761C0EB5E600AFACAE /* dongyang.jpg */,
@@ -1269,6 +1282,8 @@
 				3E838D6F1C0EB04B00AFACAE /* ShangmengItem.plist */,
 				3EB229921C12BEBF00B70CE2 /* recommendVideo.plist */,
 				3E0D5E351C158F270004FC7F /* shcoolName.plist */,
+				3E9C0F051C16B3E8003B3716 /* trafficEvent.plist */,
+				3E9C0F0A1C16D4AB003B3716 /* tourList.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1861,6 +1876,12 @@
 				3E89D1C61C1576410083CDB0 /* CommunityViewController.m */,
 				3E0D5E321C158AE50004FC7F /* SchoolVideoViewController.h */,
 				3E0D5E331C158AE50004FC7F /* SchoolVideoViewController.m */,
+				3E9C0EFF1C169BD4003B3716 /* CampusVideoListViewController.h */,
+				3E9C0F001C169BD4003B3716 /* CampusVideoListViewController.m */,
+				3E9C0F021C16A8FB003B3716 /* TrafficViewController.h */,
+				3E9C0F031C16A8FB003B3716 /* TrafficViewController.m */,
+				3E9C0F071C16D1AA003B3716 /* TourViewController.h */,
+				3E9C0F081C16D1AA003B3716 /* TourViewController.m */,
 			);
 			name = PublicSource;
 			sourceTree = "<group>";
@@ -2417,7 +2438,7 @@
 				04DEDA061BE06EE100116789 /* fs_icon_wave_1.png in Resources */,
 				04E4002A1BB903AE0098F2D4 /* MonitorArea.plist in Resources */,
 				04801F201BB3CE6D00714CC9 /* play_nor@2x.png in Resources */,
-				3EB229971C12BF2300B70CE2 /* 03.png in Resources */,
+				3EB229971C12BF2300B70CE2 /* 003.png in Resources */,
 				04801F1D1BB3CE6D00714CC9 /* pause_nor@2x.png in Resources */,
 				3E75F1A41C0071CC001A91CF /* xiaoyuan.png in Resources */,
 				3EF9918A1BF32F1800832B4F /* camera_select.png in Resources */,
@@ -2430,8 +2451,10 @@
 				3EF9F5631BF4900C00BBDEA9 /* chatfrom_bg_normal.png in Resources */,
 				0448CC091BBA908100F120EC /* LocalVideo.plist in Resources */,
 				3E71991F1BF9D6B20001098E /* 我的行业.png in Resources */,
+				3E9C0F0B1C16D4AB003B3716 /* tourList.plist in Resources */,
 				3EF9F5461BF4820100BBDEA9 /* chat_animation2.png in Resources */,
 				3EFABCC81BF5A21E0017D697 /* chat_message_back.png in Resources */,
+				3E9C0F061C16B3E8003B3716 /* trafficEvent.plist in Resources */,
 				3E75F1A31C0071CC001A91CF /* sequ.png in Resources */,
 				04DEDA171BE093C900116789 /* 永康移动_公司楼顶基站.jpg in Resources */,
 				04D9A63C1BB3DA2B006D7B8A /* MenuConfig.plist in Resources */,
@@ -2445,7 +2468,7 @@
 				3E89D1BC1C154E640083CDB0 /* 2.png in Resources */,
 				3EF9F5611BF4900C00BBDEA9 /* Chat_take_picture.png in Resources */,
 				04801F261BB3CE6D00714CC9 /* setting.png in Resources */,
-				3EB229981C12BF2300B70CE2 /* 05.png in Resources */,
+				3EB229981C12BF2300B70CE2 /* 005.png in Resources */,
 				04DEDA051BE06EE100116789 /* fs_icon_wave_0.png in Resources */,
 				3EF9F5421BF4820100BBDEA9 /* chat_animation_white1.png in Resources */,
 				04801F221BB3CE6D00714CC9 /* plus19.png in Resources */,
@@ -2481,7 +2504,7 @@
 				04801ECD1BB3CE2F00714CC9 /* cut.png in Resources */,
 				04DEDA371BE0E26800116789 /* sdRefeshView_arrow@2x.png in Resources */,
 				045595DE1BCF86E700BB5094 /* KeyAlarm.plist in Resources */,
-				3EB229991C12BF2300B70CE2 /* 07.png in Resources */,
+				3EB229991C12BF2300B70CE2 /* 007.png in Resources */,
 				04801F1F1BB3CE6D00714CC9 /* play_disable@2x.png in Resources */,
 				04D9E0D41BB3F02000161CE8 /* location.png in Resources */,
 				3E02EF9B1BEDE17A00390C49 /* tiyan.png in Resources */,
@@ -2569,6 +2592,8 @@
 				04D9A5F61BB3D82E006D7B8A /* AlarmMessageDetailViewController.m in Sources */,
 				3E02EF941BEDD0FF00390C49 /* NewFeatureViewController.m in Sources */,
 				04D9A6281BB3D8DA006D7B8A /* MessageViewController.m in Sources */,
+				3E9C0F091C16D1AA003B3716 /* TourViewController.m in Sources */,
+				3E9C0F041C16A8FB003B3716 /* TrafficViewController.m in Sources */,
 				044AD45E1BBB91A1004D17BB /* WGData.m in Sources */,
 				044FFD971BCDF29E00F74AE9 /* JKBigInteger.m in Sources */,
 				3E609C0D1C1181F1009B25D1 /* ClassVideoCell.m in Sources */,
@@ -2582,6 +2607,7 @@
 				04D9A62D1BB3D8DA006D7B8A /* RechargeViewController.m in Sources */,
 				04801F551BB3CF4400714CC9 /* MenuSelectCollectionViewCell.m in Sources */,
 				042038091BD09DFD00D10004 /* MMLocationManager.m in Sources */,
+				3E9C0F011C169BD4003B3716 /* CampusVideoListViewController.m in Sources */,
 				04801E681BB3CA3400714CC9 /* DefenceAreaModel.m in Sources */,
 				3E71526C1C02AA4B002AF67F /* PublicItemVideoCell.m in Sources */,
 				04D9A6231BB3D8DA006D7B8A /* DefenceAreaViewController.m in Sources */,

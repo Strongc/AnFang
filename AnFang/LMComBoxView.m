@@ -71,7 +71,7 @@
 -(void)reloadData
 {
     [_listTable reloadData];
-    titleLabel.text = [_titlesList[0] name];
+    //titleLabel.text = [_titlesList[0] name];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hideProHUD" object:nil];
 }
 

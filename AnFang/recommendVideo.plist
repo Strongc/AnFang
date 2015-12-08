@@ -3,20 +3,26 @@
 <plist version="1.0">
 <array>
 	<dict>
+		<key>name</key>
+		<string>中山大桥</string>
 		<key>icon</key>
-		<string>03.png</string>
+		<string>003.png</string>
 		<key>regionId</key>
 		<string>12</string>
 	</dict>
 	<dict>
+		<key>name</key>
+		<string>艺海桥</string>
 		<key>icon</key>
-		<string>05.png</string>
+		<string>005.png</string>
 		<key>regionId</key>
 		<string>13</string>
 	</dict>
 	<dict>
+		<key>name</key>
+		<string>人民路吴宁路路口</string>
 		<key>icon</key>
-		<string>07.png</string>
+		<string>007.png</string>
 		<key>regionId</key>
 		<string>14</string>
 	</dict>

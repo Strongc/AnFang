@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>横店影视城</string>
+		<key>icon</key>
+		<string>hengdian</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>东白山</string>
+		<key>icon</key>
+		<string>dongbaishan</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>乌镇</string>
+		<key>icon</key>
+		<string>wuzeng</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>西湖</string>
+		<key>icon</key>
+		<string>xihu</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>杭州海洋极地馆</string>
+		<key>icon</key>
+		<string>hangzhou</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>湘湖旅游风景区</string>
+		<key>icon</key>
+		<string>xianghu</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>宋城旅游度假</string>
+		<key>icon</key>
+		<string>songcheng</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>安吉旅游景区</string>
+		<key>icon</key>
+		<string>anji</string>
+	</dict>
+</array>
+</plist>

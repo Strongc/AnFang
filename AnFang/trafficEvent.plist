@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>车次查询</string>
+		<key>icon</key>
+		<string>0.png</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>违章查询</string>
+		<key>icon</key>
+		<string>1.png</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>交通状况</string>
+		<key>icon</key>
+		<string>2.png</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>路口遇堵</string>
+		<key>icon</key>
+		<string>3.png</string>
+	</dict>
+</array>
+</plist>

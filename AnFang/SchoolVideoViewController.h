@@ -12,4 +12,6 @@
 
 @property (nonatomic,strong) UICollectionView *schoolClassView;
 
+@property (nonatomic,strong) UICollectionView *schoolVideoView;
+
 @end

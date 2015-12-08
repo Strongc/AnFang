@@ -29,7 +29,7 @@
         
         UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(15, 0, WIDTH-30, 40)];
         [self.contentView addSubview:backView];
-        backView.backgroundColor = [UIColor colorWithHexString:@"121d56"];
+        backView.backgroundColor = [UIColor colorWithHexString:@"a8a8a8"];
         
         UILabel *title2 = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 100, backView.frame.size.height)];
         [backView addSubview:title2];

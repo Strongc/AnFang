@@ -8,6 +8,7 @@
 
 #import "SchoolClassCell.h"
 #import "UIColor+Extensions.h"
+#import "Common.h"
 
 @implementation SchoolClassCell
 
@@ -25,12 +26,12 @@
     self = [super initWithFrame:frame];
     if(self){
         
-        UIImageView *titleImage = [[UIImageView alloc]initWithFrame:CGRectMake(20, 0, 40, 40)];
+        UIImageView *titleImage = [[UIImageView alloc]initWithFrame:CGRectMake(20, 0, 40*WIDTH/375, 40*HEIGHT/667)];
         [self.contentView addSubview:titleImage];
         self.titleImage = titleImage;
         
-        UILabel *titleName = [[UILabel alloc]initWithFrame:CGRectMake(0, self.frame.size.height-25, self.frame.size.width, 30)];
-        titleName.font = [UIFont boldSystemFontOfSize:14];
+        UILabel *titleName = [[UILabel alloc]initWithFrame:CGRectMake(0, self.frame.size.height-20*HEIGHT/667, self.frame.size.width, 20*HEIGHT/667)];
+        titleName.font = [UIFont boldSystemFontOfSize:14*HEIGHT/667];
         titleName.textColor = [UIColor colorWithHexString:@"ce7031"];
         titleName.numberOfLines = 0;
         titleName.textAlignment = NSTextAlignmentCenter;
@@ -41,7 +42,6 @@
     
     self.backgroundColor = [UIColor clearColor];
     return self;
-    
     
 }
 

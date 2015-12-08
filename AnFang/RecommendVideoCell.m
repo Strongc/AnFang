@@ -15,7 +15,7 @@
 {
     
     _recommendVideoModel = recommendVideoModel;
-   // self.publicVideoImage.image = [UIImage imageNamed:recommendVideoModel.classImage];
+    //self.publicVideoImage.image = [UIImage imageNamed:recommendVideoModel.classImage];
     self.className.text = recommendVideoModel.className;
     
 }
@@ -40,7 +40,7 @@
         UIButton *backViewBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height-40, self.frame.size.width, 40)];
         [self.contentView addSubview:backViewBtn];
         backViewBtn.backgroundColor = [UIColor blackColor];
-        backViewBtn.alpha = 0.65;
+        backViewBtn.alpha = 0.45;
         self.backViewBtn = backViewBtn;
     }
     

@@ -33,7 +33,7 @@
 //    _serverAddress = @"http://112.12.17.3";
 //    _mspInfo = [[CMSPInfo alloc]init];
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
-    headView.backgroundColor = [UIColor colorWithHexString:@"222121"];
+    headView.backgroundColor = [UIColor colorWithHexString:@"dfdfdf"];
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, WIDTH, 50*HEIGHT/667)];
     title.textAlignment = NSTextAlignmentCenter;
     title.text = @"社区视频";
@@ -70,7 +70,7 @@
 
 -(void)initConfig
 {
-    [self.view setBackgroundColor:[UIColor colorWithHexString:@"040818"]];
+    [self.view setBackgroundColor:[UIColor colorWithHexString:@"efefef"]];
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     communityVideo = [[UICollectionView alloc]initWithFrame:CGRectMake(5, 110, WIDTH-10, HEIGHT-110-49) collectionViewLayout:flowLayout];
     communityVideo.delegate = self;
@@ -86,7 +86,7 @@
     communityVideo.scrollEnabled = YES;
     [communityVideo registerClass:[RecommendVideoCell class] forCellWithReuseIdentifier:@"cell"];
     [self.view addSubview:communityVideo];
-    communityVideo.backgroundColor = [UIColor colorWithHexString:@"040818"];
+    communityVideo.backgroundColor = [UIColor colorWithHexString:@"efefef"];
 
 
 }
