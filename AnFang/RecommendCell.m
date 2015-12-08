@@ -65,6 +65,8 @@
     RecommendVideoCell *cell = (RecommendVideoCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifyId forIndexPath:indexPath];
     RecommendVideoModel *model = [self.recondVideoArray objectAtIndex:indexPath.item];
     cell.recommendVideoModel = model;
+    //NSString *imageName = ;
+    //cell.publicVideoImage.image = [UIImage imageNamed:[self.recondVideoArray objectAtIndex:indexPath.item]];
     [cell setTag:indexPath.row];
     //[cell.backViewBtn addTarget:self action:@selector(doJumpTo:) forControlEvents:UIControlEventTouchUpInside];
     return cell;

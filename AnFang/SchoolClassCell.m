@@ -30,7 +30,7 @@
         [self.contentView addSubview:titleImage];
         self.titleImage = titleImage;
         
-        UILabel *titleName = [[UILabel alloc]initWithFrame:CGRectMake(0, self.frame.size.height-20*HEIGHT/667, self.frame.size.width, 20*HEIGHT/667)];
+        UILabel *titleName = [[UILabel alloc]initWithFrame:CGRectMake(0, self.frame.size.height-20*HEIGHT/667, self.frame.size.width, 40*HEIGHT/667)];
         titleName.font = [UIFont boldSystemFontOfSize:14*HEIGHT/667];
         titleName.textColor = [UIColor colorWithHexString:@"ce7031"];
         titleName.numberOfLines = 0;

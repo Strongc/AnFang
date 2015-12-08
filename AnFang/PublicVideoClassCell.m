@@ -40,16 +40,16 @@
         [self.contentView addSubview:publicVideoImage];
         self.publicVideoImage = publicVideoImage;
         
-        UILabel *className = [[UILabel alloc]initWithFrame:CGRectMake(0, self.frame.size.height-50, self.frame.size.width, 50)];
+        UILabel *className = [[UILabel alloc]initWithFrame:CGRectMake(0, self.frame.size.height-40, self.frame.size.width, 40)];
         className.font = [UIFont boldSystemFontOfSize:14];
         className.textColor = [UIColor colorWithHexString:@"ededed"];
         className.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:className];
         self.className = className;
-        UIButton *backViewBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height-50, self.frame.size.width, 50)];
+        UIButton *backViewBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height-40, self.frame.size.width, 40)];
         [self.contentView addSubview:backViewBtn];
         backViewBtn.backgroundColor = [UIColor blackColor];
-        backViewBtn.alpha = 0.85;
+        backViewBtn.alpha = 0.35;
         self.backViewBtn = backViewBtn;
     }
     

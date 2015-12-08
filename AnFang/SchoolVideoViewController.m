@@ -68,7 +68,7 @@
     [super viewDidLoad];
     self.imageArray = [[NSMutableArray alloc]initWithObjects:@"school01",@"school02",@"school03", nil];
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
-    headView.backgroundColor = [UIColor colorWithHexString:@"222121"];
+    headView.backgroundColor = [UIColor colorWithHexString:@"dfdfdf"];
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, WIDTH, 50*HEIGHT/667)];
     title.textAlignment = NSTextAlignmentCenter;
     title.text = @"智慧校园";
@@ -123,9 +123,9 @@
     self.schoolVideoView.scrollEnabled = NO;
     [self.schoolVideoView registerClass:[RecommendVideoCell class] forCellWithReuseIdentifier:@"cell1"];
     [self.view addSubview:self.schoolVideoView];
-    self.schoolVideoView.backgroundColor = [UIColor colorWithHexString:@"040818"];
+    self.schoolVideoView.backgroundColor = [UIColor colorWithHexString:@"efefef"];
 
-    [self.view setBackgroundColor:[UIColor colorWithHexString:@"040818"]];
+    [self.view setBackgroundColor:[UIColor colorWithHexString:@"efefef"]];
     // Do any additional setup after loading the view.
 }
 
@@ -287,7 +287,7 @@
     self.schoolClassView.scrollEnabled = NO;
     [self.schoolClassView registerClass:[SchoolClassCell class] forCellWithReuseIdentifier:@"cell"];
     [self.view addSubview:self.schoolClassView];
-    self.schoolClassView.backgroundColor = [UIColor colorWithHexString:@"040818"];
+    self.schoolClassView.backgroundColor = [UIColor colorWithHexString:@"efefef"];
     
 }
 

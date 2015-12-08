@@ -22,7 +22,7 @@
     [super viewDidLoad];
     
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
-    headView.backgroundColor = [UIColor colorWithHexString:@"222121"];
+    headView.backgroundColor = [UIColor colorWithHexString:@"dfdfdf"];
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, WIDTH, 50*HEIGHT/667)];
     title.textAlignment = NSTextAlignmentCenter;
     title.text = @"园内视频";
@@ -56,13 +56,13 @@
     self.campusVideoView.scrollEnabled = YES;
     [self.campusVideoView registerClass:[RecommendVideoCell class] forCellWithReuseIdentifier:@"cell"];
     [self.view addSubview:self.campusVideoView];
-    self.campusVideoView.backgroundColor = [UIColor colorWithHexString:@"040818"];
+    self.campusVideoView.backgroundColor = [UIColor colorWithHexString:@"efefef"];
 #pragma mark -- 头尾部大小设置
     //设置头部并给定大小
     [flowLayout setHeaderReferenceSize:CGSizeMake(self.campusVideoView.frame.size.width, 40)];
 #pragma mark -- 注册头部视图
     [self.campusVideoView registerClass:[PublicHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
-    [self.view setBackgroundColor:[UIColor colorWithHexString:@"040818"]];
+    [self.view setBackgroundColor:[UIColor colorWithHexString:@"efefef"]];
 
     // Do any additional setup after loading the view.
 }

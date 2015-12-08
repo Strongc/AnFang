@@ -98,7 +98,7 @@
     [super viewDidLoad];
     
     [self.view endEditing:YES];
-    self.view.backgroundColor = [UIColor colorWithHexString:@"ededed"];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"efefef"];
     self.view.backgroundColor = [UIColor whiteColor];
    
     
@@ -153,18 +153,18 @@
     [self.view addSubview:stateBtn];
     //[stateBtn addTarget:self action:@selector(getUserHostInfo) forControlEvents:UIControlEventTouchUpInside];
     
-    stateLab = [[UILabel alloc]initWithFrame:CGRectMake(120*WIDTH/375, 170*HEIGHT/667, 60*WIDTH/375, 20*HEIGHT/667)];
+    stateLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 130*HEIGHT/667,WIDTH-80, 20*HEIGHT/667)];
     stateLab.text = @"已布防";
     stateLab.textColor = [UIColor whiteColor];
     stateLab.textAlignment = NSTextAlignmentCenter;
-    stateLab.font = [UIFont systemFontOfSize:20*WIDTH/375];
+    stateLab.font = [UIFont systemFontOfSize:30*WIDTH/375];
     [stateBtn addSubview:stateLab];
     
-    onlineLab = [[UILabel alloc]initWithFrame:CGRectMake(120*WIDTH/375, 130*HEIGHT/667, 60*WIDTH/375, 20*HEIGHT/667)];
+    onlineLab = [[UILabel alloc]initWithFrame:CGRectMake(120*WIDTH/375, 170*HEIGHT/667, 60*WIDTH/375, 20*HEIGHT/667)];
     onlineLab.text = @"在线";
     onlineLab.textColor = [UIColor whiteColor];
     onlineLab.textAlignment = NSTextAlignmentCenter;
-    onlineLab.font = [UIFont boldSystemFontOfSize:30*WIDTH/375];
+    onlineLab.font = [UIFont boldSystemFontOfSize:20*WIDTH/375];
     [stateBtn addSubview:onlineLab];
     
    // NSString *path1 = [[NSBundle mainBundle] pathForResource:@"bufang_nor.png" ofType:nil];

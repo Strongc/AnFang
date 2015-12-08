@@ -30,6 +30,7 @@
 @property (nonatomic,strong) NSArray *classData;
 @property (nonatomic,strong) NSArray *recommendVideoData;
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
+@property (nonatomic,strong) NSMutableArray *imageArray;
 
 @end
 
@@ -170,7 +171,7 @@
     _mspInfo = [[CMSPInfo alloc]init];
     BOOL result = [vmsNetSDK getLineList:_serverAddress toLineInfoList:_lineList];
     _selectedLineID = 2;
-    
+    _imageArray = [[NSMutableArray alloc] initWithObjects:@"003.png",@"005.png",@"007.png", nil];
 
     if (NO == result) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"

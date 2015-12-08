@@ -276,7 +276,6 @@
 		3E9C0F011C169BD4003B3716 /* CampusVideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9C0F001C169BD4003B3716 /* CampusVideoListViewController.m */; };
 		3E9C0F041C16A8FB003B3716 /* TrafficViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9C0F031C16A8FB003B3716 /* TrafficViewController.m */; };
 		3E9C0F061C16B3E8003B3716 /* trafficEvent.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E9C0F051C16B3E8003B3716 /* trafficEvent.plist */; };
-		3E9C0F091C16D1AA003B3716 /* TourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9C0F081C16D1AA003B3716 /* TourViewController.m */; };
 		3E9C0F0B1C16D4AB003B3716 /* tourList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E9C0F0A1C16D4AB003B3716 /* tourList.plist */; };
 		3EB2298B1C12B31100B70CE2 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB2298A1C12B31100B70CE2 /* back.png */; };
 		3EB2298E1C12BABF00B70CE2 /* RecommendVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB2298D1C12BABF00B70CE2 /* RecommendVideoCell.m */; };
@@ -888,8 +887,6 @@
 		3E9C0F021C16A8FB003B3716 /* TrafficViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrafficViewController.h; sourceTree = "<group>"; };
 		3E9C0F031C16A8FB003B3716 /* TrafficViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrafficViewController.m; sourceTree = "<group>"; };
 		3E9C0F051C16B3E8003B3716 /* trafficEvent.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = trafficEvent.plist; sourceTree = "<group>"; };
-		3E9C0F071C16D1AA003B3716 /* TourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TourViewController.h; sourceTree = "<group>"; };
-		3E9C0F081C16D1AA003B3716 /* TourViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TourViewController.m; sourceTree = "<group>"; };
 		3E9C0F0A1C16D4AB003B3716 /* tourList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tourList.plist; sourceTree = "<group>"; };
 		3EB2298A1C12B31100B70CE2 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		3EB2298C1C12BABF00B70CE2 /* RecommendVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendVideoCell.h; sourceTree = "<group>"; };
@@ -1880,8 +1877,6 @@
 				3E9C0F001C169BD4003B3716 /* CampusVideoListViewController.m */,
 				3E9C0F021C16A8FB003B3716 /* TrafficViewController.h */,
 				3E9C0F031C16A8FB003B3716 /* TrafficViewController.m */,
-				3E9C0F071C16D1AA003B3716 /* TourViewController.h */,
-				3E9C0F081C16D1AA003B3716 /* TourViewController.m */,
 			);
 			name = PublicSource;
 			sourceTree = "<group>";
@@ -2592,7 +2587,6 @@
 				04D9A5F61BB3D82E006D7B8A /* AlarmMessageDetailViewController.m in Sources */,
 				3E02EF941BEDD0FF00390C49 /* NewFeatureViewController.m in Sources */,
 				04D9A6281BB3D8DA006D7B8A /* MessageViewController.m in Sources */,
-				3E9C0F091C16D1AA003B3716 /* TourViewController.m in Sources */,
 				3E9C0F041C16A8FB003B3716 /* TrafficViewController.m in Sources */,
 				044AD45E1BBB91A1004D17BB /* WGData.m in Sources */,
 				044FFD971BCDF29E00F74AE9 /* JKBigInteger.m in Sources */,

@@ -15,7 +15,7 @@
 {
     
     _recommendVideoModel = recommendVideoModel;
-    //self.publicVideoImage.image = [UIImage imageNamed:recommendVideoModel.classImage];
+    self.publicVideoImage.image = [UIImage imageNamed:recommendVideoModel.classImage];
     self.className.text = recommendVideoModel.className;
     
 }
@@ -30,7 +30,7 @@
         [self.contentView addSubview:publicVideoImage];
         self.publicVideoImage = publicVideoImage;
         
-        UILabel *className = [[UILabel alloc]initWithFrame:CGRectMake(0, self.frame.size.height-45, self.frame.size.width, 50)];
+        UILabel *className = [[UILabel alloc]initWithFrame:CGRectMake(0, self.frame.size.height-40, self.frame.size.width, 40)];
         className.font = [UIFont boldSystemFontOfSize:14];
         className.textColor = [UIColor whiteColor];
         className.numberOfLines = 0;
@@ -40,7 +40,7 @@
         UIButton *backViewBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height-40, self.frame.size.width, 40)];
         [self.contentView addSubview:backViewBtn];
         backViewBtn.backgroundColor = [UIColor blackColor];
-        backViewBtn.alpha = 0.45;
+        backViewBtn.alpha = 0.35;
         self.backViewBtn = backViewBtn;
     }
     

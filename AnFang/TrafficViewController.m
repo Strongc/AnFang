@@ -48,7 +48,15 @@
     if(_classData == nil){
         
         //1.获取PayStyleIcon.plist文件的路径
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"trafficEvent.plist" ofType:nil];
+        NSString *path;
+        if(self.type == 2){
+            
+            path = [[NSBundle mainBundle] pathForResource:@"trafficEvent.plist" ofType:nil];
+        }else if (self.type == 3){
+        
+            path = [[NSBundle mainBundle] pathForResource:@"tourList.plist" ofType:nil];
+        }
+        
         //2.根据路径加载数据
         NSArray *arrayDict = [NSArray arrayWithContentsOfFile:path];
         
@@ -227,16 +235,20 @@
     }
     
     [self classData];
-    videoScrollView = [[LMContainsLMComboxScrollView alloc]initWithFrame:CGRectMake(0, 64, WIDTH, 140)];
-    videoScrollView.backgroundColor = [UIColor clearColor];
-    videoScrollView.showsVerticalScrollIndicator = NO;
-    videoScrollView.showsHorizontalScrollIndicator = NO;
-    [self.view addSubview:videoScrollView];
-    [self setUpVideoScrollView];
+    
     [self.view setBackgroundColor:[UIColor colorWithHexString:@"efefef"]];
     
+    CGFloat collectionViewHeight;
+    if(self.type == 2){
+    
+        collectionViewHeight = 80;
+    }else if (self.type == 3){
+    
+        collectionViewHeight = 170;
+    }
+    
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    self.trafficEvent = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 64+50, WIDTH, 80) collectionViewLayout:flowLayout];
+    self.trafficEvent = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 64+50, WIDTH, collectionViewHeight) collectionViewLayout:flowLayout];
     self.trafficEvent.delegate = self;
     self.trafficEvent.dataSource = self;
     self.trafficEvent.backgroundColor = [UIColor clearColor];
@@ -245,6 +257,13 @@
     [self.view addSubview:self.trafficEvent];
     self.trafficEvent.backgroundColor = [UIColor colorWithHexString:@"efefef"];
     [self prepareScollView];
+    videoScrollView = [[LMContainsLMComboxScrollView alloc]initWithFrame:CGRectMake(0, 64, WIDTH, 140)];
+    videoScrollView.backgroundColor = [UIColor clearColor];
+    videoScrollView.showsVerticalScrollIndicator = NO;
+    videoScrollView.showsHorizontalScrollIndicator = NO;
+    [self.view addSubview:videoScrollView];
+    [self setUpVideoScrollView];
+
     
     UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(15, CGRectGetMaxY(self.scrollView.frame)+10*HEIGHT/667, 200, 20)];
     [self.view addSubview:titleLab];
@@ -299,7 +318,7 @@
 - (void)prepareScollView {
     CGFloat scrollW = [UIScreen mainScreen].bounds.size.width - 30;
     CGFloat scrollH = 110*HEIGHT/667;
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(self.trafficEvent.frame)+5*HEIGHT/667, scrollW , scrollH)];
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(self.trafficEvent.frame) - 10*HEIGHT/667, scrollW , scrollH)];
     scrollView.delegate = self;
     
     for (int i = 0; i < 5; i++) {
@@ -389,16 +408,16 @@
         
         
     }
-    LMComBoxView* comBox1 = [videoScrollView viewWithTag:kDropDownListTag];
+    //LMComBoxView* comBox1 = [videoScrollView viewWithTag:kDropDownListTag];
     //LMComBoxView* comBox2 = [videoScrollView viewWithTag:kDropDownListTag+1];
-    [self selectAtIndex:0 inCombox:comBox1];
+   // [self selectAtIndex:0 inCombox:comBox1];
     
 }
 
 #pragma mark -LMComBoxViewDelegate
 -(void)selectAtIndex:(int)index inCombox:(LMComBoxView *)_combox
 {
-    NSMutableArray *communityArray = [NSMutableArray array];
+    //NSMutableArray *communityArray = [NSMutableArray array];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"showProHUD" object:nil];
     NSInteger tag = _combox.tag - kDropDownListTag;
     switch (tag) {
@@ -417,7 +436,13 @@
             int regionId = [streetArray[index] regionID];
             [self _getAllVideoInSection:regionId];
             
-            
+            UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            CommunityViewController *communityView = [mainView instantiateViewControllerWithIdentifier:@"communityId"];;
+            communityView.videoArray = villageArray;
+            communityView.mspInfo = _mspInfo;
+            communityView.serverAddress = _serverAddress;
+            [self.navigationController pushViewController:communityView animated:YES];
+
             //                if(self.countOfRegion == 2){
             //                    LMComBoxView* comBox = (LMComBoxView *)[videoScrollView viewWithTag:kDropDownListTag+1];//通过tag移除指定的子视图
             //                    comBox.hidden = YES;
