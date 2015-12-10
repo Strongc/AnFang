@@ -12,7 +12,7 @@
 @interface CommunityViewController : UIViewController<UICollectionViewDataSource,UIBarPositioningDelegate,UICollectionViewDelegateFlowLayout>
 
 @property(nonatomic,copy) NSString *communityName;
-@property(nonatomic,strong) NSMutableArray *videoArray;
+@property(nonatomic,strong) NSMutableArray *videoSourceArray;
 @property (nonatomic, copy) NSString *serverAddress;
 @property (nonatomic, strong) CMSPInfo *mspInfo;
 

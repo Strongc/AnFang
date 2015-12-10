@@ -12,6 +12,7 @@
 
 #import "LMComBoxView.h"
 #import "UIColor+Extensions.h"
+#import "PublicVideoClassModel.h"
 
 @implementation LMComBoxView
 @synthesize isOpen = _isOpen;
@@ -44,12 +45,12 @@
     [btn addTarget:self action:@selector(tapAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn];
     
-    titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 0, self.frame.size.width-imgW - 5 - 2, self.frame.size.height)];
-    titleLabel.font = [UIFont systemFontOfSize:15];
-    titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.textAlignment = NSTextAlignmentLeft;
-    titleLabel.textColor = [UIColor colorWithHexString:@"ce7031"];
-    [btn addSubview:titleLabel];
+    self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 0, self.frame.size.width-imgW - 5 - 2, self.frame.size.height)];
+    self.titleLabel.font = [UIFont systemFontOfSize:15];
+    self.titleLabel.backgroundColor = [UIColor clearColor];
+    self.titleLabel.textAlignment = NSTextAlignmentLeft;
+    self.titleLabel.textColor = [UIColor colorWithHexString:@"ce7031"];
+    [btn addSubview:self.titleLabel];
 
     _arrow = [[UIImageView alloc]initWithFrame:CGRectMake(btn.frame.size.width - imgW - 6, (self.frame.size.height-imgH)/2.0, imgW, imgH)];
     _arrow.image = [UIImage imageNamed:_arrowImgName];
@@ -64,14 +65,15 @@
     _listTable.layer.borderWidth = 0.5;
     _listTable.layer.borderColor = kBorderColor.CGColor;
     [_supView addSubview:_listTable];
-    titleLabel.text = [_titlesList[0] name];
+    self.titleLabel.text = [_titlesList[0] objectForKey:@"name"];
+    
 }
 
 //刷新视图
 -(void)reloadData
 {
     [_listTable reloadData];
-    //titleLabel.text = [_titlesList[0] name];
+    self.titleLabel.text = [_titlesList[0] objectForKey:@"name"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hideProHUD" object:nil];
 }
 
@@ -186,7 +188,7 @@
         [cell addSubview:line];
     }
     UILabel *label = (UILabel *)[cell viewWithTag:1000];
-    label.text = [_titlesList[indexPath.row] name];
+    label.text = [_titlesList[indexPath.row] objectForKey:@"name"];
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
     
     return cell;
@@ -195,7 +197,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    titleLabel.text = [_titlesList[indexPath.row] name];
+    self.titleLabel.text = [_titlesList[indexPath.row] objectForKey:@"name"];
     _isOpen = YES;
     [self tapAction];
     if([_delegate respondsToSelector:@selector(selectAtIndex:inCombox:)])

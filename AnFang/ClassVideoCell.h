@@ -22,6 +22,6 @@
 @property (nonatomic,strong) NSArray *classDataArray;
 @property (nonatomic,weak) id<VideoCollectionCellDelagate> delegate;
 @property (nonatomic,assign) int cellIndex;
-
+@property (nonatomic,strong) NSMutableArray *imageArray;
 
 @end

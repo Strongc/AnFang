@@ -10,16 +10,16 @@
 
 @interface PublicVideoClassModel : NSObject
 
-/** 分类图片*/
-@property (nonatomic,copy) NSString *classImage;
+///** 分类图片*/
+//@property (nonatomic,copy) NSString *classImage;
 
 /** 分类名称*/
-@property (nonatomic,copy) NSString *className;
+@property (nonatomic,copy) NSString *name;
 
 /** 区域ID*/
 @property (nonatomic,copy) NSString *regionId;
 
-@property (nonatomic,copy) NSString *regionCount;
+//@property (nonatomic,copy) NSString *regionCount;
 
 -(instancetype)initWithDict:(NSDictionary *)dict;
 +(instancetype)publicVideoClassModel:(NSDictionary *)dict;

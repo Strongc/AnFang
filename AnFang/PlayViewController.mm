@@ -421,7 +421,7 @@ void StatusCallBack(PLAY_STATE playState, VP_HANDLE hLogin, void *pHandl)
     _realPlayURL = [[CRealPlayURL alloc] init];
     BOOL result = [vmsNetSDK getRealPlayURL:_serverAddress
                                 toSessionID:_mspInfo.sessionID
-                                 toCameraID:_cameraInfo.cameraID
+                                 toCameraID:self.cameraId
                               toRealPlayURL:_realPlayURL
                                toStreamType:STREAM_SUB]; //StreamType＝0时，返回主码流和MAG地址，其＝1时返回子码流和MAG地址
     if (NO == result) {
@@ -454,7 +454,7 @@ void StatusCallBack(PLAY_STATE playState, VP_HANDLE hLogin, void *pHandl)
     }
     
     //填充vidioInfo
-    videoInfo.strID =  _cameraInfo.cameraID;
+    videoInfo.strID =  _cameraId;
     NSLog(@"Id %@",videoInfo.strID);
     videoInfo.protocalType  = PROTOCAL_UDP;
     videoInfo.playType      = REAL_PLAY;

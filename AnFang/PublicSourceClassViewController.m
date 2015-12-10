@@ -16,83 +16,95 @@
 #import "ClassVideoCell.h"
 #import "SchoolVideoViewController.h"
 #import "TrafficViewController.h"
+#import "WGAPI.h"
+#import "CMTool.h"
 
-@interface PublicSourceClassViewController ()<VideoCollectionCellDelagate>
+@interface PublicSourceClassViewController ()<VideoCollectionCellDelagate,RecommendCellDelegate>
 {
 
     UICollectionView *videoClass;
     NSMutableArray *_allSectionList;
     NSMutableArray *_lineList;
     int _selectedLineID;
+   // NSArray *tempNetArray;
     //PublicVideoitemViewController *publicItem;
 
 }
-@property (nonatomic,strong) NSArray *classData;
+@property (nonatomic,strong) NSArray *mainRegionData;
 @property (nonatomic,strong) NSArray *recommendVideoData;
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 @property (nonatomic,strong) NSMutableArray *imageArray;
+@property (nonatomic,strong) NSMutableArray *streetArray;
+@property (nonatomic,strong) NSMutableArray *villageArray;
+@property (nonatomic,strong) NSMutableArray *dataArray;
 
 @end
 
 @implementation PublicSourceClassViewController
 
 
-//-(NSMutableArray *)_getAllVideoInSection
-//{
-//    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
-//    _allSectionList = [NSMutableArray array];
-//    NSMutableArray *tempArray = [NSMutableArray array];
-//    if (nil == _regionInfo) {
-//        if (nil == _controlUnitInfo) {
-//            
-//            //获取根控制中心
-//            [vmsNetSDK getControlUnitList:_serverAddress
-//                              toSessionID:_mspInfo.sessionID
-//                          toControlUnitID:0
-//                             toNumPerOnce:50
-//                                toCurPage:1
-//                        toControlUnitList:tempArray];
-//            [_allSectionList addObjectsFromArray:tempArray];
-//            [tempArray removeAllObjects];
-//        } else {
-//            
-//            //获取控制中心下的控制中心
-//            [vmsNetSDK getControlUnitList:_serverAddress
-//                              toSessionID:_mspInfo.sessionID
-//                          toControlUnitID:_controlUnitInfo.controlUnitID
-//                             toNumPerOnce:50
-//                                toCurPage:1
-//                        toControlUnitList:tempArray];
-//            [_allSectionList addObjectsFromArray:tempArray];
-//            [tempArray removeAllObjects];
-//            
-//            //获取控制中心下的区域
-//            [vmsNetSDK getRegionListFromCtrlUnit:_serverAddress
-//                                     toSessionID:_mspInfo.sessionID
-//                                 toControlUnitID:_controlUnitInfo.controlUnitID
-//                                    toNumPerOnce:50
-//                                       toCurPage:1
-//                                    toRegionList:tempArray];
-//            [_allSectionList addObjectsFromArray:tempArray];
-//            [tempArray removeAllObjects];
-//            
-//        }
-//    } else {
-//        
-//        
-//    }
-//    return _allSectionList;
-//    
-//}
+-(NSMutableArray *)_getAllStreetArray
+{
+    int regionId = 340;
+    VMSNetSDK *vmNetSDK = [VMSNetSDK shareInstance];
+    _streetArray = [NSMutableArray array];
+    NSMutableArray *tempArray = [NSMutableArray array];
+    //videoArray = [NSMutableArray array];
+    //获取区域下的区域
+    [vmNetSDK getRegionListFromRegion:_serverAddress toSessionID:_mspInfo.sessionID toRegionID:regionId toNumPerOnce:60 toCurPage:1 toRegionList:tempArray];
+    [_streetArray addObjectsFromArray:tempArray];
+    [tempArray removeAllObjects];
+    
+    //获取区域下的设备
+    [vmNetSDK getCameraListFromRegion:_serverAddress toSessionID:_mspInfo.sessionID toRegionID:regionId toNumPerOnce:60 toCurPage:1 toCameraList:tempArray];
+    [_streetArray addObjectsFromArray:tempArray];
+    
+    [tempArray removeAllObjects];
+    
+    return _streetArray;
+}
+
+-(NSMutableArray *)_getAllVideoInSection:(int)regionId
+{
+    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
+    _villageArray = [NSMutableArray array];
+    NSMutableArray *tempArray = [NSMutableArray array];
+    self.serverAddress = _serverAddress;
+    self.mspInfo = _mspInfo;
+    //获取区域下的区域
+    [vmsNetSDK getRegionListFromRegion:_serverAddress
+                           toSessionID:_mspInfo.sessionID
+                            toRegionID:regionId
+                          toNumPerOnce:50
+                             toCurPage:1
+                          toRegionList:tempArray];
+    [_villageArray addObjectsFromArray:tempArray];
+    [tempArray removeAllObjects];
+    
+    //获取区域下的设备
+    [vmsNetSDK getCameraListFromRegion:_serverAddress
+                           toSessionID:_mspInfo.sessionID
+                            toRegionID:regionId
+                          toNumPerOnce:50
+                             toCurPage:1
+                          toCameraList:tempArray];
+    [_villageArray addObjectsFromArray:tempArray];
+    [tempArray removeAllObjects];
+    
+    return _villageArray;
+    
+}
+
+
 
 /**
- *  从plist文件中懒加载数据
+ *  从网络中懒加载数据
  *
  *  @return _classData
  */
--(NSArray *)classData
+-(NSArray *)mainRegionData
 {
-    if(_classData == nil){
+    if(_mainRegionData == nil){
         
         //1.获取PayStyleIcon.plist文件的路径
         NSString *path = [[NSBundle mainBundle] pathForResource:@"PublicClass.plist" ofType:nil];
@@ -110,11 +122,11 @@
             [arrayModels addObject:model];
         }
         
-        _classData = arrayModels;
+        _mainRegionData = arrayModels;
         
     }
     
-    return _classData;
+    return _mainRegionData;
 }
 
 /**
@@ -152,6 +164,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.dataArray = [[NSMutableArray alloc]init];
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
     headView.backgroundColor = [UIColor colorWithHexString:@"dfdfdf"];
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, WIDTH, 50*HEIGHT/667)];
@@ -162,8 +175,9 @@
     [headView addSubview:title];
     [self.view addSubview:headView];
     self.view.backgroundColor = [UIColor colorWithHexString:@"efefef"];
+   // [self getFirstRegionInfo];
     [self initConfigControl];
-    
+    [self mainRegionData];
     [self recommendVideoData];
     _serverAddress = @"http://112.12.17.3";
     VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
@@ -172,7 +186,7 @@
     BOOL result = [vmsNetSDK getLineList:_serverAddress toLineInfoList:_lineList];
     _selectedLineID = 2;
     _imageArray = [[NSMutableArray alloc] initWithObjects:@"003.png",@"005.png",@"007.png", nil];
-
+    
     if (NO == result) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
                                                             message:@"获取线路失败"
@@ -196,17 +210,68 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideProgressHUD) name:@"hideHUD" object:nil];
 
     
-   // [self _getAllVideoInSection];
+//    [self _getAllStreetArray];
+//
+//    if(_streetArray.count > 0){
+//        for(int i=0;i<_streetArray.count;i++){
+//            //NSString *streetName = [streetArray[i] name];
+//            CRegionInfo *regionInfo = _streetArray[i];
+//            NSMutableArray *tempArray = [self _getAllVideoInSection:regionInfo.regionID];
+//            for(int i=0;i<tempArray.count;i++){
+//                
+//                CRegionInfo *regionInfo1 = tempArray[i];
+//                
+//                [_villageArray addObject:regionInfo1];
+//            }
+//            
+//        }
+//        
+//    }else if (_streetArray.count == 0){
+//        
+//        //streetNameArray = [[NSMutableArray alloc] initWithObjects:@"人民路", nil];
+//    }
+
     
     // Do any additional setup after loading the view.
 }
 
+-(void)getFirstRegionInfo
+{
+    //NSString *paramsStr = [CMTool dictionaryToJson:params];
+    NSString *str = @"regionId=";
+    NSString *paramStr = [str stringByAppendingString:@"0"];
+    
+    [WGAPI post:API_GETREGION RequestParams:paramStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if(data){
+            NSString *json =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:json];
+            if(infojson != nil){
+            
+                NSMutableArray *tempArray = [infojson objectForKey:@"data"];
+                for(NSDictionary *dict in tempArray){
+                    
+                    PublicVideoClassModel *model = [PublicVideoClassModel publicVideoClassModel:dict];
+                    [self.dataArray addObject:model];
+                }
+            }
+            
+             [self performSelectorOnMainThread:@selector(refreshData) withObject:data waitUntilDone:YES];
+        }
+    }];
+
+
+}
+
+-(void)refreshData
+{
+    //[SVProgressHUD showSuccessWithStatus:@"加载完成！" maskType:SVProgressHUDMaskTypeBlack];
+    [videoClass reloadData];
+}
+
 -(void)showProgressHUD
 {
-
-    SVProgressHUD *svP = [[SVProgressHUD alloc] init];
     [SVProgressHUD showWithStatus:@"加载中..."];
-    [self.view addSubview:svP];
+    //[self.view addSubview:svP];
 }
 
 -(void)hideProgressHUD
@@ -282,7 +347,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    [self getFirstRegionInfo];
     UITableViewCell *cell;
     if(indexPath.section == 0){
     
@@ -311,12 +376,15 @@
             classCell.selectionStyle = UITableViewCellSelectionStyleNone;
             
         }
-
+        NSMutableArray *itemImage = [NSMutableArray arrayWithObjects:@"sequ.png",@"xiaoyuan.png",@"jiaotong.png",@"lvyou.png", nil];
         cell = classCell;
-        
+        classCell.classDataArray = self.mainRegionData;
+        classCell.imageArray = itemImage;
+        // NSLog(@"%lu",(unsigned long)self.dataArray.count);
         //设置ClassVideoCell的代理为当前的控制器
         classCell.delegate = self;
-        classCell.classDataArray = self.classData;
+        
+        
     }else if (indexPath.section == 2){
     
         static NSString *reuseIdentify2 = @"cell2";
@@ -345,24 +413,10 @@
         }
 
         cell = recommendCell;
+       // recommendCell.delegate = self;
         recommendCell.recondVideoArray = self.recommendVideoData;
+        //recommendCell.videoSourceArray = _villageArray;
     }
-    
-//    AlarmMessageTableViewCell *cell = (AlarmMessageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentify];
-//    
-//    if(cell == nil){
-//        
-//        cell = [[AlarmMessageTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentify];
-//        
-//        cell.accessoryType = UITableViewCellAccessoryNone;
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        
-//    }
-//    
-//    AlarmMessageModel *model = [messageArray objectAtIndex:indexPath.row];
-//    cell.alarmMessage = model;
-    //[cell.checkBtn setTag:indexPath.row];
-    //[cell.checkBtn addTarget:self action:@selector(jumpToDetailView:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
     
@@ -409,18 +463,18 @@
     
         UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         CommunityVideoViewController *publicItem = [mainView instantiateViewControllerWithIdentifier:@"publicitemId"];
-        PublicVideoClassModel *region = [self.classData objectAtIndex:index];
-        publicItem.itemStr = region.className;
+        PublicVideoClassModel *region = [self.mainRegionData objectAtIndex:index];
+        publicItem.itemStr = region.name;
         publicItem.regionId = region.regionId;
-        publicItem.countStr = region.regionCount.intValue;
+        //publicItem.countStr = region.regionCount.intValue;
         [self.navigationController pushViewController:publicItem animated:YES];
     
     }else if (index == 1){
     
         UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         SchoolVideoViewController *schoolView = [mainView instantiateViewControllerWithIdentifier:@"schoolId"];
-        //PublicVideoClassModel *region = [self.classData objectAtIndex:index];
-        //schoolView.itemStr = region.className;
+        PublicVideoClassModel *region = [self.mainRegionData objectAtIndex:index];
+        //schoolView.itemStr = region.name;
         //schoolView.regionId = region.regionId;
         //schoolView.countStr = region.regionCount.intValue;
        [self.navigationController pushViewController:schoolView animated:YES];
@@ -428,8 +482,8 @@
     
         UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         TrafficViewController *trafficView = [mainView instantiateViewControllerWithIdentifier:@"trafficId"];
-        PublicVideoClassModel *region = [self.classData objectAtIndex:index];
-        trafficView.itemStr = region.className;
+        PublicVideoClassModel *region = [self.mainRegionData objectAtIndex:index];
+        trafficView.itemStr = region.name;
         trafficView.regionId = region.regionId;
         trafficView.type = 2;
         [self.navigationController pushViewController:trafficView animated:YES];
@@ -437,8 +491,8 @@
     
         UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         TrafficViewController *trafficView = [mainView instantiateViewControllerWithIdentifier:@"trafficId"];
-        PublicVideoClassModel *region = [self.classData objectAtIndex:index];
-        trafficView.itemStr = region.className;
+        PublicVideoClassModel *region = [self.mainRegionData objectAtIndex:index];
+        trafficView.itemStr = region.name;
         trafficView.regionId = region.regionId;
         trafficView.type = 3;
         // trafficView.countStr = region.regionCount.intValue;
@@ -446,6 +500,27 @@
     
     }
    
+}
+
+/**
+ *  实现RecommendCell代理方法
+ *
+ *  @param RecommendCell RecommendCell对象
+ */
+-(void)jumpToPlayView:(RecommendCell *)recommendCell
+{
+    if ([recommendCell.cameraInfo isMemberOfClass:[CCameraInfo class]]) {
+        PlayViewController *playVC = [[PlayViewController alloc] init];
+        //把预览回放和云台控制所需的参数传过去
+        playVC.serverAddress = _serverAddress;
+        playVC.mspInfo = _mspInfo;
+        playVC.cameraInfo =recommendCell.cameraInfo;
+        [self.navigationController pushViewController:playVC animated:YES];
+        return;
+        
+    }
+
+
 }
 
 //#pragma mark UICollectionViewDataSource

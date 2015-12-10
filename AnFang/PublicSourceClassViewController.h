@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "VMSNetSDK.h"
 #import "HeadImageCell.h"
-
+#import "PlayViewController.h"
 #import "TitleCell.h"
 #import "RecommendCell.h"
 

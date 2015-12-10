@@ -15,7 +15,7 @@
 {
     
     _recommendVideoModel = recommendVideoModel;
-    self.publicVideoImage.image = [UIImage imageNamed:recommendVideoModel.classImage];
+    //self.publicVideoImage.image = [UIImage imageNamed:recommendVideoModel.classImage];
     self.className.text = recommendVideoModel.className;
     
 }

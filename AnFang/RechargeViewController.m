@@ -375,7 +375,8 @@
     
     NSString *userId = [CoreArchive strForKey:@"userId"];
     NSDictionary *params = @{@"goods_id":@"201511121655240669",
-                             @"user_id":userId };
+                             @"user_id":userId,
+                             @"expTime":@"1"};
     NSString *paramsStr = [CMTool dictionaryToJson:params];
     NSString *str = @"order=";
     NSString *paramStr = [str stringByAppendingString:paramsStr];

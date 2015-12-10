@@ -92,9 +92,8 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    // int index = (int)indexPath.row;
-   // [[NSNotificationCenter defaultCenter] postNotificationName:@"showHUD" object:nil];
-    //[self performSelector:@selector(doJumpTo:) withObject:indexPath afterDelay:2.0f];
+    self.cameraInfo = [self.videoSourceArray objectAtIndex:indexPath.item];
+    [self performSelector:@selector(clickClassVideoCell) withObject:nil afterDelay:1.0f];
 }
 
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -103,6 +102,17 @@
     return YES;
 }
 
+/**
+ *  点击cell调用的方法
+ */
+-(void)clickClassVideoCell
+{
+    if([self.delegate respondsToSelector:@selector(jumpToPlayView:)]){
+        
+        [self.delegate jumpToPlayView:self];
+    }
+    
+}
 
 
 @end

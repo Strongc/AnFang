@@ -26,10 +26,11 @@
 @end
 
 @interface LMComBoxView : UIView<UITableViewDataSource,UITableViewDelegate>
-{
-    UILabel *titleLabel;
-}
+
+    
+
 @property(nonatomic,assign)BOOL isOpen;
+@property(nonatomic,strong)UILabel *titleLabel;;
 @property(nonatomic,strong)UITableView *listTable;
 @property(nonatomic,strong)NSMutableArray *titlesList;
 @property(nonatomic,assign)int defaultIndex;

@@ -423,11 +423,33 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:queue
                            completionHandler:block];
-
-
-
-
+    
 }
+
++(NSDictionary *) httpAsynchronousRequestUrl:(NSString*) spec postStr:(NSString *)sData
+{
+    NSString *strUrl = [CMAPIBaseURL stringByAppendingString:spec];
+    NSURL *url = [NSURL URLWithString:strUrl];
+    NSMutableURLRequest *requst = [NSMutableURLRequest requestWithURL:url];
+    [requst setHTTPMethod:@"POST"];
+    NSData *postData = [sData dataUsingEncoding:NSUTF8StringEncoding];
+    [requst setHTTPBody:postData];
+    [requst setTimeoutInterval:15.0];
+    
+    NSHTTPURLResponse *urlResponse = nil;
+    NSError *error = nil;
+    //如果使用局部变量指针需要传指针的地址
+    NSData *data = [NSURLConnection sendSynchronousRequest:requst returningResponse:&urlResponse error:&error];
+    if(data){
+        NSString *returnStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:returnStr];
+        return infojson;
+
+    }
+    
+    return nil;
+}
+
 
 //post请求
 //+(void)postUrl:(NSString *)url Param:(NSString *)param Settings:(id)settings completion:(void (^)(BOOL, NSDictionary *, NSError *))completion

@@ -14,11 +14,10 @@
 {
     if(self = [super init]){
     
-        self.classImage = dict[@"icon"];
-
-        self.className = dict[@"name"];
-        self.regionId = dict[@"regionId"];
-        self.regionCount = dict[@"count"];
+       // self.classImage = dict[@"icon"];
+        self.name = dict[@"name"];
+        self.regionId = dict[@"areaId"];
+        //self.regionCount = dict[@"count"];
        
     }
     

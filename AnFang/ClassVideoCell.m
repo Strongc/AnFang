@@ -26,7 +26,6 @@
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    
     if(self){
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         self.videoClass = [[UICollectionView alloc]initWithFrame:CGRectMake(5, 0, WIDTH-10, WIDTH-60) collectionViewLayout:flowLayout];
@@ -45,6 +44,7 @@
         [self.contentView addSubview:self.videoClass];
     }
     self.backgroundColor = [UIColor clearColor];
+    NSLog(@"数量 %lu",(unsigned long)self.classDataArray.count);
     return self;
     
 }
@@ -63,6 +63,7 @@
     PublicVideoClassCell *cell = (PublicVideoClassCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifyId forIndexPath:indexPath];
     PublicVideoClassModel *model = [self.classDataArray objectAtIndex:indexPath.item];
     cell.publicClass = model;
+    cell.publicVideoImage.image = [UIImage imageNamed:[self.imageArray objectAtIndex:indexPath.item]];
     [cell setTag:indexPath.row];
 
     //[cell.backViewBtn addTarget:self action:@selector(doJumpTo:) forControlEvents:UIControlEventTouchUpInside];

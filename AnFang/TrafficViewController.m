@@ -14,6 +14,8 @@
 #import "RecommendVideoCell.h"
 #import "PlayViewController.h"
 #import "CommunityViewController.h"
+#import "WGAPI.h"
+#import "CMTool.h"
 
 #define kDropDownListTag 1000
 #define account 5
@@ -27,8 +29,9 @@
     NSMutableArray *videoBackImageArray2;//存放视频截图的数组
     NSMutableArray *villageArray;//存放村
     NSMutableArray *streetArray;//存放街道
-    NSMutableArray *videoArray;//存放村下面的摄像头
+    NSMutableArray *videoArrays;//存放村下面的摄像头
     int selectIndex;
+    NSMutableArray *LMComBoxArray;//下拉框存放街道名称
 }
 
 @property (nonatomic, strong) NSArray *classData;
@@ -79,73 +82,73 @@
 }
 
 
--(NSMutableArray *)_getAllStreetArray
-{
-    int regionId = self.regionId.intValue;
-    VMSNetSDK *vmNetSDK = [VMSNetSDK shareInstance];
-    streetArray = [NSMutableArray array];
-    NSMutableArray *tempArray = [NSMutableArray array];
-    videoArray = [NSMutableArray array];
-    //获取区域下的区域
-    [vmNetSDK getRegionListFromRegion:_serverAddress toSessionID:_mspInfo.sessionID toRegionID:regionId toNumPerOnce:60 toCurPage:1 toRegionList:tempArray];
-    [streetArray addObjectsFromArray:tempArray];
-//        for(int i=0;i<streetArray.count;i++){
+//-(NSMutableArray *)_getAllStreetArray
+//{
+//    int regionId = self.regionId.intValue;
+//    VMSNetSDK *vmNetSDK = [VMSNetSDK shareInstance];
+//    streetArray = [NSMutableArray array];
+//    NSMutableArray *tempArray = [NSMutableArray array];
+//    videoArray = [NSMutableArray array];
+//    //获取区域下的区域
+//    [vmNetSDK getRegionListFromRegion:_serverAddress toSessionID:_mspInfo.sessionID toRegionID:regionId toNumPerOnce:60 toCurPage:1 toRegionList:tempArray];
+//    [streetArray addObjectsFromArray:tempArray];
+////        for(int i=0;i<streetArray.count;i++){
+////    
+////            CRegionInfo *regionInfo = streetArray[i];
+////                //[_allCameraRegionId addObject:regionInfo];
+////            NSMutableArray *tempVillageArray = [self _getAllVideoInSection:regionInfo.regionID];
+////            [villageArray addObject:tempVillageArray];
+////    
+////        }
+//    //    for(int i=0;i<villageArray.count;i++){
+//    //        CRegionInfo *regionInfo = villageArray[i];
+//    //        //[_allCameraRegionId addObject:regionInfo];
+//    //        NSMutableArray *tempVideoArray = [self _getAllVideoInSection:regionInfo.regionID];
+//    //        [videoArray addObject:tempVideoArray];
+//    //
+//    //    }
 //    
-//            CRegionInfo *regionInfo = streetArray[i];
-//                //[_allCameraRegionId addObject:regionInfo];
-//            NSMutableArray *tempVillageArray = [self _getAllVideoInSection:regionInfo.regionID];
-//            [villageArray addObject:tempVillageArray];
+//    [tempArray removeAllObjects];
 //    
-//        }
-    //    for(int i=0;i<villageArray.count;i++){
-    //        CRegionInfo *regionInfo = villageArray[i];
-    //        //[_allCameraRegionId addObject:regionInfo];
-    //        NSMutableArray *tempVideoArray = [self _getAllVideoInSection:regionInfo.regionID];
-    //        [videoArray addObject:tempVideoArray];
-    //
-    //    }
-    
-    [tempArray removeAllObjects];
-    
-    //获取区域下的设备
-    [vmNetSDK getCameraListFromRegion:_serverAddress toSessionID:_mspInfo.sessionID toRegionID:regionId toNumPerOnce:60 toCurPage:1 toCameraList:tempArray];
-    [streetArray addObjectsFromArray:tempArray];
-    
-    [tempArray removeAllObjects];
-    
-    return streetArray;
-}
+//    //获取区域下的设备
+//    [vmNetSDK getCameraListFromRegion:_serverAddress toSessionID:_mspInfo.sessionID toRegionID:regionId toNumPerOnce:60 toCurPage:1 toCameraList:tempArray];
+//    [streetArray addObjectsFromArray:tempArray];
+//    
+//    [tempArray removeAllObjects];
+//    
+//    return streetArray;
+//}
 
--(NSMutableArray *)_getAllVideoInSection:(int)regionId
-{
-    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
-    villageArray = [NSMutableArray array];
-    NSMutableArray *tempArray = [NSMutableArray array];
-    self.serverAddress = _serverAddress;
-    self.mspInfo = _mspInfo;
-    //获取区域下的区域
-    [vmsNetSDK getRegionListFromRegion:_serverAddress
-                           toSessionID:_mspInfo.sessionID
-                            toRegionID:regionId
-                          toNumPerOnce:50
-                             toCurPage:1
-                          toRegionList:tempArray];
-    [villageArray addObjectsFromArray:tempArray];
-    [tempArray removeAllObjects];
-    
-    //获取区域下的设备
-    [vmsNetSDK getCameraListFromRegion:_serverAddress
-                           toSessionID:_mspInfo.sessionID
-                            toRegionID:regionId
-                          toNumPerOnce:50
-                             toCurPage:1
-                          toCameraList:tempArray];
-    [villageArray addObjectsFromArray:tempArray];
-    [tempArray removeAllObjects];
-    
-    return villageArray;
-    
-}
+//-(NSMutableArray *)_getAllVideoInSection:(int)regionId
+//{
+//    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
+//    villageArray = [NSMutableArray array];
+//    NSMutableArray *tempArray = [NSMutableArray array];
+//    self.serverAddress = _serverAddress;
+//    self.mspInfo = _mspInfo;
+//    //获取区域下的区域
+//    [vmsNetSDK getRegionListFromRegion:_serverAddress
+//                           toSessionID:_mspInfo.sessionID
+//                            toRegionID:regionId
+//                          toNumPerOnce:50
+//                             toCurPage:1
+//                          toRegionList:tempArray];
+//    [villageArray addObjectsFromArray:tempArray];
+//    [tempArray removeAllObjects];
+//    
+//    //获取区域下的设备
+//    [vmsNetSDK getCameraListFromRegion:_serverAddress
+//                           toSessionID:_mspInfo.sessionID
+//                            toRegionID:regionId
+//                          toNumPerOnce:50
+//                             toCurPage:1
+//                          toCameraList:tempArray];
+//    [villageArray addObjectsFromArray:tempArray];
+//    [tempArray removeAllObjects];
+//    
+//    return villageArray;
+//    
+//}
 
 
 -(void)viewWillAppear:(BOOL)animated
@@ -160,10 +163,13 @@
     _serverAddress = @"http://112.12.17.3";
     VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
     streetNameArray = [[NSMutableArray alloc]init];
+    LMComBoxArray = [[NSMutableArray alloc]init];
     videoBackImageArray1 = [[NSMutableArray alloc] init];
     videoBackImageArray2 = [[NSMutableArray alloc] init];
     villageArray = [NSMutableArray array];
-    villageArray = [NSMutableArray array];
+    videoArrays = [NSMutableArray array];
+    
+    streetArray = [NSMutableArray array];
     _lineList = [NSMutableArray array];
     _mspInfo = [[CMSPInfo alloc]init];
     BOOL result = [vmsNetSDK getLineList:_serverAddress toLineInfoList:_lineList];
@@ -214,39 +220,52 @@
     [backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [navView addSubview:backBtn];
 
-    [self _getAllStreetArray];
-    if(streetArray.count > 0){
-        for(int i=0;i<streetArray.count;i++){
-            //NSString *streetName = [streetArray[i] name];
-            CRegionInfo *regionInfo = streetArray[i];
-             NSMutableArray *tempArray = [self _getAllVideoInSection:regionInfo.regionID];
-                    for(int i=0;i<tempArray.count;i++){
-            
-                        CRegionInfo *regionInfo1 = tempArray[i];
-                
-                        [videoArray addObject:regionInfo1];
-                    }
-            [streetNameArray addObject:regionInfo];
-        }
-
-    }else if (streetArray.count == 0){
-    
-        //streetNameArray = [[NSMutableArray alloc] initWithObjects:@"人民路", nil];
-    }
+//    [self _getAllStreetArray];
+//    if(streetArray.count > 0){
+//        for(int i=0;i<streetArray.count;i++){
+//            //NSString *streetName = [streetArray[i] name];
+//            CRegionInfo *regionInfo = streetArray[i];
+//             NSMutableArray *tempArray = [self _getAllVideoInSection:regionInfo.regionID];
+//                    for(int i=0;i<tempArray.count;i++){
+//            
+//                        CRegionInfo *regionInfo1 = tempArray[i];
+//                
+//                        [videoArray addObject:regionInfo1];
+//                    }
+//            [streetNameArray addObject:regionInfo];
+//        }
+//
+//    }else if (streetArray.count == 0){
+//    
+//        //streetNameArray = [[NSMutableArray alloc] initWithObjects:@"人民路", nil];
+//    }
     
     [self classData];
     
     [self.view setBackgroundColor:[UIColor colorWithHexString:@"efefef"]];
     
+    [self getNextAreaById];
+    
+    NSMutableArray *streetRegionInfo = [self getRegionInfo:self.regionId];
+    for(NSDictionary *dict in streetRegionInfo){
+        
+        NSString *areaId = [dict objectForKey:@"areaId"];
+        NSMutableArray *villageRegionInfo = [self getRegionInfo:areaId];
+        for(NSDictionary *dict in villageRegionInfo){
+            
+            [videoArrays addObject:dict];
+        }
+        
+    }
+
     CGFloat collectionViewHeight;
     if(self.type == 2){
-    
-        collectionViewHeight = 80;
+        
+        collectionViewHeight = 80*HEIGHT/667;
     }else if (self.type == 3){
-    
-        collectionViewHeight = 170;
+        
+        collectionViewHeight = 170*HEIGHT/667;
     }
-    
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     self.trafficEvent = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 64+50, WIDTH, collectionViewHeight) collectionViewLayout:flowLayout];
     self.trafficEvent.delegate = self;
@@ -256,6 +275,7 @@
     [self.trafficEvent registerClass:[SchoolClassCell class] forCellWithReuseIdentifier:@"cell"];
     [self.view addSubview:self.trafficEvent];
     self.trafficEvent.backgroundColor = [UIColor colorWithHexString:@"efefef"];
+    
     [self prepareScollView];
     videoScrollView = [[LMContainsLMComboxScrollView alloc]initWithFrame:CGRectMake(0, 64, WIDTH, 140)];
     videoScrollView.backgroundColor = [UIColor clearColor];
@@ -263,7 +283,6 @@
     videoScrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:videoScrollView];
     [self setUpVideoScrollView];
-
     
     UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(15, CGRectGetMaxY(self.scrollView.frame)+10*HEIGHT/667, 200, 20)];
     [self.view addSubview:titleLab];
@@ -299,15 +318,58 @@
     [self.roadVideoList registerClass:[RecommendVideoCell class] forCellWithReuseIdentifier:@"cell1"];
     [self.view addSubview:self.roadVideoList];
     self.roadVideoList.backgroundColor = [UIColor colorWithHexString:@"efefef"];
-//#pragma mark -- 头尾部大小设置
-//    //设置头部并给定大小
-//    [flowLayout setHeaderReferenceSize:CGSizeMake(self.campusVideoView.frame.size.width, 40)];
-//#pragma mark -- 注册头部视图
-//    [self.campusVideoView registerClass:[PublicHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
+#pragma mark -- 头尾部大小设置
+    //设置头部并给定大小
+   // [flowLayout setHeaderReferenceSize:CGSizeMake(self.campusVideoView.frame.size.width, 40)];
+#pragma mark -- 注册头部视图
+    //[self.campusVideoView registerClass:[PublicHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
 
 
     // Do any additional setup after loading the view.
 }
+
+-(NSMutableArray *)getRegionInfo:(NSString *)regionId
+{
+    NSString *str = @"regionId=";
+    NSString *paramStr = [str stringByAppendingString:regionId];
+    NSDictionary *dict = [WGAPI httpAsynchronousRequestUrl:API_GETREGION postStr:paramStr];
+    NSMutableArray *regionInfoArray = [dict objectForKey:@"data"];
+    return regionInfoArray;
+}
+
+-(void)getNextAreaById
+{
+    NSString *str = @"regionId=";
+    NSString *paramStr = [str stringByAppendingString:self.regionId];
+    //NSMutableArray *array = [NSMutableArray array];
+    [WGAPI post:API_GETREGION RequestParams:paramStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if(data){
+            NSString *json =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:json];
+            if(infojson != nil){
+                NSMutableArray *array = [infojson objectForKey:@"data"];
+                for(NSDictionary *dict in array){
+                    
+                    [streetArray addObject:dict];
+                }
+            }
+            
+            [self performSelectorOnMainThread:@selector(refreshData) withObject:data waitUntilDone:YES];
+        }
+    }];
+    
+}
+
+-(void)refreshData
+{
+  
+    LMComBoxView* comBox1 = [videoScrollView viewWithTag:kDropDownListTag];
+    comBox1.titlesList = [NSMutableArray arrayWithArray:streetArray];
+    [comBox1 defaultSettings];
+    //[self selectAtIndex:0 inCombox:comBox1];
+    
+}
+
 
 -(void)backAction
 {
@@ -318,7 +380,7 @@
 - (void)prepareScollView {
     CGFloat scrollW = [UIScreen mainScreen].bounds.size.width - 30;
     CGFloat scrollH = 110*HEIGHT/667;
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(self.trafficEvent.frame) - 10*HEIGHT/667, scrollW , scrollH)];
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(self.trafficEvent.frame), scrollW , scrollH)];
     scrollView.delegate = self;
     
     for (int i = 0; i < 5; i++) {
@@ -399,18 +461,16 @@
         comBox.layer.borderWidth = 1;
         comBox.clipsToBounds = YES;
         comBox.layer.masksToBounds = YES;
-        comBox.titlesList = [NSMutableArray arrayWithArray:streetNameArray];
+        //comBox.titlesList = [NSMutableArray arrayWithArray:streetNameArray];
         comBox.delegate = self;
         comBox.supView = videoScrollView;
-        [comBox defaultSettings];
+        //[comBox defaultSettings];
         comBox.tag = kDropDownListTag + i;
         [videoScrollView addSubview:comBox];
         
         
     }
-    //LMComBoxView* comBox1 = [videoScrollView viewWithTag:kDropDownListTag];
-    //LMComBoxView* comBox2 = [videoScrollView viewWithTag:kDropDownListTag+1];
-   // [self selectAtIndex:0 inCombox:comBox1];
+    
     
 }
 
@@ -428,36 +488,31 @@
             areaCombox.layer.borderWidth = 1;
             areaCombox.clipsToBounds = YES;
             areaCombox.layer.masksToBounds = YES;
-            areaCombox.titlesList = [NSMutableArray arrayWithArray:streetNameArray];
+            areaCombox.titlesList = [NSMutableArray arrayWithArray:streetArray];
             NSIndexPath *indexPath = [areaCombox.listTable indexPathForSelectedRow];
             int index = (int)indexPath.row;
             selectIndex = index;
             NSLog(@"下标 %d",selectIndex);
-            int regionId = [streetArray[index] regionID];
-            [self _getAllVideoInSection:regionId];
-            
-            UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            CommunityViewController *communityView = [mainView instantiateViewControllerWithIdentifier:@"communityId"];;
-            communityView.videoArray = villageArray;
-            communityView.mspInfo = _mspInfo;
-            communityView.serverAddress = _serverAddress;
-            [self.navigationController pushViewController:communityView animated:YES];
-
-            //                if(self.countOfRegion == 2){
-            //                    LMComBoxView* comBox = (LMComBoxView *)[videoScrollView viewWithTag:kDropDownListTag+1];//通过tag移除指定的子视图
-            //                    comBox.hidden = YES;
-            //                    [comBox removeFromSuperview];
-            //                    [self reloadData];
-            
-            //}
-            //else if (self.countOfRegion == 3){
-            
-//            LMComBoxView *villageCombox = (LMComBoxView *)[videoScrollView viewWithTag:kDropDownListTag+1];
-//            villageCombox.titlesList = [NSMutableArray arrayWithArray:villageArray];
-//            [villageCombox reloadData];
-            
-            
-            // }
+            [villageArray removeAllObjects];
+            NSString *regionId = [streetArray[index] objectForKey:@"areaId"];
+            //[self _getAllVideoInSection:regionId];
+            NSString *str = @"regionId=";
+            NSString *paramStr = [str stringByAppendingString:regionId];
+            [WGAPI post:API_GETREGION RequestParams:paramStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                if(data){
+                    NSString *json =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                    NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:json];
+                    if(infojson != nil){
+                        NSMutableArray *tempArray1 = [infojson objectForKey:@"data"];
+                        for(NSDictionary *dict in tempArray1){
+                            
+                            [villageArray addObject:dict];
+                        }
+                    }
+                    
+                    [self performSelectorOnMainThread:@selector(refreshComBoxData) withObject:data waitUntilDone:YES];
+                }
+            }];
             
         }
             break;
@@ -496,16 +551,28 @@
     
 }
 
+-(void)refreshComBoxData
+{
+    
+    UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    CommunityViewController *communityView = [mainView instantiateViewControllerWithIdentifier:@"communityId"];;
+    communityView.videoSourceArray = villageArray;
+    communityView.mspInfo = _mspInfo;
+    communityView.serverAddress = _serverAddress;
+    [self.navigationController pushViewController:communityView animated:YES];
+    
+}
+
+
 #pragma mark UICollectionViewDataSource
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     NSInteger count;
     if(collectionView == self.trafficEvent){
-        
-        count = _classData.count;
-   }else if (collectionView == self.roadVideoList){
+         count = _classData.count;
+    }else if (collectionView == self.roadVideoList){
        
-       count = videoArray.count;
+       count = videoArrays.count;
     }
     return count;
 }
@@ -525,18 +592,11 @@
     }else if (collectionView == self.roadVideoList){
         RecommendVideoCell *roadCell = (RecommendVideoCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifyId1 forIndexPath:indexPath];
         //RecommendVideoModel *model = [_classData objectAtIndex:indexPath.item];
-        roadCell.className.text = [[videoArray objectAtIndex:indexPath.item] name];
+        roadCell.className.text = [[videoArrays objectAtIndex:indexPath.item] objectForKey:@"camera_name"];
         roadCell.publicVideoImage.image = [UIImage imageNamed:[self.imageArray objectAtIndex:indexPath.item]];
         cell = roadCell;
     }
     
-    // CRegionInfo *regionInfo = streetArray[indexPath.section];
-    //villageArray = [self _getAllVideoInSection:regionInfo.regionID];
-    
-    //cell.className.text = [tempArray[indexPath.row] name];
-    
-    //[cell setTag:indexPath.row];
-    //[cell.backViewBtn addTarget:self action:@selector(doJumpTo:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
@@ -552,7 +612,7 @@
     }else if (collectionView == self.roadVideoList){
         
        size = CGSizeMake((self.roadVideoList.frame.size.width-40)/3, 110*HEIGHT/667);
-   }
+    }
     return size;
 }
 
@@ -565,21 +625,21 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(collectionView == self.roadVideoList){
-        
-        
-            if ([videoArray[indexPath.row] isMemberOfClass:[CCameraInfo class]]) {
-                PlayViewController *playVC = [[PlayViewController alloc] init];
-                //把预览回放和云台控制所需的参数传过去
-                playVC.serverAddress = _serverAddress;
-                playVC.mspInfo = _mspInfo;
-                playVC.cameraInfo = videoArray[indexPath.row];
-                [self.navigationController pushViewController:playVC animated:YES];
-                return;
-        
-            }
-        
-    }
+//    if(collectionView == self.roadVideoList){
+//        
+//        
+//            if ([videoArray[indexPath.row] isMemberOfClass:[CCameraInfo class]]) {
+//                PlayViewController *playVC = [[PlayViewController alloc] init];
+//                //把预览回放和云台控制所需的参数传过去
+//                playVC.serverAddress = _serverAddress;
+//                playVC.mspInfo = _mspInfo;
+//                playVC.cameraInfo = videoArray[indexPath.row];
+//                [self.navigationController pushViewController:playVC animated:YES];
+//                return;
+//        
+//            }
+//        
+//    }
     
 }
 
@@ -592,8 +652,8 @@
 -(void)jumpToMoreTrafficVideoView
 {
     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    CommunityViewController *communityView = [mainView instantiateViewControllerWithIdentifier:@"communityId"];;
-    communityView.videoArray = videoArray;
+    CommunityViewController *communityView = [mainView instantiateViewControllerWithIdentifier:@"communityId"];
+    communityView.videoSourceArray = videoArrays;
     communityView.mspInfo = _mspInfo;
     communityView.serverAddress = _serverAddress;
     [self.navigationController pushViewController:communityView animated:YES];

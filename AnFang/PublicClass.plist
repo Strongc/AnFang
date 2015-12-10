@@ -3,7 +3,7 @@
 <plist version="1.0">
 <array>
 	<dict>
-		<key>regionId</key>
+		<key>areaId</key>
 		<string>214</string>
 		<key>icon</key>
 		<string>sequ.png</string>
@@ -13,7 +13,7 @@
 		<string>3</string>
 	</dict>
 	<dict>
-		<key>regionId</key>
+		<key>areaId</key>
 		<string>262</string>
 		<key>icon</key>
 		<string>xiaoyuan.png</string>
@@ -23,7 +23,7 @@
 		<string>2</string>
 	</dict>
 	<dict>
-		<key>regionId</key>
+		<key>areaId</key>
 		<string>340</string>
 		<key>icon</key>
 		<string>jiaotong.png</string>
@@ -33,7 +33,7 @@
 		<string>2</string>
 	</dict>
 	<dict>
-		<key>regionId</key>
+		<key>areaId</key>
 		<string>341</string>
 		<key>icon</key>
 		<string>lvyou.png</string>

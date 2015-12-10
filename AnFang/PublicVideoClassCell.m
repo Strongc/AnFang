@@ -16,8 +16,8 @@
 {
     
     _publicClass = publicClass;
-    self.publicVideoImage.image = [UIImage imageNamed:publicClass.classImage];
-    self.className.text = publicClass.className;
+    //self.publicVideoImage.image = [UIImage imageNamed:publicClass.classImage];
+    self.className.text = publicClass.name;
 
 }
 
@@ -42,7 +42,7 @@
         
         UILabel *className = [[UILabel alloc]initWithFrame:CGRectMake(0, self.frame.size.height-40, self.frame.size.width, 40)];
         className.font = [UIFont boldSystemFontOfSize:14];
-        className.textColor = [UIColor colorWithHexString:@"ededed"];
+        className.textColor = [UIColor colorWithHexString:@"000000"];
         className.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:className];
         self.className = className;

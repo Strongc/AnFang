@@ -62,7 +62,8 @@
 #define API_UPLOADFILE @"upload/uploadFile"
 //获取求助信息
 #define API_GETHELPINFO @"help/page"
-//获取资讯
+//获取区域列表
+#define API_GETREGION @"area/getRegionList"
 
 
 typedef enum{
@@ -129,6 +130,15 @@ typedef enum{
 +(void)post:(NSString *)strUrl RequsetParam:(UIImage *)image withFileName:(NSString *)fileName FinishBlock:(void (^)(NSURLResponse *response, NSData *data, NSError *connectionError)) block;
 
 +(void)post:(NSString *)strUrl RequestParam:(NSData *)data withFileName:(NSString *)fileName FinishBlock:(void (^)(NSURLResponse *response, NSData *data, NSError *connectionError)) block;
+/**
+ *  post同步请求
+ *
+ *  @param spec  <#spec description#>
+ *  @param sData <#sData description#>
+ *
+ *  @return <#return value description#>
+ */
++(NSDictionary *) httpAsynchronousRequestUrl:(NSString*) spec postStr:(NSString *)sData;
 
 //+ (NSString *)parseParams:(NSDictionary *)params;
 

@@ -95,7 +95,7 @@
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     
-       return self.videoArray.count;
+       return self.videoSourceArray.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -108,7 +108,7 @@
     // CRegionInfo *regionInfo = streetArray[indexPath.section];
     //villageArray = [self _getAllVideoInSection:regionInfo.regionID];
    // NSMutableArray *tempArray = self.videoArray[indexPath.section];
-    cell.className.text = [self.videoArray[indexPath.row] name];
+    cell.className.text = [self.videoSourceArray[indexPath.row] objectForKey:@"camera_name"];
     NSString *imagePath;
     
     if(indexPath.section == 0){
@@ -144,15 +144,15 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
    // NSMutableArray *tempArray = videoArray[indexPath.section];
-    if ([self.videoArray[indexPath.row] isMemberOfClass:[CCameraInfo class]]) {
+   // if ([self.videoSourceArray[indexPath.row] isMemberOfClass:[CCameraInfo class]]) {
         PlayViewController *playVC = [[PlayViewController alloc] init];
         //把预览回放和云台控制所需的参数传过去
         playVC.serverAddress = _serverAddress;
         playVC.mspInfo = _mspInfo;
-        playVC.cameraInfo = self.videoArray[indexPath.row];
+        playVC.cameraId = [self.videoSourceArray[indexPath.row] objectForKey:@"indexCode"];
         [self.navigationController pushViewController:playVC animated:YES];
         return;
-    }
+   // }
     
 }
 
