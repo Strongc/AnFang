@@ -80,7 +80,7 @@
         
         UILabel *messageTime = [[UILabel alloc]initWithFrame:CGRectMake((WIDTH-130)/2, 10, 130, 12)];
         //messageTime.text = @"2015-5-21  23:25";
-        messageTime.textColor = [UIColor whiteColor];
+        messageTime.textColor = [UIColor blackColor];
         messageTime.font = [UIFont systemFontOfSize:12];
         [self.contentView addSubview:messageTime];
         self.messageTime = messageTime;

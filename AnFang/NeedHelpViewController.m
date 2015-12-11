@@ -22,7 +22,6 @@
 #import "CoreArchive.h"
 #import "UIView+KGViewExtend.h"
 
-
 #define IS_IOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
 #define IS_IOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8)
 #define kRecordAudioFile @".caf"
@@ -39,13 +38,11 @@
     NSString *plistPath;
     NSMutableArray *saveArray;
     UIImage *photoImage;
-    
     NSString *keyInfoPlistPath;
    // NSMutableArray *keyInfoArrayPlist;
     //NSMutableArray *saveKeyInfoArray;
     AVAudioRecorder *MyAudioRecorder;
     UIImageView *voiceImage;
-   
     NSString *urlStr;
     NSMutableArray *voicePathArray;
     NSString *voicePlistPath;
@@ -71,11 +68,9 @@
 @property (nonatomic,strong) NSMutableArray *voiceAlarmData;
 @property (strong, nonatomic) ChatModel *chatModel;
 
-
 @end
 
 @implementation NeedHelpViewController
-
 
 //-(NSMutableArray *)keyAlarmData
 //{
@@ -165,7 +160,6 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
     tempArray = [[NSMutableArray alloc]init];
     keyInfoArray = [[NSMutableArray alloc] init];
     temp2Array = [[NSMutableArray alloc] init];
@@ -182,7 +176,6 @@
     }
     
     [self setUpForDismissKeyboard];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tapAnywhereToDismissKeyboard:) name:@"hideKeyBoard" object:nil];
 //    NSFileManager *manager=[NSFileManager defaultManager];
 //    //文件路径
@@ -763,8 +756,6 @@
         [self performSelectorOnMainThread:@selector(showLocationError) withObject:address waitUntilDone:YES];//通知主线程刷新(UI)
         
     }
-
-
 }
 
 //获取地理位置

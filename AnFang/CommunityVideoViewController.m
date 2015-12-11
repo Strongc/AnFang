@@ -50,7 +50,7 @@
     __block NSMutableArray *tempArray;
     NSMutableArray *videoArrayInSection;
     NSMutableArray *villageNameArray;//存放所有的村名
-    int scaleOfList;
+    //int scaleOfList;
     
 }
 
@@ -120,8 +120,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _serverAddress = @"http://112.12.17.3";
-    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
+    //_serverAddress = @"http://112.12.17.3";
+   // VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
     streetArray = [[NSMutableArray alloc]init];
     videoArrays = [[NSMutableArray alloc]init];
     tempVideoArrays = [[NSMutableArray alloc] init];
@@ -133,32 +133,32 @@
     videoBackImageArray2 = [[NSMutableArray alloc] init];
     villageArray = [NSMutableArray array];
     videoArray = [NSMutableArray array];
-    _lineList = [NSMutableArray array];
-    _mspInfo = [[CMSPInfo alloc]init];
+    //_lineList = [NSMutableArray array];
+    //_mspInfo = [[CMSPInfo alloc]init];
     villageNameArray = [NSMutableArray array];
     streetNameList = [NSMutableArray array];
-    scaleOfList = 3;
-    BOOL result = [vmsNetSDK getLineList:_serverAddress toLineInfoList:_lineList];
-    _selectedLineID = 2;
-    
-    if (NO == result) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                            message:@"获取线路失败"
-                                                           delegate:nil cancelButtonTitle:@"好"
-                                                  otherButtonTitles:nil, nil];
-        [alertView show];
-        return;
-    }
-    
-    BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"dbwl" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
-    if (NO == result1) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                            message:@"登录失败"
-                                                           delegate:nil cancelButtonTitle:@"好"
-                                                  otherButtonTitles:nil, nil];
-        [alertView show];
-        return;
-    }
+    //scaleOfList = 3;
+//    BOOL result = [vmsNetSDK getLineList:_serverAddress toLineInfoList:_lineList];
+//    _selectedLineID = 2;
+//    
+//    if (NO == result) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+//                                                            message:@"获取线路失败"
+//                                                           delegate:nil cancelButtonTitle:@"好"
+//                                                  otherButtonTitles:nil, nil];
+//        [alertView show];
+//        return;
+//    }
+//    
+//    BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"dbwl" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
+//    if (NO == result1) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+//                                                            message:@"登录失败"
+//                                                           delegate:nil cancelButtonTitle:@"好"
+//                                                  otherButtonTitles:nil, nil];
+//        [alertView show];
+//        return;
+//    }
 
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
     headView.backgroundColor = [UIColor colorWithHexString:@"dfdfdf"];
@@ -231,7 +231,7 @@
     [self initCollectionView];
     [self prepareScollView];
     [self preparePageView];
-    videoScrollView = [[LMContainsLMComboxScrollView alloc]initWithFrame:CGRectMake(0, 64, WIDTH, 140)];
+    videoScrollView = [[LMContainsLMComboxScrollView alloc]initWithFrame:CGRectMake(0, 64, WIDTH-100, 200)];
     videoScrollView.backgroundColor = [UIColor clearColor];
     videoScrollView.showsVerticalScrollIndicator = NO;
     videoScrollView.showsHorizontalScrollIndicator = NO;
@@ -245,7 +245,6 @@
 {
     NSString *str = @"regionId=";
     NSString *paramStr = [str stringByAppendingString:self.regionId];
-    
     NSDictionary *dict = [WGAPI httpAsynchronousRequestUrl:API_GETREGION postStr:paramStr];
     NSLog(@"json %@",dict);
     //NSMutableArray *array = [NSMutableArray array];
@@ -272,6 +271,13 @@
     NSString *str = @"regionId=";
     NSString *paramStr = [str stringByAppendingString:regionId];
     NSDictionary *dict = [WGAPI httpAsynchronousRequestUrl:API_GETREGION postStr:paramStr];
+    if(dict == nil){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"获取数据失败，网络异常！"
+                                                           delegate:nil cancelButtonTitle:@"好"
+                                                  otherButtonTitles:nil, nil];
+        [alertView show];
+    }
     NSMutableArray *regionInfoArray = [dict objectForKey:@"data"];
     return regionInfoArray;
 }
@@ -285,7 +291,7 @@
         [tempNameArray addObject:areaId];
     }
     streetNameArray = [NSMutableArray arrayWithArray:tempNameArray];
-    LMComBoxView* comBox1 = [videoScrollView viewWithTag:kDropDownListTag];
+    LMComBoxView* comBox1 = [self.view viewWithTag:kDropDownListTag];
     comBox1.titlesList = [NSMutableArray arrayWithArray:LMComBoxArray];
     [comBox1 defaultSettings];
     
@@ -369,20 +375,38 @@
     } else if(index == 0) {
         index = account;
     }
+    
+    CGRect frame = videoScrollView.frame;
+    CGFloat h = frame.size.height;
+    h = 30;
+    [videoScrollView setFrame:frame];
+    
     self.pageView.currentPage = index - 1;
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     //[self.timer invalidate];
     // self.timer = nil;
+    CGRect frame = videoScrollView.frame;
+    CGFloat h = frame.size.height;
+    h = 30;
+    [videoScrollView setFrame:frame];
 }
 
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     //[self addTimer];
+    CGRect frame = videoScrollView.frame;
+    CGFloat h = frame.size.height;
+    h = 200;
+    [videoScrollView setFrame:frame];
 }
 
 -(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
     [self scrollViewDidEndDecelerating:scrollView];
+    CGRect frame = videoScrollView.frame;
+    CGFloat h = frame.size.height;
+    h = 200;
+    [videoScrollView setFrame:frame];
 }
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -399,7 +423,7 @@
 {
     for(NSInteger i=0;i<2;i++)
     {
-        LMComBoxView *comBox = [[LMComBoxView alloc]initWithFrame:CGRectMake(15+(100+10)*i, 10, 100, 30)];
+        LMComBoxView *comBox = [[LMComBoxView alloc]initWithFrame:CGRectMake(15+(100+10)*i,10, 100, 30)];
         comBox.backgroundColor = [UIColor whiteColor];
         comBox.arrowImgName = @"down_dark0";
         comBox.layer.cornerRadius = 15;
@@ -468,7 +492,7 @@
     switch (tag) {
         case 0:
             {
-                LMComBoxView *areaCombox = (LMComBoxView *)[videoScrollView viewWithTag:kDropDownListTag];
+                LMComBoxView *areaCombox = (LMComBoxView *)[self.view viewWithTag:kDropDownListTag];
                 areaCombox.layer.cornerRadius = 15;
                 areaCombox.layer.borderWidth = 1;
                 areaCombox.clipsToBounds = YES;
@@ -504,7 +528,7 @@
          case 1:
             {
                 
-                LMComBoxView *village1Combox = (LMComBoxView *)[videoScrollView viewWithTag:kDropDownListTag +1];
+                LMComBoxView *village1Combox = (LMComBoxView *)[self.view viewWithTag:kDropDownListTag +1];
                 int index2 = (int)village1Combox.listTable.indexPathForSelectedRow.row;
                 NSLog(@"下标ddddd %d",index2);
                 selectedVillageName = [village1Combox.titlesList[index] objectForKey:@"name"];
@@ -560,7 +584,7 @@
 -(void)refreshComBoxData
 {
 
-    LMComBoxView *comBox = (LMComBoxView *)[videoScrollView viewWithTag:kDropDownListTag+1];
+    LMComBoxView *comBox = (LMComBoxView *)[self.view viewWithTag:kDropDownListTag+1];
     comBox.titleLabel.text = @"";
     comBox.arrow.image = nil;
     [comBox.titlesList removeAllObjects];
@@ -629,7 +653,6 @@
     return reusableview;
 }
 
-
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -671,11 +694,12 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSMutableArray *videoList = videoArrays[indexPath.section];
+    NSMutableArray *cameraVideo = videoList[0];
     PlayViewController *playVC = [[PlayViewController alloc] init];
     //把预览回放和云台控制所需的参数传过去
     playVC.serverAddress = _serverAddress;
     playVC.mspInfo = _mspInfo;
-    playVC.cameraId = [videoList[indexPath.item] objectForKey:@"indexCode"];
+    playVC.cameraId = [cameraVideo[indexPath.item] objectForKey:@"indexCode"];
     [self.navigationController pushViewController:playVC animated:YES];
     return;
 }

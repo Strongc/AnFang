@@ -41,57 +41,57 @@
 @implementation PublicSourceClassViewController
 
 
--(NSMutableArray *)_getAllStreetArray
-{
-    int regionId = 340;
-    VMSNetSDK *vmNetSDK = [VMSNetSDK shareInstance];
-    _streetArray = [NSMutableArray array];
-    NSMutableArray *tempArray = [NSMutableArray array];
-    //videoArray = [NSMutableArray array];
-    //获取区域下的区域
-    [vmNetSDK getRegionListFromRegion:_serverAddress toSessionID:_mspInfo.sessionID toRegionID:regionId toNumPerOnce:60 toCurPage:1 toRegionList:tempArray];
-    [_streetArray addObjectsFromArray:tempArray];
-    [tempArray removeAllObjects];
-    
-    //获取区域下的设备
-    [vmNetSDK getCameraListFromRegion:_serverAddress toSessionID:_mspInfo.sessionID toRegionID:regionId toNumPerOnce:60 toCurPage:1 toCameraList:tempArray];
-    [_streetArray addObjectsFromArray:tempArray];
-    
-    [tempArray removeAllObjects];
-    
-    return _streetArray;
-}
-
--(NSMutableArray *)_getAllVideoInSection:(int)regionId
-{
-    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
-    _villageArray = [NSMutableArray array];
-    NSMutableArray *tempArray = [NSMutableArray array];
-    self.serverAddress = _serverAddress;
-    self.mspInfo = _mspInfo;
-    //获取区域下的区域
-    [vmsNetSDK getRegionListFromRegion:_serverAddress
-                           toSessionID:_mspInfo.sessionID
-                            toRegionID:regionId
-                          toNumPerOnce:50
-                             toCurPage:1
-                          toRegionList:tempArray];
-    [_villageArray addObjectsFromArray:tempArray];
-    [tempArray removeAllObjects];
-    
-    //获取区域下的设备
-    [vmsNetSDK getCameraListFromRegion:_serverAddress
-                           toSessionID:_mspInfo.sessionID
-                            toRegionID:regionId
-                          toNumPerOnce:50
-                             toCurPage:1
-                          toCameraList:tempArray];
-    [_villageArray addObjectsFromArray:tempArray];
-    [tempArray removeAllObjects];
-    
-    return _villageArray;
-    
-}
+//-(NSMutableArray *)_getAllStreetArray
+//{
+//    int regionId = 340;
+//    VMSNetSDK *vmNetSDK = [VMSNetSDK shareInstance];
+//    _streetArray = [NSMutableArray array];
+//    NSMutableArray *tempArray = [NSMutableArray array];
+//    //videoArray = [NSMutableArray array];
+//    //获取区域下的区域
+//    [vmNetSDK getRegionListFromRegion:_serverAddress toSessionID:_mspInfo.sessionID toRegionID:regionId toNumPerOnce:60 toCurPage:1 toRegionList:tempArray];
+//    [_streetArray addObjectsFromArray:tempArray];
+//    [tempArray removeAllObjects];
+//    
+//    //获取区域下的设备
+//    [vmNetSDK getCameraListFromRegion:_serverAddress toSessionID:_mspInfo.sessionID toRegionID:regionId toNumPerOnce:60 toCurPage:1 toCameraList:tempArray];
+//    [_streetArray addObjectsFromArray:tempArray];
+//    
+//    [tempArray removeAllObjects];
+//    
+//    return _streetArray;
+//}
+//
+//-(NSMutableArray *)_getAllVideoInSection:(int)regionId
+//{
+//    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
+//    _villageArray = [NSMutableArray array];
+//    NSMutableArray *tempArray = [NSMutableArray array];
+//    self.serverAddress = _serverAddress;
+//    self.mspInfo = _mspInfo;
+//    //获取区域下的区域
+//    [vmsNetSDK getRegionListFromRegion:_serverAddress
+//                           toSessionID:_mspInfo.sessionID
+//                            toRegionID:regionId
+//                          toNumPerOnce:50
+//                             toCurPage:1
+//                          toRegionList:tempArray];
+//    [_villageArray addObjectsFromArray:tempArray];
+//    [tempArray removeAllObjects];
+//    
+//    //获取区域下的设备
+//    [vmsNetSDK getCameraListFromRegion:_serverAddress
+//                           toSessionID:_mspInfo.sessionID
+//                            toRegionID:regionId
+//                          toNumPerOnce:50
+//                             toCurPage:1
+//                          toCameraList:tempArray];
+//    [_villageArray addObjectsFromArray:tempArray];
+//    [tempArray removeAllObjects];
+//    
+//    return _villageArray;
+//    
+//}
 
 /**
  *  从网络中懒加载数据
@@ -175,31 +175,31 @@
     [self initConfigControl];
     [self mainRegionData];
     [self recommendVideoData];
-    _serverAddress = @"http://112.12.17.3";
-    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
-    _lineList = [NSMutableArray array];
-    _mspInfo = [[CMSPInfo alloc]init];
-    BOOL result = [vmsNetSDK getLineList:_serverAddress toLineInfoList:_lineList];
-    _selectedLineID = 2;
-    
-    if (NO == result) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                            message:@"获取线路失败"
-                                                           delegate:nil cancelButtonTitle:@"好"
-                                                  otherButtonTitles:nil, nil];
-        [alertView show];
-        return;
-    }
-    
-    BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"dbwl" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
-    if (NO == result1) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                            message:@"登录失败"
-                                                           delegate:nil cancelButtonTitle:@"好"
-                                                  otherButtonTitles:nil, nil];
-        [alertView show];
-        return;
-    }
+//    _serverAddress = @"http://112.12.17.3";
+//    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
+//    _lineList = [NSMutableArray array];
+//    _mspInfo = [[CMSPInfo alloc]init];
+//    BOOL result = [vmsNetSDK getLineList:_serverAddress toLineInfoList:_lineList];
+//    _selectedLineID = 2;
+//    
+//    if (NO == result) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+//                                                            message:@"获取线路失败"
+//                                                           delegate:nil cancelButtonTitle:@"好"
+//                                                  otherButtonTitles:nil, nil];
+//        [alertView show];
+//        return;
+//    }
+//    
+//    BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"dbwl" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
+//    if (NO == result1) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+//                                                            message:@"登录失败"
+//                                                           delegate:nil cancelButtonTitle:@"好"
+//                                                  otherButtonTitles:nil, nil];
+//        [alertView show];
+//        return;
+//    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showProgressHUD) name:@"showHUD" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideProgressHUD) name:@"hideHUD" object:nil];

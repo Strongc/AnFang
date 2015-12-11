@@ -42,6 +42,7 @@
     btn.clipsToBounds = YES;
     btn.layer.masksToBounds = YES;
     btn.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    [btn setBackgroundImage:[UIImage imageNamed:@"street"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(tapAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn];
     
@@ -106,7 +107,7 @@
 {
     //关闭其他combox
     [self closeOtherCombox];
-
+    CGFloat h = _titlesList.count *40;
     if(_isOpen)
     {
         [UIView animateWithDuration:0.3 animations:^{
@@ -135,7 +136,7 @@
             [_supView addSubview:_listTable];
             [_supView bringSubviewToFront:_listTable];//避免被其他子视图遮盖住
             CGRect frame = _listTable.frame;
-            frame.size.height = _tableHeight>0?_tableHeight:tableH;
+            frame.size.height = _tableHeight>0?_tableHeight:h;
             float height = [UIScreen mainScreen].bounds.size.height;
             if(frame.origin.y+frame.size.height>height)
             {

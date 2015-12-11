@@ -166,7 +166,6 @@
 		04DBE4E41BD77C320032939E /* AlarmMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DBE4E31BD77C320032939E /* AlarmMessageModel.m */; };
 		04DBE4E61BD79AEF0032939E /* newFeature_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DBE4E51BD79AEF0032939E /* newFeature_1.png */; };
 		04DED9EA1BE05DB000116789 /* UIImage+FSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DED9E91BE05DB000116789 /* UIImage+FSExtension.m */; };
-		04DED9EF1BE0600200116789 /* aa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04DED9EE1BE0600200116789 /* aa.mp3 */; };
 		04DEDA041BE06EE100116789 /* fs_chat_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA001BE06EE100116789 /* fs_chat_bubble.png */; };
 		04DEDA051BE06EE100116789 /* fs_icon_wave_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA011BE06EE100116789 /* fs_icon_wave_0.png */; };
 		04DEDA061BE06EE100116789 /* fs_icon_wave_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA021BE06EE100116789 /* fs_icon_wave_1.png */; };
@@ -182,7 +181,6 @@
 		04DEDA1F1BE0961800116789 /* 浦江移动_蔬菜基地1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA1B1BE0961800116789 /* 浦江移动_蔬菜基地1.jpg */; };
 		04DEDA201BE0961800116789 /* 浦江移动_蔬菜基地2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA1C1BE0961800116789 /* 浦江移动_蔬菜基地2.jpg */; };
 		04DEDA211BE0961800116789 /* 浙江大学附属第四医院.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA1D1BE0961800116789 /* 浙江大学附属第四医院.jpg */; };
-		04DEDA261BE0B11100116789 /* bb.caf in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA251BE0B11100116789 /* bb.caf */; };
 		04DEDA371BE0E26800116789 /* sdRefeshView_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA2D1BE0E26800116789 /* sdRefeshView_arrow@2x.png */; };
 		04DEDA381BE0E26800116789 /* SDRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DEDA301BE0E26800116789 /* SDRefreshFooterView.m */; };
 		04DEDA391BE0E26800116789 /* SDRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DEDA321BE0E26800116789 /* SDRefreshHeaderView.m */; };
@@ -285,8 +283,6 @@
 		3EB229971C12BF2300B70CE2 /* 003.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB229941C12BF2300B70CE2 /* 003.png */; };
 		3EB229981C12BF2300B70CE2 /* 005.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB229951C12BF2300B70CE2 /* 005.png */; };
 		3EB229991C12BF2300B70CE2 /* 007.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB229961C12BF2300B70CE2 /* 007.png */; };
-		3EF991731BF320D700832B4F /* yh_select.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF991711BF320D700832B4F /* yh_select.png */; };
-		3EF991741BF320D700832B4F /* yh.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF991721BF320D700832B4F /* yh.png */; };
 		3EF991871BF32F1800832B4F /* bufang_nor.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF991811BF32F1800832B4F /* bufang_nor.png */; };
 		3EF991881BF32F1800832B4F /* bufang_select.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF991821BF32F1800832B4F /* bufang_select.png */; };
 		3EF991891BF32F1800832B4F /* camera_nor.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF991831BF32F1800832B4F /* camera_nor.png */; };
@@ -297,9 +293,6 @@
 		3EF9F5421BF4820100BBDEA9 /* chat_animation_white1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF9F53C1BF4820100BBDEA9 /* chat_animation_white1.png */; };
 		3EF9F5431BF4820100BBDEA9 /* chat_animation_white2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF9F53D1BF4820100BBDEA9 /* chat_animation_white2.png */; };
 		3EF9F5441BF4820100BBDEA9 /* chat_animation_white3.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF9F53E1BF4820100BBDEA9 /* chat_animation_white3.png */; };
-		3EF9F5451BF4820100BBDEA9 /* chat_animation1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF9F53F1BF4820100BBDEA9 /* chat_animation1.png */; };
-		3EF9F5461BF4820100BBDEA9 /* chat_animation2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF9F5401BF4820100BBDEA9 /* chat_animation2.png */; };
-		3EF9F5471BF4820100BBDEA9 /* chat_animation3.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF9F5411BF4820100BBDEA9 /* chat_animation3.png */; };
 		3EF9F5571BF48EC700BBDEA9 /* UUInputFunctionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF9F5561BF48EC700BBDEA9 /* UUInputFunctionView.m */; };
 		3EF9F55F1BF4900C00BBDEA9 /* chat_ipunt_message.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF9F5581BF4900C00BBDEA9 /* chat_ipunt_message.png */; };
 		3EF9F5601BF4900C00BBDEA9 /* Chat_record_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF9F5591BF4900C00BBDEA9 /* Chat_record_circle.png */; };
@@ -651,7 +644,6 @@
 		04DBE4E51BD79AEF0032939E /* newFeature_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newFeature_1.png; sourceTree = "<group>"; };
 		04DED9E81BE05DB000116789 /* UIImage+FSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FSExtension.h"; sourceTree = "<group>"; };
 		04DED9E91BE05DB000116789 /* UIImage+FSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FSExtension.m"; sourceTree = "<group>"; };
-		04DED9EE1BE0600200116789 /* aa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = aa.mp3; sourceTree = "<group>"; };
 		04DEDA001BE06EE100116789 /* fs_chat_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fs_chat_bubble.png; sourceTree = "<group>"; };
 		04DEDA011BE06EE100116789 /* fs_icon_wave_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fs_icon_wave_0.png; sourceTree = "<group>"; };
 		04DEDA021BE06EE100116789 /* fs_icon_wave_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fs_icon_wave_1.png; sourceTree = "<group>"; };
@@ -668,7 +660,6 @@
 		04DEDA1B1BE0961800116789 /* 浦江移动_蔬菜基地1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "浦江移动_蔬菜基地1.jpg"; sourceTree = "<group>"; };
 		04DEDA1C1BE0961800116789 /* 浦江移动_蔬菜基地2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "浦江移动_蔬菜基地2.jpg"; sourceTree = "<group>"; };
 		04DEDA1D1BE0961800116789 /* 浙江大学附属第四医院.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "浙江大学附属第四医院.jpg"; sourceTree = "<group>"; };
-		04DEDA251BE0B11100116789 /* bb.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = bb.caf; sourceTree = "<group>"; };
 		04DEDA2D1BE0E26800116789 /* sdRefeshView_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sdRefeshView_arrow@2x.png"; sourceTree = "<group>"; };
 		04DEDA2E1BE0E26800116789 /* SDRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDRefresh.h; sourceTree = "<group>"; };
 		04DEDA2F1BE0E26800116789 /* SDRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDRefreshFooterView.h; sourceTree = "<group>"; };
@@ -904,8 +895,6 @@
 		3EF006951BEB6257008CDE77 /* HostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostCell.m; sourceTree = "<group>"; };
 		3EF006971BEB6292008CDE77 /* HostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostModel.h; sourceTree = "<group>"; };
 		3EF006981BEB6292008CDE77 /* HostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostModel.m; sourceTree = "<group>"; };
-		3EF991711BF320D700832B4F /* yh_select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yh_select.png; sourceTree = "<group>"; };
-		3EF991721BF320D700832B4F /* yh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yh.png; sourceTree = "<group>"; };
 		3EF991811BF32F1800832B4F /* bufang_nor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bufang_nor.png; sourceTree = "<group>"; };
 		3EF991821BF32F1800832B4F /* bufang_select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bufang_select.png; sourceTree = "<group>"; };
 		3EF991831BF32F1800832B4F /* camera_nor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_nor.png; sourceTree = "<group>"; };
@@ -917,9 +906,6 @@
 		3EF9F53C1BF4820100BBDEA9 /* chat_animation_white1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_animation_white1.png; sourceTree = "<group>"; };
 		3EF9F53D1BF4820100BBDEA9 /* chat_animation_white2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_animation_white2.png; sourceTree = "<group>"; };
 		3EF9F53E1BF4820100BBDEA9 /* chat_animation_white3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_animation_white3.png; sourceTree = "<group>"; };
-		3EF9F53F1BF4820100BBDEA9 /* chat_animation1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_animation1.png; sourceTree = "<group>"; };
-		3EF9F5401BF4820100BBDEA9 /* chat_animation2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_animation2.png; sourceTree = "<group>"; };
-		3EF9F5411BF4820100BBDEA9 /* chat_animation3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_animation3.png; sourceTree = "<group>"; };
 		3EF9F5541BF4868900BBDEA9 /* ACMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACMacros.h; sourceTree = "<group>"; };
 		3EF9F5551BF48EC700BBDEA9 /* UUInputFunctionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUInputFunctionView.h; sourceTree = "<group>"; };
 		3EF9F5561BF48EC700BBDEA9 /* UUInputFunctionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUInputFunctionView.m; sourceTree = "<group>"; };
@@ -1252,19 +1238,12 @@
 				3EF9F53C1BF4820100BBDEA9 /* chat_animation_white1.png */,
 				3EF9F53D1BF4820100BBDEA9 /* chat_animation_white2.png */,
 				3EF9F53E1BF4820100BBDEA9 /* chat_animation_white3.png */,
-				3EF9F53F1BF4820100BBDEA9 /* chat_animation1.png */,
-				3EF9F5401BF4820100BBDEA9 /* chat_animation2.png */,
-				3EF9F5411BF4820100BBDEA9 /* chat_animation3.png */,
-				3EF991711BF320D700832B4F /* yh_select.png */,
-				3EF991721BF320D700832B4F /* yh.png */,
 				3EF991811BF32F1800832B4F /* bufang_nor.png */,
 				3EF991821BF32F1800832B4F /* bufang_select.png */,
 				3EF991831BF32F1800832B4F /* camera_nor.png */,
 				3EF991841BF32F1800832B4F /* camera_select.png */,
 				3EF991851BF32F1800832B4F /* chefang_nor.png */,
 				3EF991861BF32F1800832B4F /* chefang_select.png */,
-				04DEDA251BE0B11100116789 /* bb.caf */,
-				04DED9EE1BE0600200116789 /* aa.mp3 */,
 				043FB7A81BCCDA3C006C96A1 /* private_key.pfx */,
 				043FB7A91BCCDA3C006C96A1 /* public_key.der */,
 				04D9A63D1BB3DA42006D7B8A /* PayStyleIcon.plist */,
@@ -2396,12 +2375,10 @@
 				04801ECE1BB3CE2F00714CC9 /* dev.png in Resources */,
 				04801EBA1BB3CE1500714CC9 /* backward_nor@2x.png in Resources */,
 				04801F491BB3CE6D00714CC9 /* voice.png in Resources */,
-				3EF9F5471BF4820100BBDEA9 /* chat_animation3.png in Resources */,
 				04DEDA201BE0961800116789 /* 浦江移动_蔬菜基地2.jpg in Resources */,
 				044D2D6A1BBA73450093453A /* collect.png in Resources */,
 				04D9A63A1BB3DA1A006D7B8A /* PublicVideo.plist in Resources */,
 				3E89D1BA1C154E640083CDB0 /* 0.png in Resources */,
-				3EF9F5451BF4820100BBDEA9 /* chat_animation1.png in Resources */,
 				3EB2298B1C12B31100B70CE2 /* back.png in Resources */,
 				04DEDA1E1BE0961800116789 /* 东阳移动_主营业厅.jpg in Resources */,
 				3EB229931C12BEBF00B70CE2 /* recommendVideo.plist in Resources */,
@@ -2409,9 +2386,7 @@
 				3EF9F5651BF4900C00BBDEA9 /* chatto_bg_normal.png in Resources */,
 				3E89D1BD1C154E640083CDB0 /* 3.png in Resources */,
 				04D9A5D91BB3D27B006D7B8A /* Main.storyboard in Resources */,
-				04DED9EF1BE0600200116789 /* aa.mp3 in Resources */,
 				04DEDA151BE0915F00116789 /* 武义移动_环城北路营业厅大门.jpg in Resources */,
-				3EF991741BF320D700832B4F /* yh.png in Resources */,
 				049B6F0C1BD88E6E00ED4E32 /* newFeature_2.png in Resources */,
 				04801ED61BB3CE2F00714CC9 /* header_bg@2x.png in Resources */,
 				3EF9F55F1BF4900C00BBDEA9 /* chat_ipunt_message.png in Resources */,
@@ -2452,7 +2427,6 @@
 				0448CC091BBA908100F120EC /* LocalVideo.plist in Resources */,
 				3E71991F1BF9D6B20001098E /* 我的行业.png in Resources */,
 				3E9C0F0B1C16D4AB003B3716 /* tourList.plist in Resources */,
-				3EF9F5461BF4820100BBDEA9 /* chat_animation2.png in Resources */,
 				3EFABCC81BF5A21E0017D697 /* chat_message_back.png in Resources */,
 				3E9C0F061C16B3E8003B3716 /* trafficEvent.plist in Resources */,
 				3E75F1A31C0071CC001A91CF /* sequ.png in Resources */,
@@ -2461,7 +2435,6 @@
 				045595E21BCF876800BB5094 /* VoiceAlarm.plist in Resources */,
 				049B6F051BD88B1F00ED4E32 /* btn1.png in Resources */,
 				049B6F071BD88B2900ED4E32 /* btn.png in Resources */,
-				3EF991731BF320D700832B4F /* yh_select.png in Resources */,
 				3E75F1A81C00724A001A91CF /* jiaotong.png in Resources */,
 				04801ED21BB3CE2F00714CC9 /* fast_forward_nor@2x.png in Resources */,
 				3EF9918B1BF32F1800832B4F /* chefang_nor.png in Resources */,
@@ -2513,7 +2486,6 @@
 				3E0D5E361C158F270004FC7F /* shcoolName.plist in Resources */,
 				04D9A6401BB3DAD6006D7B8A /* Images.xcassets in Resources */,
 				04AEFF631BB514FD004634A8 /* AlipaySDK.bundle in Resources */,
-				04DEDA261BE0B11100116789 /* bb.caf in Resources */,
 				04801F211BB3CE6D00714CC9 /* play.png in Resources */,
 				3E838D7A1C0EB5E600AFACAE /* dongyang.jpg in Resources */,
 				3E02EF991BEDDC2200390C49 /* newFeature_3.png in Resources */,

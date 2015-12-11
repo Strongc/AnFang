@@ -21,12 +21,10 @@
         _titleLab.textAlignment = NSTextAlignmentLeft;
         _titleLab.font = [UIFont fontWithName:@"MicrosoftYaHei" size:20];
         _titleLab.textColor = [UIColor colorWithHexString:@"ce7031"];
-        //_titleLab.backgroundColor = [UIColor colorWithHexString:@"ffd700"];
         [self addSubview:_titleLab];
         
     }
     return self;
 }
-
 
 @end

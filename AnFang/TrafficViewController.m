@@ -33,7 +33,7 @@
     NSMutableArray *videoArrays;//存放村下面的摄像头
     NSMutableArray *LMComBoxArray;//下拉框存放街道名称
     NSString *villageName;
-    
+    NSMutableArray *allVideoArray;//存放所有视频
     
 }
 
@@ -164,38 +164,39 @@
     [super viewDidLoad];
     self.imageArray = [[NSMutableArray alloc]initWithObjects:@"0.png",@"1.png",@"2.png",@"3.png", nil];
     _serverAddress = @"http://112.12.17.3";
-    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
+    //VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
     streetNameArray = [[NSMutableArray alloc]init];
     villageNameArray = [[NSMutableArray alloc]init];
     LMComBoxArray = [[NSMutableArray alloc]init];
     videoBackImageArray1 = [[NSMutableArray alloc] init];
     videoBackImageArray2 = [[NSMutableArray alloc] init];
     villageArray = [NSMutableArray array];
+    allVideoArray = [NSMutableArray array];
     videoArrays = [NSMutableArray array];
     streetArray = [NSMutableArray array];
     _lineList = [NSMutableArray array];
     _mspInfo = [[CMSPInfo alloc]init];
-    BOOL result = [vmsNetSDK getLineList:_serverAddress toLineInfoList:_lineList];
-    _selectedLineID = 2;
-    
-    if (NO == result) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                            message:@"获取线路失败"
-                                                           delegate:nil cancelButtonTitle:@"好"
-                                                  otherButtonTitles:nil, nil];
-        [alertView show];
-        return;
-    }
-    
-    BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"dbwl" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
-    if (NO == result1) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                            message:@"登录失败"
-                                                           delegate:nil cancelButtonTitle:@"好"
-                                                  otherButtonTitles:nil, nil];
-        [alertView show];
-        return;
-    }
+//    BOOL result = [vmsNetSDK getLineList:_serverAddress toLineInfoList:_lineList];
+//    _selectedLineID = 2;
+//    
+//    if (NO == result) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+//                                                            message:@"获取线路失败"
+//                                                           delegate:nil cancelButtonTitle:@"好"
+//                                                  otherButtonTitles:nil, nil];
+//        [alertView show];
+//        return;
+//    }
+//    
+//    BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"dbwl" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
+//    if (NO == result1) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+//                                                            message:@"登录失败"
+//                                                           delegate:nil cancelButtonTitle:@"好"
+//                                                  otherButtonTitles:nil, nil];
+//        [alertView show];
+//        return;
+//    }
 
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
     headView.backgroundColor = [UIColor colorWithHexString:@"dfdfdf"];
@@ -236,7 +237,7 @@
             
             [videoArrays addObject:dict];
         }
-        [villageArray addObject:villageRegionInfo];
+        [allVideoArray addObject:villageRegionInfo];
         [villageNameArray addObject:name];
     }
 
@@ -314,6 +315,14 @@
     NSString *str = @"regionId=";
     NSString *paramStr = [str stringByAppendingString:regionId];
     NSDictionary *dict = [WGAPI httpAsynchronousRequestUrl:API_GETREGION postStr:paramStr];
+    if(dict == nil){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+                                message:@"获取数据失败，网络异常！"
+                                delegate:nil cancelButtonTitle:@"好"
+                                otherButtonTitles:nil, nil];
+        [alertView show];
+        
+    }
     NSMutableArray *regionInfoArray = [dict objectForKey:@"data"];
     return regionInfoArray;
 }
@@ -604,7 +613,7 @@
 {
     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     CommunityViewController *communityView = [mainView instantiateViewControllerWithIdentifier:@"communityId"];
-    communityView.videoSourceArray = villageArray;
+    communityView.videoSourceArray = allVideoArray;
     communityView.villageNameArray = villageNameArray;
     communityView.mspInfo = _mspInfo;
     communityView.serverAddress = _serverAddress;

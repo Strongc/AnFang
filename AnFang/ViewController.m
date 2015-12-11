@@ -171,10 +171,7 @@
         [SVProgressHUD showWithStatus:@"加载中..."];
         [SVProgressHUD setBackgroundColor:[UIColor colorWithHexString:@"8f8f8f"]];
         [WGAPI post:API_USER_LOGIN RequestParams:paramStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-            
             if(data){
-                
-                //[self performSelectorOnMainThread:@selector(hideProgressHUD) withObject:data waitUntilDone:YES];//通知主线程刷新(UI)
                 NSString *json =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                 NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:json];
                 NSLog(@"%@",json);

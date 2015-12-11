@@ -45,19 +45,18 @@
     // messageInfo = [[NSDictionary alloc] init];
     messageArray = [[NSMutableArray alloc]init];
     tempArray = [[NSArray alloc]init];
-    self.view.backgroundColor = [UIColor colorWithHexString:@"040818"];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"efefef"];
     
     messageTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT) style:UITableViewStylePlain];
     messageTable.delegate = self;
     messageTable.dataSource = self;
     messageTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-    messageTable.backgroundColor = [UIColor colorWithHexString:@"040818"];
+    messageTable.backgroundColor = [UIColor colorWithHexString:@"efefef"];
     // monitorTable.separatorStyle = NO;
     [self.view addSubview:messageTable];
     
     [self setupHeader];
     [self setupFooter];
-
     messageTime = [[NSMutableArray alloc]initWithObjects:@"2015-5-21  23:25", @"2015-5-13  14:25",@"2015-5-4  21:25",@"2015-4-21  19:25",nil];
     messageTitle = [[NSMutableArray alloc]initWithObjects:@"食堂防区异常",@"停车场防区异常",@"华业大厦北侧广场异常",@"华业大厦一楼走廊异常", nil];
      pageSize = 2;
@@ -82,9 +81,9 @@
     refreshHeader.beginRefreshingOperation = ^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
-             pageSize += 1;
-            [messageArray removeAllObjects];
-            [self getAlarmMessage];
+             //pageSize += 1;
+            //[messageArray removeAllObjects];
+           // [self getAlarmMessage];
             [weakRefreshHeader endRefreshing];
         });
     };
@@ -101,7 +100,6 @@
         _refreshFooter = refreshFooter;
 }
 
-
 - (void)footerRefresh
 {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -110,16 +108,15 @@
         });
 }
 
-
 -(void)getAlarmMessage
 {
     
-        NSString *pagesize = [NSString stringWithFormat:@"%d",pageSize];
-        NSDictionary *page = @{@"pageNo":@"1",@"pageSize":pagesize};
-        NSDictionary *pageInfo = @{@"page":page};
-        NSString *pageStr = [pageInfo JSONString];
-        NSString *userInfoData = [@"alarm=" stringByAppendingString:pageStr];
-        //[SVProgressHUD showWithStatus:@"加载中..."];
+//        NSString *pagesize = [NSString stringWithFormat:@"%d",pageSize];
+//        NSDictionary *page = @{@"pageNo":@"1",@"pageSize":pagesize};
+//        NSDictionary *pageInfo = @{@"page":page};
+//        NSString *pageStr = [pageInfo JSONString];
+       // NSString *userInfoData = [@"alarm=" stringByAppendingString:pageStr];
+        [SVProgressHUD showWithStatus:@"加载中..."];
         [WGAPI post:API_GET_ALARMINFO RequestParams:nil FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
             if(data){
@@ -145,7 +142,6 @@
 
 }
 
-
 -(void)refreshData
 {
    [SVProgressHUD showSuccessWithStatus:@"加载完成！" maskType:SVProgressHUDMaskTypeBlack];
@@ -156,8 +152,9 @@
         
         alertLab.hidden = NO;
     }
-
+    
     [messageTable reloadData];
+    [SVProgressHUD dismiss];
 }
 
 #pragma mark UITableViewDataSource

@@ -13,7 +13,7 @@
 #import <UIKit/UIKit.h>
 #define imgW 10
 #define imgH 10
-#define tableH 140
+#define tableH 200
 #define DEGREES_TO_RADIANS(angle) ((angle)/180.0 *M_PI)
 #define kBorderColor [UIColor colorWithRed:219/255.0 green:217/255.0 blue:216/255.0 alpha:1]
 #define kTextColor   [UIColor darkGrayColor]
@@ -26,8 +26,6 @@
 @end
 
 @interface LMComBoxView : UIView<UITableViewDataSource,UITableViewDelegate>
-
-    
 
 @property(nonatomic,assign)BOOL isOpen;
 @property(nonatomic,strong)UILabel *titleLabel;;
@@ -47,7 +45,6 @@
 -(void)tapAction;
 
 @end
-
 
 /*
     注意：

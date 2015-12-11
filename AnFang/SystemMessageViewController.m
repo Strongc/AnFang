@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithHexString:@"040818"];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"efefef"];
     
     self.sysMessageArray = [[NSMutableArray alloc]init];
     tempArray = [[NSMutableArray alloc] init];
@@ -43,7 +43,7 @@
     messageTable.delegate = self;
     messageTable.dataSource = self;
     messageTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-    messageTable.backgroundColor = [UIColor colorWithHexString:@"040818"];
+    messageTable.backgroundColor = [UIColor colorWithHexString:@"efefef"];
     [self.view addSubview:messageTable];
 
     alertLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 80, WIDTH, 15*HEIGHT/667)];

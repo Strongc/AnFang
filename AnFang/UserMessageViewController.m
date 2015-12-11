@@ -25,7 +25,7 @@
     [self.view addSubview:alertLab];
     alertLab.text = @"暂无内容！";
     alertLab.textAlignment = NSTextAlignmentCenter;
-    self.view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"efefef"];
 
     // Do any additional setup after loading the view.
 }

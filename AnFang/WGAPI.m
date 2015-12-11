@@ -301,6 +301,14 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
     //    return result;
 }
 
+/**
+ *  post上传文件
+ *
+ *  @param strUrl   接口路径
+ *  @param image    上传的文件流
+ *  @param fileName 文件名
+ *  @param block    回调方法
+ */
 +(void)post:(NSString *)strUrl RequsetParam:(id)image withFileName:(NSString *)fileName FinishBlock:(void (^)(NSURLResponse *, NSData *, NSError *))block
 {
     NSString *url = [CMAPIBaseURL stringByAppendingString:strUrl];
