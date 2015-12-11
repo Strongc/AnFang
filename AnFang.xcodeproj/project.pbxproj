@@ -28,14 +28,12 @@
 		044AD46E1BBBB4C2004D17BB /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 044AD46D1BBBB4C2004D17BB /* NSString+Base64.m */; };
 		044C2FB91BE3552B00DE2613 /* MonitorDevInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044C2FB81BE3552B00DE2613 /* MonitorDevInfoViewController.m */; };
 		044C2FBC1BE366F400DE2613 /* VideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 044C2FBB1BE366F400DE2613 /* VideoModel.m */; };
-		044D2D6A1BBA73450093453A /* collect.png in Resources */ = {isa = PBXBuildFile; fileRef = 044D2D681BBA73450093453A /* collect.png */; };
 		044D2D6F1BBA7A350093453A /* LocalVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 044D2D6E1BBA7A350093453A /* LocalVideoModel.m */; };
 		044FFD941BCDE57400F74AE9 /* BigInt.m in Sources */ = {isa = PBXBuildFile; fileRef = 044FFD931BCDE57400F74AE9 /* BigInt.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		044FFD971BCDF29E00F74AE9 /* JKBigInteger.m in Sources */ = {isa = PBXBuildFile; fileRef = 044FFD961BCDF29E00F74AE9 /* JKBigInteger.m */; };
 		044FFD9C1BCDF2B900F74AE9 /* tommath.c in Sources */ = {isa = PBXBuildFile; fileRef = 044FFD9A1BCDF2B900F74AE9 /* tommath.c */; };
 		044FFDA01BCE237A00F74AE9 /* StringToBytes.m in Sources */ = {isa = PBXBuildFile; fileRef = 044FFD9F1BCE237A00F74AE9 /* StringToBytes.m */; };
 		044FFDA31BCE476C00F74AE9 /* RsaFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 044FFDA21BCE476C00F74AE9 /* RsaFactory.m */; };
-		045595DC1BCF77CB00BB5094 /* anfang.png in Resources */ = {isa = PBXBuildFile; fileRef = 045595DB1BCF77CB00BB5094 /* anfang.png */; };
 		045595DE1BCF86E700BB5094 /* KeyAlarm.plist in Resources */ = {isa = PBXBuildFile; fileRef = 045595DD1BCF86E700BB5094 /* KeyAlarm.plist */; };
 		045595E01BCF872900BB5094 /* TextAndPhotoAlarm.plist in Resources */ = {isa = PBXBuildFile; fileRef = 045595DF1BCF872900BB5094 /* TextAndPhotoAlarm.plist */; };
 		045595E21BCF876800BB5094 /* VoiceAlarm.plist in Resources */ = {isa = PBXBuildFile; fileRef = 045595E11BCF876800BB5094 /* VoiceAlarm.plist */; };
@@ -68,27 +66,13 @@
 		04801E951BB3CC3600714CC9 /* MHTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04801E941BB3CC3600714CC9 /* MHTabBarController.m */; };
 		04801EA01BB3CCDB00714CC9 /* AVPlayerDemoPlaybackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04801E9E1BB3CCDB00714CC9 /* AVPlayerDemoPlaybackView.m */; };
 		04801EA31BB3CD0500714CC9 /* GradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04801EA21BB3CD0500714CC9 /* GradientButton.m */; };
-		04801EB61BB3CE1500714CC9 /* alarm.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801EA71BB3CE1500714CC9 /* alarm.png */; };
-		04801EB81BB3CE1500714CC9 /* back1.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801EA91BB3CE1500714CC9 /* back1.png */; };
-		04801EB91BB3CE1500714CC9 /* backward_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801EAA1BB3CE1500714CC9 /* backward_disable@2x.png */; };
 		04801EBA1BB3CE1500714CC9 /* backward_nor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801EAB1BB3CE1500714CC9 /* backward_nor@2x.png */; };
-		04801EBC1BB3CE1500714CC9 /* buddy_header_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801EAD1BB3CE1500714CC9 /* buddy_header_arrow@2x.png */; };
-		04801ECD1BB3CE2F00714CC9 /* cut.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801EC31BB3CE2F00714CC9 /* cut.png */; };
 		04801ECE1BB3CE2F00714CC9 /* dev.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801EC41BB3CE2F00714CC9 /* dev.png */; };
-		04801ECF1BB3CE2F00714CC9 /* down.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04801EC51BB3CE2F00714CC9 /* down.jpg */; };
-		04801ED01BB3CE2F00714CC9 /* fast_backward_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801EC61BB3CE2F00714CC9 /* fast_backward_disable@2x.png */; };
-		04801ED11BB3CE2F00714CC9 /* fast_forward_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801EC71BB3CE2F00714CC9 /* fast_forward_disable@2x.png */; };
 		04801ED21BB3CE2F00714CC9 /* fast_forward_nor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801EC81BB3CE2F00714CC9 /* fast_forward_nor@2x.png */; };
-		04801ED31BB3CE2F00714CC9 /* forward_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801EC91BB3CE2F00714CC9 /* forward_disable@2x.png */; };
 		04801ED41BB3CE2F00714CC9 /* forward_nor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801ECA1BB3CE2F00714CC9 /* forward_nor@2x.png */; };
 		04801ED51BB3CE2F00714CC9 /* newFeature_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801ECB1BB3CE2F00714CC9 /* newFeature_4.png */; };
 		04801ED61BB3CE2F00714CC9 /* header_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801ECC1BB3CE2F00714CC9 /* header_bg@2x.png */; };
-		04801F1C1BB3CE6D00714CC9 /* pause_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801EE11BB3CE6D00714CC9 /* pause_disable@2x.png */; };
-		04801F1D1BB3CE6D00714CC9 /* pause_nor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801EE21BB3CE6D00714CC9 /* pause_nor@2x.png */; };
-		04801F1E1BB3CE6D00714CC9 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801EE31BB3CE6D00714CC9 /* pause.png */; };
-		04801F1F1BB3CE6D00714CC9 /* play_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801EE41BB3CE6D00714CC9 /* play_disable@2x.png */; };
 		04801F201BB3CE6D00714CC9 /* play_nor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801EE51BB3CE6D00714CC9 /* play_nor@2x.png */; };
-		04801F211BB3CE6D00714CC9 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801EE61BB3CE6D00714CC9 /* play.png */; };
 		04801F221BB3CE6D00714CC9 /* plus19.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801EE71BB3CE6D00714CC9 /* plus19.png */; };
 		04801F261BB3CE6D00714CC9 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801EEB1BB3CE6D00714CC9 /* setting.png */; };
 		04801F441BB3CE6D00714CC9 /* video_num_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801F091BB3CE6D00714CC9 /* video_num_bg@2x.png */; };
@@ -104,7 +88,6 @@
 		04801F6C1BB3D08300714CC9 /* AlarmMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04801F6B1BB3D08300714CC9 /* AlarmMessageTableViewCell.m */; };
 		04801F701BB3D0BE00714CC9 /* DefenceAreaDevTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04801F6F1BB3D0BE00714CC9 /* DefenceAreaDevTableViewCell.m */; };
 		04801F741BB3D0ED00714CC9 /* MonitorInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04801F731BB3D0ED00714CC9 /* MonitorInfoTableViewCell.m */; };
-		049B6F051BD88B1F00ED4E32 /* btn1.png in Resources */ = {isa = PBXBuildFile; fileRef = 049B6F041BD88B1F00ED4E32 /* btn1.png */; };
 		049B6F071BD88B2900ED4E32 /* btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 049B6F061BD88B2900ED4E32 /* btn.png */; };
 		049B6F0C1BD88E6E00ED4E32 /* newFeature_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 049B6F081BD88E6E00ED4E32 /* newFeature_2.png */; };
 		049B6F0D1BD88E6E00ED4E32 /* mic_normal_358x358@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 049B6F091BD88E6E00ED4E32 /* mic_normal_358x358@2x.png */; };
@@ -158,7 +141,6 @@
 		04D9A63E1BB3DA42006D7B8A /* PayStyleIcon.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04D9A63D1BB3DA42006D7B8A /* PayStyleIcon.plist */; };
 		04D9A6401BB3DAD6006D7B8A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04D9A63F1BB3DAD6006D7B8A /* Images.xcassets */; };
 		04D9A6421BB3DB7E006D7B8A /* newFeature_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D9A6411BB3DB7E006D7B8A /* newFeature_3.png */; };
-		04D9E0D41BB3F02000161CE8 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D9E0D31BB3F02000161CE8 /* location.png */; };
 		04DBE4D71BD740D80032939E /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DBE4D61BD740D80032939E /* UserInfo.m */; };
 		04DBE4DA1BD741650032939E /* NSString+File.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DBE4D91BD741650032939E /* NSString+File.m */; };
 		04DBE4DD1BD741A00032939E /* CoreArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DBE4DC1BD741A00032939E /* CoreArchive.m */; };
@@ -171,16 +153,6 @@
 		04DEDA061BE06EE100116789 /* fs_icon_wave_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA021BE06EE100116789 /* fs_icon_wave_1.png */; };
 		04DEDA071BE06EE100116789 /* fs_icon_wave_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA031BE06EE100116789 /* fs_icon_wave_2.png */; };
 		04DEDA0A1BE0740900116789 /* FSVoiceBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DEDA091BE0740900116789 /* FSVoiceBubble.m */; };
-		04DEDA0F1BE0906300116789 /* 丽晶宾馆基站.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA0E1BE0906300116789 /* 丽晶宾馆基站.jpg */; };
-		04DEDA111BE090AE00116789 /* 新天地大厦基站.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA101BE090AE00116789 /* 新天地大厦基站.jpg */; };
-		04DEDA131BE090F600116789 /* 磐安移动_公司大门口.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA121BE090F600116789 /* 磐安移动_公司大门口.jpg */; };
-		04DEDA151BE0915F00116789 /* 武义移动_环城北路营业厅大门.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA141BE0915F00116789 /* 武义移动_环城北路营业厅大门.jpg */; };
-		04DEDA171BE093C900116789 /* 永康移动_公司楼顶基站.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA161BE093C900116789 /* 永康移动_公司楼顶基站.jpg */; };
-		04DEDA191BE0946800116789 /* 兰溪移动_公司大门进出口.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA181BE0946800116789 /* 兰溪移动_公司大门进出口.jpg */; };
-		04DEDA1E1BE0961800116789 /* 东阳移动_主营业厅.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA1A1BE0961800116789 /* 东阳移动_主营业厅.jpg */; };
-		04DEDA1F1BE0961800116789 /* 浦江移动_蔬菜基地1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA1B1BE0961800116789 /* 浦江移动_蔬菜基地1.jpg */; };
-		04DEDA201BE0961800116789 /* 浦江移动_蔬菜基地2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA1C1BE0961800116789 /* 浦江移动_蔬菜基地2.jpg */; };
-		04DEDA211BE0961800116789 /* 浙江大学附属第四医院.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA1D1BE0961800116789 /* 浙江大学附属第四医院.jpg */; };
 		04DEDA371BE0E26800116789 /* sdRefeshView_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DEDA2D1BE0E26800116789 /* sdRefeshView_arrow@2x.png */; };
 		04DEDA381BE0E26800116789 /* SDRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DEDA301BE0E26800116789 /* SDRefreshFooterView.m */; };
 		04DEDA391BE0E26800116789 /* SDRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DEDA321BE0E26800116789 /* SDRefreshHeaderView.m */; };
@@ -208,8 +180,6 @@
 		3E609C0D1C1181F1009B25D1 /* ClassVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E609C0C1C1181F1009B25D1 /* ClassVideoCell.m */; };
 		3E609C101C1199D6009B25D1 /* TitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E609C0F1C1199D6009B25D1 /* TitleCell.m */; };
 		3E609C131C119DFB009B25D1 /* RecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E609C121C119DFB009B25D1 /* RecommendCell.m */; };
-		3E6864891BF0714100FCA20C /* message.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E6864881BF0714100FCA20C /* message.png */; };
-		3E68648B1BF071E600FCA20C /* messagePress.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E68648A1BF071E600FCA20C /* messagePress.png */; };
 		3E68648D1BF078B500FCA20C /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E68648C1BF078B500FCA20C /* bg.png */; };
 		3E68D0B31BEC4B5C003DAFC0 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04AEFF601BB5148E004634A8 /* AlipaySDK.framework */; };
 		3E68D0B51BEC4B85003DAFC0 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E68D0B41BEC4B85003DAFC0 /* libz.tbd */; };
@@ -2375,18 +2345,14 @@
 				04801ECE1BB3CE2F00714CC9 /* dev.png in Resources */,
 				04801EBA1BB3CE1500714CC9 /* backward_nor@2x.png in Resources */,
 				04801F491BB3CE6D00714CC9 /* voice.png in Resources */,
-				04DEDA201BE0961800116789 /* 浦江移动_蔬菜基地2.jpg in Resources */,
-				044D2D6A1BBA73450093453A /* collect.png in Resources */,
 				04D9A63A1BB3DA1A006D7B8A /* PublicVideo.plist in Resources */,
 				3E89D1BA1C154E640083CDB0 /* 0.png in Resources */,
 				3EB2298B1C12B31100B70CE2 /* back.png in Resources */,
-				04DEDA1E1BE0961800116789 /* 东阳移动_主营业厅.jpg in Resources */,
 				3EB229931C12BEBF00B70CE2 /* recommendVideo.plist in Resources */,
 				049B6F0D1BD88E6E00ED4E32 /* mic_normal_358x358@2x.png in Resources */,
 				3EF9F5651BF4900C00BBDEA9 /* chatto_bg_normal.png in Resources */,
 				3E89D1BD1C154E640083CDB0 /* 3.png in Resources */,
 				04D9A5D91BB3D27B006D7B8A /* Main.storyboard in Resources */,
-				04DEDA151BE0915F00116789 /* 武义移动_环城北路营业厅大门.jpg in Resources */,
 				049B6F0C1BD88E6E00ED4E32 /* newFeature_2.png in Resources */,
 				04801ED61BB3CE2F00714CC9 /* header_bg@2x.png in Resources */,
 				3EF9F55F1BF4900C00BBDEA9 /* chat_ipunt_message.png in Resources */,
@@ -2398,31 +2364,19 @@
 				04801ED41BB3CE2F00714CC9 /* forward_nor@2x.png in Resources */,
 				04D9A63E1BB3DA42006D7B8A /* PayStyleIcon.plist in Resources */,
 				3EF9F5431BF4820100BBDEA9 /* chat_animation_white2.png in Resources */,
-				04DEDA111BE090AE00116789 /* 新天地大厦基站.jpg in Resources */,
 				045595E01BCF872900BB5094 /* TextAndPhotoAlarm.plist in Resources */,
 				043FB7AA1BCCDA3C006C96A1 /* private_key.pfx in Resources */,
-				04DEDA1F1BE0961800116789 /* 浦江移动_蔬菜基地1.jpg in Resources */,
 				3EF9918C1BF32F1800832B4F /* chefang_select.png in Resources */,
-				04DEDA191BE0946800116789 /* 兰溪移动_公司大门进出口.jpg in Resources */,
-				04801EB91BB3CE1500714CC9 /* backward_disable@2x.png in Resources */,
 				3E75F1981C006A1D001A91CF /* head.png in Resources */,
 				3E6A864B1BFEE4D200CE31DA /* loginPress.png in Resources */,
-				045595DC1BCF77CB00BB5094 /* anfang.png in Resources */,
-				04801ED11BB3CE2F00714CC9 /* fast_forward_disable@2x.png in Resources */,
-				04801ECF1BB3CE2F00714CC9 /* down.jpg in Resources */,
 				04DEDA061BE06EE100116789 /* fs_icon_wave_1.png in Resources */,
 				04E4002A1BB903AE0098F2D4 /* MonitorArea.plist in Resources */,
 				04801F201BB3CE6D00714CC9 /* play_nor@2x.png in Resources */,
 				3EB229971C12BF2300B70CE2 /* 003.png in Resources */,
-				04801F1D1BB3CE6D00714CC9 /* pause_nor@2x.png in Resources */,
 				3E75F1A41C0071CC001A91CF /* xiaoyuan.png in Resources */,
 				3EF9918A1BF32F1800832B4F /* camera_select.png in Resources */,
 				3E89D1BB1C154E640083CDB0 /* 1.png in Resources */,
-				04801ED01BB3CE2F00714CC9 /* fast_backward_disable@2x.png in Resources */,
-				04DEDA211BE0961800116789 /* 浙江大学附属第四医院.jpg in Resources */,
 				04DEDA041BE06EE100116789 /* fs_chat_bubble.png in Resources */,
-				04801EB61BB3CE1500714CC9 /* alarm.png in Resources */,
-				04DEDA0F1BE0906300116789 /* 丽晶宾馆基站.jpg in Resources */,
 				3EF9F5631BF4900C00BBDEA9 /* chatfrom_bg_normal.png in Resources */,
 				0448CC091BBA908100F120EC /* LocalVideo.plist in Resources */,
 				3E71991F1BF9D6B20001098E /* 我的行业.png in Resources */,
@@ -2430,10 +2384,8 @@
 				3EFABCC81BF5A21E0017D697 /* chat_message_back.png in Resources */,
 				3E9C0F061C16B3E8003B3716 /* trafficEvent.plist in Resources */,
 				3E75F1A31C0071CC001A91CF /* sequ.png in Resources */,
-				04DEDA171BE093C900116789 /* 永康移动_公司楼顶基站.jpg in Resources */,
 				04D9A63C1BB3DA2B006D7B8A /* MenuConfig.plist in Resources */,
 				045595E21BCF876800BB5094 /* VoiceAlarm.plist in Resources */,
-				049B6F051BD88B1F00ED4E32 /* btn1.png in Resources */,
 				049B6F071BD88B2900ED4E32 /* btn.png in Resources */,
 				3E75F1A81C00724A001A91CF /* jiaotong.png in Resources */,
 				04801ED21BB3CE2F00714CC9 /* fast_forward_nor@2x.png in Resources */,
@@ -2447,11 +2399,9 @@
 				04801F221BB3CE6D00714CC9 /* plus19.png in Resources */,
 				3E838D7C1C0EB5E600AFACAE /* jiaju.jpg in Resources */,
 				04D9A6381BB3D972006D7B8A /* menu.plist in Resources */,
-				04801F1E1BB3CE6D00714CC9 /* pause.png in Resources */,
 				049B6F0F1BD88E6E00ED4E32 /* wave70x117@2x.png in Resources */,
 				04DEDA071BE06EE100116789 /* fs_icon_wave_2.png in Resources */,
 				3E7199211BF9D6B20001098E /* 意见反馈.png in Resources */,
-				04801F1C1BB3CE6D00714CC9 /* pause_disable@2x.png in Resources */,
 				3E6A864A1BFEE4D200CE31DA /* login.png in Resources */,
 				043FB7AB1BCCDA3C006C96A1 /* public_key.der in Resources */,
 				04801F451BB3CE6D00714CC9 /* video_num_front@2x.png in Resources */,
@@ -2459,37 +2409,27 @@
 				04DBE4E61BD79AEF0032939E /* newFeature_1.png in Resources */,
 				3E838D701C0EB04B00AFACAE /* ShangmengItem.plist in Resources */,
 				04801E3C1BB3C15C00714CC9 /* LaunchScreen.xib in Resources */,
-				04801EBC1BB3CE1500714CC9 /* buddy_header_arrow@2x.png in Resources */,
 				3E89D1C41C1557CA0083CDB0 /* more.png in Resources */,
 				04D034321BDF88F400E9E2BE /* ProgressHUD.bundle in Resources */,
 				3E838D791C0EB5E600AFACAE /* anfang.jpg in Resources */,
 				3EF9F5441BF4820100BBDEA9 /* chat_animation_white3.png in Resources */,
-				3E68648B1BF071E600FCA20C /* messagePress.png in Resources */,
 				3E89D1C01C154F4A0083CDB0 /* 5.png in Resources */,
-				04DEDA131BE090F600116789 /* 磐安移动_公司大门口.jpg in Resources */,
 				3E838D7B1C0EB5E600AFACAE /* guanggao.jpg in Resources */,
-				04801EB81BB3CE1500714CC9 /* back1.png in Resources */,
 				3E75F1A01C0070E9001A91CF /* PublicClass.plist in Resources */,
-				04801ED31BB3CE2F00714CC9 /* forward_disable@2x.png in Resources */,
 				3EF991891BF32F1800832B4F /* camera_nor.png in Resources */,
 				3E75F1A71C00724A001A91CF /* lvyou.png in Resources */,
 				3EF991871BF32F1800832B4F /* bufang_nor.png in Resources */,
-				04801ECD1BB3CE2F00714CC9 /* cut.png in Resources */,
 				04DEDA371BE0E26800116789 /* sdRefeshView_arrow@2x.png in Resources */,
 				045595DE1BCF86E700BB5094 /* KeyAlarm.plist in Resources */,
 				3EB229991C12BF2300B70CE2 /* 007.png in Resources */,
-				04801F1F1BB3CE6D00714CC9 /* play_disable@2x.png in Resources */,
-				04D9E0D41BB3F02000161CE8 /* location.png in Resources */,
 				3E02EF9B1BEDE17A00390C49 /* tiyan.png in Resources */,
 				04D9A6421BB3DB7E006D7B8A /* newFeature_3.png in Resources */,
 				3EF9F5641BF4900C00BBDEA9 /* chatfrom_doctor_icon.png in Resources */,
 				3E0D5E361C158F270004FC7F /* shcoolName.plist in Resources */,
 				04D9A6401BB3DAD6006D7B8A /* Images.xcassets in Resources */,
 				04AEFF631BB514FD004634A8 /* AlipaySDK.bundle in Resources */,
-				04801F211BB3CE6D00714CC9 /* play.png in Resources */,
 				3E838D7A1C0EB5E600AFACAE /* dongyang.jpg in Resources */,
 				3E02EF991BEDDC2200390C49 /* newFeature_3.png in Resources */,
-				3E6864891BF0714100FCA20C /* message.png in Resources */,
 				3E89D1BE1C154E640083CDB0 /* 4.png in Resources */,
 				3E7199221BF9D6B20001098E /* 账户中心.png in Resources */,
 				3E7199201BF9D6B20001098E /* 系统设置.png in Resources */,
