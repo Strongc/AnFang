@@ -42,7 +42,7 @@
     btn.clipsToBounds = YES;
     btn.layer.masksToBounds = YES;
     btn.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    [btn setBackgroundImage:[UIImage imageNamed:@"street"] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[UIImage imageNamed:@"country"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(tapAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn];
     
