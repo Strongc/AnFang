@@ -65,8 +65,8 @@
     RecommendVideoCell *cell = (RecommendVideoCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifyId forIndexPath:indexPath];
     RecommendVideoModel *model = [self.recondVideoArray objectAtIndex:indexPath.item];
     cell.recommendVideoModel = model;
-    //NSString *imageName = ;
-    //cell.publicVideoImage.image = [UIImage imageNamed:[self.recondVideoArray objectAtIndex:indexPath.item]];
+    cell.publicVideoImage.image = [UIImage imageNamed:[[self.videoSourceArray objectAtIndex:indexPath.item] objectForKey:@"icon"]];
+    
     [cell setTag:indexPath.row];
     //[cell.backViewBtn addTarget:self action:@selector(doJumpTo:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
@@ -92,6 +92,7 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.selectedIndex = (int)indexPath.item;
     self.cameraInfo = [self.videoSourceArray objectAtIndex:indexPath.item];
     [self performSelector:@selector(clickClassVideoCell) withObject:nil afterDelay:1.0f];
 }

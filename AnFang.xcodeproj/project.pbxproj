@@ -254,6 +254,7 @@
 		3E75F1A41C0071CC001A91CF /* xiaoyuan.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E75F1A21C0071CC001A91CF /* xiaoyuan.png */; };
 		3E75F1A71C00724A001A91CF /* lvyou.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E75F1A51C00724A001A91CF /* lvyou.png */; };
 		3E75F1A81C00724A001A91CF /* jiaotong.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E75F1A61C00724A001A91CF /* jiaotong.png */; };
+		3E7B47C01C1A6EDE005D902D /* MoreVideoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7B47BF1C1A6EDE005D902D /* MoreVideoHeaderView.m */; };
 		3E8360ED1C1121EF00E1F614 /* PayRequsestHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E8360EC1C1121EF00E1F614 /* PayRequsestHandler.mm */; };
 		3E838D6E1C0E93F200AFACAE /* ShangMengItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E838D6D1C0E93F200AFACAE /* ShangMengItemViewController.m */; };
 		3E838D701C0EB04B00AFACAE /* ShangmengItem.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E838D6F1C0EB04B00AFACAE /* ShangmengItem.plist */; };
@@ -782,6 +783,8 @@
 		3E75F1A21C0071CC001A91CF /* xiaoyuan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiaoyuan.png; sourceTree = "<group>"; };
 		3E75F1A51C00724A001A91CF /* lvyou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lvyou.png; sourceTree = "<group>"; };
 		3E75F1A61C00724A001A91CF /* jiaotong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jiaotong.png; sourceTree = "<group>"; };
+		3E7B47BE1C1A6EDE005D902D /* MoreVideoHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreVideoHeaderView.h; sourceTree = "<group>"; };
+		3E7B47BF1C1A6EDE005D902D /* MoreVideoHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreVideoHeaderView.m; sourceTree = "<group>"; };
 		3E8360EC1C1121EF00E1F614 /* PayRequsestHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PayRequsestHandler.mm; sourceTree = "<group>"; };
 		3E838D6C1C0E93F200AFACAE /* ShangMengItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShangMengItemViewController.h; sourceTree = "<group>"; };
 		3E838D6D1C0E93F200AFACAE /* ShangMengItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShangMengItemViewController.m; sourceTree = "<group>"; };
@@ -2243,6 +2246,8 @@
 			children = (
 				3E74F3F11BEF2385004E2935 /* PublicHeaderView.h */,
 				3E74F3F21BEF2385004E2935 /* PublicHeaderView.m */,
+				3E7B47BE1C1A6EDE005D902D /* MoreVideoHeaderView.h */,
+				3E7B47BF1C1A6EDE005D902D /* MoreVideoHeaderView.m */,
 			);
 			name = PublicHeaderView;
 			sourceTree = "<group>";
@@ -2721,6 +2726,7 @@
 				044AD46B1BBBB492004D17BB /* NSData+Base64.m in Sources */,
 				04D9A6361BB3D90D006D7B8A /* CheBuFangViewController.m in Sources */,
 				04801F501BB3CEB800714CC9 /* MenuTimeTableViewCell.m in Sources */,
+				3E7B47C01C1A6EDE005D902D /* MoreVideoHeaderView.m in Sources */,
 				3E6A758B1BEC68DD00113360 /* MD5DataSigner.m in Sources */,
 				04801E571BB3C8ED00714CC9 /* PublicVideoSource.m in Sources */,
 				3E89D1C71C1576410083CDB0 /* CommunityViewController.m in Sources */,

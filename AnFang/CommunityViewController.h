@@ -15,6 +15,7 @@
 @property(nonatomic,strong) NSMutableArray *videoSourceArray;
 @property (nonatomic, copy) NSString *serverAddress;
 @property (nonatomic, strong) CMSPInfo *mspInfo;
-
+@property (nonatomic,strong) NSMutableArray *villageNameArray;
+@property (nonatomic,assign) int gradeOfList;
 
 @end

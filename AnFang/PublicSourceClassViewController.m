@@ -26,17 +26,15 @@
     NSMutableArray *_allSectionList;
     NSMutableArray *_lineList;
     int _selectedLineID;
-   // NSArray *tempNetArray;
-    //PublicVideoitemViewController *publicItem;
 
 }
 @property (nonatomic,strong) NSArray *mainRegionData;
 @property (nonatomic,strong) NSArray *recommendVideoData;
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
-@property (nonatomic,strong) NSMutableArray *imageArray;
 @property (nonatomic,strong) NSMutableArray *streetArray;
 @property (nonatomic,strong) NSMutableArray *villageArray;
 @property (nonatomic,strong) NSMutableArray *dataArray;
+@property (nonatomic,strong) NSMutableArray *recommendCellSource;
 
 @end
 
@@ -94,8 +92,6 @@
     return _villageArray;
     
 }
-
-
 
 /**
  *  从网络中懒加载数据
@@ -185,7 +181,6 @@
     _mspInfo = [[CMSPInfo alloc]init];
     BOOL result = [vmsNetSDK getLineList:_serverAddress toLineInfoList:_lineList];
     _selectedLineID = 2;
-    _imageArray = [[NSMutableArray alloc] initWithObjects:@"003.png",@"005.png",@"007.png", nil];
     
     if (NO == result) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
@@ -209,27 +204,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showProgressHUD) name:@"showHUD" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideProgressHUD) name:@"hideHUD" object:nil];
 
-    
-//    [self _getAllStreetArray];
-//
-//    if(_streetArray.count > 0){
-//        for(int i=0;i<_streetArray.count;i++){
-//            //NSString *streetName = [streetArray[i] name];
-//            CRegionInfo *regionInfo = _streetArray[i];
-//            NSMutableArray *tempArray = [self _getAllVideoInSection:regionInfo.regionID];
-//            for(int i=0;i<tempArray.count;i++){
-//                
-//                CRegionInfo *regionInfo1 = tempArray[i];
-//                
-//                [_villageArray addObject:regionInfo1];
-//            }
-//            
-//        }
-//        
-//    }else if (_streetArray.count == 0){
-//        
-//        //streetNameArray = [[NSMutableArray alloc] initWithObjects:@"人民路", nil];
-//    }
+    self.recommendCellSource = [[NSMutableArray alloc] initWithObjects:@{@"icon":@"003.png",@"indexCode":@"33078304001310016224"},@{@"icon":@"005.png",@"indexCode":@"33078304001310015764"},@{@"icon":@"007.png",@"indexCode":@"33078304001310015618"}, nil];
 
     
     // Do any additional setup after loading the view.
@@ -285,48 +260,10 @@
  */
 -(void)initConfigControl
 {
-//    NSString *path = [[NSBundle mainBundle] pathForResource:@"head.png" ofType:nil];
-//    UIImageView *headImage = [[UIImageView alloc] initWithFrame:CGRectMake(15, 74, WIDTH-30, 150)];
-//    [self.view addSubview:headImage];
-//    headImage.image = [UIImage imageWithContentsOfFile:path];
-    
-//    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, headImage.frame.size.height-40, headImage.frame.size.width, 40)];
-//    [headImage addSubview:backView];
-//    backView.backgroundColor = [UIColor blackColor];
-//    backView.alpha = 0.65;
-//    UILabel *title1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, backView.frame.size.width, backView.frame.size.height)];
-//    [backView addSubview:title1];
-//    title1.textAlignment = NSTextAlignmentCenter;
-//    title1.text = @"最热门点击视频";
-//    title1.font = [UIFont boldSystemFontOfSize:14];
-//    title1.textColor = [UIColor whiteColor];
-//    
-//    UILabel *title2 = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 76, backView.frame.size.height)];
-//    [backView addSubview:title2];
-//    title2.textAlignment = NSTextAlignmentCenter;
-//    title2.text = @"热门视频";
-//    title2.font = [UIFont boldSystemFontOfSize:18];
-//    title2.textColor = [UIColor colorWithHexString:@"db0303"];
-
     self.mainTableView.dataSource = self;
     self.mainTableView.delegate = self;
     self.mainTableView.backgroundColor = [UIColor colorWithHexString:@"efefef"];
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-//    videoClass = [[UICollectionView alloc]initWithFrame:CGRectMake(5, 234, WIDTH-10, WIDTH-10) collectionViewLayout:flowLayout];
-//    videoClass.delegate = self;
-//    videoClass.dataSource = self;
-//#pragma mark -- 头尾部大小设置
-//    //设置头部并给定大小
-//    //[flowLayout setHeaderReferenceSize:CGSizeMake(videoClass.frame.size.width, 40)];
-//#pragma mark -- 注册头部视图
-////    [videoCollection registerClass:[PublicHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
-//    
-//    //[self.view addSubview:videoClass];
-//    videoClass.backgroundColor = [UIColor colorWithHexString:@"040818"];
-//    videoClass.scrollEnabled = YES;
-//    [videoClass registerClass:[PublicVideoClassCell class] forCellWithReuseIdentifier:@"cell"];
-
 
 }
 
@@ -403,7 +340,6 @@
     
         static NSString *reuseIdentify3 = @"cell3";
         RecommendCell *recommendCell = (RecommendCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentify3];
-        
         if(recommendCell == nil){
             
             recommendCell = [[RecommendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentify3];
@@ -411,10 +347,10 @@
             recommendCell.selectionStyle = UITableViewCellSelectionStyleNone;
             
         }
-
         cell = recommendCell;
-       // recommendCell.delegate = self;
+        recommendCell.delegate = self;
         recommendCell.recondVideoArray = self.recommendVideoData;
+        recommendCell.videoSourceArray = self.recommendCellSource;
         //recommendCell.videoSourceArray = _villageArray;
     }
     
@@ -473,7 +409,7 @@
     
         UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         SchoolVideoViewController *schoolView = [mainView instantiateViewControllerWithIdentifier:@"schoolId"];
-        PublicVideoClassModel *region = [self.mainRegionData objectAtIndex:index];
+       // PublicVideoClassModel *region = [self.mainRegionData objectAtIndex:index];
         //schoolView.itemStr = region.name;
         //schoolView.regionId = region.regionId;
         //schoolView.countStr = region.regionCount.intValue;
@@ -495,7 +431,6 @@
         trafficView.itemStr = region.name;
         trafficView.regionId = region.regionId;
         trafficView.type = 3;
-        // trafficView.countStr = region.regionCount.intValue;
         [self.navigationController pushViewController:trafficView animated:YES];
     
     }
@@ -509,96 +444,16 @@
  */
 -(void)jumpToPlayView:(RecommendCell *)recommendCell
 {
-    if ([recommendCell.cameraInfo isMemberOfClass:[CCameraInfo class]]) {
+        int index = recommendCell.selectedIndex;
+        NSString *playerCode = [[recommendCell.videoSourceArray objectAtIndex:index] objectForKey:@"indexCode"];
         PlayViewController *playVC = [[PlayViewController alloc] init];
         //把预览回放和云台控制所需的参数传过去
         playVC.serverAddress = _serverAddress;
         playVC.mspInfo = _mspInfo;
-        playVC.cameraInfo =recommendCell.cameraInfo;
+        playVC.cameraId =playerCode;
         [self.navigationController pushViewController:playVC animated:YES];
         return;
-        
-    }
-
-
 }
-
-//#pragma mark UICollectionViewDataSource
-//-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-//{
-//    
-//    return self.classData.count;
-//}
-//
-//
-//-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    
-//    static NSString *identifyId = @"cell";
-//    PublicVideoClassCell *cell = (PublicVideoClassCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifyId forIndexPath:indexPath];
-//    
-//    PublicVideoClassModel *model = [self.classData objectAtIndex:indexPath.item];
-//    
-//    cell.publicClass = model;
-//    [cell setTag:indexPath.row];
-//    //[cell.backViewBtn addTarget:self action:@selector(doJumpTo:) forControlEvents:UIControlEventTouchUpInside];
-//    return cell;
-//}
-//
-//#pragma mark UICollectionViewDelegateFlowLayout
-//
-////定义每个cell的大小
-//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    
-//    return CGSizeMake((videoClass.frame.size.width-40)/2 +5, (videoClass.frame.size.height-40)/2);
-//}
-//
-////设置每组cell的边界
-//-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-//{
-//    
-//    return UIEdgeInsetsMake(0, 10, 10, 10);//上,左，下，右
-//}
-//
-////-(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-////{
-////    
-////    return 0;
-////}
-////
-////-(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-////{
-////    
-////    return 10;
-////}
-//
-//-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//   // int index = (int)indexPath.row;
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"showHUD" object:nil];
-//    [self performSelector:@selector(doJumpTo:) withObject:indexPath afterDelay:2.0f];
-//}
-//
-//-(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    
-//    return YES;
-//}
-//
-//
-//-(void)doJumpTo:(NSIndexPath *)index
-//{
-//    //int index = (int)[sender tag];
-//    UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    PublicVideoitemViewController *publicItem = [mainView instantiateViewControllerWithIdentifier:@"publicitemId"];
-//    PublicVideoClassModel *region = [self.classData objectAtIndex:index.row];
-//    publicItem.itemStr = region.className;
-//    publicItem.regionId = region.regionId;
-//    publicItem.countStr = region.regionCount.intValue;
-//    [self.navigationController pushViewController:publicItem animated:YES];
-//
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -25,5 +25,6 @@
 @property (nonatomic,strong) NSMutableArray *videoSourceArray;
 @property (nonatomic,weak) id<RecommendCellDelegate> delegate;
 @property (nonatomic, strong) CCameraInfo *cameraInfo;
+@property (nonatomic,assign) int selectedIndex;
 
 @end

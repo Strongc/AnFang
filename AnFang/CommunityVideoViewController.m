@@ -38,7 +38,7 @@
     NSMutableArray *_lineList;
     int _selectedLineID;
     NSMutableArray *streetNameArray;//存放街道名称
-    NSMutableArray *streetNameList;
+    NSMutableArray *streetNameList;//存放街道名称
     NSMutableArray *LMComBoxArray;//下拉框存放街道名称
     NSMutableArray *LMComBoxVillageArray;//下拉框存放街道名称
     LMComBoxView *cityBoxView;
@@ -49,6 +49,8 @@
     NSMutableArray  *listVideoSource;
     __block NSMutableArray *tempArray;
     NSMutableArray *videoArrayInSection;
+    NSMutableArray *villageNameArray;//存放所有的村名
+    int scaleOfList;
     
 }
 
@@ -125,7 +127,6 @@
     tempVideoArrays = [[NSMutableArray alloc] init];
     tempVillageArrays = [[NSMutableArray alloc] init];
     streetNameArray = [[NSMutableArray alloc]init];
-    streetNameList = [[NSMutableArray alloc] init];
     LMComBoxArray = [[NSMutableArray alloc]init];
     LMComBoxVillageArray = [[NSMutableArray alloc] init];
     videoBackImageArray1 = [[NSMutableArray alloc] init];
@@ -134,6 +135,9 @@
     videoArray = [NSMutableArray array];
     _lineList = [NSMutableArray array];
     _mspInfo = [[CMSPInfo alloc]init];
+    villageNameArray = [NSMutableArray array];
+    streetNameList = [NSMutableArray array];
+    scaleOfList = 3;
     BOOL result = [vmsNetSDK getLineList:_serverAddress toLineInfoList:_lineList];
     _selectedLineID = 2;
     
@@ -202,7 +206,6 @@
     [self.view setBackgroundColor:[UIColor colorWithHexString:@"efefef"]];
     
     [self getNextAreaById];
-    
     NSMutableArray *streetRegionInfo = [self getRegionInfo:self.regionId];
     for(NSDictionary *dict in streetRegionInfo){
         
@@ -210,15 +213,21 @@
         NSString *streetName = [dict objectForKey:@"name"];
         [streetNameList addObject:streetName];
         NSMutableArray *villageRegionInfo = [self getRegionInfo:areaId];
-        NSMutableArray *videoList;
+        NSMutableArray *videoList = [NSMutableArray array];
+        NSMutableArray *tempVillageNameArray = [NSMutableArray array];
         for(NSDictionary *dict in villageRegionInfo){
             
             NSString *areaId = [dict objectForKey:@"areaId"];
-            videoList = [self getRegionInfo:areaId];
+            NSString *name = [dict objectForKey:@"name"];
+            [tempVillageNameArray addObject:name];
+            NSMutableArray *itemVideoArray = [self getRegionInfo:areaId];
+            [videoList addObject:itemVideoArray];
             
         }
+        [villageNameArray addObject:tempVillageNameArray];
         [videoArrays addObject:videoList];
     }
+    
     [self initCollectionView];
     [self prepareScollView];
     [self preparePageView];
@@ -469,10 +478,6 @@
                int index = (int)indexPath.row;
                 selectIndex = index;
                 NSLog(@"下标 %d",selectIndex);
-                
-//                LMComBoxView *villageCombox = (LMComBoxView *)[videoScrollView viewWithTag:kDropDownListTag+1];
-//                villageCombox.hidden = YES;
-//                [villageCombox removeFromSuperview];
                 NSString *str = @"regionId=";
                 NSString *paramStr = [str stringByAppendingString:[LMComBoxArray[index] objectForKey:@"areaId"]];
                 //NSMutableArray *array = [NSMutableArray array];
@@ -541,13 +546,13 @@
         
         [array addObject:dict];
     }
-    
     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     CommunityViewController *communityView = [mainView instantiateViewControllerWithIdentifier:@"communityId"];
     communityView.videoSourceArray = [NSMutableArray arrayWithArray:array];
     communityView.communityName = selectedVillageName;
     communityView.serverAddress = _serverAddress;
     communityView.mspInfo = _mspInfo;
+    communityView.gradeOfList = 2;
     [self.navigationController pushViewController:communityView animated:YES];
 
 }
@@ -587,12 +592,13 @@
 {
     NSInteger countOfItem;
     NSMutableArray *videoList = [videoArrays objectAtIndex:section];
-    if(videoList.count >=3){
+    NSMutableArray *cameraVideo = videoList[0];
+    if(cameraVideo.count >=3){
     
         countOfItem = 3;
     }else{
     
-        countOfItem = videoList.count;
+        countOfItem = cameraVideo.count;
     }
     return countOfItem;
 }
@@ -633,7 +639,8 @@
     //cell.recommendVideoModel = model;
    // CRegionInfo *regionInfo = streetArray[indexPath.section];
     NSMutableArray *cameraName = videoArrays[indexPath.section];
-    cell.className.text = [cameraName[indexPath.row] objectForKey:@"camera_name"];
+    NSMutableArray *cameraVideo = cameraName[0];
+    cell.className.text = [cameraVideo[indexPath.row] objectForKey:@"camera_name"];
 //    if(indexPath.section == 0){
 //    
        cell.publicVideoImage.image = [UIImage imageWithContentsOfFile:videoBackImageArray1[indexPath.row]];
@@ -663,17 +670,14 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-       NSMutableArray *videoList = videoArrays[indexPath.section];
-//      if ([tempArray[indexPath.row] isMemberOfClass:[CCameraInfo class]]) {
-            PlayViewController *playVC = [[PlayViewController alloc] init];
-            //把预览回放和云台控制所需的参数传过去
-            playVC.serverAddress = _serverAddress;
-            playVC.mspInfo = _mspInfo;
-            playVC.cameraId = [videoList[indexPath.item] objectForKey:@"indexCode"];
-            [self.navigationController pushViewController:playVC animated:YES];
-            return;
-//        }
-
+    NSMutableArray *videoList = videoArrays[indexPath.section];
+    PlayViewController *playVC = [[PlayViewController alloc] init];
+    //把预览回放和云台控制所需的参数传过去
+    playVC.serverAddress = _serverAddress;
+    playVC.mspInfo = _mspInfo;
+    playVC.cameraId = [videoList[indexPath.item] objectForKey:@"indexCode"];
+    [self.navigationController pushViewController:playVC animated:YES];
+    return;
 }
 
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -687,12 +691,14 @@
 
     int index = (int)publicHeaderView.tag;
     NSMutableArray *array = [videoArrays objectAtIndex:index];
+    NSMutableArray *nameArray = [villageNameArray objectAtIndex:index];
     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     CommunityViewController *communityView = [mainView instantiateViewControllerWithIdentifier:@"communityId"];
-    communityView.communityName = streetNameList[index] ;
+    communityView.villageNameArray = nameArray;
     communityView.videoSourceArray = array;
     communityView.mspInfo = _mspInfo;
     communityView.serverAddress = _serverAddress;
+    communityView.gradeOfList = 3;
     [self.navigationController pushViewController:communityView animated:YES];
 
 }

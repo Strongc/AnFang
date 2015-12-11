@@ -11,6 +11,7 @@
 #import "Common.h"
 #import "RecommendCell.h"
 #import "PlayViewController.h"
+#import "MoreVideoHeaderView.h"
 
 @interface CommunityViewController ()
 {
@@ -72,16 +73,15 @@
 {
     [self.view setBackgroundColor:[UIColor colorWithHexString:@"efefef"]];
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    communityVideo = [[UICollectionView alloc]initWithFrame:CGRectMake(5, 110, WIDTH-10, HEIGHT-110-49) collectionViewLayout:flowLayout];
+    communityVideo = [[UICollectionView alloc]initWithFrame:CGRectMake(5, 70, WIDTH-10, HEIGHT-70-49) collectionViewLayout:flowLayout];
     communityVideo.delegate = self;
     communityVideo.dataSource = self;
-//#pragma mark -- 头尾部大小设置
-//    //设置头部并给定大小
-//    [flowLayout setHeaderReferenceSize:CGSizeMake(self.videoCollectionView.frame.size.width, 40)];
-//#pragma mark -- 注册头部视图
-//    [self.videoCollectionView registerClass:[PublicHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
+#pragma mark -- 头尾部大小设置
+    //设置头部并给定大小
+    [flowLayout setHeaderReferenceSize:CGSizeMake(communityVideo.frame.size.width, 30)];
+#pragma mark -- 注册头部视图
+    [communityVideo registerClass:[MoreVideoHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"MoreVideoHeaderView"];
     
-    //[self.view addSubview:videoClass];
     communityVideo.backgroundColor = [UIColor clearColor];
     communityVideo.scrollEnabled = YES;
     [communityVideo registerClass:[RecommendVideoCell class] forCellWithReuseIdentifier:@"cell"];
@@ -92,25 +92,84 @@
 }
 
 #pragma mark UICollectionViewDataSource
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    NSInteger countOfSection;
+    if (self.gradeOfList == 2) {
+        
+        countOfSection = 1;
+    }else if (self.gradeOfList == 3){
+        
+        countOfSection = self.videoSourceArray.count;
+    }
+    return countOfSection;
+    
+}
+
+
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    NSInteger countOfItem;
+    if(self.gradeOfList == 2){
     
-       return self.videoSourceArray.count;
+        countOfItem = self.videoSourceArray.count;
+    }else if (self.gradeOfList == 3){
+    
+        NSMutableArray *tempArray = [self.videoSourceArray objectAtIndex:section];
+        countOfItem = tempArray.count;
+    }
+    return countOfItem;
 }
+
+/**
+ *  设置数组组标题
+ *
+ *  @param collectionView 当前的显示内容的集合视图
+ *  @param kind           <#kind description#>
+ *  @param indexPath      每组的下标
+ *
+ *  @return reusableview
+ */
+-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *reusableview = nil;
+    if (kind == UICollectionElementKindSectionHeader){
+        
+        MoreVideoHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"MoreVideoHeaderView" forIndexPath:indexPath];
+        NSString *title;
+        if(self.gradeOfList == 3){
+        
+           title = [self.villageNameArray objectAtIndex:indexPath.section];
+        }else if (self.gradeOfList == 2){
+            
+            title = self.communityName;
+        }
+        headerView.titleLab.text = title;
+        reusableview = headerView;
+        //headerView.delegate = self;
+        //headerView.tag = indexPath.section;
+        
+    }
+    
+    return reusableview;
+}
+
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     static NSString *identifyId = @"cell";
     RecommendVideoCell *cell = (RecommendVideoCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifyId forIndexPath:indexPath];
-    //RecommendVideoModel *model = [villageArray objectAtIndex:indexPath.item];
-    //cell.recommendVideoModel = model;
-    // CRegionInfo *regionInfo = streetArray[indexPath.section];
-    //villageArray = [self _getAllVideoInSection:regionInfo.regionID];
-   // NSMutableArray *tempArray = self.videoArray[indexPath.section];
-    cell.className.text = [self.videoSourceArray[indexPath.row] objectForKey:@"camera_name"];
+    NSString *cameraName;
+    if(self.gradeOfList == 3){
+        NSMutableArray *tempArray = [self.videoSourceArray objectAtIndex:indexPath.section];
+        cameraName = [tempArray[indexPath.row] objectForKey:@"camera_name"];
+    }else if (self.gradeOfList == 2){
+        
+        cameraName = [[self.videoSourceArray objectAtIndex:indexPath.item] objectForKey:@"camera_name"];
+    }
+    cell.className.text = cameraName;
     NSString *imagePath;
-    
     if(indexPath.section == 0){
         imagePath = [[NSBundle mainBundle] pathForResource:@"0.png" ofType:nil];
         cell.publicVideoImage.image = [UIImage imageWithContentsOfFile:imagePath];
@@ -143,17 +202,23 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-   // NSMutableArray *tempArray = videoArray[indexPath.section];
-   // if ([self.videoSourceArray[indexPath.row] isMemberOfClass:[CCameraInfo class]]) {
-        PlayViewController *playVC = [[PlayViewController alloc] init];
-        //把预览回放和云台控制所需的参数传过去
-        playVC.serverAddress = _serverAddress;
-        playVC.mspInfo = _mspInfo;
-        playVC.cameraId = [self.videoSourceArray[indexPath.row] objectForKey:@"indexCode"];
-        [self.navigationController pushViewController:playVC animated:YES];
-        return;
-   // }
+    NSString *playerCode;
+    if(self.gradeOfList == 2){
     
+        playerCode = [self.videoSourceArray[indexPath.row] objectForKey:@"indexCode"];
+    }else if (self.gradeOfList == 3){
+        
+        NSMutableArray *tempArray = [self.videoSourceArray objectAtIndex:indexPath.section];
+        playerCode = [tempArray[indexPath.row] objectForKey:@"indexCode"];
+    }
+    PlayViewController *playVC = [[PlayViewController alloc] init];
+    //把预览回放和云台控制所需的参数传过去
+    playVC.serverAddress = _serverAddress;
+    playVC.mspInfo = _mspInfo;
+    playVC.cameraId = playerCode;
+    [self.navigationController pushViewController:playVC animated:YES];
+    return;
+   
 }
 
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
