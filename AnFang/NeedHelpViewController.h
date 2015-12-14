@@ -20,6 +20,7 @@
     AVAudioRecorder *recorder;
     NSURL *urlPlay;
 }
-
+@property (nonatomic,strong) UIView *netStatusInfo;
+@property (nonatomic,strong) UIButton *refreshBtn;
 
 @end

@@ -60,58 +60,6 @@
 
 @implementation CommunityVideoViewController
 
-//-(NSMutableArray *)_getAllStreetArray
-//{
-//    int regionId = self.regionId.intValue;
-//    VMSNetSDK *vmNetSDK = [VMSNetSDK shareInstance];
-//    streetArray = [NSMutableArray array];
-//    NSMutableArray *tempArray = [NSMutableArray array];
-//    videoArray = [NSMutableArray array];
-//    //获取区域下的区域
-//    [vmNetSDK getRegionListFromRegion:_serverAddress toSessionID:_mspInfo.sessionID toRegionID:regionId toNumPerOnce:60 toCurPage:1 toRegionList:tempArray];
-//    [streetArray addObjectsFromArray:tempArray];
-//    [tempArray removeAllObjects];
-//    
-//    //获取区域下的设备
-//    [vmNetSDK getCameraListFromRegion:_serverAddress toSessionID:_mspInfo.sessionID toRegionID:regionId toNumPerOnce:60 toCurPage:1 toCameraList:tempArray];
-//    [streetArray addObjectsFromArray:tempArray];
-//
-//    [tempArray removeAllObjects];
-//   
-//    return streetArray;
-//}
-//
-//-(NSMutableArray *)_getAllVideoInSection:(int)regionId
-//{
-//    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
-//    villageArray = [NSMutableArray array];
-//    NSMutableArray *tempArray1 = [NSMutableArray array];
-//    self.serverAddress = _serverAddress;
-//    self.mspInfo = _mspInfo;
-//    //获取区域下的区域
-//    [vmsNetSDK getRegionListFromRegion:_serverAddress
-//                           toSessionID:_mspInfo.sessionID
-//                            toRegionID:regionId
-//                          toNumPerOnce:50
-//                             toCurPage:1
-//                          toRegionList:tempArray1];
-//    [villageArray addObjectsFromArray:tempArray1];
-//    [tempArray1 removeAllObjects];
-//    
-//    //获取区域下的设备
-//    [vmsNetSDK getCameraListFromRegion:_serverAddress
-//                           toSessionID:_mspInfo.sessionID
-//                            toRegionID:regionId
-//                          toNumPerOnce:50
-//                             toCurPage:1
-//                          toCameraList:tempArray1];
-//    [villageArray addObjectsFromArray:tempArray1];
-//    [tempArray1 removeAllObjects];
-//   
-//    return villageArray;
-//    
-//}
-
 -(void)viewWillAppear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hideHUD" object:nil];
@@ -489,15 +437,12 @@
 //刷新视图
 -(void)reloadData
 {
-    //[self.publicItemTable reloadData];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hideProHUD" object:nil];
 }
 
 #pragma mark -LMComBoxViewDelegate
 -(void)selectAtIndex:(int)index inCombox:(LMComBoxView *)_combox
 {
-    //NSMutableArray *communityArray = [NSMutableArray array];
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"showProHUD" object:nil];
     NSInteger tag = _combox.tag - kDropDownListTag;
     switch (tag) {
         case 0:

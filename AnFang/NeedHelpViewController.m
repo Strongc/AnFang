@@ -63,8 +63,6 @@
 
 }
 @property (assign, nonatomic) NSInteger currentRow;
-//@property (nonatomic,strong) NSMutableArray *keyAlarmData;
-//@property (nonatomic,strong) NSMutableArray *photoAlarmData;
 @property (nonatomic,strong) NSMutableArray *voiceAlarmData;
 @property (strong, nonatomic) ChatModel *chatModel;
 
@@ -200,12 +198,8 @@
     backGround.image = [UIImage imageNamed:@"anfangBack"];
     [self.view addSubview:backGround];
 
-    
     pickImageViewController.delegate = self;
-    //_photoAlarmData = [[NSMutableArray alloc] init];
-    
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    
     [center addObserver:self selector:@selector(keyBoardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
 //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -234,13 +228,24 @@
     helpMessage.dataSource = self;
     helpMessage.separatorStyle = UITableViewCellSeparatorStyleNone;
     helpMessage.backgroundColor = [UIColor clearColor];
-
+   
+    self.netStatusInfo = [[UIView alloc]initWithFrame:CGRectMake(0, 0,WIDTH, HEIGHT-64-IFView.frame.size.height-49)];
+    [self.view addSubview:self.netStatusInfo];
+    UILabel *alertTitle = [[UILabel alloc]initWithFrame:CGRectMake(0, (self.netStatusInfo.frame.size.height-30)/2, WIDTH, 30)];
+    alertTitle.text = @"网络不好，请检查网络设置";
+    alertTitle.textAlignment = NSTextAlignmentCenter;
+    [self.netStatusInfo addSubview:alertTitle];
+    self.netStatusInfo.hidden = YES;
+    self.refreshBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, (self.netStatusInfo.frame.size.height-30)/2+20, WIDTH, 30)];
+    [self.netStatusInfo addSubview:self.refreshBtn];
+    self.refreshBtn.titleLabel.text = @"重新加载";
+    self.refreshBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     
     [self getHelpMessage];
     self.chatModel = [[ChatModel alloc]init];
     self.chatModel.dataSource = [[NSMutableArray alloc] init];
     audioArray = [[NSMutableArray alloc] init];
-
+    
     // Do any additional setup after loading the view.
 }
 
@@ -275,7 +280,6 @@
 //    [alarmView addSubview:infoText];
     
     voiceInfoView.backgroundColor = [UIColor whiteColor];
-
     UIButton *alarmBtn = [[UIButton alloc]initWithFrame:CGRectMake(110*WIDTH/375,IFView.frame.origin.y + 20, 150*WIDTH/375, 40*HEIGHT/667)];
     alarmBtn.backgroundColor = [UIColor redColor];
     [alarmBtn setTitle:@"一 键 报 警" forState:UIControlStateNormal];
@@ -326,7 +330,6 @@
 - (void)UUInputFunctionView:(UUInputFunctionView *)funcView sendVoice:(NSData *)voice time:(NSInteger)second
 {
     
-    //NSData *voiceData = [NSData dataWithContentsOfFile:[self mp3Path]];
     NSDate *sendDate;
     NSString *mp3Path = [CoreArchive strForKey:@"path"];
     NSLog(@"-----%@",mp3Path);
@@ -423,7 +426,6 @@
         if(keycell == nil){
             
             keycell = [[KeyAlarmCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentify];
-            
             keycell.accessoryType = UITableViewCellAccessoryNone;
             //cell.backgroundColor = [UIColor colorWithHexString:@"ededed"];
             keycell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -432,7 +434,6 @@
         
         OneKeyAlarmModel *model = [keyInfoArray objectAtIndex:indexPath.row];
         keycell.oneKeyAlarm = model;
-    
         NSString *content = keycell.stateLab.text;
         if([content isEqualToString:@"已发送"]){
             
@@ -451,9 +452,7 @@
         PhotoAlarmCell *photocell = (PhotoAlarmCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentify];
         
         if(photocell == nil){
-            
             photocell = [[PhotoAlarmCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentify];
-            
             photocell.accessoryType = UITableViewCellAccessoryNone;
             //cell.backgroundColor = [UIColor colorWithHexString:@"ededed"];
             photocell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -860,7 +859,14 @@
 -(void)refreshData
 {
     [SVProgressHUD showSuccessWithStatus:@"加载完成！" maskType:SVProgressHUDMaskTypeBlack];
-    [helpMessage reloadData];
+    if(keyInfoArray.count > 0){
+        
+        [helpMessage reloadData];
+    }else{
+        
+        self.netStatusInfo.hidden = NO;
+    }
+
     
 }
 

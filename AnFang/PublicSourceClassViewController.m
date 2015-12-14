@@ -40,59 +40,6 @@
 
 @implementation PublicSourceClassViewController
 
-
-//-(NSMutableArray *)_getAllStreetArray
-//{
-//    int regionId = 340;
-//    VMSNetSDK *vmNetSDK = [VMSNetSDK shareInstance];
-//    _streetArray = [NSMutableArray array];
-//    NSMutableArray *tempArray = [NSMutableArray array];
-//    //videoArray = [NSMutableArray array];
-//    //获取区域下的区域
-//    [vmNetSDK getRegionListFromRegion:_serverAddress toSessionID:_mspInfo.sessionID toRegionID:regionId toNumPerOnce:60 toCurPage:1 toRegionList:tempArray];
-//    [_streetArray addObjectsFromArray:tempArray];
-//    [tempArray removeAllObjects];
-//    
-//    //获取区域下的设备
-//    [vmNetSDK getCameraListFromRegion:_serverAddress toSessionID:_mspInfo.sessionID toRegionID:regionId toNumPerOnce:60 toCurPage:1 toCameraList:tempArray];
-//    [_streetArray addObjectsFromArray:tempArray];
-//    
-//    [tempArray removeAllObjects];
-//    
-//    return _streetArray;
-//}
-//
-//-(NSMutableArray *)_getAllVideoInSection:(int)regionId
-//{
-//    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
-//    _villageArray = [NSMutableArray array];
-//    NSMutableArray *tempArray = [NSMutableArray array];
-//    self.serverAddress = _serverAddress;
-//    self.mspInfo = _mspInfo;
-//    //获取区域下的区域
-//    [vmsNetSDK getRegionListFromRegion:_serverAddress
-//                           toSessionID:_mspInfo.sessionID
-//                            toRegionID:regionId
-//                          toNumPerOnce:50
-//                             toCurPage:1
-//                          toRegionList:tempArray];
-//    [_villageArray addObjectsFromArray:tempArray];
-//    [tempArray removeAllObjects];
-//    
-//    //获取区域下的设备
-//    [vmsNetSDK getCameraListFromRegion:_serverAddress
-//                           toSessionID:_mspInfo.sessionID
-//                            toRegionID:regionId
-//                          toNumPerOnce:50
-//                             toCurPage:1
-//                          toCameraList:tempArray];
-//    [_villageArray addObjectsFromArray:tempArray];
-//    [tempArray removeAllObjects];
-//    
-//    return _villageArray;
-//    
-//}
-
 /**
  *  从网络中懒加载数据
  *

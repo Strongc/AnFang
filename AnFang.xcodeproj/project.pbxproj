@@ -57,13 +57,8 @@
 		04801E841BB3CB9700714CC9 /* SCNavTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04801E7F1BB3CB9700714CC9 /* SCNavTabBar.m */; };
 		04801E851BB3CB9700714CC9 /* SCNavTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04801E811BB3CB9700714CC9 /* SCNavTabBarController.m */; };
 		04801E861BB3CB9700714CC9 /* SCPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04801E831BB3CB9700714CC9 /* SCPopView.m */; };
-		04801E8B1BB3CBDA00714CC9 /* QHCommonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 04801E881BB3CBDA00714CC9 /* QHCommonUtil.m */; };
-		04801E8C1BB3CBDA00714CC9 /* QHConfiguredObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 04801E8A1BB3CBDA00714CC9 /* QHConfiguredObj.m */; };
 		04801E911BB3CC0600714CC9 /* UIColor+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 04801E8E1BB3CC0600714CC9 /* UIColor+Extensions.m */; };
 		04801E921BB3CC0600714CC9 /* UIView+KGViewExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 04801E901BB3CC0600714CC9 /* UIView+KGViewExtend.m */; };
-		04801E951BB3CC3600714CC9 /* MHTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04801E941BB3CC3600714CC9 /* MHTabBarController.m */; };
-		04801EA01BB3CCDB00714CC9 /* AVPlayerDemoPlaybackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04801E9E1BB3CCDB00714CC9 /* AVPlayerDemoPlaybackView.m */; };
-		04801EA31BB3CD0500714CC9 /* GradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04801EA21BB3CD0500714CC9 /* GradientButton.m */; };
 		04801EBA1BB3CE1500714CC9 /* backward_nor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801EAB1BB3CE1500714CC9 /* backward_nor@2x.png */; };
 		04801ECE1BB3CE2F00714CC9 /* dev.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801EC41BB3CE2F00714CC9 /* dev.png */; };
 		04801ED21BB3CE2F00714CC9 /* fast_forward_nor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04801EC81BB3CE2F00714CC9 /* fast_forward_nor@2x.png */; };
@@ -106,11 +101,6 @@
 		04D034321BDF88F400E9E2BE /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04D034311BDF88F400E9E2BE /* ProgressHUD.bundle */; };
 		04D9A5D91BB3D27B006D7B8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D9A5D71BB3D27B006D7B8A /* Main.storyboard */; };
 		04D9A5DC1BB3D404006D7B8A /* MenuTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9A5DB1BB3D404006D7B8A /* MenuTabBarViewController.m */; };
-		04D9A5E11BB3D4A7006D7B8A /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 04D9A5E01BB3D4A7006D7B8A /* ZipArchive.mm */; };
-		04D9A5E91BB3D510006D7B8A /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 04D9A5E31BB3D510006D7B8A /* mztools.c */; };
-		04D9A5EA1BB3D510006D7B8A /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 04D9A5E51BB3D510006D7B8A /* unzip.c */; };
-		04D9A5EB1BB3D510006D7B8A /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 04D9A5E71BB3D510006D7B8A /* zip.c */; };
-		04D9A5EE1BB3D535006D7B8A /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 04D9A5EC1BB3D535006D7B8A /* ioapi.c */; };
 		04D9A5F11BB3D78A006D7B8A /* AccountCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9A5F01BB3D78A006D7B8A /* AccountCenterViewController.m */; };
 		04D9A5F61BB3D82E006D7B8A /* AlarmMessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9A5F31BB3D82E006D7B8A /* AlarmMessageDetailViewController.m */; };
 		04D9A5F71BB3D82E006D7B8A /* AlarmMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D9A5F51BB3D82E006D7B8A /* AlarmMessageViewController.m */; };
@@ -417,21 +407,10 @@
 		04801E811BB3CB9700714CC9 /* SCNavTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCNavTabBarController.m; sourceTree = "<group>"; };
 		04801E821BB3CB9700714CC9 /* SCPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPopView.h; sourceTree = "<group>"; };
 		04801E831BB3CB9700714CC9 /* SCPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPopView.m; sourceTree = "<group>"; };
-		04801E871BB3CBDA00714CC9 /* QHCommonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHCommonUtil.h; sourceTree = "<group>"; };
-		04801E881BB3CBDA00714CC9 /* QHCommonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHCommonUtil.m; sourceTree = "<group>"; };
-		04801E891BB3CBDA00714CC9 /* QHConfiguredObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHConfiguredObj.h; sourceTree = "<group>"; };
-		04801E8A1BB3CBDA00714CC9 /* QHConfiguredObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHConfiguredObj.m; sourceTree = "<group>"; };
 		04801E8D1BB3CC0600714CC9 /* UIColor+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extensions.h"; sourceTree = "<group>"; };
 		04801E8E1BB3CC0600714CC9 /* UIColor+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extensions.m"; sourceTree = "<group>"; };
 		04801E8F1BB3CC0600714CC9 /* UIView+KGViewExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+KGViewExtend.h"; sourceTree = "<group>"; };
 		04801E901BB3CC0600714CC9 /* UIView+KGViewExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+KGViewExtend.m"; sourceTree = "<group>"; };
-		04801E931BB3CC3600714CC9 /* MHTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHTabBarController.h; sourceTree = "<group>"; };
-		04801E941BB3CC3600714CC9 /* MHTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHTabBarController.m; sourceTree = "<group>"; };
-		04801E9D1BB3CCDB00714CC9 /* AVPlayerDemoPlaybackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVPlayerDemoPlaybackView.h; sourceTree = "<group>"; };
-		04801E9E1BB3CCDB00714CC9 /* AVPlayerDemoPlaybackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVPlayerDemoPlaybackView.m; sourceTree = "<group>"; };
-		04801E9F1BB3CCDB00714CC9 /* AVPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVPlayerManager.h; sourceTree = "<group>"; };
-		04801EA11BB3CD0500714CC9 /* GradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientButton.h; sourceTree = "<group>"; };
-		04801EA21BB3CD0500714CC9 /* GradientButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientButton.m; sourceTree = "<group>"; };
 		04801EA71BB3CE1500714CC9 /* alarm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm.png; sourceTree = "<group>"; };
 		04801EA91BB3CE1500714CC9 /* back1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back1.png; sourceTree = "<group>"; };
 		04801EAA1BB3CE1500714CC9 /* backward_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backward_disable@2x.png"; sourceTree = "<group>"; };
@@ -527,17 +506,6 @@
 		04D9A5D81BB3D27B006D7B8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04D9A5DA1BB3D404006D7B8A /* MenuTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTabBarViewController.h; sourceTree = "<group>"; };
 		04D9A5DB1BB3D404006D7B8A /* MenuTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTabBarViewController.m; sourceTree = "<group>"; };
-		04D9A5DF1BB3D4A7006D7B8A /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
-		04D9A5E01BB3D4A7006D7B8A /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
-		04D9A5E21BB3D510006D7B8A /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
-		04D9A5E31BB3D510006D7B8A /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
-		04D9A5E41BB3D510006D7B8A /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
-		04D9A5E51BB3D510006D7B8A /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
-		04D9A5E61BB3D510006D7B8A /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
-		04D9A5E71BB3D510006D7B8A /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
-		04D9A5E81BB3D510006D7B8A /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
-		04D9A5EC1BB3D535006D7B8A /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
-		04D9A5ED1BB3D535006D7B8A /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
 		04D9A5EF1BB3D78A006D7B8A /* AccountCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountCenterViewController.h; sourceTree = "<group>"; };
 		04D9A5F01BB3D78A006D7B8A /* AccountCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountCenterViewController.m; sourceTree = "<group>"; };
 		04D9A5F21BB3D82E006D7B8A /* AlarmMessageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmMessageDetailViewController.h; sourceTree = "<group>"; };
@@ -1070,15 +1038,6 @@
 			name = LocalVideos;
 			sourceTree = "<group>";
 		};
-		044F3E071BE32E330071023C /* MHTabBarController */ = {
-			isa = PBXGroup;
-			children = (
-				04801E931BB3CC3600714CC9 /* MHTabBarController.h */,
-				04801E941BB3CC3600714CC9 /* MHTabBarController.m */,
-			);
-			name = MHTabBarController;
-			sourceTree = "<group>";
-		};
 		044FFD9D1BCE232C00F74AE9 /* StringToBytes */ = {
 			isa = PBXGroup;
 			children = (
@@ -1346,7 +1305,6 @@
 				3E6A43F31BF47C950066C3BD /* Voicelib */,
 				3E6A75DE1BEC80DF00113360 /* CCLocation */,
 				3E6A75771BEC67A000113360 /* AlipayUtils */,
-				044F3E071BE32E330071023C /* MHTabBarController */,
 				0450D8651BE1BF5A0069A8D5 /* DataSaveUtil */,
 				04DEDA2B1BE0E20600116789 /* SDRefresh */,
 				04DED9E71BE05D5C00116789 /* VoiceUtils */,
@@ -1362,8 +1320,6 @@
 				04E400221BB8E4710098F2D4 /* OpensslRSAWrapper */,
 				0448B1FC1BB5092300DBE65C /* BadgeView */,
 				0448B1F81BB4ED3F00DBE65C /* TabBarItem */,
-				04D9A5DD1BB3D463006D7B8A /* ZipArchive */,
-				04801E961BB3CC4200714CC9 /* DownVideo */,
 				04801E7C1BB3CB5000714CC9 /* MessgaeListTabBar */,
 				04801E751BB3CB1800714CC9 /* AnFangTabBar */,
 				04801E6E1BB3CACC00714CC9 /* VideoListTabBar */,
@@ -1415,13 +1371,6 @@
 				04801E7D1BB3CB7800714CC9 /* CommonMacro.h */,
 			);
 			name = MessgaeListTabBar;
-			sourceTree = "<group>";
-		};
-		04801E961BB3CC4200714CC9 /* DownVideo */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = DownVideo;
 			sourceTree = "<group>";
 		};
 		04801EA41BB3CD1A00714CC9 /* Resources */ = {
@@ -1677,46 +1626,11 @@
 			children = (
 				04801E901BB3CC0600714CC9 /* UIView+KGViewExtend.m */,
 				04801E8F1BB3CC0600714CC9 /* UIView+KGViewExtend.h */,
-				04801EA11BB3CD0500714CC9 /* GradientButton.h */,
 				04801E8D1BB3CC0600714CC9 /* UIColor+Extensions.h */,
-				04801EA21BB3CD0500714CC9 /* GradientButton.m */,
-				04801E9E1BB3CCDB00714CC9 /* AVPlayerDemoPlaybackView.m */,
-				04801E9D1BB3CCDB00714CC9 /* AVPlayerDemoPlaybackView.h */,
 				04801E8E1BB3CC0600714CC9 /* UIColor+Extensions.m */,
-				04801E891BB3CBDA00714CC9 /* QHConfiguredObj.h */,
-				04801E881BB3CBDA00714CC9 /* QHCommonUtil.m */,
-				04801E8A1BB3CBDA00714CC9 /* QHConfiguredObj.m */,
 				04801F511BB3CEEC00714CC9 /* Common.h */,
-				04801E9F1BB3CCDB00714CC9 /* AVPlayerManager.h */,
-				04801E871BB3CBDA00714CC9 /* QHCommonUtil.h */,
 			);
 			name = UITool;
-			sourceTree = "<group>";
-		};
-		04D9A5DD1BB3D463006D7B8A /* ZipArchive */ = {
-			isa = PBXGroup;
-			children = (
-				04D9A5DF1BB3D4A7006D7B8A /* ZipArchive.h */,
-				04D9A5E01BB3D4A7006D7B8A /* ZipArchive.mm */,
-				04D9A5DE1BB3D482006D7B8A /* minizip */,
-			);
-			name = ZipArchive;
-			sourceTree = "<group>";
-		};
-		04D9A5DE1BB3D482006D7B8A /* minizip */ = {
-			isa = PBXGroup;
-			children = (
-				04D9A5EC1BB3D535006D7B8A /* ioapi.c */,
-				04D9A5ED1BB3D535006D7B8A /* ioapi.h */,
-				04D9A5E21BB3D510006D7B8A /* crypt.h */,
-				04D9A5E31BB3D510006D7B8A /* mztools.c */,
-				04D9A5E41BB3D510006D7B8A /* mztools.h */,
-				04D9A5E51BB3D510006D7B8A /* unzip.c */,
-				04D9A5E61BB3D510006D7B8A /* unzip.h */,
-				04D9A5E71BB3D510006D7B8A /* zip.c */,
-				04D9A5E81BB3D510006D7B8A /* zip.h */,
-			);
-			name = minizip;
 			sourceTree = "<group>";
 		};
 		04D9A6431BB3DBE2006D7B8A /* PersonCenter */ = {
@@ -2500,7 +2414,6 @@
 				04801F591BB3CF7C00714CC9 /* AccountCollectionViewCell.m in Sources */,
 				04D9A6311BB3D8DA006D7B8A /* SystemMessageViewController.m in Sources */,
 				04D9A62E1BB3D8DA006D7B8A /* RegisterViewController.m in Sources */,
-				04801E951BB3CC3600714CC9 /* MHTabBarController.m in Sources */,
 				3E732CA61C1045F900B03054 /* ApiXml.mm in Sources */,
 				04D9A6321BB3D8DA006D7B8A /* UserMessageViewController.m in Sources */,
 				044FFDA31BCE476C00F74AE9 /* RsaFactory.m in Sources */,
@@ -2512,7 +2425,6 @@
 				04DBE4DA1BD741650032939E /* NSString+File.m in Sources */,
 				04801E5C1BB3C98E00714CC9 /* MenuConfig.m in Sources */,
 				3E6A758F1BEC68DD00113360 /* RSADataVerifier.m in Sources */,
-				04801EA01BB3CCDB00714CC9 /* AVPlayerDemoPlaybackView.m in Sources */,
 				04801F601BB3CFCD00714CC9 /* PersonCenterTableViewCell.m in Sources */,
 				3E9589CE1C082D8E00307DED /* CommunityVideoViewController.m in Sources */,
 				0448B1FF1BB5093D00DBE65C /* UIView+MGBadgeView.m in Sources */,
@@ -2520,7 +2432,6 @@
 				04801F6C1BB3D08300714CC9 /* AlarmMessageTableViewCell.m in Sources */,
 				3EFABCC61BF57B090017D697 /* NSDate+Utils.m in Sources */,
 				04DBE4E41BD77C320032939E /* AlarmMessageModel.m in Sources */,
-				04D9A5EA1BB3D510006D7B8A /* unzip.c in Sources */,
 				04801E311BB3C15C00714CC9 /* AnFang.xcdatamodeld in Sources */,
 				04DBE4DD1BD741A00032939E /* CoreArchive.m in Sources */,
 				0448B1FB1BB4ED6E00DBE65C /* RDVTabBarItem.m in Sources */,
@@ -2561,19 +2472,15 @@
 				04801E6D1BB3CABB00714CC9 /* PopoverView.m in Sources */,
 				3E6A75921BEC690000113360 /* base64.m in Sources */,
 				3E838D741C0EB20400AFACAE /* ShangMengClassModel.m in Sources */,
-				04801EA31BB3CD0500714CC9 /* GradientButton.m in Sources */,
 				04D9A6271BB3D8DA006D7B8A /* MenuSelectViewController.m in Sources */,
 				04801E341BB3C15C00714CC9 /* ViewController.m in Sources */,
-				04801E8C1BB3CBDA00714CC9 /* QHConfiguredObj.m in Sources */,
 				04DEDA0A1BE0740900116789 /* FSVoiceBubble.m in Sources */,
 				3E7152691C02A1CD002AF67F /* PublicSourceItemViewController.m in Sources */,
 				04AEFF671BB51FB8004634A8 /* Order.m in Sources */,
 				04801E7A1BB3CB3D00714CC9 /* AnFangTabBar.m in Sources */,
 				04D9A62A1BB3D8DA006D7B8A /* NeedHelpViewController.m in Sources */,
-				04D9A5E91BB3D510006D7B8A /* mztools.c in Sources */,
 				04801E921BB3CC0600714CC9 /* UIView+KGViewExtend.m in Sources */,
 				044A828F1BC612F6009304F7 /* JSONKit.m in Sources */,
-				04801E8B1BB3CBDA00714CC9 /* QHCommonUtil.m in Sources */,
 				04801F681BB3D04700714CC9 /* VideoTableViewCell.m in Sources */,
 				04D9A5F11BB3D78A006D7B8A /* AccountCenterViewController.m in Sources */,
 				04801E2B1BB3C15C00714CC9 /* main.m in Sources */,
@@ -2595,7 +2502,6 @@
 				04801E571BB3C8ED00714CC9 /* PublicVideoSource.m in Sources */,
 				3E89D1C71C1576410083CDB0 /* CommunityViewController.m in Sources */,
 				04DBE4E01BD75F490032939E /* WGUserInfo.m in Sources */,
-				04D9A5EE1BB3D535006D7B8A /* ioapi.c in Sources */,
 				04801E731BB3CAFD00714CC9 /* VideoListTabBar.m in Sources */,
 				04DEDA391BE0E26800116789 /* SDRefreshHeaderView.m in Sources */,
 				04D9A62F1BB3D8DA006D7B8A /* SecuritySystemViewController.m in Sources */,
@@ -2603,12 +2509,10 @@
 				04801E911BB3CC0600714CC9 /* UIColor+Extensions.m in Sources */,
 				3E6A758A1BEC68DD00113360 /* DataVerifier.m in Sources */,
 				3E6A75E41BEC810600113360 /* CLLocation+YCLocation.m in Sources */,
-				04D9A5EB1BB3D510006D7B8A /* zip.c in Sources */,
 				3E6A75891BEC68DD00113360 /* DataSigner.m in Sources */,
 				3E9589D51C08319500307DED /* LMContainsLMComboxScrollView.m in Sources */,
 				3E0D5E391C1591AF0004FC7F /* SchoolClassModel.m in Sources */,
 				3E9589D41C08319500307DED /* LMComBoxView.m in Sources */,
-				04D9A5E11BB3D4A7006D7B8A /* ZipArchive.mm in Sources */,
 				04801F641BB3D00600714CC9 /* PublicVideoCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

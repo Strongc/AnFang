@@ -15,5 +15,6 @@
 @property (nonatomic, copy)   NSString *serverAddress;
 @property (nonatomic, strong) CMSPInfo *mspInfo;
 @property (nonatomic, copy) NSString *cameraId;
+@property (nonatomic, copy) NSString *permissionCode;
 
 @end

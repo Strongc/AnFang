@@ -64,7 +64,8 @@
 #define API_GETHELPINFO @"help/page"
 //获取区域列表
 #define API_GETREGION @"area/getRegionList"
-
+//获取视频的观看权限
+#define API_GETVIDEOPOWER @"camera/getAurth"
 
 typedef enum{
 

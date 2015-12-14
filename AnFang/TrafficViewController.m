@@ -84,76 +84,6 @@
     return _classData;
 }
 
-
-//-(NSMutableArray *)_getAllStreetArray
-//{
-//    int regionId = self.regionId.intValue;
-//    VMSNetSDK *vmNetSDK = [VMSNetSDK shareInstance];
-//    streetArray = [NSMutableArray array];
-//    NSMutableArray *tempArray = [NSMutableArray array];
-//    videoArray = [NSMutableArray array];
-//    //获取区域下的区域
-//    [vmNetSDK getRegionListFromRegion:_serverAddress toSessionID:_mspInfo.sessionID toRegionID:regionId toNumPerOnce:60 toCurPage:1 toRegionList:tempArray];
-//    [streetArray addObjectsFromArray:tempArray];
-////        for(int i=0;i<streetArray.count;i++){
-////    
-////            CRegionInfo *regionInfo = streetArray[i];
-////                //[_allCameraRegionId addObject:regionInfo];
-////            NSMutableArray *tempVillageArray = [self _getAllVideoInSection:regionInfo.regionID];
-////            [villageArray addObject:tempVillageArray];
-////    
-////        }
-//    //    for(int i=0;i<villageArray.count;i++){
-//    //        CRegionInfo *regionInfo = villageArray[i];
-//    //        //[_allCameraRegionId addObject:regionInfo];
-//    //        NSMutableArray *tempVideoArray = [self _getAllVideoInSection:regionInfo.regionID];
-//    //        [videoArray addObject:tempVideoArray];
-//    //
-//    //    }
-//    
-//    [tempArray removeAllObjects];
-//    
-//    //获取区域下的设备
-//    [vmNetSDK getCameraListFromRegion:_serverAddress toSessionID:_mspInfo.sessionID toRegionID:regionId toNumPerOnce:60 toCurPage:1 toCameraList:tempArray];
-//    [streetArray addObjectsFromArray:tempArray];
-//    
-//    [tempArray removeAllObjects];
-//    
-//    return streetArray;
-//}
-
-//-(NSMutableArray *)_getAllVideoInSection:(int)regionId
-//{
-//    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
-//    villageArray = [NSMutableArray array];
-//    NSMutableArray *tempArray = [NSMutableArray array];
-//    self.serverAddress = _serverAddress;
-//    self.mspInfo = _mspInfo;
-//    //获取区域下的区域
-//    [vmsNetSDK getRegionListFromRegion:_serverAddress
-//                           toSessionID:_mspInfo.sessionID
-//                            toRegionID:regionId
-//                          toNumPerOnce:50
-//                             toCurPage:1
-//                          toRegionList:tempArray];
-//    [villageArray addObjectsFromArray:tempArray];
-//    [tempArray removeAllObjects];
-//    
-//    //获取区域下的设备
-//    [vmsNetSDK getCameraListFromRegion:_serverAddress
-//                           toSessionID:_mspInfo.sessionID
-//                            toRegionID:regionId
-//                          toNumPerOnce:50
-//                             toCurPage:1
-//                          toCameraList:tempArray];
-//    [villageArray addObjectsFromArray:tempArray];
-//    [tempArray removeAllObjects];
-//    
-//    return villageArray;
-//    
-//}
-
-
 -(void)viewWillAppear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hideHUD" object:nil];
@@ -299,16 +229,17 @@
     [self.roadVideoList registerClass:[RecommendVideoCell class] forCellWithReuseIdentifier:@"cell1"];
     [self.view addSubview:self.roadVideoList];
     self.roadVideoList.backgroundColor = [UIColor colorWithHexString:@"efefef"];
-#pragma mark -- 头尾部大小设置
-    //设置头部并给定大小
-   // [flowLayout setHeaderReferenceSize:CGSizeMake(self.campusVideoView.frame.size.width, 40)];
-#pragma mark -- 注册头部视图
-    //[self.campusVideoView registerClass:[PublicHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
-
 
     // Do any additional setup after loading the view.
 }
 
+/**
+ *  根据区域Id获取下一级区域列表
+ *
+ *  @param regionId 上一级区域Id
+ *
+ *  @return 下一级区域列表
+ */
 -(NSMutableArray *)getRegionInfo:(NSString *)regionId
 {
     NSString *str = @"regionId=";
@@ -618,6 +549,9 @@
     return YES;
 }
 
+/**
+ *  跳转到搜索界面
+ */
 -(void)jumpToMoreTrafficVideoView
 {
     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

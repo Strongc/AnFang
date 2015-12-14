@@ -172,29 +172,6 @@
 
 }
 
-//- (void)initData
-//{
-//    __async_opt__, ^
-//    {
-//        _arData = [[NSMutableArray alloc] init];
-//        
-//        NSArray *ar1 = @[@"好友动态"];
-//        NSArray *ar2 = @[@"游戏", @"福利", @"阅读"];
-//        NSArray *ar3 = @[@"文件/照片 助手", @"吃喝玩乐", @"扫一扫", @"热门活动", @"腾讯新闻"];
-//        NSArray *ar4 = @[@"附近的人", @"附近的群", @"兴趣部落"];
-//        
-//        [_arData addObject:ar1];
-//        [_arData addObject:ar2];
-//        [_arData addObject:ar3];
-//        [_arData addObject:ar4];
-//        
-//        __async_main__, ^
-//        {
-//            [personTable reloadData];
-//        });
-//    });
-//}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -217,15 +194,13 @@
     }
     
     return optionImage2.count;
-    
-    
+
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     static NSString *reuseIdentifier = @"cell";
-    
     PersonCenterTableViewCell *cell =(PersonCenterTableViewCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
 
     if (cell == nil) {
@@ -243,8 +218,7 @@
         cell.cellTitle.text = [optionTitle2 objectAtIndex:indexPath.row];
 
     }
-  
-    
+
     return cell;
 }
 
@@ -316,8 +290,6 @@
     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     AccountCenterViewController *accountView = [mainView instantiateViewControllerWithIdentifier:@"accountCenterId"];
     [self.navigationController pushViewController:accountView animated:YES];
-
-
 
 }
 

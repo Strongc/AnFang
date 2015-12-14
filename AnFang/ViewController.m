@@ -10,7 +10,6 @@
 #import "UIColor+Extensions.h"
 #import "UIView+KGViewExtend.h"
 #import "Common.h"
-#import "GradientButton.h"
 #import "MenuTabBarViewController.h"
 //#import "RSA.h"
 #import "JSONKit.h"
@@ -40,35 +39,16 @@
 
 @implementation ViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //infoData= [[NSMutableData alloc] init];
-//    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
-//    headView.backgroundColor = [UIColor colorWithHexString:@"ce7031"];
-//    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, WIDTH, 50*HEIGHT/667)];
-//    title.textAlignment = NSTextAlignmentCenter;
-//    title.text = @"登录";
-//    title.font = [UIFont fontWithName:@"MicrosoftYaHei" size:24];
-//    //title.textColor = [UIColor colorWithHexString:@"ffffff"];
-//    [headView addSubview:title];
-//    [self.view addSubview:headView];
-    //[self.view setBackgroundColor:[UIColor colorWithHexString:@"fafafa"]];
-//    UIImageView *backGroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-64)];
-//    [self.view addSubview:backGroundImage];
-//    backGroundImage.image = [UIImage imageNamed:@"loginBackGround"];
     self.view.backgroundColor = [UIColor colorWithHexString:@"040818"];
     UIImageView *logoImage = [[UIImageView alloc] initWithFrame:CGRectMake((WIDTH-80)/2, 180, 80, 80)];
     [self.view addSubview:logoImage];
     logoImage.image = [UIImage imageNamed:@"logo"];
     
     inputView = [[UIView alloc] initWithFrame:CGRectMake(0, (64+250)*HEIGHT/667, self.view.width, 91)];
-    //inputView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:inputView];
-    
-//    UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 1)];
-//    line1.backgroundColor = [UIColor colorWithHexString:@"ededed"];
-    //[inputView addSubview:line1];
-    
     UILabel *nameTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 48, 50)];
     [inputView addSubview:nameTitle];
     nameTitle.textAlignment = NSTextAlignmentCenter;
@@ -118,11 +98,6 @@
     
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(keyBoardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
-
-//    UIBarButtonItem *item = [[UIBarButtonItem alloc] init];
-//    item.title = @"返回";
-//    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];//设置导航栏返回按钮及文字背景颜色
-//    self.navigationItem.backBarButtonItem = item;
     userInfoArray = [[NSMutableArray alloc]init];
     
     // Do any additional setup after loading the view, typically from a nib.
@@ -211,7 +186,7 @@
      NSString *userName = name.text;
     [CoreArchive setStr:userName key:@"name"];
     self.navigationController.navigationBarHidden = YES;
-    //[self getUserInfo];
+    [self getUserInfo];
     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     MenuTabBarViewController *menuTab = [mainView instantiateViewControllerWithIdentifier:@"menuTabBar"];
     [self.navigationController pushViewController:menuTab animated:YES];

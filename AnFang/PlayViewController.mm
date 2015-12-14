@@ -15,6 +15,10 @@
 #import "Common.h"
 #import "UIColor+Extensions.h"
 #import "MenuTabBarViewController.h"
+#import "CoreArchive.h"
+#import "CMTool.h"
+#import "WGAPI.h"
+#import "RechargeViewController.h"
 
 static void *_vpHandle = NULL;
 
@@ -75,13 +79,45 @@ static void *_vpHandle = NULL;
     [navView addSubview:self.backBtn];
 
     [self initViewControllerData];
-    
+    [self getVideoPermission];
 
     // Do any additional setup after loading the view from its nib.
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+-(void)getVideoPermission
+{
+    NSString *userId = [CoreArchive strForKey:@"userId"];
+    NSLog(@"用户ID  %@",userId);
+    NSDictionary *params = @{@"cam_param":self.cameraId,
+                             @"usr_id":userId
+                             };
+    NSString *paramsStr = [CMTool dictionaryToJson:params];
+    NSString *str = @"camera=";
+    NSString *paramStr = [str stringByAppendingString:paramsStr];
+    [WGAPI post:API_GETVIDEOPOWER RequestParams:paramStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if(data){
+            NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
+            NSLog(@"%@",jsonStr);
+            if(infojson != nil){
+              _permissionCode  = [infojson objectForKey:@"msg"];
+                
+            }
+            [self performSelectorOnMainThread:@selector(saveData) withObject:data waitUntilDone:YES];
+            
+        }
+    }];
 
+}
+
+-(void)saveData
+{
+    [CoreArchive setStr:_permissionCode key:@"code"];
+
+}
+
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     
     return YES;
@@ -419,6 +455,15 @@ void StatusCallBack(PLAY_STATE playState, VP_HANDLE hLogin, void *pHandl)
 #pragma mark - Preview
 - (void)playAction:(UIButton *)sender {
 
+    NSString *permissionCode = [CoreArchive strForKey:@"code"];
+    if([permissionCode isEqualToString:@"fail"]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"没有权限观看此视频，请充值"
+                                                           delegate:self cancelButtonTitle:@"确定"
+                                                  otherButtonTitles:@"取消", nil];
+        [alertView show];
+        return;
+    }
     NSLog(@"播放码 %@",self.cameraId);
     //获取播放地址
     VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
@@ -782,12 +827,36 @@ void StatusCallBack(PLAY_STATE playState, VP_HANDLE hLogin, void *pHandl)
         NSLog(@"not playing");
         return;
     }
-    
     // 结束录像
     if (!VP_StopRecord(_vpHandle))
     {
         NSLog(@"VP_StopRecord failed");
     }
+}
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex){
+        case 0:
+            [self jumpToRechargeView];
+            break;
+            
+        case 1:
+            NSLog(@"%ld",(long)buttonIndex);
+            break;
+        default:
+            break;
+    }
+    
+}
+
+-(void)jumpToRechargeView
+{
+
+    UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RechargeViewController *accountView = [mainView instantiateViewControllerWithIdentifier:@"rechargeViewId"];
+    [self.navigationController pushViewController:accountView animated:YES];
+
 }
 
 @end

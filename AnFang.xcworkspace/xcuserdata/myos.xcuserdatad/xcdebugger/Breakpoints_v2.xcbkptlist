@@ -1165,7 +1165,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "255"
             endingLineNumber = "255"
-            landmarkName = "-getNextAreaById"
+            landmarkName = "-refreshData"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1213,7 +1213,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "290"
             endingLineNumber = "290"
-            landmarkName = "-refreshData"
+            landmarkName = "-prepareScollView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1229,7 +1229,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "285"
             endingLineNumber = "285"
-            landmarkName = "-getRegionInfo:"
+            landmarkName = "-prepareScollView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1245,7 +1245,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "207"
             endingLineNumber = "207"
-            landmarkName = "-viewDidLoad"
+            landmarkName = "-getNextAreaById"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1277,7 +1277,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "531"
             endingLineNumber = "531"
-            landmarkName = "-selectAtIndex:inCombox:"
+            landmarkName = "-jumpToVideoListView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1293,7 +1293,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "252"
             endingLineNumber = "252"
-            landmarkName = "-getNextAreaById"
+            landmarkName = "-refreshData"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1309,7 +1309,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "287"
             endingLineNumber = "287"
-            landmarkName = "-refreshData"
+            landmarkName = "-prepareScollView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1325,7 +1325,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "522"
             endingLineNumber = "522"
-            landmarkName = "-selectAtIndex:inCombox:"
+            landmarkName = "-jumpToVideoListView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1341,7 +1341,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "549"
             endingLineNumber = "549"
-            landmarkName = "-selectAtIndex:inCombox:"
+            landmarkName = "-refreshComBoxData"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1357,7 +1357,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "550"
             endingLineNumber = "550"
-            landmarkName = "-selectAtIndex:inCombox:"
+            landmarkName = "-refreshComBoxData"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1373,7 +1373,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "625"
             endingLineNumber = "625"
-            landmarkName = "-collectionView:numberOfItemsInSection:"
+            landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1389,7 +1389,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "288"
             endingLineNumber = "288"
-            landmarkName = "-refreshData"
+            landmarkName = "-prepareScollView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1404,9 +1404,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "724"
-            endingLineNumber = "724"
-            landmarkName = "-jumpToSheQuVideo:"
-            landmarkType = "5">
+            endingLineNumber = "724">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1421,7 +1419,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "627"
             endingLineNumber = "627"
-            landmarkName = "-collectionView:numberOfItemsInSection:"
+            landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1437,7 +1435,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "671"
             endingLineNumber = "671"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
+            landmarkName = "-jumpToSheQuVideo:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1453,7 +1451,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "247"
             endingLineNumber = "247"
-            landmarkName = "-getNextAreaById"
+            landmarkName = "-refreshData"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1597,7 +1595,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "215"
             endingLineNumber = "215"
-            landmarkName = "-viewDidLoad"
+            landmarkName = "-getNextAreaById"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1613,7 +1611,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "208"
             endingLineNumber = "208"
-            landmarkName = "-viewDidLoad"
+            landmarkName = "-getNextAreaById"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1645,7 +1643,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "211"
             endingLineNumber = "211"
-            landmarkName = "-viewDidLoad"
+            landmarkName = "-getNextAreaById"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1661,7 +1659,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "667"
             endingLineNumber = "667"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
+            landmarkName = "-jumpToSheQuVideo:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1869,7 +1867,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "275"
             endingLineNumber = "275"
-            landmarkName = "-getRegionInfo:"
+            landmarkName = "-initCollectionView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1885,7 +1883,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "219"
             endingLineNumber = "219"
-            landmarkName = "-viewDidLoad"
+            landmarkName = "-getRegionInfo:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1917,7 +1915,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "258"
             endingLineNumber = "258"
-            landmarkName = "-getNextAreaById"
+            landmarkName = "-refreshData"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
