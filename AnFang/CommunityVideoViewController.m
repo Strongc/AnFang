@@ -120,8 +120,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //_serverAddress = @"http://112.12.17.3";
-   // VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
+    _serverAddress = @"http://112.12.17.3";
+    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
     streetArray = [[NSMutableArray alloc]init];
     videoArrays = [[NSMutableArray alloc]init];
     tempVideoArrays = [[NSMutableArray alloc] init];
@@ -133,14 +133,13 @@
     videoBackImageArray2 = [[NSMutableArray alloc] init];
     villageArray = [NSMutableArray array];
     videoArray = [NSMutableArray array];
-    //_lineList = [NSMutableArray array];
-    //_mspInfo = [[CMSPInfo alloc]init];
+    _lineList = [NSMutableArray array];
+    _mspInfo = [[CMSPInfo alloc]init];
     villageNameArray = [NSMutableArray array];
     streetNameList = [NSMutableArray array];
-    //scaleOfList = 3;
-//    BOOL result = [vmsNetSDK getLineList:_serverAddress toLineInfoList:_lineList];
-//    _selectedLineID = 2;
-//    
+   // BOOL result = [vmsNetSDK getLineList:_serverAddress toLineInfoList:_lineList];
+    _selectedLineID = 2;
+    
 //    if (NO == result) {
 //        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
 //                                                            message:@"获取线路失败"
@@ -149,16 +148,16 @@
 //        [alertView show];
 //        return;
 //    }
-//    
-//    BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"dbwl" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
-//    if (NO == result1) {
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
-//                                                            message:@"登录失败"
-//                                                           delegate:nil cancelButtonTitle:@"好"
-//                                                  otherButtonTitles:nil, nil];
-//        [alertView show];
-//        return;
-//    }
+    
+    BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"dbwl" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
+    if (NO == result1) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"登录失败"
+                                                           delegate:nil cancelButtonTitle:@"好"
+                                                  otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
 
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
     headView.backgroundColor = [UIColor colorWithHexString:@"dfdfdf"];
@@ -231,7 +230,7 @@
     [self initCollectionView];
     [self prepareScollView];
     [self preparePageView];
-    videoScrollView = [[LMContainsLMComboxScrollView alloc]initWithFrame:CGRectMake(0, 64, WIDTH-100, 200)];
+    videoScrollView = [[LMContainsLMComboxScrollView alloc]initWithFrame:CGRectMake(0, 64, WIDTH-95*HEIGHT/667, 200)];
     videoScrollView.backgroundColor = [UIColor clearColor];
     videoScrollView.showsVerticalScrollIndicator = NO;
     videoScrollView.showsHorizontalScrollIndicator = NO;
@@ -241,6 +240,9 @@
     // Do any additional setup after loading the view.
 }
 
+/**
+ *  通过区域Id 获取区域列表
+ */
 -(void)getNextAreaById
 {
     NSString *str = @"regionId=";
@@ -285,18 +287,26 @@
 -(void)refreshData
 {
     NSMutableArray *tempNameArray = [NSMutableArray array];
-    for(NSDictionary *dict in streetArray){
-        [LMComBoxArray addObject:dict];
-        NSString *areaId = [dict objectForKey:@"areaId"];
-        [tempNameArray addObject:areaId];
+    if(streetArray.count > 0){
+        for(NSDictionary *dict in streetArray){
+            [LMComBoxArray addObject:dict];
+            NSString *areaId = [dict objectForKey:@"areaId"];
+            [tempNameArray addObject:areaId];
+        }
+        streetNameArray = [NSMutableArray arrayWithArray:tempNameArray];
+        LMComBoxView* comBox1 = [self.view viewWithTag:kDropDownListTag];
+        comBox1.titlesList = [NSMutableArray arrayWithArray:LMComBoxArray];
+        [comBox1 defaultSettings];
+        [self selectAtIndex:0 inCombox:comBox1];
+
+    }else{
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"获取数据失败，网络异常！"
+                                                           delegate:nil cancelButtonTitle:@"好"
+                                                  otherButtonTitles:nil, nil];
+        [alertView show];
+    
     }
-    streetNameArray = [NSMutableArray arrayWithArray:tempNameArray];
-    LMComBoxView* comBox1 = [self.view viewWithTag:kDropDownListTag];
-    comBox1.titlesList = [NSMutableArray arrayWithArray:LMComBoxArray];
-    [comBox1 defaultSettings];
-    
-    [self selectAtIndex:0 inCombox:comBox1];
-    
 }
 
 -(void)initCollectionView

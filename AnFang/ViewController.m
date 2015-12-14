@@ -61,7 +61,7 @@
     [self.view addSubview:logoImage];
     logoImage.image = [UIImage imageNamed:@"logo"];
     
-    inputView = [[UIView alloc] initWithFrame:CGRectMake(0, (64+240), self.view.width, 101)];
+    inputView = [[UIView alloc] initWithFrame:CGRectMake(0, (64+250)*HEIGHT/667, self.view.width, 91)];
     //inputView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:inputView];
     

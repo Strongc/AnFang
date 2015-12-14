@@ -171,17 +171,16 @@
     [headView addSubview:title];
     [self.view addSubview:headView];
     self.view.backgroundColor = [UIColor colorWithHexString:@"efefef"];
-   // [self getFirstRegionInfo];
     [self initConfigControl];
     [self mainRegionData];
     [self recommendVideoData];
-//    _serverAddress = @"http://112.12.17.3";
-//    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
-//    _lineList = [NSMutableArray array];
-//    _mspInfo = [[CMSPInfo alloc]init];
-//    BOOL result = [vmsNetSDK getLineList:_serverAddress toLineInfoList:_lineList];
-//    _selectedLineID = 2;
-//    
+    _serverAddress = @"http://112.12.17.3";
+    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
+    _lineList = [NSMutableArray array];
+    _mspInfo = [[CMSPInfo alloc]init];
+    //BOOL result = [vmsNetSDK getLineList:_serverAddress toLineInfoList:_lineList];
+    _selectedLineID = 2;
+    
 //    if (NO == result) {
 //        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
 //                                                            message:@"获取线路失败"
@@ -190,16 +189,16 @@
 //        [alertView show];
 //        return;
 //    }
-//    
-//    BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"dbwl" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
-//    if (NO == result1) {
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
-//                                                            message:@"登录失败"
-//                                                           delegate:nil cancelButtonTitle:@"好"
-//                                                  otherButtonTitles:nil, nil];
-//        [alertView show];
-//        return;
-//    }
+    
+    BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"dbwl" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
+    if (NO == result1) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"登录失败"
+                                                           delegate:nil cancelButtonTitle:@"好"
+                                                  otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showProgressHUD) name:@"showHUD" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideProgressHUD) name:@"hideHUD" object:nil];
@@ -210,43 +209,14 @@
     // Do any additional setup after loading the view.
 }
 
--(void)getFirstRegionInfo
-{
-    //NSString *paramsStr = [CMTool dictionaryToJson:params];
-    NSString *str = @"regionId=";
-    NSString *paramStr = [str stringByAppendingString:@"0"];
-    
-    [WGAPI post:API_GETREGION RequestParams:paramStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        if(data){
-            NSString *json =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:json];
-            if(infojson != nil){
-            
-                NSMutableArray *tempArray = [infojson objectForKey:@"data"];
-                for(NSDictionary *dict in tempArray){
-                    
-                    PublicVideoClassModel *model = [PublicVideoClassModel publicVideoClassModel:dict];
-                    [self.dataArray addObject:model];
-                }
-            }
-            
-             [self performSelectorOnMainThread:@selector(refreshData) withObject:data waitUntilDone:YES];
-        }
-    }];
-
-
-}
-
 -(void)refreshData
 {
-    //[SVProgressHUD showSuccessWithStatus:@"加载完成！" maskType:SVProgressHUDMaskTypeBlack];
     [videoClass reloadData];
 }
 
 -(void)showProgressHUD
 {
     [SVProgressHUD showWithStatus:@"加载中..."];
-    //[self.view addSubview:svP];
 }
 
 -(void)hideProgressHUD
@@ -284,7 +254,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self getFirstRegionInfo];
+   //[self getFirstRegionInfo];
     UITableViewCell *cell;
     if(indexPath.section == 0){
     

@@ -554,11 +554,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/PublicSourceClassViewController.m"
-            timestampString = "471492039.226551"
+            timestampString = "471766914.946817"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "287"
-            endingLineNumber = "287"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -570,11 +570,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/PublicSourceClassViewController.m"
-            timestampString = "471492039.226551"
+            timestampString = "471766914.946817"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
+            startingLineNumber = "369"
+            endingLineNumber = "369"
             landmarkName = "-jumpToItemVideo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -602,11 +602,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/PublicSourceClassViewController.m"
-            timestampString = "471492039.226551"
+            timestampString = "471766914.946817"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
+            startingLineNumber = "369"
+            endingLineNumber = "369"
             landmarkName = "-jumpToItemVideo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -890,11 +890,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/PublicSourceClassViewController.m"
-            timestampString = "471492039.226551"
+            timestampString = "471766914.946817"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "397"
-            endingLineNumber = "397"
+            startingLineNumber = "367"
+            endingLineNumber = "367"
             landmarkName = "-jumpToItemVideo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -906,11 +906,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/PublicSourceClassViewController.m"
-            timestampString = "471492039.226551"
+            timestampString = "471766914.946817"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "396"
-            endingLineNumber = "396"
+            startingLineNumber = "366"
+            endingLineNumber = "366"
             landmarkName = "-jumpToItemVideo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1048,11 +1048,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/PublicSourceClassViewController.m"
-            timestampString = "471492039.226551"
+            timestampString = "471763106.903354"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -1080,28 +1080,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/PublicSourceClassViewController.m"
-            timestampString = "471492039.226551"
+            timestampString = "471766914.946817"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "323"
-            endingLineNumber = "323"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AnFang/PublicSourceClassViewController.m"
-            timestampString = "471492039.226551"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
-            landmarkName = "-getFirstRegionInfo"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1144,11 +1128,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/PublicSourceClassViewController.m"
-            timestampString = "471492039.226551"
+            timestampString = "471766914.946817"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "321"
-            endingLineNumber = "321"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1160,11 +1144,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/PublicSourceClassViewController.m"
-            timestampString = "471492039.226551"
+            timestampString = "471766914.946817"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "305"
-            endingLineNumber = "305"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1176,11 +1160,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/CommunityVideoViewController.m"
-            timestampString = "471513049.69419"
+            timestampString = "471762282.764135"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "256"
-            endingLineNumber = "256"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
             landmarkName = "-getNextAreaById"
             landmarkType = "5">
          </BreakpointContent>
@@ -1208,11 +1192,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/CommunityVideoViewController.m"
-            timestampString = "471515269.073341"
+            timestampString = "471767416.542143"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "490"
-            endingLineNumber = "490"
+            startingLineNumber = "497"
+            endingLineNumber = "497"
             landmarkName = "-selectAtIndex:inCombox:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1224,7 +1208,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/CommunityVideoViewController.m"
-            timestampString = "471513049.69419"
+            timestampString = "471767276.624363"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "290"
@@ -1240,12 +1224,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/CommunityVideoViewController.m"
-            timestampString = "471513049.69419"
+            timestampString = "471762282.764135"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
-            landmarkName = "-refreshData"
+            startingLineNumber = "285"
+            endingLineNumber = "285"
+            landmarkName = "-getRegionInfo:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1256,11 +1240,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/CommunityVideoViewController.m"
-            timestampString = "471502578.636416"
+            timestampString = "471762282.764135"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -1288,11 +1272,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/CommunityVideoViewController.m"
-            timestampString = "471515269.073341"
+            timestampString = "471767416.542143"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "524"
-            endingLineNumber = "524"
+            startingLineNumber = "531"
+            endingLineNumber = "531"
             landmarkName = "-selectAtIndex:inCombox:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1304,11 +1288,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/CommunityVideoViewController.m"
-            timestampString = "471513049.69419"
+            timestampString = "471762282.764135"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
             landmarkName = "-getNextAreaById"
             landmarkType = "5">
          </BreakpointContent>
@@ -1320,7 +1304,87 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/CommunityVideoViewController.m"
-            timestampString = "471513049.69419"
+            timestampString = "471762282.764135"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "287"
+            endingLineNumber = "287"
+            landmarkName = "-refreshData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/CommunityVideoViewController.m"
+            timestampString = "471767416.542143"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "522"
+            endingLineNumber = "522"
+            landmarkName = "-selectAtIndex:inCombox:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/CommunityVideoViewController.m"
+            timestampString = "471767416.542143"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "549"
+            endingLineNumber = "549"
+            landmarkName = "-selectAtIndex:inCombox:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/CommunityVideoViewController.m"
+            timestampString = "471767416.542143"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "550"
+            endingLineNumber = "550"
+            landmarkName = "-selectAtIndex:inCombox:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/CommunityVideoViewController.m"
+            timestampString = "471767416.542143"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "625"
+            endingLineNumber = "625"
+            landmarkName = "-collectionView:numberOfItemsInSection:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/CommunityVideoViewController.m"
+            timestampString = "471762282.764135"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "288"
@@ -1336,91 +1400,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/CommunityVideoViewController.m"
-            timestampString = "471515269.073341"
+            timestampString = "471767416.542143"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "515"
-            endingLineNumber = "515"
-            landmarkName = "-selectAtIndex:inCombox:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AnFang/CommunityVideoViewController.m"
-            timestampString = "471515269.073341"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "542"
-            endingLineNumber = "542"
-            landmarkName = "-selectAtIndex:inCombox:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AnFang/CommunityVideoViewController.m"
-            timestampString = "471515269.073341"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "543"
-            endingLineNumber = "543"
-            landmarkName = "-selectAtIndex:inCombox:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AnFang/CommunityVideoViewController.m"
-            timestampString = "471515269.073341"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "618"
-            endingLineNumber = "618"
-            landmarkName = "-collectionView:numberOfItemsInSection:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AnFang/CommunityVideoViewController.m"
-            timestampString = "471513049.69419"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289"
-            landmarkName = "-refreshData"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AnFang/CommunityVideoViewController.m"
-            timestampString = "471515269.073341"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "717"
-            endingLineNumber = "717"
+            startingLineNumber = "724"
+            endingLineNumber = "724"
             landmarkName = "-jumpToSheQuVideo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1432,11 +1416,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/CommunityVideoViewController.m"
-            timestampString = "471515269.073341"
+            timestampString = "471767416.542143"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "620"
-            endingLineNumber = "620"
+            startingLineNumber = "627"
+            endingLineNumber = "627"
             landmarkName = "-collectionView:numberOfItemsInSection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1448,11 +1432,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/CommunityVideoViewController.m"
-            timestampString = "471515269.073341"
+            timestampString = "471767416.542143"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "664"
-            endingLineNumber = "664"
+            startingLineNumber = "671"
+            endingLineNumber = "671"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1464,11 +1448,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/CommunityVideoViewController.m"
-            timestampString = "471513049.69419"
+            timestampString = "471762282.764135"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "248"
-            endingLineNumber = "248"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
             landmarkName = "-getNextAreaById"
             landmarkType = "5">
          </BreakpointContent>
@@ -1496,11 +1480,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/TrafficViewController.m"
-            timestampString = "471510411.166452"
+            timestampString = "471767851.920668"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "356"
-            endingLineNumber = "356"
+            startingLineNumber = "370"
+            endingLineNumber = "370"
             landmarkName = "-refreshData"
             landmarkType = "5">
          </BreakpointContent>
@@ -1544,11 +1528,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/TrafficViewController.m"
-            timestampString = "471510411.166452"
+            timestampString = "471767851.920668"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "560"
-            endingLineNumber = "560"
+            startingLineNumber = "570"
+            endingLineNumber = "570"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1560,11 +1544,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/TrafficViewController.m"
-            timestampString = "471510411.166452"
+            timestampString = "471767851.920668"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "483"
-            endingLineNumber = "483"
+            startingLineNumber = "493"
+            endingLineNumber = "493"
             landmarkName = "-selectAtIndex:inCombox:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1576,11 +1560,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/TrafficViewController.m"
-            timestampString = "471510411.166452"
+            timestampString = "471767851.920668"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "593"
-            endingLineNumber = "593"
+            startingLineNumber = "603"
+            endingLineNumber = "603"
             landmarkName = "-collectionView:didSelectItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1592,11 +1576,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/TrafficViewController.m"
-            timestampString = "471510411.166452"
+            timestampString = "471767851.920668"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "599"
-            endingLineNumber = "599"
+            startingLineNumber = "609"
+            endingLineNumber = "609"
             landmarkName = "-collectionView:didSelectItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1608,11 +1592,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/CommunityVideoViewController.m"
-            timestampString = "471502578.636416"
+            timestampString = "471762282.764135"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -1624,11 +1608,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/CommunityVideoViewController.m"
-            timestampString = "471502578.636416"
+            timestampString = "471762282.764135"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -1640,11 +1624,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/PublicSourceClassViewController.m"
-            timestampString = "471501116.206034"
+            timestampString = "471766914.946817"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "401"
-            endingLineNumber = "401"
+            startingLineNumber = "371"
+            endingLineNumber = "371"
             landmarkName = "-jumpToItemVideo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1656,11 +1640,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/CommunityVideoViewController.m"
-            timestampString = "471502578.636416"
+            timestampString = "471762282.764135"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "212"
-            endingLineNumber = "212"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -1672,11 +1656,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/CommunityVideoViewController.m"
-            timestampString = "471515269.073341"
+            timestampString = "471767416.542143"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "660"
-            endingLineNumber = "660"
+            startingLineNumber = "667"
+            endingLineNumber = "667"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1720,11 +1704,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/TrafficViewController.m"
-            timestampString = "471510411.166452"
+            timestampString = "471767851.920668"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "616"
-            endingLineNumber = "616"
+            startingLineNumber = "626"
+            endingLineNumber = "626"
             landmarkName = "-jumpToMoreTrafficVideoView"
             landmarkType = "5">
          </BreakpointContent>
@@ -1736,11 +1720,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/TrafficViewController.m"
-            timestampString = "471510411.166452"
+            timestampString = "471767851.920668"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "523"
-            endingLineNumber = "523"
+            startingLineNumber = "533"
+            endingLineNumber = "533"
             landmarkName = "-refreshComBoxData"
             landmarkType = "5">
          </BreakpointContent>
@@ -1832,11 +1816,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/TrafficViewController.m"
-            timestampString = "471510411.166452"
+            timestampString = "471767851.920668"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "615"
-            endingLineNumber = "615"
+            startingLineNumber = "625"
+            endingLineNumber = "625"
             landmarkName = "-jumpToMoreTrafficVideoView"
             landmarkType = "5">
          </BreakpointContent>
@@ -1870,6 +1854,70 @@
             startingLineNumber = "128"
             endingLineNumber = "128"
             landmarkName = "-tapAction"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/CommunityVideoViewController.m"
+            timestampString = "471762282.764135"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
+            landmarkName = "-getRegionInfo:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/CommunityVideoViewController.m"
+            timestampString = "471762282.764135"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/VideoListViewController.h"
+            timestampString = "471766423.242838"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "mspInfo"
+            landmarkType = "19">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/CommunityVideoViewController.m"
+            timestampString = "471767046.099114"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
+            landmarkName = "-getNextAreaById"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

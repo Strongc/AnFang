@@ -31,12 +31,17 @@ static void *_vpHandle = NULL;
 @property (strong, nonatomic) UIView *backgroundView;
 
 @end
-
 @implementation PlayViewController {
     CRealPlayURL *_realPlayURL;
     VP_HANDLE _handle;
     BOOL _isPlayBacking;
     CGFloat _startPlayBackTime;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"hideHUD" object:nil];
 }
 
 - (void)viewDidLoad {
@@ -47,8 +52,6 @@ static void *_vpHandle = NULL;
     self.headView.backgroundColor = [UIColor colorWithHexString:@"222121"];
     UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, WIDTH, 44)];
     [self.headView addSubview:navView];
-    //navView.backgroundColor = [UIColor blueColor];
-    
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, WIDTH, 30)];
     title.textAlignment = NSTextAlignmentCenter;
     title.text = @"视频";
@@ -73,7 +76,7 @@ static void *_vpHandle = NULL;
 
     [self initViewControllerData];
     
-    
+
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -196,11 +199,11 @@ static void *_vpHandle = NULL;
 {
     
     self.playView = [[UIView alloc] init];
-    self.playView.frame = CGRectMake(0, 64, WIDTH, 300);
+    self.playView.frame = CGRectMake(0, 64, WIDTH, 300*HEIGHT/667);
     [self.view addSubview:self.playView];
     self.playView.backgroundColor = [UIColor blackColor];
     
-    self.backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 370, WIDTH, 200)];
+    self.backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0,300*HEIGHT/667+70, WIDTH, 200)];
     [self.view addSubview:self.backgroundView];
     self.backgroundView.backgroundColor = [UIColor clearColor];
     
@@ -416,6 +419,7 @@ void StatusCallBack(PLAY_STATE playState, VP_HANDLE hLogin, void *pHandl)
 #pragma mark - Preview
 - (void)playAction:(UIButton *)sender {
 
+    NSLog(@"播放码 %@",self.cameraId);
     //获取播放地址
     VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
     _realPlayURL = [[CRealPlayURL alloc] init];
@@ -529,14 +533,14 @@ void StatusCallBack(PLAY_STATE playState, VP_HANDLE hLogin, void *pHandl)
     NSRange range;
     range.length = 4;
     range.location = 0;
-    stratTime.year = endTime.year = [[startPlayTimeStr substringWithRange:range] integerValue];
+    stratTime.year = endTime.year = (int)[[startPlayTimeStr substringWithRange:range] integerValue];
     
     range.location = 5;
     range.length = 2;
-    stratTime.month = endTime.month = [[startPlayTimeStr substringWithRange:range] integerValue];
+    stratTime.month = endTime.month = (int)[[startPlayTimeStr substringWithRange:range] integerValue];
     
     range.location = 8;
-    stratTime.day = endTime.day = [[startPlayTimeStr substringWithRange:range] integerValue];
+    stratTime.day = endTime.day = (int)[[startPlayTimeStr substringWithRange:range] integerValue];
     
     stratTime.hour = 0;
     stratTime.minute = 0;
@@ -705,7 +709,7 @@ void StatusCallBack(PLAY_STATE playState, VP_HANDLE hLogin, void *pHandl)
         [vmsNetSDK sendStopPTZCmd:_cameraInfo.acsIP
                            toPort:_cameraInfo.acsPort
                       toSessionID:_mspInfo.sessionID
-                       toCameraID:_cameraInfo.cameraID]; //3.0SDK云台控制为UDP方式发送命令
+                       toCameraID:_cameraId]; //3.0SDK云台控制为UDP方式发送命令
     }
 }
 
@@ -714,7 +718,7 @@ void StatusCallBack(PLAY_STATE playState, VP_HANDLE hLogin, void *pHandl)
 {
     // 获取抓图信息
     CaptureInfo *captureInfo = [[CaptureInfo alloc] init];
-    if (![VideoPlayUtility getCaptureInfo:self.cameraInfo.cameraID toCaptureInfo:captureInfo])
+    if (![VideoPlayUtility getCaptureInfo:self.cameraId toCaptureInfo:captureInfo])
     {
         NSLog(@"getCaptureInfo failed");
     }
@@ -741,7 +745,7 @@ void StatusCallBack(PLAY_STATE playState, VP_HANDLE hLogin, void *pHandl)
 {
     // 获取录像信息
     RecordInfo *recordInfo = [[RecordInfo alloc] init];
-    BOOL result = [VideoPlayUtility getRecordInfo:self.cameraInfo.cameraID toRecordInfo:recordInfo];
+    BOOL result = [VideoPlayUtility getRecordInfo:self.cameraId toRecordInfo:recordInfo];
     if (NO == result)
     {
         NSLog(@"getCaptureInfo failed");

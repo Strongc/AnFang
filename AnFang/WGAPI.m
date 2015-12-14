@@ -20,8 +20,8 @@
 
 //NSString *const CMAPIBaseURL=@"http://192.168.0.42:8080/wellgood/base";
 //NSString *const CMAPIBaseURL = @"http://wellgood.tpddns.cn:8080/";
-//NSString *const CMAPIBaseURL = @"http://192.168.0.131:8080/";
-NSString *const CMAPIBaseURL = @"http://121.41.24.19:8080/";
+NSString *const CMAPIBaseURL = @"http://111.1.8.117:8080/";
+//NSString *const CMAPIBaseURL = @"http://121.41.24.19:8080/";
 
 #else
 //NSString *const CMAPIBaseURL=@"http://guanwu.puyuntech.com/yht_api/";
@@ -364,9 +364,8 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
                                            queue:queue
                                completionHandler:block];
 
-
-
 }
+
 
 +(void)post:(NSString *)strUrl RequestParam:(NSData *)data withFileName:(NSString *)fileName FinishBlock:(void (^)(NSURLResponse *, NSData *, NSError *))block
 {

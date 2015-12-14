@@ -10,14 +10,12 @@
 #import "UIColor+Extensions.h"
 #import "Common.h"
 #import "MonitorInfoTableViewCell.h"
-#import "DefenceAreaViewController.h"
-#import "JRPlayerViewController.h"
 #import "WGAPI.h"
 #import "JSONKit.h"
 #import "CMTool.h"
 #import "CameraModel.h"
 //#import "MonitorDevInfoViewController.h"
-#import "DeviceManagerViewController.h"
+//#import "DeviceManagerViewController.h"
 #import "SDRefresh.h"
 #import "CoreArchive.h"
 #import "SVProgressHUD.h"
@@ -153,7 +151,7 @@
     [self.view addSubview:stateBtn];
     //[stateBtn addTarget:self action:@selector(getUserHostInfo) forControlEvents:UIControlEventTouchUpInside];
     
-    stateLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 130*HEIGHT/667,WIDTH-80, 20*HEIGHT/667)];
+    stateLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 130*HEIGHT/667,WIDTH-80, 20)];
     stateLab.text = @"已布防";
     stateLab.textColor = [UIColor whiteColor];
     stateLab.textAlignment = NSTextAlignmentCenter;

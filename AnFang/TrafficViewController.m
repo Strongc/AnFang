@@ -164,7 +164,7 @@
     [super viewDidLoad];
     self.imageArray = [[NSMutableArray alloc]initWithObjects:@"0.png",@"1.png",@"2.png",@"3.png", nil];
     _serverAddress = @"http://112.12.17.3";
-    //VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
+    VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
     streetNameArray = [[NSMutableArray alloc]init];
     villageNameArray = [[NSMutableArray alloc]init];
     LMComBoxArray = [[NSMutableArray alloc]init];
@@ -176,9 +176,8 @@
     streetArray = [NSMutableArray array];
     _lineList = [NSMutableArray array];
     _mspInfo = [[CMSPInfo alloc]init];
+    _selectedLineID = 2;
 //    BOOL result = [vmsNetSDK getLineList:_serverAddress toLineInfoList:_lineList];
-//    _selectedLineID = 2;
-//    
 //    if (NO == result) {
 //        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
 //                                                            message:@"获取线路失败"
@@ -188,15 +187,15 @@
 //        return;
 //    }
 //    
-//    BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"dbwl" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
-//    if (NO == result1) {
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
-//                                                            message:@"登录失败"
-//                                                           delegate:nil cancelButtonTitle:@"好"
-//                                                  otherButtonTitles:nil, nil];
-//        [alertView show];
-//        return;
-//    }
+    BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"dbwl" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
+    if (NO == result1) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"登录失败"
+                                                           delegate:nil cancelButtonTitle:@"好"
+                                                  otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
 
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
     headView.backgroundColor = [UIColor colorWithHexString:@"dfdfdf"];
@@ -353,11 +352,21 @@
 -(void)refreshData
 {
   
-    LMComBoxView* comBox1 = [videoScrollView viewWithTag:kDropDownListTag];
-    comBox1.titlesList = [NSMutableArray arrayWithArray:streetArray];
-    [comBox1 defaultSettings];
-    //[self selectAtIndex:0 inCombox:comBox1];
+    if(streetArray.count > 0){
+        LMComBoxView* comBox1 = [videoScrollView viewWithTag:kDropDownListTag];
+        comBox1.titlesList = [NSMutableArray arrayWithArray:streetArray];
+        [comBox1 defaultSettings];
+        
+    }else{
     
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"获取数据失败，网络异常！"
+                                                           delegate:nil cancelButtonTitle:@"好"
+                                                  otherButtonTitles:nil, nil];
+        [alertView show];
+
+    }
+  
 }
 
 

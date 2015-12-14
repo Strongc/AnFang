@@ -133,7 +133,9 @@
     [self _getAllResources];
     [monitorTable reloadData];
 
-    // [self getAreaInfo];
+    self.videoList = [[NSMutableArray alloc] initWithObjects:@{@"icon":@"003.png",@"indexCode":@"33078304001310016224",@"name":@"camera1"},
+                      @{@"icon":@"005.png",@"indexCode":@"33078304001310015764",@"name":@"camera2"},
+                      @{@"icon":@"007.png",@"indexCode":@"33078304001310015618",@"name":@"camera3"}, nil];
 
     // Do any additional setup after loading the view.
 }
@@ -231,7 +233,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return _allResorceList.count;
+    return self.videoList.count;
     
 }
 
@@ -240,18 +242,15 @@
     
     static NSString *reuseIdentify = @"cell";
     MonitorInfoTableViewCell *cell = (MonitorInfoTableViewCell *)[tableView dequeueReusableCellWithIdentifier:reuseIdentify];
-    
     if(cell == nil){
         
         cell = [[MonitorInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentify];
-        
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.backgroundColor = [UIColor colorWithHexString:@"ededed"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
-    cell.devName.text = _camreaName[indexPath.row];
-    
+    cell.devName.text = [self.videoList[indexPath.row] objectForKey:@"name"];
     return cell;
     
 }
@@ -266,18 +265,15 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([_allResorceList[indexPath.row] isMemberOfClass:[CCameraInfo class]]) {
-        PlayViewController *playVC = [[PlayViewController alloc] init];
-        
-        //把预览回放和云台控制所需的参数传过去
-        playVC.serverAddress = _serverAddress;
-        playVC.mspInfo = _mspInfo;
-        playVC.cameraInfo = _allResorceList[indexPath.row];
-        [self.navigationController pushViewController:playVC animated:YES];
-        
-        return;
-    }
-
+    
+    PlayViewController *playVC = [[PlayViewController alloc] init];
+    //把预览回放和云台控制所需的参数传过去
+    playVC.serverAddress = _serverAddress;
+    playVC.mspInfo = _mspInfo;
+    playVC.cameraId = [self.videoList[indexPath.row] objectForKey:@"indexCode"];
+    [self.navigationController pushViewController:playVC animated:YES];
+    return;
+    
 }
 
 - (void)didReceiveMemoryWarning {

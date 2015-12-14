@@ -77,8 +77,6 @@
 //定义每个cell的大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    CGFloat w = self.recommendVideo.frame.size.width;
-//    NSLog(@"宽度 %f",w);
     
     return CGSizeMake((self.recommendVideo.frame.size.width-40)/3, 120);
 }
@@ -94,6 +92,7 @@
 {
     self.selectedIndex = (int)indexPath.item;
     self.cameraInfo = [self.videoSourceArray objectAtIndex:indexPath.item];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"showHUD" object:nil];
     [self performSelector:@selector(clickClassVideoCell) withObject:nil afterDelay:1.0f];
 }
 
@@ -108,6 +107,7 @@
  */
 -(void)clickClassVideoCell
 {
+   
     if([self.delegate respondsToSelector:@selector(jumpToPlayView:)]){
         
         [self.delegate jumpToPlayView:self];
