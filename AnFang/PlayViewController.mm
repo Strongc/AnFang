@@ -44,7 +44,7 @@ static void *_vpHandle = NULL;
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
+     [self getVideoPermission];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hideHUD" object:nil];
 }
 
@@ -77,13 +77,15 @@ static void *_vpHandle = NULL;
     [self.backBtn addSubview:backImage];
     [self.backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [navView addSubview:self.backBtn];
-
     [self initViewControllerData];
-    [self getVideoPermission];
+   
 
     // Do any additional setup after loading the view from its nib.
 }
 
+/**
+ *  获取视频观看权限
+ */
 -(void)getVideoPermission
 {
     NSString *userId = [CoreArchive strForKey:@"userId"];
@@ -115,7 +117,6 @@ static void *_vpHandle = NULL;
     [CoreArchive setStr:_permissionCode key:@"code"];
 
 }
-
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
@@ -441,10 +442,9 @@ static void *_vpHandle = NULL;
 
 -(void)backAction
 {
-    //NSLog(@"%@",@"ddddd");
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 //状态回调函数
 void StatusCallBack(PLAY_STATE playState, VP_HANDLE hLogin, void *pHandl)
@@ -455,6 +455,7 @@ void StatusCallBack(PLAY_STATE playState, VP_HANDLE hLogin, void *pHandl)
 #pragma mark - Preview
 - (void)playAction:(UIButton *)sender {
 
+    NSLog(@"播放码 %@",self.cameraId);
     NSString *permissionCode = [CoreArchive strForKey:@"code"];
     if([permissionCode isEqualToString:@"fail"]){
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
@@ -464,7 +465,7 @@ void StatusCallBack(PLAY_STATE playState, VP_HANDLE hLogin, void *pHandl)
         [alertView show];
         return;
     }
-    NSLog(@"播放码 %@",self.cameraId);
+    
     //获取播放地址
     VMSNetSDK *vmsNetSDK = [VMSNetSDK shareInstance];
     _realPlayURL = [[CRealPlayURL alloc] init];
@@ -834,6 +835,12 @@ void StatusCallBack(PLAY_STATE playState, VP_HANDLE hLogin, void *pHandl)
     }
 }
 
+/**
+ *  AlertView代理方法
+ *
+ *  @param alertView   当前创建的AlertView
+ *  @param buttonIndex AlertView上被选中的按钮下标
+ */
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex){

@@ -28,7 +28,7 @@
     if(self){
         
         NSString *path = [[NSBundle mainBundle] pathForResource:@"head.png" ofType:nil];
-        UIImageView *headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 0, WIDTH-30, 140)];
+        UIImageView *headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, -10, WIDTH-30, 150)];
         [self.contentView addSubview:headImageView];
         headImageView.image = [UIImage imageWithContentsOfFile:path];
         UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, headImageView.frame.size.height-40, headImageView.frame.size.width, 40)];

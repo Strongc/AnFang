@@ -303,7 +303,6 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    
     if(collectionView == accountCollectionView){
     
         previousSelectedIndex = currentSelectedIndex;
@@ -349,7 +348,6 @@
     
     return YES;
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -417,15 +415,14 @@
     
         NSString *partner = @"2088021410775742";
         NSString *seller = @"3266924131@qq.com";
-    
         NSString *privateKey = @"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBANJDoVbuSo6yFhikcrcw2EbgM90g94jI6y+jW1JDJ+uhnK+u3YlYVp0F+J5MJGcJlbgpiF2z8MFgFLfDRMY6WZVUvYn2HbO1V2HRbOlr0cV/ixQoxX/Xrjs9kZk6+R/HyC1hOR3m2SZeiJB8f0ToaIrlBMNZAVgO1kQWc9xE9tSRAgMBAAECgYBWK1UxdRKlDCK2Ep7YqHHaCgP3OY14Ry7rJP1F5zOzA1ZdQUKVCNjmHQ5YgUfh2jG7eXnjPN0Lwr562NGUk1EmfYVQrFv0c0GvyLvozkwQ3bh/Tvsr8oK0BA9kIBRiOV/N7BtAB790Y6WZjro8HfVr0CyyxMnRfxZwEDTu7+qvYQJBAO87We6mo5J8ez5wd0qy2QuikRcxSMYGgTcP1hiWMWvalsQZhBy1uzfCQydIo73X2qTfVNApjrwwLXDacPHds5UCQQDhAH+oyoh9YpBPH7x5VkqNBUTBhyXggQX3TNJotLC64bf5qglbbJAV4nwv6J1j0QKM486jGz+Z++ZuCiEQtF4NAkBmUZ4vQjpnprIXjIaY/lFydn9TyhJ0D8goQq+xKFvO41jkWn10wg1m1cFfBeRyh+XN6m8d8QhJWNm2kNcJu2bZAkEAmRtxwzYussPDV1RNOHQTvup64wZILAEgQiwwcbejG0hFnMqsG15AnePEhgVQNIAhsCXEkxETsoDLSM3zuh5CcQJATM1GwzZsrRGayPuehl1PvKnNhuo/mGwKeSYi/MNVYprpIgYu5canZAQ6luZS1VR2DI4U4pPALc8hZlO9qPJMhA==";
     
         Order *order = [[Order alloc] init];
         order.partner = partner;
         order.seller = seller;
         order.tradeNO = [CoreArchive strForKey:@"order"]; //订单ID（从商家后台获取）
-        order.productName = @"充值金额"; //商品标题
-        order.productDescription = @"安防服务续费"; //商品描述
+        order.productName = @"视频"; //商品标题
+        order.productDescription = @"视频观看权限充值"; //商品描述
         order.amount = [NSString stringWithFormat:@"%.2f",0.01]; //商品价格
         order.notifyURL = @"http://121.41.24.19:8080/order/accept"; //回调URL
         order.service = @"mobile.securitypay.pay";
@@ -439,7 +436,6 @@
         id<DataSigner> signer = CreateRSADataSigner(privateKey);
         NSString *signedString = [signer signString:orderSpec];
         NSLog(@"私钥：%@",signedString);
-    
         NSString *appScheme = @"anfang";
         NSString *orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
                    orderSpec, signedString, @"RSA"];

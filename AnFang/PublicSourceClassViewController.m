@@ -201,7 +201,6 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   //[self getFirstRegionInfo];
     UITableViewCell *cell;
     if(indexPath.section == 0){
     
@@ -268,7 +267,6 @@
         recommendCell.delegate = self;
         recommendCell.recondVideoArray = self.recommendVideoData;
         recommendCell.videoSourceArray = self.recommendCellSource;
-        //recommendCell.videoSourceArray = _villageArray;
     }
     
     return cell;
@@ -281,7 +279,7 @@
     CGFloat height;
     if(indexPath.section == 0){
     
-        height = 150;
+        height = 155;
     }else if (indexPath.section == 1){
     
         height = WIDTH - 60;
