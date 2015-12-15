@@ -85,18 +85,7 @@
     _mspInfo = [[CMSPInfo alloc]init];
     villageNameArray = [NSMutableArray array];
     streetNameList = [NSMutableArray array];
-   // BOOL result = [vmsNetSDK getLineList:_serverAddress toLineInfoList:_lineList];
     _selectedLineID = 2;
-    
-//    if (NO == result) {
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
-//                                                            message:@"获取线路失败"
-//                                                           delegate:nil cancelButtonTitle:@"好"
-//                                                  otherButtonTitles:nil, nil];
-//        [alertView show];
-//        return;
-//    }
-    
     BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"dbwl" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
     if (NO == result1) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
@@ -104,7 +93,7 @@
                                                            delegate:nil cancelButtonTitle:@"好"
                                                   otherButtonTitles:nil, nil];
         [alertView show];
-        return;
+        //return;
     }
 
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
@@ -399,28 +388,6 @@
     
 }
 
-/**
- 
- */
--(int)countOfRegion
-{
-    int countStr = 0;
-    for(int i=0;i<villageArray.count;i++){
-        
-        if([villageArray[i] isMemberOfClass:[CRegionInfo class]]){
-            
-            countStr = 3;
-        }else{
-            
-            countStr = 2;
-        }
-        
-    }
-
-    return countStr;
-
-}
-
 -(void)showProgressHUD
 {
 
@@ -556,13 +523,13 @@
 
 -(void)backAction
 {
-    //NSLog(@"%@",@"ddddd");
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    NSLog(@"数量 %lu",(unsigned long)videoArrays.count);
+   
     return videoArrays.count;
 }
 
@@ -602,7 +569,6 @@
         reusableview = headerView;
         headerView.delegate = self;
         headerView.tag = indexPath.section;
-        
     }
     
     return reusableview;
@@ -620,10 +586,10 @@
     NSMutableArray *cameraVideo = cameraName[0];
     cell.className.text = [cameraVideo[indexPath.row] objectForKey:@"camera_name"];
 //    if(indexPath.section == 0){
-//    
-       cell.publicVideoImage.image = [UIImage imageWithContentsOfFile:videoBackImageArray1[indexPath.row]];
+    
+    cell.publicVideoImage.image = [UIImage imageWithContentsOfFile:videoBackImageArray1[indexPath.row]];
 //    }else{
-//    
+    
 //        cell.publicVideoImage.image = [UIImage imageWithContentsOfFile:videoBackImageArray2[indexPath.row]];
 //    }
     

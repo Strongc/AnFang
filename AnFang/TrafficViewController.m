@@ -107,16 +107,6 @@
     _lineList = [NSMutableArray array];
     _mspInfo = [[CMSPInfo alloc]init];
     _selectedLineID = 2;
-//    BOOL result = [vmsNetSDK getLineList:_serverAddress toLineInfoList:_lineList];
-//    if (NO == result) {
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
-//                                                            message:@"获取线路失败"
-//                                                           delegate:nil cancelButtonTitle:@"好"
-//                                                  otherButtonTitles:nil, nil];
-//        [alertView show];
-//        return;
-//    }
-//    
     BOOL result1 = [vmsNetSDK login:_serverAddress toUserName:@"dbwl" toPassword:@"12345" toLineID:_selectedLineID toServInfo:_mspInfo];
     if (NO == result1) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
@@ -124,7 +114,7 @@
                                                            delegate:nil cancelButtonTitle:@"好"
                                                   otherButtonTitles:nil, nil];
         [alertView show];
-        return;
+       // return;
     }
 
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];

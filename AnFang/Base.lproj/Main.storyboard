@@ -212,10 +212,10 @@
             </objects>
             <point key="canvasLocation" x="2698" y="1192"/>
         </scene>
-        <!--ContactNav-->
+        <!--publicNav-->
         <scene sceneID="HG6-Rq-hQ2">
             <objects>
-                <navigationController storyboardIdentifier="loginNav" title="ContactNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="dUt-Dc-VgW" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="publicNavId" title="publicNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="dUt-Dc-VgW" customClass="PublicSourceNavController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="公共" image="publicnor" id="f6F-6V-4N7">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="1"/>
                     </tabBarItem>
@@ -275,10 +275,10 @@
             </objects>
             <point key="canvasLocation" x="1544" y="1246"/>
         </scene>
-        <!--personNav-->
+        <!--shangmengNav-->
         <scene sceneID="X6Y-mn-Seb">
             <objects>
-                <navigationController title="personNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="naJ-OE-xf7" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="shangmenglNavId" title="shangmengNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="naJ-OE-xf7" customClass="ShangMengNavController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="商盟" image="businessnor" selectedImage="22" id="oxQ-xM-Toi"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" alpha="0.0" contentMode="scaleToFill" id="2Gc-Yd-vgl">
@@ -476,7 +476,7 @@
         <!--SettingNav-->
         <scene sceneID="Jnx-T6-NcW">
             <objects>
-                <navigationController title="SettingNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="fD4-Xl-cFY" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="personNavId" title="SettingNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="fD4-Xl-cFY" customClass="PersonalCenterNavController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="我的" image="setnor" id="ch0-we-1Ok"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -629,7 +629,7 @@
         <!--AnFangNav-->
         <scene sceneID="07k-SG-24c">
             <objects>
-                <navigationController title="AnFangNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="7tt-i0-2uM" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="securityNavId" title="AnFangNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="7tt-i0-2uM" customClass="SecurityNavController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="1" title="安防系统" image="anfangnor" id="DaC-fa-ske"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -672,7 +672,7 @@
         <!--资讯-->
         <scene sceneID="32t-a8-7i8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="wwP-zW-rxF" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="messageNavId" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="wwP-zW-rxF" customClass="MessageNavController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="资讯" image="messagenor" id="ghQ-79-wNp"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>

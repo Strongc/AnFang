@@ -66,6 +66,7 @@
     [self.view addSubview:alertLab];
     alertLab.text = @"暂无内容！";
     alertLab.textAlignment = NSTextAlignmentCenter;
+    alertLab.hidden = YES;
     // Do any additional setup after loading the view.
 }
 

@@ -179,8 +179,6 @@
         cell.publicVideoImage.image = [UIImage imageWithContentsOfFile:imagePath];
     }
     
-    //[cell setTag:indexPath.row];
-    //[cell.backViewBtn addTarget:self action:@selector(doJumpTo:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
@@ -227,10 +225,8 @@
     return YES;
 }
 
-
 -(void)backAction
 {
-    //NSLog(@"%@",@"ddddd");
     [self.navigationController popViewControllerAnimated:YES];
 }
 

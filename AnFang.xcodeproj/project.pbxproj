@@ -235,6 +235,11 @@
 		3EB229971C12BF2300B70CE2 /* 003.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB229941C12BF2300B70CE2 /* 003.png */; };
 		3EB229981C12BF2300B70CE2 /* 005.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB229951C12BF2300B70CE2 /* 005.png */; };
 		3EB229991C12BF2300B70CE2 /* 007.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB229961C12BF2300B70CE2 /* 007.png */; };
+		3EB627F01C20218C00AF48D5 /* ShangMengNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB627EF1C20218C00AF48D5 /* ShangMengNavController.m */; };
+		3EB627F61C20222F00AF48D5 /* SecurityNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB627F51C20222F00AF48D5 /* SecurityNavController.m */; };
+		3EB627F91C20229500AF48D5 /* PublicSourceNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB627F81C20229500AF48D5 /* PublicSourceNavController.m */; };
+		3EB627FC1C2022D900AF48D5 /* MessageNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB627FB1C2022D900AF48D5 /* MessageNavController.m */; };
+		3EB627FF1C2022F900AF48D5 /* PersonalCenterNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB627FE1C2022F900AF48D5 /* PersonalCenterNavController.m */; };
 		3EF991871BF32F1800832B4F /* bufang_nor.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF991811BF32F1800832B4F /* bufang_nor.png */; };
 		3EF991881BF32F1800832B4F /* bufang_select.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF991821BF32F1800832B4F /* bufang_select.png */; };
 		3EF991891BF32F1800832B4F /* camera_nor.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EF991831BF32F1800832B4F /* camera_nor.png */; };
@@ -805,6 +810,16 @@
 		3EB229941C12BF2300B70CE2 /* 003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 003.png; sourceTree = "<group>"; };
 		3EB229951C12BF2300B70CE2 /* 005.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 005.png; sourceTree = "<group>"; };
 		3EB229961C12BF2300B70CE2 /* 007.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 007.png; sourceTree = "<group>"; };
+		3EB627EE1C20218C00AF48D5 /* ShangMengNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShangMengNavController.h; sourceTree = "<group>"; };
+		3EB627EF1C20218C00AF48D5 /* ShangMengNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShangMengNavController.m; sourceTree = "<group>"; };
+		3EB627F41C20222F00AF48D5 /* SecurityNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityNavController.h; sourceTree = "<group>"; };
+		3EB627F51C20222F00AF48D5 /* SecurityNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityNavController.m; sourceTree = "<group>"; };
+		3EB627F71C20229500AF48D5 /* PublicSourceNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicSourceNavController.h; sourceTree = "<group>"; };
+		3EB627F81C20229500AF48D5 /* PublicSourceNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicSourceNavController.m; sourceTree = "<group>"; };
+		3EB627FA1C2022D900AF48D5 /* MessageNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageNavController.h; sourceTree = "<group>"; };
+		3EB627FB1C2022D900AF48D5 /* MessageNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageNavController.m; sourceTree = "<group>"; };
+		3EB627FD1C2022F900AF48D5 /* PersonalCenterNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterNavController.h; sourceTree = "<group>"; };
+		3EB627FE1C2022F900AF48D5 /* PersonalCenterNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterNavController.m; sourceTree = "<group>"; };
 		3EF006941BEB6257008CDE77 /* HostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostCell.h; sourceTree = "<group>"; };
 		3EF006951BEB6257008CDE77 /* HostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostCell.m; sourceTree = "<group>"; };
 		3EF006971BEB6292008CDE77 /* HostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostModel.h; sourceTree = "<group>"; };
@@ -1646,6 +1661,8 @@
 				04D9A5F01BB3D78A006D7B8A /* AccountCenterViewController.m */,
 				04D9A6121BB3D8DA006D7B8A /* RechargeViewController.h */,
 				04D9A6131BB3D8DA006D7B8A /* RechargeViewController.m */,
+				3EB627FD1C2022F900AF48D5 /* PersonalCenterNavController.h */,
+				3EB627FE1C2022F900AF48D5 /* PersonalCenterNavController.m */,
 			);
 			name = PersonCenter;
 			sourceTree = "<group>";
@@ -1665,6 +1682,8 @@
 				04D9A61D1BB3D8DA006D7B8A /* UserMessageViewController.m */,
 				04D9A61A1BB3D8DA006D7B8A /* SystemMessageViewController.h */,
 				04D9A61B1BB3D8DA006D7B8A /* SystemMessageViewController.m */,
+				3EB627FA1C2022D900AF48D5 /* MessageNavController.h */,
+				3EB627FB1C2022D900AF48D5 /* MessageNavController.m */,
 			);
 			name = Message;
 			sourceTree = "<group>";
@@ -1680,6 +1699,8 @@
 				04D9A6171BB3D8DA006D7B8A /* SecuritySystemViewController.m */,
 				04D9A61E1BB3D8DA006D7B8A /* VideoListViewController.h */,
 				04D9A61F1BB3D8DA006D7B8A /* VideoListViewController.m */,
+				3EB627F41C20222F00AF48D5 /* SecurityNavController.h */,
+				3EB627F51C20222F00AF48D5 /* SecurityNavController.m */,
 			);
 			name = AnFangSystem;
 			sourceTree = "<group>";
@@ -1703,6 +1724,8 @@
 				3E9C0F001C169BD4003B3716 /* CampusVideoListViewController.m */,
 				3E9C0F021C16A8FB003B3716 /* TrafficViewController.h */,
 				3E9C0F031C16A8FB003B3716 /* TrafficViewController.m */,
+				3EB627F71C20229500AF48D5 /* PublicSourceNavController.h */,
+				3EB627F81C20229500AF48D5 /* PublicSourceNavController.m */,
 			);
 			name = PublicSource;
 			sourceTree = "<group>";
@@ -1731,6 +1754,8 @@
 				3EFCB3231BF1F322001B1729 /* ShangMengViewController.m */,
 				3E838D6C1C0E93F200AFACAE /* ShangMengItemViewController.h */,
 				3E838D6D1C0E93F200AFACAE /* ShangMengItemViewController.m */,
+				3EB627EE1C20218C00AF48D5 /* ShangMengNavController.h */,
+				3EB627EF1C20218C00AF48D5 /* ShangMengNavController.m */,
 			);
 			name = ShangMeng;
 			sourceTree = "<group>";
@@ -2446,7 +2471,9 @@
 				3E6A758C1BEC68DD00113360 /* NSDataEx.m in Sources */,
 				04801E601BB3C9BF00714CC9 /* MenuSelect.m in Sources */,
 				3E6A75E31BEC810600113360 /* CCLocationManager.m in Sources */,
+				3EB627F91C20229500AF48D5 /* PublicSourceNavController.m in Sources */,
 				3E02EF971BEDD3C100390C49 /* LoginNavigationViewController.m in Sources */,
+				3EB627F61C20222F00AF48D5 /* SecurityNavController.m in Sources */,
 				044D2D6F1BBA7A350093453A /* LocalVideoModel.m in Sources */,
 				3EF9F53B1BF4810200BBDEA9 /* UUMessageContentButton.m in Sources */,
 				3EF9F5761BF4AEF100BBDEA9 /* UUMessage.m in Sources */,
@@ -2467,6 +2494,8 @@
 				04801E7B1BB3CB3D00714CC9 /* AnFangTabBarViewController.m in Sources */,
 				3E6A43FE1BF47E490066C3BD /* UUAVAudioPlayer.m in Sources */,
 				044AD4621BBB96F0004D17BB /* CMTool.m in Sources */,
+				3EB627FC1C2022D900AF48D5 /* MessageNavController.m in Sources */,
+				3EB627F01C20218C00AF48D5 /* ShangMengNavController.m in Sources */,
 				3EF9F5681BF4A2AD00BBDEA9 /* ChatModel.m in Sources */,
 				042038051BD09AD600D10004 /* NSDateString.m in Sources */,
 				04801E6D1BB3CABB00714CC9 /* PopoverView.m in Sources */,
@@ -2493,6 +2522,7 @@
 				04D9A6331BB3D8DA006D7B8A /* VideoListViewController.m in Sources */,
 				04801E851BB3CB9700714CC9 /* SCNavTabBarController.m in Sources */,
 				045595E91BCF8E0000BB5094 /* TextPhotoAlarmModel.m in Sources */,
+				3EB627FF1C2022F900AF48D5 /* PersonalCenterNavController.m in Sources */,
 				04DEDA3B1BE0E26800116789 /* UIView+SDExtension.m in Sources */,
 				044FFD9C1BCDF2B900F74AE9 /* tommath.c in Sources */,
 				044AD46B1BBBB492004D17BB /* NSData+Base64.m in Sources */,
