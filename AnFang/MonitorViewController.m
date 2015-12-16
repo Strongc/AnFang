@@ -14,12 +14,11 @@
 #import "JSONKit.h"
 #import "CMTool.h"
 #import "CameraModel.h"
-//#import "MonitorDevInfoViewController.h"
-//#import "DeviceManagerViewController.h"
 #import "SDRefresh.h"
 #import "CoreArchive.h"
 #import "SVProgressHUD.h"
 #import "VideoListViewController.h"
+#import "UUAVAudioPlayer.h"
 
 @interface MonitorViewController ()
 {
@@ -76,7 +75,6 @@
         }
         
         _sourceData = arrayModels;
-        
         
     }
     
@@ -201,41 +199,6 @@
     [self.navigationController pushViewController:videoListView animated:YES];
 }
 
-//-(void)getHostInfo2
-//{
-//
-//    [WGAPI post:API_GETHOST RequestParams:nil FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-//        if(data){
-//            
-//            NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//            //NSLog(@"%@",jsonStr);
-//            NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
-//            if(infojson != nil){
-//                NSDictionary *messageInfo = [infojson objectForKey:@"data"];
-//                // NSString *messageInfoStr = [CMTool dictionaryToJson:messageInfo];
-//                // NSLog(@"%@",messageInfoStr);
-////                tempHostArray = [messageInfo objectForKey:@"datas"];
-////                if(tempHostArray.count > 0){
-////                    NSDictionary *dict = tempHostArray[0];
-////                    hostId = [dict objectForKey:@"host_id"];
-////                    hostStatus = [dict objectForKey:@"host_status"];
-////                    //[self BuFangRequestAction:@"201510231107140078"];
-////                    
-////                    
-////                }
-////                [self performSelectorOnMainThread:@selector(setButtonStatus) withObject:data waitUntilDone:YES];//刷新UI线程
-////                
-//            }
-//            
-//        }
-//        
-//    }];
-//
-//
-//
-//}
-//
-
 //获取当前用户的主机信息
 -(void)getUserHostInfo
 {
@@ -271,7 +234,6 @@
         }
         
     }];
-
 
 }
 
@@ -330,11 +292,14 @@
 
 -(void)ResponseInfo
 {
+    NSString *audioFilePath = [[NSBundle mainBundle] pathForResource:@"bufang.mp3" ofType:nil];
     bufangBtn.userInteractionEnabled = NO;
     [SVProgressHUD showSuccessWithStatus:@"布防成功！" maskType:SVProgressHUDMaskTypeBlack];
     stateLab.text = @"已布防";
     stateLab.textColor = [UIColor whiteColor];
     chefangBtn.userInteractionEnabled = YES;
+    [self performSelector:@selector(playAudioWithFile:) withObject:audioFilePath afterDelay:3.0];
+    
     //timer = [NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(getUserHostInfo) userInfo:nil repeats:YES];
 
 }
@@ -373,12 +338,21 @@
 
 -(void)ResponseInfo2
 {
+    NSString *audioFilePath = [[NSBundle mainBundle] pathForResource:@"chefang.mp3" ofType:nil];
     chefangBtn.userInteractionEnabled = NO;
     [SVProgressHUD showSuccessWithStatus:@"撤防成功！" maskType:SVProgressHUDMaskTypeBlack];
     stateLab.text = @"已撤防";
     stateLab.textColor = [UIColor whiteColor];
     bufangBtn.userInteractionEnabled = YES;
+    [self performSelector:@selector(playAudioWithFile:) withObject:audioFilePath afterDelay:3.0];
     //timer = [NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(getUserHostInfo) userInfo:nil repeats:YES];
+
+}
+
+-(void)playAudioWithFile:(NSString *)path
+{
+    UUAVAudioPlayer *player = [UUAVAudioPlayer sharedInstance];
+    [player playSongWithUrl:path];
 
 }
 

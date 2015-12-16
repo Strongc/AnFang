@@ -137,6 +137,9 @@
                 }
                 [self performSelectorOnMainThread:@selector(refreshData) withObject:data waitUntilDone:YES];
             
+            }else{
+            
+                [SVProgressHUD showSuccessWithStatus:@"网络异常！" maskType:SVProgressHUDMaskTypeBlack];
             }
       
         }];

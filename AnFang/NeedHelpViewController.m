@@ -595,11 +595,9 @@
             }
             
             //[CoreArchive setStr:imagePath key:@"imagePath"];
-            
-            
+        
         }
     }];
-    
     
 }
 

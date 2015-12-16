@@ -31,8 +31,8 @@
     
     dispatch_async(dispatch_queue_create("playSoundFromUrl", NULL), ^{
         [self.delegate UUAVAudioPlayerBeiginLoadVoice];
-        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:songUrl]];
-        
+        NSURL *url = [NSURL fileURLWithPath:songUrl];
+        NSData *data = [NSData dataWithContentsOfURL:url];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self playSoundWithData:data];
         });

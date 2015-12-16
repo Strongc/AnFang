@@ -277,12 +277,11 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
 + (void)post:(NSString *)URL RequestParams:(NSString *)params FinishBlock:(void (^)(NSURLResponse *response, NSData *data, NSError *connectionError)) block{
     //把传进来的URL字符串转变为URL地址
     NSString *strUrl = [CMAPIBaseURL stringByAppendingString:URL];
-    
     NSURL *url = [NSURL URLWithString:strUrl];
     //请求初始化，可以在这针对缓存，超时做出一些设置
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestReloadIgnoringCacheData
-                                                       timeoutInterval:0];
+                                                       timeoutInterval:5];
   
     //解析请求参数，用NSDictionary来存参数，通过自定义的函数parseParams把它解析成一个post格式的字符串
    // NSString *parseParamsResult = [self parseParams:params];
