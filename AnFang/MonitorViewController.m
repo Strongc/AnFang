@@ -299,8 +299,6 @@
     stateLab.textColor = [UIColor whiteColor];
     chefangBtn.userInteractionEnabled = YES;
     [self performSelector:@selector(playAudioWithFile:) withObject:audioFilePath afterDelay:3.0];
-    
-    //timer = [NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(getUserHostInfo) userInfo:nil repeats:YES];
 
 }
 
@@ -333,7 +331,6 @@
         }
     }];
 
-    
 }
 
 -(void)ResponseInfo2

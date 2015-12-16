@@ -27,7 +27,9 @@
      //NSDictionary *messageInfo;
      NSArray *tempArray;
      UILabel *alertLab;
-    int pageSize;
+     UIButton *refreshBtn;
+    UILabel *errorInfo;
+     int pageSize;
     // LoadMoreTableFooterView *loadMoreTableFooterView;
 }
 
@@ -67,6 +69,22 @@
     alertLab.text = @"暂无内容！";
     alertLab.textAlignment = NSTextAlignmentCenter;
     alertLab.hidden = YES;
+    UIButton *refreshButton = [[UIButton alloc] initWithFrame:CGRectMake((WIDTH-60)/2, 130, 60, 60)];
+    [refreshButton setTitle:@"刷新" forState:UIControlStateNormal];
+    [refreshButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [refreshButton setTitleColor:[UIColor colorWithHexString:@"bababa"] forState:UIControlStateHighlighted];
+    
+    [self.view addSubview:refreshButton];
+    refreshBtn = refreshButton;
+    
+    UILabel *alertInfo = [[UILabel alloc] initWithFrame:CGRectMake((WIDTH -100)/2, 90, 100, 50)];
+    [self.view addSubview:alertInfo];
+    alertInfo.textColor = [UIColor blackColor];
+    alertInfo.text = @"网络异常！";
+    alertInfo.textAlignment = NSTextAlignmentCenter;
+    errorInfo = alertInfo;
+    refreshBtn.hidden = YES;
+    errorInfo.hidden = YES;
     // Do any additional setup after loading the view.
 }
 
@@ -126,7 +144,6 @@
                 //NSLog(@"%@",jsonStr);
                 NSDictionary *infojson = [CMTool strDic:jsonStr];
                 if(infojson != nil){
-                   // NSDictionary *messageInfo = [infojson objectForKey:@"data"];
                     tempArray = [infojson objectForKey:@"data"];
                     for(NSDictionary *dict in tempArray){
                     
@@ -139,10 +156,19 @@
             
             }else{
             
-                [SVProgressHUD showSuccessWithStatus:@"网络异常！" maskType:SVProgressHUDMaskTypeBlack];
+                 [self performSelectorOnMainThread:@selector(errorNetWorkInfo) withObject:data waitUntilDone:YES];
             }
       
         }];
+
+}
+
+-(void)errorNetWorkInfo
+{
+    refreshBtn.hidden = NO;
+    errorInfo.hidden = NO;
+    [refreshBtn addTarget:self action:@selector(getAlarmMessage) forControlEvents:UIControlEventTouchUpInside];
+    [SVProgressHUD showSuccessWithStatus:@"网络异常！" maskType:SVProgressHUDMaskTypeBlack];
 
 }
 
@@ -156,7 +182,8 @@
         
         alertLab.hidden = NO;
     }
-    
+    refreshBtn.hidden = YES;
+    errorInfo.hidden = YES;
     [messageTable reloadData];
     [SVProgressHUD dismiss];
 }

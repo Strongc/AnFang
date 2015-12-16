@@ -282,14 +282,11 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestReloadIgnoringCacheData
                                                        timeoutInterval:5];
-  
     //解析请求参数，用NSDictionary来存参数，通过自定义的函数parseParams把它解析成一个post格式的字符串
    // NSString *parseParamsResult = [self parseParams:params];
     NSData *postData = [params dataUsingEncoding:NSUTF8StringEncoding];
-    
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postData];
-    
     //创建一个新的队列（开启新线程）
     NSOperationQueue *queue = [NSOperationQueue new];
     //发送异步请求，请求完以后返回的数据，通过completionHandler参数来调用
