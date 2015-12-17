@@ -78,7 +78,7 @@
 - (void)takePhoto:(UIImagePickerControllerSourceType)type
 {
     
-    UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] && type == UIImagePickerControllerSourceTypeCamera)
     {
@@ -89,7 +89,6 @@
         imagePicker.delegate = self;
         imagePicker.allowsEditing = YES;
         imagePicker.navigationBar.translucent = NO;
-        
         [self presentViewController:imagePicker animated:YES completion:nil];
         
     }
@@ -110,7 +109,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     NSLog(@"%@",info);
-    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    //NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     
     UIImage *theImage = nil;
     theImage = [info objectForKey:UIImagePickerControllerOriginalImage];
@@ -118,7 +117,7 @@
     SEL selectorToCall = @selector(imageWasSavedSuccessfully:didFinishSavingWithError:contextInfo:);
     UIImageWriteToSavedPhotosAlbum(theImage, self, selectorToCall, NULL);
     
-    [picker dismissModalViewControllerAnimated:YES];
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 //保存图片到相册
@@ -131,7 +130,8 @@
 
 //当用户取消时调用该方法
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    [picker dismissModalViewControllerAnimated:YES];
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma CTAssetsPickerController
@@ -145,7 +145,7 @@
         [arrayMutable2 insertObject:[UIImage imageWithCGImage:alasset.thumbnail] atIndex:arrayMutable2.count];
     }
     
-    [self.delegate flushImageViews:arrayMutable2];
+    [self.pickImageDelegate flushImageViews:arrayMutable2];
        
     [self dismissViewControllerAnimated:YES completion:nil];
     [self.navigationController popViewControllerAnimated:YES];

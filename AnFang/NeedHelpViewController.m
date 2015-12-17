@@ -198,7 +198,7 @@
     backGround.image = [UIImage imageNamed:@"anfangBack"];
     [self.view addSubview:backGround];
 
-    pickImageViewController.delegate = self;
+    pickImageViewController.pickImageDelegate = self;
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(keyBoardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
@@ -382,7 +382,7 @@
     
     UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     pickImageViewController = [mainView instantiateViewControllerWithIdentifier:@"imagePicker"];
-    pickImageViewController.delegate = self;
+    pickImageViewController.pickImageDelegate = self;
     [self.navigationController pushViewController:pickImageViewController animated:YES];
     [self.view endEditing:YES];
     

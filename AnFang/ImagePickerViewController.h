@@ -16,9 +16,10 @@
 
 @end
 
-@interface ImagePickerViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,CTAssetsPickerControllerDelegate>
+@interface ImagePickerViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,CTAssetsPickerControllerDelegate,UINavigationControllerDelegate>
 
-@property (nonatomic,weak) id<PickImageDelegate> delegate;
+@property (nonatomic,weak) id<PickImageDelegate> pickImageDelegate;
 @property NSString *strOldAvatar;
+
 
 @end
