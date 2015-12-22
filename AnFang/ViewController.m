@@ -139,7 +139,11 @@
 -(void)initViewController
 {
     NSString *userName = name.text;
+    userName = [userName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    userName = [userName stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSString *pwd = passWordField.text;
+    pwd = [pwd stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    pwd = [pwd stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSDictionary *params = @{@"usr_name":userName,
                                  @"usr_pwd":pwd
                                  };

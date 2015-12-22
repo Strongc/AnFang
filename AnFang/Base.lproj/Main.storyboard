@@ -605,7 +605,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Haj-Y1-Xwq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="13154" y="3344"/>
+            <point key="canvasLocation" x="13686" y="3344"/>
         </scene>
         <!--设备管理-->
         <scene sceneID="IEe-zH-fUx">
@@ -951,6 +951,25 @@
             </objects>
             <point key="canvasLocation" x="1768" y="3153"/>
         </scene>
+        <!--系统设置-->
+        <scene sceneID="lP0-qR-hGf">
+            <objects>
+                <viewController storyboardIdentifier="systemConfigViewId" title="系统设置" id="psE-by-ktg" customClass="SystemConfigViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uEh-vx-f3T"/>
+                        <viewControllerLayoutGuide type="bottom" id="hPh-fL-S32"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iuF-dS-yPr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="yyr-aN-eby"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M4m-ky-gWi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2103" y="3909"/>
+        </scene>
         <!--AccountNav-->
         <scene sceneID="8wC-yb-D8T">
             <objects>
@@ -1113,7 +1132,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TQ6-in-Dz4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="12622" y="3344"/>
+            <point key="canvasLocation" x="13154" y="3344"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cRb-pB-g0Z">
@@ -1186,7 +1205,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5uS-vc-3EA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8190" y="3910"/>
+            <point key="canvasLocation" x="8722" y="3910"/>
         </scene>
         <!--校园-->
         <scene sceneID="Jt4-i6-8zi">
@@ -1205,7 +1224,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SXX-WM-wPi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9336" y="3873"/>
+            <point key="canvasLocation" x="9868" y="3873"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yLu-Hy-K7Q">
@@ -1241,7 +1260,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Nc-HS-pSX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7715" y="3916"/>
+            <point key="canvasLocation" x="8247" y="3916"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NWb-bl-S7r">
@@ -1259,7 +1278,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="19R-3C-2Jo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8804" y="3873"/>
+            <point key="canvasLocation" x="9336" y="3873"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wW6-ok-uo3">
@@ -1296,6 +1315,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ixC-kv-AOm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-7" y="3779"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hF4-Nj-Ebb">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="W6M-mI-AxU" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fni-jw-Cym">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="psE-by-ktg" kind="relationship" relationship="rootViewController" id="b47-Pv-ZEB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kRC-nG-T5s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1571" y="3909"/>
         </scene>
     </scenes>
     <resources>

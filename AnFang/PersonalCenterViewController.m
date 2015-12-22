@@ -15,6 +15,7 @@
 #import "JSONKit.h"
 #import "CMTool.h"
 #import "CoreArchive.h"
+#import "SystemConfigViewController.h"
 
 @interface PersonalCenterViewController ()<UITableViewDelegate,UITableViewDataSource,NSURLConnectionDataDelegate>
 {
@@ -32,7 +33,6 @@
     NSDictionary *json;
     NSString *nickName;
     NSString *userId;
-    
     
 }
 
@@ -272,12 +272,11 @@
     if(indexPath.section == 0 && indexPath.row == 2){
     
         [self jumpToAccountView];
-    }else if (indexPath.section == 1){
+    }else if (indexPath.section == 1 && indexPath.row == 0){
     
-        //[self goToVideoList];
+        [self jumpToSystemConfigView];
     }
     
-
 }
 
 -(void)jumpToAccountView
@@ -288,6 +287,16 @@
     [self.navigationController pushViewController:accountView animated:YES];
 
 }
+
+-(void)jumpToSystemConfigView
+{
+    
+    UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SystemConfigViewController *systemView = [mainView instantiateViewControllerWithIdentifier:@"systemConfigViewId"];
+    [self.navigationController pushViewController:systemView animated:YES];
+    
+}
+
 
 /*
 #pragma mark - Navigation

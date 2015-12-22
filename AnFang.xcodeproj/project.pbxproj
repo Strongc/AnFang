@@ -162,6 +162,7 @@
 		3E609C0D1C1181F1009B25D1 /* ClassVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E609C0C1C1181F1009B25D1 /* ClassVideoCell.m */; };
 		3E609C101C1199D6009B25D1 /* TitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E609C0F1C1199D6009B25D1 /* TitleCell.m */; };
 		3E609C131C119DFB009B25D1 /* RecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E609C121C119DFB009B25D1 /* RecommendCell.m */; };
+		3E66AC301C2961B700739F7C /* SystemConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E66AC2F1C2961B700739F7C /* SystemConfigViewController.m */; };
 		3E68648D1BF078B500FCA20C /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E68648C1BF078B500FCA20C /* bg.png */; };
 		3E68D0B31BEC4B5C003DAFC0 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04AEFF601BB5148E004634A8 /* AlipaySDK.framework */; };
 		3E68D0B51BEC4B85003DAFC0 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E68D0B41BEC4B85003DAFC0 /* libz.tbd */; };
@@ -628,6 +629,8 @@
 		3E609C0F1C1199D6009B25D1 /* TitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleCell.m; sourceTree = "<group>"; };
 		3E609C111C119DFB009B25D1 /* RecommendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendCell.h; sourceTree = "<group>"; };
 		3E609C121C119DFB009B25D1 /* RecommendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendCell.m; sourceTree = "<group>"; };
+		3E66AC2E1C2961B700739F7C /* SystemConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemConfigViewController.h; sourceTree = "<group>"; };
+		3E66AC2F1C2961B700739F7C /* SystemConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemConfigViewController.m; sourceTree = "<group>"; };
 		3E6864881BF0714100FCA20C /* message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message.png; sourceTree = "<group>"; };
 		3E68648A1BF071E600FCA20C /* messagePress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = messagePress.png; sourceTree = "<group>"; };
 		3E68648C1BF078B500FCA20C /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
@@ -1669,6 +1672,8 @@
 				04D9A6131BB3D8DA006D7B8A /* RechargeViewController.m */,
 				3EB627FD1C2022F900AF48D5 /* PersonalCenterNavController.h */,
 				3EB627FE1C2022F900AF48D5 /* PersonalCenterNavController.m */,
+				3E66AC2E1C2961B700739F7C /* SystemConfigViewController.h */,
+				3E66AC2F1C2961B700739F7C /* SystemConfigViewController.m */,
 			);
 			name = PersonCenter;
 			sourceTree = "<group>";
@@ -2504,6 +2509,7 @@
 				044AD4621BBB96F0004D17BB /* CMTool.m in Sources */,
 				3EB627FC1C2022D900AF48D5 /* MessageNavController.m in Sources */,
 				3EB627F01C20218C00AF48D5 /* ShangMengNavController.m in Sources */,
+				3E66AC301C2961B700739F7C /* SystemConfigViewController.m in Sources */,
 				3EF9F5681BF4A2AD00BBDEA9 /* ChatModel.m in Sources */,
 				042038051BD09AD600D10004 /* NSDateString.m in Sources */,
 				04801E6D1BB3CABB00714CC9 /* PopoverView.m in Sources */,
