@@ -1462,11 +1462,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/WGAPI.m"
-            timestampString = "471951676.901313"
+            timestampString = "472117355.324465"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "436"
-            endingLineNumber = "436"
+            startingLineNumber = "437"
+            endingLineNumber = "437"
             landmarkName = "+httpAsynchronousRequestUrl:postStr:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1998,11 +1998,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AnFang/WGAPI.m"
-            timestampString = "471951676.901313"
+            timestampString = "472102091.513153"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
+            startingLineNumber = "287"
+            endingLineNumber = "287"
             landmarkName = "+post:RequestParams:FinishBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2021,6 +2021,244 @@
             endingLineNumber = "23"
             landmarkName = "@interface ImagePickerViewController"
             landmarkType = "2">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/ViewController.h"
+            timestampString = "472112028.404118"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/NeedHelpViewController.m"
+            timestampString = "472115224.398566"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "874"
+            endingLineNumber = "874"
+            landmarkName = "-refreshHelpData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/NeedHelpViewController.m"
+            timestampString = "472113867.220676"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "804"
+            endingLineNumber = "804"
+            landmarkName = "-getHelpMessage"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/NeedHelpViewController.m"
+            timestampString = "472115224.398566"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "874"
+            endingLineNumber = "874"
+            landmarkName = "-refreshHelpData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/NeedHelpViewController.m"
+            timestampString = "472115224.398566"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "874"
+            endingLineNumber = "874"
+            landmarkName = "-refreshHelpData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/NeedHelpViewController.m"
+            timestampString = "472114667.462858"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "821"
+            endingLineNumber = "821"
+            landmarkName = "-getHelpMessage"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/NeedHelpViewController.m"
+            timestampString = "472114762.575203"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "817"
+            endingLineNumber = "817"
+            landmarkName = "-getHelpMessage"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/NeedHelpViewController.m"
+            timestampString = "472114800.271047"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/NeedHelpViewController.m"
+            timestampString = "472115367.99084"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "815"
+            endingLineNumber = "815"
+            landmarkName = "-getHelpMessage"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/NeedHelpViewController.m"
+            timestampString = "472115657.317207"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "812"
+            endingLineNumber = "812"
+            landmarkName = "-getHelpMessage"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[NeedHelpViewController getHelpMessage]"
+                  moduleName = "AnFang"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/MyOS/Desktop/AnFang/AnFang/NeedHelpViewController.m"
+                  timestampString = "472115663.884175"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "812"
+                  endingLineNumber = "812"
+                  offsetFromSymbolStart = "496">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__40-[NeedHelpViewController getHelpMessage]_block_invoke"
+                  moduleName = "AnFang"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/MyOS/Desktop/AnFang/AnFang/NeedHelpViewController.m"
+                  timestampString = "472115663.885"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "812"
+                  endingLineNumber = "812"
+                  offsetFromSymbolStart = "132">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/ViewController.m"
+            timestampString = "472444436.174486"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/ViewController.m"
+            timestampString = "472444436.174486"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AnFang/ViewController.m"
+            timestampString = "472444436.174486"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

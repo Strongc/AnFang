@@ -279,7 +279,7 @@
         <scene sceneID="X6Y-mn-Seb">
             <objects>
                 <navigationController storyboardIdentifier="shangmenglNavId" title="shangmengNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="naJ-OE-xf7" customClass="ShangMengNavController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="商盟" image="businessnor" selectedImage="22" id="oxQ-xM-Toi"/>
+                    <tabBarItem key="tabBarItem" title="商盟" image="businessnor" id="oxQ-xM-Toi"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" alpha="0.0" contentMode="scaleToFill" id="2Gc-Yd-vgl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1299,7 +1299,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="22" width="40" height="40"/>
         <image name="anfangnor" width="30" height="30"/>
         <image name="businessnor" width="30" height="30"/>
         <image name="messagenor" width="30" height="30"/>

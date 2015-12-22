@@ -47,7 +47,7 @@
     [self.view addSubview:logoImage];
     logoImage.image = [UIImage imageNamed:@"logo"];
     
-    inputView = [[UIView alloc] initWithFrame:CGRectMake(0, (64+250)*HEIGHT/667, self.view.width, 91)];
+    inputView = [[UIView alloc] initWithFrame:CGRectMake(0, (64+25)*HEIGHT/667, self.view.width, 91)];
     [self.view addSubview:inputView];
     UILabel *nameTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 48, 50)];
     [inputView addSubview:nameTitle];
@@ -71,7 +71,7 @@
     line3.backgroundColor = [UIColor colorWithHexString:@"323232"];
     [inputView addSubview:line3];
     
-    loginBtn = [[UIButton alloc] initWithFrame:CGRectMake((WIDTH-190)/2, inputView.frame.size.height + inputView.frame.origin.y + 44, 190, 45)];
+    loginBtn = [[UIButton alloc] initWithFrame:CGRectMake((WIDTH-190)/2, inputView.frame.size.height + inputView.frame.origin.y +30*HEIGHT/667, 190, 45)];
     UILabel *title2 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, loginBtn.frame.size.width, loginBtn.frame.size.height)];
     title2.text = @"登录";
     title2.textAlignment = NSTextAlignmentCenter;
@@ -95,32 +95,51 @@
     passWordField.textColor = [UIColor whiteColor];
     //[passWordField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     passWordField.keyboardType = UIKeyboardTypeDecimalPad;
-    
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center addObserver:self selector:@selector(keyBoardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+   
+   // NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    //[center addObserver:self selector:@selector(keyBoardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     userInfoArray = [[NSMutableArray alloc]init];
+    NSString *checkBtnState = [CoreArchive strForKey:@"state"];
+    UIButton *checkbox = [[UIButton alloc] init];
+    checkbox.frame = CGRectMake(18, 240+20*HEIGHT/667, 40, 30);
+    [self.view addSubview:checkbox];
+    if([checkBtnState isEqualToString:@"0"]){
+        
+        [checkbox setImage:[UIImage imageNamed:@"checkedSelected"] forState:UIControlStateNormal];
+    }else if([checkBtnState isEqualToString:@"1"]){
     
+        [checkbox setImage:[UIImage imageNamed:@"check"] forState:UIControlStateNormal];
+    }else if(checkBtnState == nil){
+    
+        [checkbox setImage:[UIImage imageNamed:@"check"] forState:UIControlStateNormal];
+    }
+    [checkbox addTarget:self action:@selector(checkboxClick:) forControlEvents:UIControlEventTouchUpInside];
+    UILabel *checkTitle = [[UILabel alloc] initWithFrame:CGRectMake(54, 245+20*HEIGHT/667, 80, 20)];
+    [self.view addSubview:checkTitle];
+    checkTitle.textColor = [UIColor whiteColor];
+    checkTitle.text = @"记住密码";
+    checkTitle.textAlignment = NSTextAlignmentCenter;
+    checkTitle.font = [UIFont systemFontOfSize:16];
+    name.text = [CoreArchive strForKey:@"userName"];
+    passWordField.text = [CoreArchive strForKey:@"password"];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
 //监听键盘弹出事件
--(void)keyBoardWillChangeFrame:(NSNotification *)noteInfo
-{
-    
-    CGRect rectEnd = [noteInfo.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGFloat keyboardY = rectEnd.origin.y - self.view.frame.size.height;
-    CGFloat tranformValue = keyboardY;
-    self.view.transform = CGAffineTransformMakeTranslation(0, tranformValue);
-    
-}
+//-(void)keyBoardWillChangeFrame:(NSNotification *)noteInfo
+//{
+//    
+//    CGRect rectEnd = [noteInfo.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+//    CGFloat keyboardY = rectEnd.origin.y - self.view.frame.size.height;
+//    CGFloat tranformValue = keyboardY;
+//    self.view.transform = CGAffineTransformMakeTranslation(0, tranformValue);
+//    
+//}
 
 -(void)initViewController
 {
-    
-    //NSString *urlStr=[NSString stringWithFormat:@"http://192.168.0.42:8080/platform/user/login"];
     NSString *userName = name.text;
     NSString *pwd = passWordField.text;
-    
     NSDictionary *params = @{@"usr_name":userName,
                                  @"usr_pwd":pwd
                                  };
@@ -177,6 +196,32 @@
     
 }
 
+/**
+ *  获取button的状态
+ *
+ *  @param btn UIButton对象
+ */
+-(void)checkboxClick:(UIButton*)btn{
+    
+    btn.selected=!btn.selected;//每次点击都改变按钮的状态
+    NSString *userName = name.text;
+    NSString *pwd = passWordField.text;
+    if(btn.selected){
+        
+        [btn setImage:[UIImage imageNamed:@"checkedSelected"]forState:UIControlStateSelected];
+        [CoreArchive setStr:userName key:@"userName"];
+        [CoreArchive setStr:pwd key:@"password"];
+        [CoreArchive setStr:@"0" key:@"state"];
+    }else{
+        
+        [btn setImage:[UIImage imageNamed:@"check"]forState:UIControlStateNormal];
+        [CoreArchive setStr:@"" key:@"userName"];
+        [CoreArchive setStr:@"" key:@"password"];
+        [CoreArchive setStr:@"1" key:@"state"];
+        
+    }
+
+}
 
 //登录成功后界面跳转
 -(void)jumpToMainView

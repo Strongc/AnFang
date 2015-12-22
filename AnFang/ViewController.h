@@ -16,13 +16,6 @@
 
     UITextField *passWordField;
     UITextField *name;
-    SecKeyRef publicKey;
-    SecKeyRef privateKey;
-    
-    NSData *publicTag;
-    NSData *privateTag;
-    //SecKeyGeneratePair *
-    //SecRandomRef
     
 }
 

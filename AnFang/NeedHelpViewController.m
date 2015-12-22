@@ -60,6 +60,7 @@
     NSMutableArray *audioArray;
     NSString *imagePath;
     NSString *voicePath;
+    UILabel *alertLab;
 
 }
 @property (assign, nonatomic) NSInteger currentRow;
@@ -245,7 +246,13 @@
     self.chatModel = [[ChatModel alloc]init];
     self.chatModel.dataSource = [[NSMutableArray alloc] init];
     audioArray = [[NSMutableArray alloc] init];
-    
+    alertLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 80, WIDTH, 20*HEIGHT/667)];
+    [self.view addSubview:alertLab];
+    alertLab.text = @"暂无内容！";
+    alertLab.textAlignment = NSTextAlignmentCenter;
+    alertLab.textColor = [UIColor whiteColor];
+    alertLab.hidden = YES;
+
     // Do any additional setup after loading the view.
 }
 
@@ -801,7 +808,7 @@
         [SVProgressHUD showInfoWithStatus:@"网络没有连接！"];
         
     }else{
-        //[SVProgressHUD showWithStatus:@"加载中..."];
+        [SVProgressHUD showWithStatus:@"加载中..."];
         [WGAPI post:API_GETHELPINFO RequestParams:helpInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
             if(data){
             
@@ -812,31 +819,31 @@
                 if(infojson != nil){
                 
                     tempArray = [infojson objectForKey:@"datas"];
-                    for(NSDictionary *dict in tempArray){
-                        NSString *type = [NSString stringWithFormat:@"%@",[dict objectForKey:@"type"]];
-                   
-                        if ([type isEqualToString:@"0"]) {
                         
-                            OneKeyAlarmModel *model = [OneKeyAlarmModel OneKeyAlarmModelWithDict:dict];
-                            [keyInfoArray addObject:model];
-                        }else if ([type isEqualToString:@"1"]){
-                    
-                            TextPhotoAlarmModel *model = [TextPhotoAlarmModel TextPhotoAlarmModelWithDict:dict];
-                            [photoAlarmArray addObject:model];
-                        }else if ([type isEqualToString:@"2"]){
-                    
-                            UUMessage *model = [UUMessage UUMessageModelWithDict:dict];
-                            model.voice =[NSData dataWithContentsOfURL:[NSURL URLWithString:model.voiceUrl]];
-
-                            [audioArray addObject:model];
-                    
+                        for(NSDictionary *dict in tempArray){
+                            NSString *type = [NSString stringWithFormat:@"%@",[dict objectForKey:@"type"]];
+                            
+                            if ([type isEqualToString:@"0"]) {
+                                
+                                OneKeyAlarmModel *model = [OneKeyAlarmModel OneKeyAlarmModelWithDict:dict];
+                                [keyInfoArray addObject:model];
+                            }else if ([type isEqualToString:@"1"]){
+                                
+                                TextPhotoAlarmModel *model = [TextPhotoAlarmModel TextPhotoAlarmModelWithDict:dict];
+                                [photoAlarmArray addObject:model];
+                            }else if ([type isEqualToString:@"2"]){
+                                
+                                UUMessage *model = [UUMessage UUMessageModelWithDict:dict];
+                                model.voice =[NSData dataWithContentsOfURL:[NSURL URLWithString:model.voiceUrl]];
+                                [audioArray addObject:model];
+                                
+                            }
+                            
                         }
-                    
-                    }
-                
+            
                 }
-
-                [self performSelectorOnMainThread:@selector(refreshData) withObject:data waitUntilDone:YES];
+                [self performSelectorOnMainThread:@selector(refreshHelpData) withObject:data waitUntilDone:YES];
+                
             }
         }];
     }
@@ -854,18 +861,17 @@
     
 }
 
--(void)refreshData
+-(void)refreshHelpData
 {
     [SVProgressHUD showSuccessWithStatus:@"加载完成！" maskType:SVProgressHUDMaskTypeBlack];
-    if(keyInfoArray.count > 0){
-        
-        [helpMessage reloadData];
-    }else{
-        
-        self.netStatusInfo.hidden = NO;
-    }
+    if(tempArray.count > 0){
 
+        [helpMessage reloadData];
+    }else if (tempArray.count ==0){
     
+        alertLab.hidden = NO;
+    }
+   
 }
 
 ////刷新录音列表

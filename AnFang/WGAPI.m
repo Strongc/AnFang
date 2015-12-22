@@ -16,18 +16,19 @@
 //#define NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/base"
 
 //项目根路径
-#ifdef DEBUG
+//#ifdef DEBUG
 
 //NSString *const CMAPIBaseURL=@"http://192.168.0.42:8080/wellgood/base";
 //NSString *const CMAPIBaseURL = @"http://wellgood.tpddns.cn:8080/";
 //NSString *const CMAPIBaseURL = @"http://111.1.8.117:8080/";
 NSString *const CMAPIBaseURL = @"http://121.41.24.19:8080/";
+//NSString *const CMAPIBaseURL = @"http://wellgood.tpddns.cn:8080/";
 
-#else
+//#else
 //NSString *const CMAPIBaseURL=@"http://guanwu.puyuntech.com/yht_api/";
-NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
+//NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
 
-#endif
+//#endif
 
 //@implementation WGResult
 //
@@ -56,7 +57,9 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
 //}
 //
 //@end
-
+@interface WGAPI()
+@property(nonatomic,strong)NSURLConnection *connection;
+@end
 
 @implementation WGAPI
 
@@ -272,8 +275,6 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
  
  */
 
-//+(void)post:(NSString *)URL RequestParams:(NSString *)params FinishBlock:(+ (NSData *)sendSynchronousRequest:(NSURLRequest *)requeblock
-
 + (void)post:(NSString *)URL RequestParams:(NSString *)params FinishBlock:(void (^)(NSURLResponse *response, NSData *data, NSError *connectionError)) block{
     //把传进来的URL字符串转变为URL地址
     NSString *strUrl = [CMAPIBaseURL stringByAppendingString:URL];
@@ -287,14 +288,15 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
     NSData *postData = [params dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:postData];
+    //NSURLConnection *connection =[[NSURLConnection alloc]initWithRequest:request delegate:self];
     //创建一个新的队列（开启新线程）
     NSOperationQueue *queue = [NSOperationQueue new];
     //发送异步请求，请求完以后返回的数据，通过completionHandler参数来调用
-    //[NSURLConnection sendSynchronousRequest:request returningResponse:response error:nil];
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:queue
                            completionHandler:block];
-    //    return result;
+    
+   
 }
 
 /**
@@ -374,8 +376,7 @@ NSString *const CMAPIBaseURL=@"http://192.168.0.159:8080/wellgood/user";
     NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
                                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                                         timeoutInterval:10];
-    
-    
+
     //分界线
     NSString *MPboundary=[[NSString alloc]initWithFormat:@"--%@",TWITTERFON_FORM_BOUNDARY];
     

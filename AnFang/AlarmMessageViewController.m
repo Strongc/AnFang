@@ -28,7 +28,7 @@
      NSArray *tempArray;
      UILabel *alertLab;
      UIButton *refreshBtn;
-    UILabel *errorInfo;
+     UILabel *errorInfo;
      int pageSize;
     // LoadMoreTableFooterView *loadMoreTableFooterView;
 }

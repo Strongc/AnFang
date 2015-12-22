@@ -114,12 +114,11 @@
     cameraArray = [[NSMutableArray alloc]init];
     tempHostArray = [[NSMutableArray alloc]init];
     pageSize = 1;
-   // [self getOrgInfo];
     [self getUserHostInfo];
     [self setButtonStatus];
     [self ConfigControl];
-    // NSLog(@"防区ID：%@",areaId);
-   // [self getCameraInfo];
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(getUserHostInfo) userInfo:nil repeats:YES];
     // Do any additional setup after loading the view.
 }
 
@@ -241,19 +240,25 @@
 -(void) setButtonStatus{
 
     [CoreArchive setStr:_hostId key:@"hostId"];
-    if([onLineStatus isEqualToString:@"FALSE"]){
+    if([hostStatus isEqualToString:@"FALSE"]){
     
         stateLab.text = @"已撤防";
         stateLab.textColor = [UIColor whiteColor];
         chefangBtn.userInteractionEnabled = NO;
         bufangBtn.userInteractionEnabled = YES;
         
-    }else if ([onLineStatus isEqualToString:@"TRUE"]){
+    }else if ([hostStatus isEqualToString:@"TRUE"]){
     
         stateLab.text = @"已布防";
         stateLab.textColor = [UIColor whiteColor];
         chefangBtn.userInteractionEnabled = YES;
         bufangBtn.userInteractionEnabled = NO;
+    }else if ([onLineStatus isEqualToString:@"TRUE"]){
+    
+        onlineLab.text = @"在线";
+    }else if ([onLineStatus isEqualToString:@"FALSE"]){
+    
+        onlineLab.text = @"离线";
     }
 
 }
@@ -295,10 +300,11 @@
     NSString *audioFilePath = [[NSBundle mainBundle] pathForResource:@"bufang.mp3" ofType:nil];
     bufangBtn.userInteractionEnabled = NO;
     [SVProgressHUD showSuccessWithStatus:@"布防成功！" maskType:SVProgressHUDMaskTypeBlack];
-    stateLab.text = @"已布防";
-    stateLab.textColor = [UIColor whiteColor];
+    //stateLab.text = @"已布防";
+    //stateLab.textColor = [UIColor whiteColor];
     chefangBtn.userInteractionEnabled = YES;
-    [self performSelector:@selector(playAudioWithFile:) withObject:audioFilePath afterDelay:3.0];
+    [self getUserHostInfo];
+   // [self performSelector:@selector(playAudioWithFile:) withObject:audioFilePath afterDelay:3.0];
 
 }
 
@@ -338,10 +344,11 @@
     NSString *audioFilePath = [[NSBundle mainBundle] pathForResource:@"chefang.mp3" ofType:nil];
     chefangBtn.userInteractionEnabled = NO;
     [SVProgressHUD showSuccessWithStatus:@"撤防成功！" maskType:SVProgressHUDMaskTypeBlack];
-    stateLab.text = @"已撤防";
-    stateLab.textColor = [UIColor whiteColor];
+    //stateLab.text = @"已撤防";
+    //stateLab.textColor = [UIColor whiteColor];
+     [self getUserHostInfo];
     bufangBtn.userInteractionEnabled = YES;
-    [self performSelector:@selector(playAudioWithFile:) withObject:audioFilePath afterDelay:3.0];
+    //[self performSelector:@selector(playAudioWithFile:) withObject:audioFilePath afterDelay:3.0];
     //timer = [NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(getUserHostInfo) userInfo:nil repeats:YES];
 
 }

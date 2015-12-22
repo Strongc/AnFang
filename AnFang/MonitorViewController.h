@@ -11,5 +11,6 @@
 @interface MonitorViewController : UIViewController
 
 @property (nonatomic,copy) NSString *hostId;
+@property (nonatomic,strong) NSTimer *timer;
 
 @end

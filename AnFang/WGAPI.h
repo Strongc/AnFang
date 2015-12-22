@@ -101,7 +101,9 @@ typedef enum{
 //@end
 
 
-@interface WGAPI : NSObject
+@interface WGAPI : NSObject<NSURLConnectionDataDelegate>
+
+@property(copy,nonatomic)void(^completeBlock)(NSURLResponse *response, NSData *data, NSError *connectionError);
 
 //+(void)checkWeb:(void (^)())end;
 //+(BOOL)checkWeb;
