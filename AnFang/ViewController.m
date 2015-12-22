@@ -243,11 +243,11 @@
 -(void)getUserInfo
 {
     
-    NSString *userName = [CoreArchive strForKey:@"name"];
-    NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"2"};
-    NSDictionary *pageInfo = @{@"page":page,@"usr_name":userName};
-    NSString *pageStr = [pageInfo JSONString];
-    NSString *userInfoData = [@"user=" stringByAppendingString:pageStr];
+//    NSString *userName = [CoreArchive strForKey:@"name"];
+//    NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"2"};
+//    NSDictionary *pageInfo = @{@"page":page,@"usr_name":userName};
+//    NSString *pageStr = [pageInfo JSONString];
+//    NSString *userInfoData = [@"user=" stringByAppendingString:pageStr];
     // NSString *urlStr=[NSString stringWithFormat:@"http://192.168.0.42:8080/platform/user/page"];
     //userInfo = [WGAPI httpAsynchronousRequestUrl:urlStr postStr:userInfoData];
     [WGAPI post:API_GET_USEDATA RequestParams:nil FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {

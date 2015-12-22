@@ -60,7 +60,6 @@
     //self.navigationController.navigationBar.translucent = NO;
     self.navigationItem.backBarButtonItem = item;
     [self ConfigControl];
-    
     [self getUserInfo];
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserInfo) name:@"getUserInfo" object:nil];
    // NSString *Id = [CoreArchive strForKey:@"userId"];
@@ -75,12 +74,9 @@
     NSString *name = [CoreArchive strForKey:@"name"];
     NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"2"};
     NSDictionary *pageInfo = @{@"page":page,@"usr_name":name};
-    NSString *pageStr = [pageInfo JSONString];
+    NSString *pageStr = [CMTool dictionaryToJson:pageInfo];
     NSString *userInfoData = [@"user=" stringByAppendingString:pageStr];
-   // NSString *urlStr=[NSString stringWithFormat:@"http://192.168.0.42:8080/platform/user/page"];
-    //userInfo = [WGAPI httpAsynchronousRequestUrl:urlStr postStr:userInfoData];
     [WGAPI post:API_GET_USERINFO RequestParams:userInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-       
         if(data){
             
             NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];

@@ -223,6 +223,7 @@
                     _hostId = [dict objectForKey:@"host_id"];
                     onLineStatus = [dict objectForKey:@"host_status"];
                     hostStatus = [dict objectForKey:@"rCStatus"];
+                    NSLog(@"主机状态 %@",hostStatus);
                     //[self BuFangRequestAction:@"201510231107140078"];
 
                 }
@@ -300,11 +301,9 @@
     NSString *audioFilePath = [[NSBundle mainBundle] pathForResource:@"bufang.mp3" ofType:nil];
     bufangBtn.userInteractionEnabled = NO;
     [SVProgressHUD showSuccessWithStatus:@"布防成功！" maskType:SVProgressHUDMaskTypeBlack];
-    //stateLab.text = @"已布防";
-    //stateLab.textColor = [UIColor whiteColor];
     chefangBtn.userInteractionEnabled = YES;
     [self getUserHostInfo];
-   // [self performSelector:@selector(playAudioWithFile:) withObject:audioFilePath afterDelay:3.0];
+    [self performSelector:@selector(playAudioWithFile:) withObject:audioFilePath afterDelay:3.0];
 
 }
 
@@ -344,11 +343,9 @@
     NSString *audioFilePath = [[NSBundle mainBundle] pathForResource:@"chefang.mp3" ofType:nil];
     chefangBtn.userInteractionEnabled = NO;
     [SVProgressHUD showSuccessWithStatus:@"撤防成功！" maskType:SVProgressHUDMaskTypeBlack];
-    //stateLab.text = @"已撤防";
-    //stateLab.textColor = [UIColor whiteColor];
      [self getUserHostInfo];
     bufangBtn.userInteractionEnabled = YES;
-    //[self performSelector:@selector(playAudioWithFile:) withObject:audioFilePath afterDelay:3.0];
+    [self performSelector:@selector(playAudioWithFile:) withObject:audioFilePath afterDelay:3.0];
     //timer = [NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(getUserHostInfo) userInfo:nil repeats:YES];
 
 }
@@ -357,31 +354,6 @@
 {
     UUAVAudioPlayer *player = [UUAVAudioPlayer sharedInstance];
     [player playSongWithUrl:path];
-
-}
-
--(void)getOrgInfo
-{
-
-    [WGAPI post:API_GETORGINFO RequestParams:nil FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        if(data){
-            
-            NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
-            if(infojson != nil){
-                
-                //bufangInfo = [infojson objectForKey:@"data"];
-//                if([bufangInfo isEqualToString:@"sucess"]){
-//                    
-//                    
-//                    [self performSelectorOnMainThread:@selector(ResponseInfo2) withObject:data waitUntilDone:YES];//刷新UI线程
-//                }
-                
-            }
-            
-            
-        }
-    }];
 
 }
 
