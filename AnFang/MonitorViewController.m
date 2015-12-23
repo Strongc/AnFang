@@ -118,7 +118,7 @@
     [self setButtonStatus];
     [self ConfigControl];
     
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(getUserHostInfo) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(getUserHostInfo) userInfo:nil repeats:YES];
     // Do any additional setup after loading the view.
 }
 

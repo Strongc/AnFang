@@ -151,6 +151,7 @@
 		3E02EF971BEDD3C100390C49 /* LoginNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E02EF961BEDD3C100390C49 /* LoginNavigationViewController.m */; };
 		3E02EF991BEDDC2200390C49 /* newFeature_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E02EF981BEDDC2200390C49 /* newFeature_3.png */; };
 		3E02EF9B1BEDE17A00390C49 /* tiyan.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E02EF9A1BEDE17A00390C49 /* tiyan.png */; };
+		3E069F551C2A451A00BDA2AA /* ComplaintFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E069F541C2A451A00BDA2AA /* ComplaintFeedbackViewController.m */; };
 		3E0D5E341C158AE50004FC7F /* SchoolVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0D5E331C158AE50004FC7F /* SchoolVideoViewController.m */; };
 		3E0D5E361C158F270004FC7F /* shcoolName.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E0D5E351C158F270004FC7F /* shcoolName.plist */; };
 		3E0D5E391C1591AF0004FC7F /* SchoolClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0D5E381C1591AF0004FC7F /* SchoolClassModel.m */; };
@@ -609,6 +610,8 @@
 		3E02EF961BEDD3C100390C49 /* LoginNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginNavigationViewController.m; sourceTree = "<group>"; };
 		3E02EF981BEDDC2200390C49 /* newFeature_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newFeature_3.png; sourceTree = "<group>"; };
 		3E02EF9A1BEDE17A00390C49 /* tiyan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiyan.png; sourceTree = "<group>"; };
+		3E069F531C2A451A00BDA2AA /* ComplaintFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplaintFeedbackViewController.h; sourceTree = "<group>"; };
+		3E069F541C2A451A00BDA2AA /* ComplaintFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplaintFeedbackViewController.m; sourceTree = "<group>"; };
 		3E0D5E321C158AE50004FC7F /* SchoolVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolVideoViewController.h; sourceTree = "<group>"; };
 		3E0D5E331C158AE50004FC7F /* SchoolVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolVideoViewController.m; sourceTree = "<group>"; };
 		3E0D5E351C158F270004FC7F /* shcoolName.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = shcoolName.plist; sourceTree = "<group>"; };
@@ -1674,6 +1677,8 @@
 				3EB627FE1C2022F900AF48D5 /* PersonalCenterNavController.m */,
 				3E66AC2E1C2961B700739F7C /* SystemConfigViewController.h */,
 				3E66AC2F1C2961B700739F7C /* SystemConfigViewController.m */,
+				3E069F531C2A451A00BDA2AA /* ComplaintFeedbackViewController.h */,
+				3E069F541C2A451A00BDA2AA /* ComplaintFeedbackViewController.m */,
 			);
 			name = PersonCenter;
 			sourceTree = "<group>";
@@ -2430,6 +2435,7 @@
 				04D9A62D1BB3D8DA006D7B8A /* RechargeViewController.m in Sources */,
 				04801F551BB3CF4400714CC9 /* MenuSelectCollectionViewCell.m in Sources */,
 				042038091BD09DFD00D10004 /* MMLocationManager.m in Sources */,
+				3E069F551C2A451A00BDA2AA /* ComplaintFeedbackViewController.m in Sources */,
 				3E9C0F011C169BD4003B3716 /* CampusVideoListViewController.m in Sources */,
 				04801E681BB3CA3400714CC9 /* DefenceAreaModel.m in Sources */,
 				3E71526C1C02AA4B002AF67F /* PublicItemVideoCell.m in Sources */,

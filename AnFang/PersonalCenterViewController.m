@@ -16,6 +16,7 @@
 #import "CMTool.h"
 #import "CoreArchive.h"
 #import "SystemConfigViewController.h"
+#import "ComplaintFeedbackViewController.h"
 
 @interface PersonalCenterViewController ()<UITableViewDelegate,UITableViewDataSource,NSURLConnectionDataDelegate>
 {
@@ -61,10 +62,6 @@
     self.navigationItem.backBarButtonItem = item;
     [self ConfigControl];
     [self getUserInfo];
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserInfo) name:@"getUserInfo" object:nil];
-   // NSString *Id = [CoreArchive strForKey:@"userId"];
-   // NSLog(@"%@",Id);
-    //[self getUserInfo];
    
 }
 
@@ -111,9 +108,6 @@
 -(void)ConfigControl
 {
 
-   // UIImageView *headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
-   // [headView setImage:[UIImage imageNamed:@"header_bg.png"]];
-    
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
     headView.backgroundColor = [UIColor colorWithHexString:@"222121"];
     
@@ -275,6 +269,9 @@
     }else if (indexPath.section == 1 && indexPath.row == 0){
     
         [self jumpToSystemConfigView];
+    }else if (indexPath.section == 1 && indexPath.row == 1){
+    
+        [self jumpToComplaintView];
     }
     
 }
@@ -297,6 +294,14 @@
     
 }
 
+-(void)jumpToComplaintView
+{
+
+    UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ComplaintFeedbackViewController *complaintView = [mainView instantiateViewControllerWithIdentifier:@"complaintViewId"];
+    [self.navigationController pushViewController:complaintView animated:YES];
+
+}
 
 /*
 #pragma mark - Navigation

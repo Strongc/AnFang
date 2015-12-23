@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SystemConfigViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface SystemConfigViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 
 @property (nonatomic,strong) UITableView *setTableView;
+@property (nonatomic,strong) NSMutableArray *menuArray;
 @end

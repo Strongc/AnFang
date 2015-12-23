@@ -49,8 +49,9 @@
     [self.view addSubview:self.setTableView];
     self.setTableView.dataSource = self;
     self.setTableView.delegate = self;
-   
-
+    [self.setTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    self.menuArray = [[NSMutableArray alloc] initWithObjects:@"退出登录", @"清理缓存",nil];
+    //self.setTableView.backgroundColor = [UIColor colorWithHexString:@"ededed"];
     // Do any additional setup after loading the view.
 }
 
@@ -66,7 +67,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 1;
+    return self.menuArray.count;
     
 }
 
@@ -82,9 +83,14 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    cell.textLabel.text = @"退出登录";
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 59.0*HEIGHT/667, WIDTH, 1)];
+    line.backgroundColor = [UIColor colorWithHexString:@"bababa"];
+    [cell.contentView addSubview:line];
+    cell.textLabel.text = [self.menuArray objectAtIndex:indexPath.row];
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.textLabel.textColor = [UIColor blackColor];
+    cell.textLabel.font = [UIFont systemFontOfSize:18];
+    cell.backgroundColor = [UIColor colorWithHexString:@"ededed"];
     return cell;
 }
 
@@ -99,7 +105,31 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self jumpToAccountView];
+    if(indexPath.row == 0){
+    
+        [self jumpToAccountView];
+    }else if (indexPath.row == 1){
+    
+        //NSString *cachPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        //float catchSize = [self folderSizeAtPath:cachPath];
+        NSString *message = @"确定要清理缓存?";
+        //message = [@"缓存大小为" stringByAppendingString:[NSString stringWithFormat:@"%f",catchSize]];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            
+        }];
+        
+        UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+            [self clearCache];
+        }];
+        
+        // Add the actions.
+        [alertController addAction:cancelAction];
+        [alertController addAction:otherAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
     
 }
 
@@ -111,6 +141,53 @@
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:loginView animated:YES];
     
+}
+
+/**
+ *  清理缓存
+ */
+-(void) clearCache
+{
+    dispatch_async(
+                   dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+                   , ^{
+                       
+                       NSString *cachPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+                       NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:cachPath];
+                       
+                       for (NSString *p in files) {
+                           NSError *error;
+                           NSString *path = [cachPath stringByAppendingPathComponent:p];
+                           if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+                               [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+                           }
+                       }
+                       [self performSelectorOnMainThread:@selector(clearCacheSuccess)
+                                              withObject:nil waitUntilDone:YES];});
+}
+
+-(void)clearCacheSuccess
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"缓存清理成功！" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+    }];
+    // Add the actions.
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+
+}
+
+-(float)folderSizeAtPath:(NSString *)path
+{
+    NSFileManager *fileManager=[NSFileManager defaultManager];
+    if([fileManager fileExistsAtPath:path]){
+        
+        long long size=[fileManager attributesOfItemAtPath:path error:nil].fileSize;
+        return size/1024.0/1024.0;
+    }
+    
+    return 0;
 }
 
 - (void)didReceiveMemoryWarning {

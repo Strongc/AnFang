@@ -139,10 +139,10 @@
 -(void)initViewController
 {
     NSString *userName = name.text;
-    userName = [userName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    //userName = [userName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     userName = [userName stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSString *pwd = passWordField.text;
-    pwd = [pwd stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    //pwd = [pwd stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     pwd = [pwd stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSDictionary *params = @{@"usr_name":userName,
                                  @"usr_pwd":pwd
@@ -209,6 +209,7 @@
     
     btn.selected=!btn.selected;//每次点击都改变按钮的状态
     NSString *userName = name.text;
+    userName = [userName stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSString *pwd = passWordField.text;
     if(btn.selected){
         
