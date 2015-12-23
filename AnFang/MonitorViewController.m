@@ -167,7 +167,7 @@
     bufangBtn = [[UIButton alloc]initWithFrame:CGRectMake(60*WIDTH/375, 420*HEIGHT/667, 60*WIDTH/375, 60*HEIGHT/667)];
     [bufangBtn setBackgroundImage:[UIImage imageNamed:@"bufang"] forState:UIControlStateNormal];
     [bufangBtn setBackgroundImage:[UIImage imageNamed:@"bufangSelect"] forState:UIControlStateHighlighted];
-    [bufangBtn addTarget:self action:@selector(BuFangRequestAction) forControlEvents:UIControlEventTouchUpInside];
+    [bufangBtn addTarget:self action:@selector(BuFangAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bufangBtn];
     
     chefangBtn = [[UIButton alloc]initWithFrame:CGRectMake(160*WIDTH/375, 420*HEIGHT/667, 60*WIDTH/375, 60*HEIGHT/667)];
@@ -264,8 +264,10 @@
 
 }
 
-//布防
--(void)BuFangRequestAction
+/**
+ *  布防
+ */
+-(void)BuFangRequest
 {
 
     NSString *hostIds = [CoreArchive strForKey:@"hostId"];
@@ -307,6 +309,9 @@
 
 }
 
+/**
+ *  向后台请求撤防
+ */
 -(void)CheFangRequest
 {
     [timer invalidate];
@@ -352,39 +357,48 @@
 
 -(void)playAudioWithFile:(NSString *)path
 {
+    
     UUAVAudioPlayer *player = [UUAVAudioPlayer sharedInstance];
     [player playSongWithUrl:path];
-
 }
 
+-(void)BuFangAction
+{
+
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"确定要布防？" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+    }];
+    UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        [self BuFangRequest];
+    }];
+    
+    // Add the actions.
+    [alertController addAction:cancelAction];
+    [alertController addAction:otherAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+
+}
 
 -(void)CheFangAction
 {
     
-    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:nil
-                                                   message:@"确定要撤防？"
-                                                  delegate:self
-                                         cancelButtonTitle:@"确定"
-                                         otherButtonTitles:@"取消",nil];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"确定要撤防？" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+    }];
     
-    [alert show];
-
-}
-
--(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    switch (buttonIndex) {
-        case 0:
-            [self CheFangRequest];
-            break;
-            
-        case 1:
-            NSLog(@"%ld",(long)buttonIndex);
-            break;
-        default:
-            break;
-    }
+    UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        [self CheFangRequest];
+    }];
     
+    // Add the actions.
+    [alertController addAction:cancelAction];
+    [alertController addAction:otherAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+
 }
 
 - (void)didReceiveMemoryWarning {

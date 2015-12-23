@@ -81,7 +81,6 @@
             NSDictionary *infojson = [CMTool parseJSONStringToNSDictionary:jsonStr];
            // NSDictionary *userInfo = [infojson objectForKey:@"data"];
             userInfoArray = [infojson objectForKey:@"datas"];
-            
             if(userInfoArray.count > 0){
                 
                 NSDictionary *userMessage = userInfoArray[0];
