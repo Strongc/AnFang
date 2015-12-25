@@ -16,7 +16,6 @@
 #import "SVProgressHUD.h"
 #import "CMTool.h"
 #import "WGAPI.h"
-#import "JSONKit.h"
 #import "ChatModel.h"
 #import "ASIFormDataRequest.h"
 #import "CoreArchive.h"
@@ -801,7 +800,7 @@
 {
     NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"100"};
     NSDictionary *pageInfo = @{@"page":page};
-    NSString *pageStr = [pageInfo JSONString];
+    NSString *pageStr = [CMTool dictionaryToJson:pageInfo];
     NSString *helpInfoData = [@"help=" stringByAppendingString:pageStr];
     
     if(![CMTool isConnectionAvailable]){

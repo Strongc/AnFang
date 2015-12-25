@@ -19,7 +19,6 @@
 		0448B1FB1BB4ED6E00DBE65C /* RDVTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0448B1FA1BB4ED6E00DBE65C /* RDVTabBarItem.m */; };
 		0448B1FF1BB5093D00DBE65C /* UIView+MGBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0448B1FE1BB5093D00DBE65C /* UIView+MGBadgeView.m */; };
 		0448CC091BBA908100F120EC /* LocalVideo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0448CC081BBA908100F120EC /* LocalVideo.plist */; };
-		044A828F1BC612F6009304F7 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 044A828E1BC612F6009304F7 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		044AD4551BBB8C26004D17BB /* WGAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 044AD4541BBB8C26004D17BB /* WGAPI.m */; };
 		044AD45B1BBB9071004D17BB /* WGUserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 044AD45A1BBB9071004D17BB /* WGUserData.m */; };
 		044AD45E1BBB91A1004D17BB /* WGData.m in Sources */ = {isa = PBXBuildFile; fileRef = 044AD45D1BBB91A1004D17BB /* WGData.m */; };
@@ -323,8 +322,6 @@
 		0448B1FD1BB5093D00DBE65C /* UIView+MGBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MGBadgeView.h"; sourceTree = "<group>"; };
 		0448B1FE1BB5093D00DBE65C /* UIView+MGBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MGBadgeView.m"; sourceTree = "<group>"; };
 		0448CC081BBA908100F120EC /* LocalVideo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LocalVideo.plist; sourceTree = "<group>"; };
-		044A828D1BC612F6009304F7 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
-		044A828E1BC612F6009304F7 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		044AD44E1BBB7B76004D17BB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		044AD4501BBB7B87004D17BB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		044AD4531BBB8C26004D17BB /* WGAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WGAPI.h; sourceTree = "<group>"; };
@@ -1025,8 +1022,6 @@
 		044AD45F1BBB96BE004D17BB /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				044A828D1BC612F6009304F7 /* JSONKit.h */,
-				044A828E1BC612F6009304F7 /* JSONKit.m */,
 				044AD4601BBB96F0004D17BB /* CMTool.h */,
 				044AD4611BBB96F0004D17BB /* CMTool.m */,
 			);
@@ -1219,10 +1214,9 @@
 		04801E511BB3C7F600714CC9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3E3B39A61C2D0F7100D59172 /* Storyboard */,
 				3E74F3ED1BEF1FB9004E2935 /* PublicHeaderView */,
 				04E5239C1BCF918000F3D0CC /* AnFang */,
-				04D9A5D71BB3D27B006D7B8A /* Main.storyboard */,
-				04801E3A1BB3C15C00714CC9 /* LaunchScreen.xib */,
 				04801F711BB3D0C800714CC9 /* Monitor */,
 				04801F6D1BB3D09400714CC9 /* DefenceAreaDev */,
 				04801F691BB3D05E00714CC9 /* MessageCell */,
@@ -1922,6 +1916,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3E3B39A61C2D0F7100D59172 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				04D9A5D71BB3D27B006D7B8A /* Main.storyboard */,
+				04801E3A1BB3C15C00714CC9 /* LaunchScreen.xib */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
 		3E498E791C0EC4C500E53DF2 /* WeiXinPay */ = {
 			isa = PBXGroup;
 			children = (
@@ -2529,7 +2532,6 @@
 				04801E7A1BB3CB3D00714CC9 /* AnFangTabBar.m in Sources */,
 				04D9A62A1BB3D8DA006D7B8A /* NeedHelpViewController.m in Sources */,
 				04801E921BB3CC0600714CC9 /* UIView+KGViewExtend.m in Sources */,
-				044A828F1BC612F6009304F7 /* JSONKit.m in Sources */,
 				04801F681BB3D04700714CC9 /* VideoTableViewCell.m in Sources */,
 				04D9A5F11BB3D78A006D7B8A /* AccountCenterViewController.m in Sources */,
 				04801E2B1BB3C15C00714CC9 /* main.m in Sources */,

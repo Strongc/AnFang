@@ -11,7 +11,6 @@
 #import "Common.h"
 #import "MonitorInfoTableViewCell.h"
 #import "WGAPI.h"
-#import "JSONKit.h"
 #import "CMTool.h"
 #import "CameraModel.h"
 #import "SDRefresh.h"
@@ -204,7 +203,7 @@
     
     NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"2"};
     NSDictionary *pageInfo = @{@"page":page};
-    NSString *pageStr = [pageInfo JSONString];
+    NSString *pageStr = [CMTool dictionaryToJson:pageInfo];
     NSString *hostInfoData = [@"host=" stringByAppendingString:pageStr];
     
     [WGAPI post:API_GET_HOSTINFO RequestParams:hostInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {

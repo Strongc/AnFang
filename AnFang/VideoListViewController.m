@@ -11,7 +11,6 @@
 #import "Common.h"
 #import "UIColor+Extensions.h"
 #import "WGAPI.h"
-#import "JSONKit.h"
 #import "CMTool.h"
 #import "CameraModel.h"
 #import "MonitorInfoTableViewCell.h"
@@ -152,7 +151,7 @@
     
     NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"2"};
     NSDictionary *pageInfo = @{@"page":page};
-    NSString *pageStr = [pageInfo JSONString];
+    NSString *pageStr = [CMTool dictionaryToJson:pageInfo];
     NSString *userInfoData = [@"area=" stringByAppendingString:pageStr];
     
     [WGAPI post:API_GET_AREAINFO RequestParams:userInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
@@ -173,8 +172,7 @@
                     [self getCameraInfo:tempId];
                     
                 }
-                
-                
+
             }
             //[self performSelectorOnMainThread:@selector(getAreaId) withObject:data waitUntilDone:YES];
         }
@@ -190,7 +188,7 @@
     //NSString *pagesize = [NSString stringWithFormat:@"%d",pageSize];
     NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"100"};//@"area_id":@"201510120000030712",
     NSDictionary *pageInfo = @{@"area_id":areaId,@"page":page};
-    NSString *pageStr = [pageInfo JSONString];
+    NSString *pageStr = [CMTool dictionaryToJson:pageInfo];
     NSString *userInfoData = [@"camera=" stringByAppendingString:pageStr];
     
     [WGAPI post:API_GET_CAMERAINFO RequestParams:userInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {

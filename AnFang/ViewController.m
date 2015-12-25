@@ -11,17 +11,12 @@
 #import "UIView+KGViewExtend.h"
 #import "Common.h"
 #import "MenuTabBarViewController.h"
-//#import "RSA.h"
-#import "JSONKit.h"
-//#import "Security.h"
 #import "CMTool.h"
-//#import "JKBigInteger.h"
-//#import "RsaFactory.h"
 #import "CoreArchive.h"
 #import "WGAPI.h"
 #import "SVProgressHUD.h"
 #import "UIImageView+WebCache.h"
-
+#import "RegisterViewController.h"
 
 @interface ViewController ()
 {
@@ -39,14 +34,22 @@
 
 @implementation ViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHexString:@"040818"];
-    UIImageView *logoImage = [[UIImageView alloc] initWithFrame:CGRectMake((WIDTH-80)/2, 180, 80, 80)];
-    [self.view addSubview:logoImage];
-    logoImage.image = [UIImage imageNamed:@"logo"];
+//    UIImageView *logoImage = [[UIImageView alloc] initWithFrame:CGRectMake((WIDTH-80)/2, 180, 80, 80)];
+//    [self.view addSubview:logoImage];
+//    logoImage.image = [UIImage imageNamed:@"logo"];
     
+//    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
+//    headView.backgroundColor = [UIColor colorWithHexString:@"dfdfdf"];
+//    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 15, WIDTH, 50*HEIGHT/667)];
+//    title.textAlignment = NSTextAlignmentCenter;
+//    title.text = @"登录";
+//    title.font = [UIFont boldSystemFontOfSize:20];
+//    title.textColor = [UIColor colorWithHexString:@"ce7031"];
+//    [headView addSubview:title];
+//    [self.view addSubview:headView];
     inputView = [[UIView alloc] initWithFrame:CGRectMake(0, (64+25)*HEIGHT/667, self.view.width, 91)];
     [self.view addSubview:inputView];
     UILabel *nameTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 48, 50)];
@@ -120,6 +123,13 @@
     checkTitle.text = @"记住密码";
     checkTitle.textAlignment = NSTextAlignmentCenter;
     checkTitle.font = [UIFont systemFontOfSize:16];
+    
+    UIButton *regBtn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(checkTitle.frame)+120, 245+20*HEIGHT/667, 40, 20)];
+    [self.view addSubview:regBtn];
+    [regBtn setTitle:@"注册" forState:UIControlStateNormal];
+    [regBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [regBtn addTarget:self action:@selector(jumpToRegisterView) forControlEvents:UIControlEventTouchUpInside];
+    regBtn.titleLabel.font = [UIFont systemFontOfSize:16];
     name.text = [CoreArchive strForKey:@"userName"];
     passWordField.text = [CoreArchive strForKey:@"password"];
     // Do any additional setup after loading the view, typically from a nib.
@@ -231,7 +241,6 @@
 //登录成功后界面跳转
 -(void)jumpToMainView
 {
-
     [SVProgressHUD showSuccessWithStatus:@"登录成功！" maskType:SVProgressHUDMaskTypeBlack];
      NSString *userName = name.text;
     [CoreArchive setStr:userName key:@"name"];
@@ -241,8 +250,14 @@
     MenuTabBarViewController *menuTab = [mainView instantiateViewControllerWithIdentifier:@"menuTabBar"];
     [self.navigationController pushViewController:menuTab animated:YES];
     
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"getUserInfo" object:nil];
-    
+}
+
+-(void)jumpToRegisterView
+{
+    UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RegisterViewController *registerView = [mainView instantiateViewControllerWithIdentifier:@"registerViewId"];
+    [self.navigationController pushViewController:registerView animated:YES];
+
 }
 
 -(void)getUserInfo
@@ -256,7 +271,6 @@
     // NSString *urlStr=[NSString stringWithFormat:@"http://192.168.0.42:8080/platform/user/page"];
     //userInfo = [WGAPI httpAsynchronousRequestUrl:urlStr postStr:userInfoData];
     [WGAPI post:API_GET_USEDATA RequestParams:nil FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        
         if(data){
             
             NSString *jsonStr =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -265,10 +279,8 @@
             // NSDictionary *userInfo = [infojson objectForKey:@"data"];
             NSDictionary *userInfo = [infojson objectForKey:@"data"];
             userId = [userInfo objectForKey:@"usr_id"];
-            
-               [self performSelectorOnMainThread:@selector(saveUserInfo) withObject:data waitUntilDone:YES];//刷新UI线程
+            [self performSelectorOnMainThread:@selector(saveUserInfo) withObject:data waitUntilDone:YES];//刷新UI线程
 
-            
         }
     
     }];
@@ -289,7 +301,6 @@
      [SVProgressHUD  showErrorWithStatus:str];
 
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

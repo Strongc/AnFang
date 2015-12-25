@@ -179,7 +179,7 @@
 - (void)sendMessage:(UIButton *)sender
 {
     if (self.isAbleToSendTextMessage) {
-        NSString *resultStr = [self.TextViewInput.text stringByReplacingOccurrencesOfString:@"   " withString:@""];
+        //NSString *resultStr = [self.TextViewInput.text stringByReplacingOccurrencesOfString:@"   " withString:@""];
         
     }
     else{
@@ -255,7 +255,7 @@
 
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    UIImage *editImage = [info objectForKey:UIImagePickerControllerEditedImage];
+    //UIImage *editImage = [info objectForKey:UIImagePickerControllerEditedImage];
     [self.superVC dismissViewControllerAnimated:YES completion:^{
         //[self.delegate UUInputFunctionView:self sendPicture:editImage];
     }];

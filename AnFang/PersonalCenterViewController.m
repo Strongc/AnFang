@@ -12,7 +12,6 @@
 #import "PersonCenterTableViewCell.h"
 #import "AccountCenterViewController.h"
 #import "WGAPI.h"
-#import "JSONKit.h"
 #import "CMTool.h"
 #import "CoreArchive.h"
 #import "SystemConfigViewController.h"

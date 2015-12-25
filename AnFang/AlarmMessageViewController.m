@@ -11,7 +11,6 @@
 #import "Common.h"
 #import "AlarmMessageDetailViewController.h"
 #import "WGAPI.h"
-#import "JSONKit.h"
 #import "CMTool.h"
 #import "SDRefresh.h"
 #import "SVProgressHUD.h"

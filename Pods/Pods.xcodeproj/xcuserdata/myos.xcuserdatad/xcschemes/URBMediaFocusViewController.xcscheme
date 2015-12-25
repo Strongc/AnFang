@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'E46D4B96FA5BF51A10092B61'
+               BlueprintIdentifier = '11EC4D0DF497517DF133FDD3'
                BlueprintName = 'URBMediaFocusViewController'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libURBMediaFocusViewController.a'>

@@ -145,7 +145,7 @@ static Security *sharedSecurity = nil;
     for (int i = 0; i < blockCount; i++) {
         NSUInteger loc = i * blockSize;
         // 数据段的实际大小。最后一段可能比blockSize小。
-        int dataSegmentRealSize = MIN(blockSize, [plainData length] - loc);
+        int dataSegmentRealSize = (int)MIN(blockSize, [plainData length] - loc);
         // 截取需要加密的数据段
         NSData *dataSegment = [plainData subdataWithRange:NSMakeRange(loc, dataSegmentRealSize)];
         OSStatus status = SecKeyEncrypt(_publicKey, kSecPaddingPKCS1, (const uint8_t *)[dataSegment bytes], dataSegmentRealSize, cipherBuffer, &cipherBufferSize);

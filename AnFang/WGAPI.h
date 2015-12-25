@@ -13,6 +13,8 @@
 #define RESULT @"result"
 //用户登录
 #define API_USER_LOGIN @"user/login"
+//用户注册
+#define API_USER_REG @"user/reg"
 //分页获取用户信息
 #define API_GET_USERINFO @"user/page"
 //获取用户信息

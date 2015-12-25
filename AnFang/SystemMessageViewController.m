@@ -10,7 +10,6 @@
 #import "Common.h"
 #import "AlarmMessageDetailViewController.h"
 #import "WGAPI.h"
-#import "JSONKit.h"
 #import "CMTool.h"
 #import "SDRefresh.h"
 #import "MessageViewController.h"
@@ -19,7 +18,6 @@
 @interface SystemMessageViewController ()
 {
     UITableView *messageTable;
-    
     NSMutableArray *tempArray;
     UILabel *alertLab;
     int pageSize;
@@ -111,7 +109,7 @@
     NSString *pagesize = [NSString stringWithFormat:@"%d",pageSize];
     NSDictionary *page = @{@"pageNo":@"1",@"pageSize":pagesize};
     NSDictionary *pageInfo = @{@"page":page};
-    NSString *pageStr = [pageInfo JSONString];
+    NSString *pageStr = [CMTool dictionaryToJson:pageInfo];
     NSString *userInfoData = [@"message=" stringByAppendingString:pageStr];
     
     [WGAPI post:API_GET_MESSAGEINFO RequestParams:userInfoData FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {

@@ -10,4 +10,8 @@
 
 @interface RegisterViewController : UIViewController
 
+@property (nonatomic,strong) UITextField *userNameField;
+@property (nonatomic,strong) UITextField *passwordField;
+@property (nonatomic,strong) UITextField *ConfirmPasswordField;
+@property (nonatomic,copy) NSString *message;
 @end
