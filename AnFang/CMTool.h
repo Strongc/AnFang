@@ -10,7 +10,7 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
-#import "NSDate+TimeAgo.h"
+//#import "NSDate+TimeAgo.h"
 //#import "MD5.h"
 
 @interface CMTool : NSObject

@@ -796,6 +796,9 @@
 
 }
 
+/**
+ *  获取求助信息
+ */
 -(void)getHelpMessage
 {
     NSDictionary *page = @{@"pageNo":@"1",@"pageSize":@"100"};

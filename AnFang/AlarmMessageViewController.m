@@ -93,15 +93,15 @@
     
     // 默认是在navigationController环境下，如果不是在此环境下，请设置 refreshHeader.isEffectedByNavigationController = NO;
     [refreshHeader addToScrollView:messageTable];
-    
+    [messageArray removeAllObjects];
     __weak SDRefreshHeaderView *weakRefreshHeader = refreshHeader;
     //__weak typeof(self) weakSelf = self;
     refreshHeader.beginRefreshingOperation = ^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
              //pageSize += 1;
-            //[messageArray removeAllObjects];
-           // [self getAlarmMessage];
+            //
+            [self getAlarmMessage];
             [weakRefreshHeader endRefreshing];
         });
     };
@@ -185,6 +185,25 @@
     errorInfo.hidden = YES;
     [messageTable reloadData];
     [SVProgressHUD dismiss];
+    [self deleteMessageByUserId];
+}
+
+-(void)deleteMessageByUserId
+{
+    
+    NSString *userId = [CoreArchive strForKey:@"userId"];
+    NSDictionary *params = @{@"usr_id":userId};
+    NSString *paramsStr = [CMTool dictionaryToJson:params];
+    NSString *str = @"usr_id=";
+    NSString *paramStr = [str stringByAppendingString:paramsStr];
+    [WGAPI post:API_DELETEMSG RequestParams:paramStr FinishBlock:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if(data){
+            NSString *json =  [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"删除结果%@",json);
+        
+        }
+    }];
+
 }
 
 #pragma mark UITableViewDataSource

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AlarmMessageTableViewCell.h"
+#import "CoreArchive.h"
 //#import "RefreshViewController.h"
 
 @interface AlarmMessageViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>

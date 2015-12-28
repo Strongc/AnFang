@@ -47,18 +47,10 @@
     infoData= [[NSMutableData alloc] init];
     userInfoArray = [[NSMutableArray alloc]init];
     json = [[NSDictionary alloc]init];
-    
     optionTitle1 = [[NSMutableArray alloc]initWithObjects:@"我的行业", @"收藏夹",@"账户中心",nil];
     optionTitle2 = [[NSMutableArray alloc]initWithObjects:@"系统设置",@"意见反馈",nil];
-    
     optionImage1 = [[NSMutableArray alloc]initWithObjects:@"我的行业.png",@"收藏夹.png",@"账户中心.png",nil];
     optionImage2 = [[NSMutableArray alloc]initWithObjects:@"系统设置.png",@"意见反馈.png",nil];
-    
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] init];
-    item.title = @"返回";
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];//设置导航栏返回按钮及文字背景颜色
-    //self.navigationController.navigationBar.translucent = NO;
-    self.navigationItem.backBarButtonItem = item;
     [self ConfigControl];
     [self getUserInfo];
    
@@ -85,13 +77,10 @@
                 NSDictionary *userMessage = userInfoArray[0];
                 nickName = [userMessage objectForKey:@"usr_name"];
                 userId = [userMessage objectForKey:@"usr_id"];
-                
                 [self performSelectorOnMainThread:@selector(refreshUIControl) withObject:data waitUntilDone:YES];//刷新UI线程
             }
            
-            
         }
-        
         
     }];
     
@@ -107,7 +96,7 @@
 {
 
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
-    headView.backgroundColor = [UIColor colorWithHexString:@"222121"];
+    headView.backgroundColor = [UIColor colorWithHexString:@"dfdfdf"];
     
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20*HEIGHT/667, WIDTH, 50*HEIGHT/667)];
     title.textAlignment = NSTextAlignmentCenter;
@@ -122,7 +111,6 @@
     [self.view addSubview:backgroundImage];
     
     personTable = [[UITableView alloc] initWithFrame:CGRectMake(0,240*HEIGHT/667,WIDTH ,HEIGHT-200*HEIGHT/667) style:UITableViewStylePlain];
-    
     personTable.delegate = self;
     personTable.dataSource = self;
     personTable.separatorStyle = UITableViewCellSeparatorStyleNone;

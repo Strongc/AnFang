@@ -40,15 +40,10 @@
     if (JSONString == nil) {
         
         return nil;
-        
-        
-        
     }
     
     NSData *jsonData = [JSONString dataUsingEncoding:NSUTF8StringEncoding];
-    
     NSError *err;
-    
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
                          
                                                         options:NSJSONReadingMutableContainers
@@ -64,7 +59,6 @@
     }
     
     return dic;
-    
     
 //    NSData *JSONData = [JSONString dataUsingEncoding:NSUTF8StringEncoding];
 //    NSDictionary *responseJSON = [NSJSONSerialization JSONObjectWithData:JSONData options:NSJSONReadingMutableLeaves error:nil];

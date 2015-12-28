@@ -260,6 +260,9 @@
 
 }
 
+/**
+ *  获取用户信息
+ */
 -(void)getUserInfo
 {
     
@@ -307,6 +310,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+/**
+ *  隐藏状态栏
+ *
+ *  @return 是否隐藏
+ */
 -(BOOL)prefersStatusBarHidden
 {
 
